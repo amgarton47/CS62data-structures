@@ -1,24 +1,24 @@
 # Grading tools
 
-`run_junit.sh`
+## run_junit.sh
 
-    usage: `run_junit.sh` [*submission-directory* ...]
+    usage: __run_junit.sh__ [ *submission-directory* ...]
 
-    assumes: `./_autos` contains a JUnit test suite
+    assumes: ./_autos contains a JUnit test suite
 
     Run the (locally installed) JUnit test suite on the named submission(s)
        1. Attempt to verify that each specified directory contains sources for the package in the test suite.
        2. copy all of the required materials into a temporary directory
        3. compile the submission with the JUnit test suite modules
        4. run the test suite main module
-       5. capture the *json* output in a file in the `_output` directory,
+       5. capture the *json* output in a file in the **_output** directory,
           with the same base-name as the submission, and the suffix `.autos`
 
     If no *submission-directory* names are listed, this script will try to process
     every subdirectory (of the current working directory) as a submission.
 
 
-`merge_scores.py`
+## merge_scores.py
 
     usage: `python merge_scores.py` [`-t` *suite-description*] [`-f`] [*raw-JUnit-output-file* ...]
 
@@ -48,7 +48,7 @@
     that the score must be reviewed.
 
 
-`score_report.py`
+## score_report.py
 
     usage: `python score_report.py` [*submission*`.json` ...]
 
@@ -71,7 +71,7 @@
     end with a total points earned.
 
 
-`make_pdfs.sh`
+## make_pdfs.sh
 
     usage: `make_pdfs.sh` *source-file* ... [*submission-directory* ...]
 
