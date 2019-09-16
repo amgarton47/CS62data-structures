@@ -7,12 +7,13 @@
     assumes: ./_autos contains a JUnit test suite
 
     Run the (locally installed) JUnit test suite on the named submission(s)
-       1. Attempt to verify that each specified directory contains sources for the package in the test suite.
+       1. Attempt to verify that each specified directory contains sources for 
+          the package in the test suite.
        2. copy all of the required materials into a temporary directory
        3. compile the submission with the JUnit test suite modules
        4. run the test suite main module
        5. capture the json output in a file in the _output directory,
-          with the same base-name as the submission, and the suffix .autos`
+          with the same base-name as the submission, and the suffix .autos.
 
     If no submission-directory names are listed, this script will try to process
     every subdirectory (of the current working directory) as a submission.
@@ -22,7 +23,8 @@
 
     usage: python merge_scores.py [-t suite-description] [-f] [raw-JUnit-output-file ...]
 
-    assumes: ./assignment.json (or template specifed with -t option) contains a test suite description
+    assumes: ./assignment.json (or template specifed with -t option) contains a 
+             test suite description
 
     Merge the most recent JUnit test results into complete grading files.
 
@@ -77,4 +79,4 @@
 
     For each submission-directory, find the enumerated source-files,
     and create a .pdf listing of those files (in the _output) 
-    directory with a name of the form submission*pdf.
+    directory with a name of the form submission.pdf.

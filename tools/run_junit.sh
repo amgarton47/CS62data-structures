@@ -2,7 +2,7 @@
 #
 # Build and run the junit tests for submitted solutions
 #
-# Usage: testbuild.sh [--save] [--verbose] [solution-source ...]
+# Usage: run_junit.sh [--save] [--verbose] [submission-dir ...]
 #
 TEMPDIR="/tmp/JUNIT_$$"
 HEADDIR=`pwd`
