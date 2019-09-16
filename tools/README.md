@@ -11,10 +11,10 @@
        2. copy all of the required materials into a temporary directory
        3. compile the submission with the JUnit test suite modules
        4. run the test suite main module
-       5. capture the *json* output in a file in the _output directory,
-          with the same base-name as the submission, and the suffix `.autos`
+       5. capture the json output in a file in the _output directory,
+          with the same base-name as the submission, and the suffix .autos`
 
-    If no *submission-directory* names are listed, this script will try to process
+    If no submission-directory names are listed, this script will try to process
     every subdirectory (of the current working directory) as a submission.
 
 
@@ -26,13 +26,13 @@
 
     Merge the most recent JUnit test results into complete grading files.
 
-    It is common for assignment rubric (from a *suite-description* file) to contain many
+    It is common for assignment rubric (from a suite-description file) to contain many
     more items (e.g. style and process) than are covered by the automated test suite.
     A complete set of scores for a submission are stored (in the _output directory)
     in files with the .json suffix.
 
     If such a file does not yet exist, a new one will be created (based on the default
-    or supplied *suite-description*).  Then the scores from the specified raw JUnit results
+    or supplied suite-description).  Then the scores from the specified raw JUnit results
     will be merged into that complete set of scores.  Any results not included in the
     raw JUnit results will be left unchanged.
 
@@ -63,7 +63,7 @@
     the base name of the .json score file, and the <lab> name is
     taken from the assignment attribute in that file.
 
-    The program will look up the *submitter* name (from the base-name of the `.json` file)
+    The program will look up the submitter name (from the base-name of the .json file)
     in the student roster in order to get student name and e-mail address, to put at the
     top of the page.
 
@@ -73,8 +73,8 @@
 
 ## make_pdfs.sh
 
-    usage: `make_pdfs.sh` source-file ... [submission-directory ...]
+    usage: make_pdfs.sh source-file ... [submission-directory ...]
 
     For each submission-directory, find the enumerated source-files,
-    and create a `.pdf` listing of those files (in the `_output`) 
+    and create a .pdf listing of those files (in the _output) 
     directory with a name of the form submission*pdf.
