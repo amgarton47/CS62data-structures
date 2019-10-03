@@ -32,12 +32,13 @@ def merge_scores(raw_scores):
 
     # read in the base into which we are merging
     try:
+        print("opening " + merge_with)
         with open(merge_with, 'r') as infile:
             all_scores = json.load(infile)
             infile.close()
     except Exception as e:
         print("Error: unable to read test template " + merge_with
-              + " - " + e)
+              + " - " + e.message)
         return None
 
     # read in the updated raw scores
@@ -47,7 +48,7 @@ def merge_scores(raw_scores):
             infile.close()
     except Exception as e:
         print("Error: unable to read raw results file " + raw_scores
-              + " - " + e)
+              + " - " + e.message)
         return None
 
     # get the list of all known tests
