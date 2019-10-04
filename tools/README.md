@@ -19,6 +19,18 @@
     every subdirectory (of the current working directory) as a submission.
 
 
+## compile_and_run.sh
+
+    usage: compile_and_run.sh [submission directory ...]
+
+    For assignments that do not actually have an auto_grader
+       1. Attempt to verify that each specified directory contains sources for 
+          the package in the test suite.
+       3. compile the sources
+       4. if a main class is found, run that class
+       5. capture output in a file called OUTPUT in the submission directory
+
+
 ## merge_scores.py
 
     usage: python merge_scores.py [-t suite-description] [-f] [raw-JUnit-output-file ...]
@@ -50,6 +62,22 @@
     that the score must be reviewed.
 
 
+## csv2json.py
+
+   For non-auto-graded submissions, this tool lets you accumulate scores in a
+   spreadsheet (one row per student, one column per rubric item), and then
+   creates <SID>.json files that can be processed by the standard means below.
+
+   usage: python csv2json.py [--template=assignment.json] [--roster=classroom.json]
+	
+	print (to stdout) a new CSV file with a column for every test in the 
+	template and a row for every student in the roster.
+
+   usage: python csv2json.py [--template=assignment.json] scores.csv ...
+
+   	create, for each student in each CSV files a <SID>.json file
+	that includes all of the scores listed in the CSV files
+
 ## score_report.py
 
     usage: python score_report.py [submission.json ...]
@@ -80,3 +108,11 @@
     For each submission-directory, find the enumerated source-files,
     and create a .pdf listing of those files (in the _output) 
     directory with a name of the form submission.pdf.
+
+## configuration files
+
+   Many of these scripts require an assignment.json (as for the autograder)
+   file that describes all of the rubric items in this assignment.
+
+   A few of these scripts also require a classroom.json describing, for
+   each student-ID, a full-name and e-mail address.
