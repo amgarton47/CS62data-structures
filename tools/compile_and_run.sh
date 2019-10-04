@@ -33,7 +33,7 @@ fi
 if [ -s PACKAGE ]
 then
 	package=`cat PACKAGE`
-	echo "Attempting to build package $package"
+	echo "Grading package $package"
 else
 	package=""
 	echo "Assuming this assignment uses default package"
@@ -136,6 +136,7 @@ do
 	fi
 
 	# and move on to the next project
+	echo
 	cd $HEADDIR
 	shift
 done
