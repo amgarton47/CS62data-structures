@@ -5,7 +5,7 @@ This is a private repo containing projects from CS62 and the tools used to manag
 Structure
 
   * *labname* ... contains all parts of an assignment
-     - *project* ... eclipse project(s) to be cloned by students
+     - project ... eclipse project(s) to be cloned by students
         - README.md ... front page for the lab/assignment
         - src/*package* ... directory containing starter files
      - test_suite ... auto-grader test suites
