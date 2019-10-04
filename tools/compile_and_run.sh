@@ -57,6 +57,11 @@ do
 		continue
 	fi
 
+	if [ $verbose -eq 1 ]
+	then
+		echo "Submission directory $1"
+	fi
+
 	# see if there seems to be a single package under src
 	count=0
 	for file in "$srcdir/*"
@@ -64,8 +69,6 @@ do
 		if [ -d $file ]
 		then
 			package=`basename $file`
-		else
-			echo $file does not make it
 		fi
 		count=$((count+1))
 	done
@@ -76,7 +79,7 @@ do
 		sourcedir=$srcdir
 	fi
 
-	# enumerage the java sources
+	# enumerate the java sources and find main class(es)
 	sources=""
 	runnable=""
 	for file in "$sourcedir"/*.java
