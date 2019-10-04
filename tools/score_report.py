@@ -2,6 +2,7 @@
 # TODO: generate the ID's so I can sort my output
 import json
 import os.path
+import logging
 from optparse import OptionParser
 
 
@@ -11,24 +12,24 @@ classroom = None
 
 def full_name(uid):
     """
-    look up username in class.json and return full name
+    look up username in roster.json and return full name
     """
     if uid in classroom:
         record = classroom[uid]
         return record['name']
     else:
-        return uid + " NOT IN ../class.json"
+        return uid + " NOT IN ROSTER"
 
 
 def email(uid):
     """
-    look up username in class.json and return email address
+    look up username in roster.json and return email address
     """
     if uid in classroom:
         record = classroom[uid]
         return record['email']
     else:
-        return uid + " NOT IN ../class.json"
+        return uid + " NOT IN ROSTER"
 
 
 def report(score_file):
@@ -48,7 +49,7 @@ def report(score_file):
             all_scores = json.load(infile)
             infile.close()
     except Exception as e:
-        print("Error: unable to read score file " + score_file
+        logging.error("unable to read score file " + score_file
               + " - " + e)
         return None
 
@@ -60,7 +61,7 @@ def report(score_file):
     if 'tests' in all_scores:
         all_tests = all_scores['tests']
     else:
-        print("Error: " + score_file + " does not contain \"tests\":")
+        logging.error(score_file + " does not contain \"tests\":")
         return None
 
     # form the output file name from the user and assignment names
@@ -121,12 +122,15 @@ if __name__ == "__main__":
     parser = OptionParser(usage=umsg)
     parser.add_option("-v", "--verbose", action="store_true", dest="verbose",
                       help="verbose output")
+    parser.add_option("-r", "--roster", type="string", dest="roster",
+                      metavar="FILE", default="classroom.json",
+                      help="list of students")
 
     (opts, files) = parser.parse_args()
     verbose = opts.verbose
 
     # digest the uid to user info map
-    with open("../class.json", 'r') as infile:
+    with open(opts.roster, 'r') as infile:
         classroom = json.load(infile)
         infile.close()
 
