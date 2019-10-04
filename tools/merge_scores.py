@@ -32,7 +32,6 @@ def merge_scores(raw_scores):
 
     # read in the base into which we are merging
     try:
-        print("opening " + merge_with)
         with open(merge_with, 'r') as infile:
             all_scores = json.load(infile)
             infile.close()
