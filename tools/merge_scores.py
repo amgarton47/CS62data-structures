@@ -1,5 +1,6 @@
 import json
 import os.path
+import logging
 from optparse import OptionParser
 
 full_credit = False
@@ -27,7 +28,7 @@ def merge_scores(raw_scores):
         merge_with = template
         newfile = True
     else:
-        print("ERROR: no existing " + output + " or " + template)
+        logging.error("no existing " + output + " or " + template)
         return None
 
     # read in the base into which we are merging
@@ -36,7 +37,7 @@ def merge_scores(raw_scores):
             all_scores = json.load(infile)
             infile.close()
     except Exception as e:
-        print("Error: unable to read test template " + merge_with
+        logging.error("unable to read test template " + merge_with
               + " - " + e.message)
         return None
 
@@ -46,7 +47,7 @@ def merge_scores(raw_scores):
             raw_results = json.load(infile)
             infile.close()
     except Exception as e:
-        print("Error: unable to read raw results file " + raw_scores
+        logging.error("unable to read raw results file " + raw_scores
               + " - " + e.message)
         return None
 
@@ -59,7 +60,7 @@ def merge_scores(raw_scores):
     if 'tests' in all_scores:
         all_tests = all_scores['tests']
     else:
-        print("Error: " + merge_with + " does not contain \"tests\":")
+        logging.error(merge_with + " does not contain \"tests\":")
         return None
 
     print("Merging " + raw_scores + " w/" + merge_with +
