@@ -1,0 +1,96 @@
+#!/usr/bin/env python
+
+import argparse
+import json
+import os
+import sys
+import time
+
+from jinja2 import Environment, PackageLoader
+from gmailer import GoogleMailer
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('sender', help='email address of the sender')
+    parser.add_argument('subject', help='subject line of the email')
+    parser.add_argument('--classroom', help='classroom file if not in wd')
+
+    args = parser.parse_args()
+
+    if args.classroom:
+        classroom = args.classroom
+    else:
+        classroom = os.path.join(os.getcwd(), 'class.json')
+
+    if not os.path.isfile(classroom):
+        print('Oops! Looks like there isn\'t a classroom file!')
+        sys.exit(1)
+
+    env = Environment(loader=PackageLoader('storedtemplates', 'templates'), autoescape=True)
+    html = env.get_template('basicemail.html')
+    plain = env.get_template('basicemail.txt')
+
+    with open(classroom, 'r') as data:
+        data = json.load(data)
+
+    add_PDF_data(data)
+
+    resp = raw_input('Would you like to send the emails now? [send/N]')
+    if resp == 'send':
+        gm = GoogleMailer()
+        print('Sending....')
+        body = [
+            '''
+                Hope you are having a good evening! Please find your grade for
+                the assignment attached. A copy of the rubric with your score is
+                attached along with a PDF of your code. Be sure to open this on
+                a computer to see the annotations on the PDF.
+            ''',
+            '''
+                If you have any questions, please contact us through Piazza and we will
+                be happy to answer them. Do not reply to this email.
+            '''
+        ]
+
+        for student in data:
+            send_to_student(args, body, data, gm, student, (html, plain))
+
+
+def send_to_student(args, body, data, gm, i, t):
+    time.sleep(2)  # sleep 2 seconds to avoid getting kicked off the API
+    if data[i]['path']:
+        try:
+            html = t[0].render(
+                    header_text=args.subject, body=body,
+                    name=data[i]['name'])
+            text = t[1].render(
+                    header_text=args.subject, body=body,
+                    name=data[i]['name'])
+            result = gm.send_email(args.sender, data[i]['email'],
+                                   args.subject, text, html,
+                                   data[i]['path'])
+
+            print('\033[93m%s\033[0m %-20s <%s>' % (
+                result['id'], i, data[i]['email']))
+        except:
+            print('\033[93m-----error------\033[0m %-20s <%s>' % (
+                i, data[i]['email']))
+    else:
+        print('\033[93m----skipped-----\033[0m %-20s <%s>' % (
+            i, data[i]['email']))
+
+
+def add_PDF_data(data):
+    for i in data:
+        student_file = os.path.join(os.getcwd(), i + '.pdf')
+        if os.path.isfile(student_file):
+            print('\033[92m%-20s <%s>\033[0m' % (i, data[i]['email']))
+            data[i]['path'] = student_file
+        else:
+            print('\033[91m%-20s <%s>\033[0m' % (i, data[i]['email']))
+            data[i]['path'] = None
+
+
+if __name__ == '__main__':
+    main()
