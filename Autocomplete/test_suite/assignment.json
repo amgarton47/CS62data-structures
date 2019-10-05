@@ -1,0 +1,62 @@
+{
+    "assignment": "assign09",
+    "info": "You (auto)complete me!",
+    "runner": {
+        "mainclass": "AutoCompleteMain",
+        "package": "autocomplete",
+        "type": "java_single_package_runner"
+    },
+    "max_score": 20,
+    "tests": [
+        {
+            "name": "Term class & comparables",
+            "score": 2.25
+        },
+        {
+            "name": "Load files and user interaction",
+            "score": 3.0
+        },
+        {
+            "name": "Thoroughness of test code",
+            "score": 2.0
+        },
+        {
+            "name": "Quality of code (style and formatting)",
+            "score": 4.0
+        },
+        {
+            "name": "Appropriate comments (including JavaDoc)",
+            "score": 3.0
+        },
+        {
+            "name": "extra credit (two points max)",
+            "score": 0.0
+        },
+        {
+            "name": "submitted correctly (negative if incorrect)",
+            "score": 0.0
+        },
+        {
+            "name": "testTermByReverseWeightOrder(autocomplete.Autograder)",
+            "score": 0.5
+        },
+        {
+            "name": "testTermByPrefixOrder(autocomplete.Autograder)",
+            "score": 0.25
+        },
+        {
+            "name": "testFirstIndexOf(autocomplete.Autograder)",
+            "score": 1.0
+        },
+        {
+            "name": "testLastIndexOf(autocomplete.Autograder)",
+            "score": 2.0
+        },
+        {
+            "name": "testAllMatches(autocomplete.Autograder)",
+            "score": 2.0
+        }
+    ],
+    "title": "AutoComplete Assignment",
+    "writeup": "http://www.cs.pomona.edu/classes/cs062/assignments/ass08.pdf"
+}
