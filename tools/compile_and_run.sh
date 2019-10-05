@@ -17,39 +17,19 @@ then
 	shift
 fi
 save=0
-if [ "$1" == "--save" ]
+
+# is there any main class we should not run?
+if [ -f DO_NOT_RUN ]
 then
-	save=1
-	shift
+	never_run=`cat DO_NOT_RUN`
+else
+	never_run=""
 fi
 
 # if we weren't given directories to process, try everything
 if [ -z "$1" ]
 then
 	set `ls`
-fi
-
-# figure out what package we are expecting to find
-if [ -s PACKAGE ]
-then
-	package=`cat PACKAGE`
-	echo "Grading package $package"
-else
-	package=""
-	echo "Assuming this assignment uses default package"
-fi
-
-# figure out what class we are expected to run
-if [ -s MAINCLASS ]
-then
-	mainclass=`cat MAINCLASS`
-	if [ -n "$package" ]
-	then
-		mainclass="$package.$mainclass"
-	fi
-else
-	mainclass=""
-	echo "No MAINCLASS defined, submissions will not be run."
 fi
 
 while [ -n "$1" ]
@@ -77,26 +57,59 @@ do
 		continue
 	fi
 
-	# see if we can find the package name
-	if [ -z "$package" ]
+	if [ $verbose -eq 1 ]
 	then
-		sourcedir="$srcdir"
-	elif [ -d "$srcdir/$pacakge" ]
+		echo "Submission directory $1"
+	fi
+
+	# see if there seems to be a single package under src
+	count=0
+	for file in "$srcdir/*"
+	do
+		if [ -d $file ]
+		then
+			package=`basename $file`
+		fi
+		count=$((count+1))
+	done
+	if [ $count -eq 1 ]
 	then
 		sourcedir=$srcdir/$package
 	else
-		echo "WARNING: $1 does not appear to contain the $package package"
-		shift
-		continue
+		sourcedir=$srcdir
 	fi
 
-	# enumerage the java sources
+	# enumerate the java sources and find main class(es)
 	sources=""
+	runnable=""
 	for file in "$sourcedir"/*.java
 	do
 		if [ -f "$file" ]
 		then
+			# add it to list of files to compile
 			sources="$sources $file"
+			
+			# see if we should run it
+			count=`grep -c 'static void main(' $file`
+			if [ $count -eq 1 ]
+			then
+				class=`basename $file .java`
+
+				# is this class on the never-run list?
+				skip=0
+				for n in $never_run
+				do
+					if [ "$class" == "$n" ]
+					then
+						skip=1
+					fi
+				done
+
+				if [ $skip -eq 0 ]
+				then
+					runnable="$runnable $class"
+				fi
+			fi
 		fi
 	done
 	if [ -z "$sources" ]
@@ -112,23 +125,32 @@ do
 		rm $1/OUTPUT
 	fi
 	cd "$sourcedir"
-	javac *.java > "$HEADDIR/$1/OUTPUT"
+	javac *.java > "$HEADDIR/$1/OUTPUT" 2>&1
 	if [ $? -eq 0 ]
 	then
-		if [ -n "$mainclass" ]
+		if [ -n "$runnable" ]
 		then
 			# try to run the submission
-			echo "... attempting to run submission $1"
 			cd "$HEADDIR/$srcdir"
-			java $mainclass >> "$HEADDIR/$1/OUTPUT"
-			if [ $? -eq 0 ]
-			then
-				echo "... exit status 0" >> "$HEADDIR/$1/OUTPUT"
-			else
-				echo "NON-ZERO EXIT STATUS" >> "$HEADDIR/$1/OUTPUT"
-			fi
+
+			# run the runnable classes
+			for c in $runnable
+			do
+				if [ -n "$package" ]
+				then
+					c=$package.$c
+				fi
+				echo "   $1 ... attempting to run $c"
+				java $c >> "$HEADDIR/$1/OUTPUT"
+				if [ $? -eq 0 ]
+				then
+					echo "   $1/$c ... exit status 0" >> "$HEADDIR/$1/OUTPUT"
+				else
+					echo "   $1/$c ... NON-ZERO EXIT STATUS" >> "$HEADDIR/$1/OUTPUT"
+				fi
+			done
 		else
-			echo "... successful build of submission $1"
+			echo "   $1 ... build successful"
 		fi
 	else
 		echo

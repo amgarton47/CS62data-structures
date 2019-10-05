@@ -24,10 +24,10 @@
     usage: compile_and_run.sh [submission directory ...]
 
     For assignments that do not actually have an auto_grader
-       1. Attempt to verify that each specified directory contains sources for 
-          the package in the test suite.
+       1. Attempt to verify that each specified directory contains java sources.
+       2. Attempt to infer the package name (assuming there is only one)
        3. compile the sources
-       4. if a main class is found, run that class
+       4. if any main classes are found, run them (unless they appear in DO_NOT_RUN)
        5. capture output in a file called OUTPUT in the submission directory
 
 
