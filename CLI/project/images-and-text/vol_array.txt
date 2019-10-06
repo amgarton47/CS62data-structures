@@ -1,0 +1,14 @@
+
+m operator import itemgetter
+import boto3
+import sys
+
+ec2 = boto3.resource('ec2')
+vol_array = ec2.volumes.all()
+
+#for v in sorted(vol_array, key=itemgetter(0)):
+for v in vol_array:
+    a = v.id
+    b = v.state
+    c = v.size
+    print('{}   {}  {}'.format(a, b, c))
