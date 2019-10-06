@@ -1,0 +1,93 @@
+Grading Workflow
+================
+
+Installation
+
+To install the autograder, open a terminal window.
+
+Enter the CS062 Directory at little.cs.pomona.edu, either through a program like Filezilla or by SSHing through the terminal. This requires the command:
+
+$ ssh [username]@little.cs.pomona.edu
+
+And then navigating to the autograder director inside the admin file of CS062. Then download the directory ‘ag’ and place it onto your Desktop. This can be done through the scp command, 
+
+$ scp [username]@little.cs.pomona.edu:common/cs/cs062/admin/Autograder/ag ~/Desktop
+
+This will ‘secure copy’ (scp) the file onto a location onto your machine (the desktop). Please **do NOT move this directory.** Then run:
+
+$ ~/Desktop/ag/grader/setup
+
+This will also add an alias to your `.bash_profile` called `gradeit`. (Sorry if you already have this alias! Just open your `.bash_profile` and change the last line!). If this doesn’t work because of a version error, use brew or similar to update whichever version the setup script has problems with. To install homebrew, run
+
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+And then use 
+
+$ brew install [whatever you have conflicts with]
+
+Or, if you already have it
+
+$ brew upgrade [whatever you have conflicts with]
+
+If you need an earlier version, try
+$ brew switch [program with version]
+
+If that doesn’t work, try
+
+$ brew search [program]
+
+Then
+
+$ brew install homebrew/versions/[program with version]
+
+And use the switch command if you need to.
+
+(Homebrew is just a program you should have on your computer in general. It helps you install and update various useful programs and is a wonderful and easy to use tool. See https://docs.brew.sh/ for full documentation if you need to swap versions of anything or run into any problems.) 
+
+Make sure you setup a classroom.json file for the entire class. This can be an edited version of the previous years classroom.json file that includes all the students names, emails, and githubs. 
+
+Workflow
+
+1. Make a working directory. For each time you grade, you should make a new working directory.
+
+   > Today we will be grading SilverDollar. Since it is the first assignment I
+   > will make a directory `assign01` on my `Desktop` -- although the location
+   > and name is not important, you just need to start with a fresh directory.
+
+2. Copy a `Suite` folder from the `dropbox` located at
+   `/common/cs/cs062/admin/autograder/suites` to somewhere of your choosing within your account. In this folder, you should find a folder per assignment. Make sure that the rubric on in the suite in assignment.json lines up with the points allocated for the assignment. If not, change the weight of them and the total points so that they line up. Copy the inner folder that pertains to your assignment not the whole directory. 
+
+3. Retrieve the students assignments from github. This can be done through classroom assistant. It is recommended that either all TAs use classroom assistant, or that the head TA uses it and uploads the rest to the submissions folder within cs062/admin. Make sure to only pull after the deadline. Once these are pulled, make sure that each student submission contains a folder ‘src’ with the relevant folder code (e.g. ‘silverdollar’) within it. If not, make sure that it is set up as such (e.g. [studentGithub]/src/silverdollar/[all .java files]. Now put these and the files in the suite folder into the working directory. 
+
+The working directory should have 
+An ‘_output’ file
+A ‘_autos file’ from the suite
+A unique ‘assignment.json’ from the suite, edited to have the correct point weights
+A ‘classroom.json file’ that is used for the entire semester
+The files for all the students you want to code
+
+4. Run the grader. Simply open a Terminal window, `cd` into your working directory
+   and run the following command:
+
+   $ gradeit
+
+5. Open [http://localhost:5000](http://localhost:5000) to access the grading
+   interface.
+
+6. Finishing. When you are done, close the server with `ctrl-c`.
+
+Troubleshooting
+
+1) Internal server error:
+
+Install or update GhostScript using brew or similar 
+
+$ brew install ghostscript 
+
+or
+
+$ brew update ghostscript 
+
+2) Make sure you're running it on Python2. If you have used python before, it is likely that you are using an updated version. 
+
+/insert instructions
