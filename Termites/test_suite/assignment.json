@@ -1,0 +1,46 @@
+{
+    "assignment": "asg10",
+    "info": "Autos have been pre-run to produce .autos files.",
+    "runner": {
+        "mainclass": null,
+        "package": null,
+        "type": null
+    },
+    "max_score": 20,
+    "tests": [
+        {
+          "name": "Termites move correctly on the screen",
+          "score": 3.0
+        },
+        {
+          "name": "Termites pick up wood chips",
+          "score": 3.0
+        },
+        {
+          "name": "Termites drop wood chip properly",
+          "score": 3.0
+        },
+        {
+          "name": "Correct use of synchronized blocks",
+          "score": 4.0
+        },
+        {
+          "name": "Quality of code",
+          "score": 4.0
+        },
+        {
+          "name": "Appropriate comments + JavaDoc",
+          "score": 3.0
+        },
+        {
+          "name": "Extra credit: controls (Max 2)",
+          "score": 0.0
+        },
+        {
+          "name": "Extra credit: more complex behavior (Max 4)",
+          "score": 0.0
+        }
+    ],
+    "title": "Termites",
+    "writeup": "http://www.cs.pomona.edu/classes/cs062/assignments/asg10.html"
+}

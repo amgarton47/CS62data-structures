@@ -1,0 +1,46 @@
+{
+    "assignment": "assign11",
+    "title": "Driving Directions",
+    "info": "Autos are impossible because of poor assignment design (sorry!) but there's a test script that you can run to see output from a couple of sample problems. That output should tell you most of what you need to know. Note: for the 'properly builds graph' item you can just give them full points if the tests mostly run.",
+    "writeup": "http://www.cs.pomona.edu/classes/cs062/assignments/asg11.html",
+    "runner": {
+        "mainclass": null,
+        "package": null,
+        "type": null
+    },
+    "max_score": 21,
+    "tests": [
+        {
+            "name": "Properly builds graph from input data",
+            "score" : 2.0
+        },
+        {
+            "name": "Strong connectivity test (check last 3 example outputs)",
+            "score" : 4.0
+        },
+        {
+            "name": "Dijkstra's algorithm (check outputs vs. known best)",
+            "score" : 4.0
+        },
+        {
+            "name": "Handles input correctly (free unless you did something weird)",
+            "score" : 3.0
+        },
+        {
+            "name": "Creates correct output (check output formatting)",
+            "score" : 4.0
+        },
+        {
+            "name": "Appropriate comments (JavaDoc style)",
+            "score" : 2.0
+        },
+        {
+            "name": "Style and formatting",
+            "score" : 2.0
+        },
+        {
+          "name": "Extra credit",
+          "score": 0.0
+        }
+    ]
+}
