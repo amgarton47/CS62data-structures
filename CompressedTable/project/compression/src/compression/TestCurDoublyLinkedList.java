@@ -37,7 +37,7 @@ public class TestCurDoublyLinkedList {
 		list.add(83);	
 		list.first();			
 		assertNotNull(list.current);
-		assertEquals(83, list.current.value(), 0);
+		assertEquals(83, (int) list.current.item, 0);
 	}
 
 	@Test
@@ -48,7 +48,7 @@ public class TestCurDoublyLinkedList {
 		list.last();
 
 		assertNotNull(list.current);
-		assertEquals(47, list.current.value(), 0);
+		assertEquals(47, (int) list.current.item, 0);
 	}
 
 
@@ -77,10 +77,10 @@ public class TestCurDoublyLinkedList {
 		list.first();
 
 		assertNotNull(list.current);
-		assertEquals(83, list.current.value(), 0);
+		assertEquals(83, (int) list.current.item, 0);
 
 		list.next();
-		assertEquals(47, list.current.value(), 0);
+		assertEquals(47, (int) list.current.item, 0);
 	}
 
 
@@ -144,13 +144,13 @@ public class TestCurDoublyLinkedList {
 		list.add(47);
 		list.first();
 		assertEquals(1, list.size());
-		assertEquals(47, list.current.value(), 0);
+		assertEquals(47, (int) list.current.item, 0);
 		
 		// 47 <=> 83
 		list.addAfterCurrent(83);
 		
 		assertEquals(2, list.size());
-		assertEquals(83, list.current.value(), 0); // current should point to new node		
+		assertEquals(83, (int) list.current.item, 0); // current should point to new node		
 	}
 
 	@Test
