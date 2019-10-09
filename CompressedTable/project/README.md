@@ -179,7 +179,7 @@ You will be graded based on the following criteria:
 | JUnit tests for all methods in `CurDoublyLinkedList` | 2      |
 | Appropriate comments (including JavaDoc) | 2      |
 | General correctness                      | 2      |
-| [Style and formatting](https://github.com/pomonacs622018f/Handouts/blob/master/style_guide.md)                      | 2      |
+| Style and Formatting                     | 2      |
 | Submitted correctly                      | 1      |
 | **Total**                                | **20** |
 | Extra Credit - efficiency                | 2      |
