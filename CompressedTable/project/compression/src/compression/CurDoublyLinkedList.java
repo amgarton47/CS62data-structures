@@ -1,15 +1,12 @@
 package compression;
 
-import structure5.DoublyLinkedNode;
-import structure5.DoublyLinkedList;
-
 /**
  *  Implementation of lists, using doubly linked elements and keeping track of
  *  current reference.
  */
 
 public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
-	protected DoublyLinkedNode<E> current; // special designated node, site of actions
+	protected DoublyLinkedList.Node current; // special designated node, site of actions
 	// add other instance variables
 
 	/**
@@ -122,7 +119,7 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	// 
 	public void addFirst(E newFirst) {
 		super.addFirst(newFirst);
-		current = head;
+		current = first;
 	}
 
 	/**
@@ -145,7 +142,7 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 */
 	public void addLast(E newLast) {
 		super.addLast(newLast);
-		current = tail;
+		current = last;
 	}
 
 	/**
@@ -166,8 +163,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * @return value of first element in list
 	 */
 	public E getFirst() {
-		current = head;
-		return head.value();
+		current = first;
+		return last.item;
 	}
 
 	/**
@@ -177,8 +174,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * @return value of last element in list
 	 */
 	public E getLast() {
-		current = tail;
-		return tail.value();
+		current = last;
+		return last.item;
 	}
 
 	/**
@@ -203,11 +200,11 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * each element on a new line.
 	 */
 	public String otherString(){ // do not change
-	    DoublyLinkedNode<E> finger = head;
+	    DoublyLinkedList<E>.Node finger = first;
 	    StringBuilder ans = new StringBuilder("CurDoublyLinkedList:\n");
 	    while (finger != null) {
 		ans.append(finger+"\n");
-		finger = finger.next();
+		finger = finger.next;
 	    }
 	    return ans.toString();
 	}
