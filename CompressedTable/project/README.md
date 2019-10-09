@@ -1,21 +1,16 @@
 # Assignment 04 - Compression
 
-## Important Dates
-
-* Release Date: October 8, 2019
-* Due Date: October 22, 2019
-
 ## Learning Goals
 
-* Practice extending and using a doubly linked list data structure.
+* Practice inheritance by extending and using a doubly linked list data structure.
 * Gain experience designing and implementing a non-trivial algorithm.
 * Gain experience debugging complex and troublesome code.
 * Gain even more experience using `JUnit`.
 
 ## Key Terms and Concepts
 
-* `DoublyLinkedList` - A list consisting of nodes that each contain an item and a pointer to the node ahead and behind them. This means the list has minimal structure and instead consists of individual elements strung together. (See 1.3 pg. 142-153 in the textbook and the lecture slides for more).
-* `Association` - A data structure containing a key and a value together. This allows for two pieces of data to be "associated" and referenced together, and can be useful for storing certain information.
+* `DoublyLinkedList` - A list consisting of nodes that each contain an item and a pointer to the node ahead and behind them. This means the list has minimal structure and instead consists of individual elements strung together. Please *review* the `DoublyLinkedList.java` file we have provided you with as we have added two useful methods. Being familiar with this class will ensure that you don't duplicate work in its subclass `CurDoublyLinkedList`.
+* `Association` - A data structure containing a key and a value together. This allows for two pieces of data to be "associated" and referenced together, and can be useful for storing certain information in a dictionary. We have provided an `Association.java` file for your convenience. Please review it.
 * Compression - A very useful technique where large amounts of data is efficiently stored to reduce the space it takes up, through encoding or other methods. (See 5.5 pg. 810 in the textbook and **Appendix A - Compression** for more)
 
 ## Description
@@ -46,7 +41,7 @@ This assignment asks you to apply this technique to a drawing program, where ind
 
 ## Classes
 
-This assignment has 7 classes. You are responsible for `CurDoublyLinkedList` and `CompressedTable`. The first of these is the underlying data structure, a doubly linked list that includes a pointer, and the second is the class which handles the updating of the grid. You are also responsible for testing `CurDoublyLinkedList` with JUnit tests. The other classes have all been implemented for you.
+This assignment has many classes. You are responsible for `CurDoublyLinkedList` and `CompressedTable`. The first of these is the underlying data structure, a doubly linked list that includes a pointer, and the second is the class which handles the updating of the grid. You are also responsible for testing `CurDoublyLinkedList` with JUnit tests. The other classes have all been implemented for you.
 
 ![Drawing Grid](compressedtablemockup.png "Drawing Grid")
 
@@ -81,8 +76,8 @@ This interface represents a two-dimensional table.
 
 ### `CurDoublyLinkedList`
 
-`CurDoublyLinkedList` (short for 'extends the `DoublyLinkedList` class that you implemented.  Think carefully about what it means for one class to extend another.
-The `CurDoublyLinkedList` class should support all of the old methods of the `List` interface. In addition
+`CurDoublyLinkedList` (short for 'extends the `DoublyLinkedList` class to include a current pointer).  Think carefully about what it means for one class to extend another.
+The `CurDoublyLinkedList` class should support all of the old methods. In addition, 
 the new class should support the following methods:
 
 * `first()`, `last()`,
@@ -165,7 +160,7 @@ green!
 
 * Bug hunting - This is a complex project where many things can go wrong. It is more likely than not that there will be large bugs, even late into the project. Try to identify where these bugs are coming from - often, there is an issue with `CurDoublyLinkedList` that is causing them but it is difficult to see as you are working on an entirely different piece. How can we test incrementally to try to stop these bugs from occurring? What's a good way to identify the source of a problem?
 
-* Understanding what's given - As in the other projects, a significant amount of code has been provided to you. Try to go through it and understand how it can help you, and through this isolate what you need to focus on. After `CurDoublyLinkedList`, there is really only a couple more methods for you to implement. How can the provided classes and methods help you write these? In particular, I recommend looking at the 'find' method in 'CompressedTable' and the methods in 'RowOrderedPosn'.
+* Understanding what's given - As in the other projects, a significant amount of code has been provided to you. Try to go through it and understand how it can help you, and through this isolate what you need to focus on. After `CurDoublyLinkedList`, there is really only a couple more methods for you to implement. How can the provided classes and methods help you write these? In particular, we recommend looking at the `find` method in `CompressedTable` and the methods in `RowOrderedPosn`.
 
 * Why a linked list? - This assignment is a great example of how data structures like LinkedLists can be helpful in the real world. What are the advantages of a DoublyLinkedList in this scenario? Why would this project not work with an ArrayList? What are some other potential applications of LinkedLists?
 
