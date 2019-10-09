@@ -69,6 +69,18 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 		return finger.item;
 	}
 
+	 /**
+     * Add a value to head of list.
+     *
+     * @post adds value to beginning of list
+     * 
+     * @param value value to be added.
+     */
+    public void add(Item item)
+    {
+        addFirst(item);
+    }
+
 	/**
 	 * Inserts the specified item at the head of the doubly linked list.
 	 * 
@@ -229,6 +241,42 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 			return finger.item;
 		}
 
+	}
+
+	/**
+	 * Removes the first node with the specified item and returns it.
+	 * If node has the specified item then returns null.
+	 * 
+	 * @param item
+	 *            the item value of the first node to be removed
+	 * @return the item that was removed
+	 */
+	public Item remove(Item item) {
+		rangeCheck(index);
+
+		Node finger = first;
+		// search for index-th element or end of list
+		while (finger !=null && !finger.item.equals(item)) {
+
+			finger = finger.next;
+		}
+		if (finger!=null){
+			if(finger.prev !=null){
+				finger.prev.next = finger.next;
+			}
+			else{
+				first = finger.next;
+			}
+			if(finger.next !=null){
+				finger.next.prev = finger.prev;
+			}
+			else{
+				last = finger.prev;
+			}
+			n--;
+			return finger.item;
+		}
+		return null;
 	}
 
 	/**

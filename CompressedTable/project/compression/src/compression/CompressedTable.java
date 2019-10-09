@@ -1,7 +1,5 @@
 package compression;
 
-import structure5.*;
-
 /** CompressedTable.java
  * Class representing efficient implementation of 2-dimensional table 
  * when lots of repeated entries. Idea is to record entry only when a 
