@@ -17,6 +17,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	}
 
 	/**
+	 * set current to first element of list
+	 *
 	 * @pre: list is non-empty 
 	 * @post: current set to first node of list
 	 */
@@ -25,6 +27,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	}
 
 	/**
+	 * set current to last element of list
+	 *
 	 * @pre: list is non-empty 
 	 * @post: current set to last node of list
 	 */
@@ -33,6 +37,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	}
 
 	/**
+	 * set current to element after current
+	 *
 	 * @pre: list is non-empty && current is not off right side of list 
 	 * @post: if is off left then make first elt the current elt, else reset current elt
 	 * to be the next element of list.
@@ -42,6 +48,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	}
 
 	/**
+	 * set current to element before current
+	 *
 	 * @pre: list is non-empty && is not off left side of list
 	 * @post: if is off right side of list then make 
 	 * tail the current elt and no longer off right, if current
@@ -53,6 +61,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	}
 
 	/**
+	 * has current gone off the right side of the list
+	 *
 	 * @pre: list is non-empty
 	 * 
 	 * @return whether current is off right side of list
@@ -62,6 +72,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	}
 
 	/**
+	 * has current gone off the left side of the list
+	 *
 	 * @pre: list is non-empty
 	 * 
 	 * @return whether current is off left side of list
@@ -71,6 +83,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	}
 
 	/**
+	 * has current gone off either side of the list
+	 *
 	 * @pre: list is non-empty
 	 * 
 	 * @return whether current is off right or left side of list
@@ -89,6 +103,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	}
 
 	/**
+	 * create a new node immediately after the current node
+	 *
 	 * @pre: value is not null, List non-empty & current is not off list 
 	 * @post: adds element after current with given value. New elt is set to be
 	 * current.
@@ -98,9 +114,13 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 */
 	public void addAfterCurrent(E value) {
 		// TODO implement
+		//	hint: look at the DoublyLinkedList methods
+		//		  addLast(), getIndex(), and add(index,item)
 	}
 
 	/**
+	 * remove the current node from the list
+	 *
 	 * @pre: list is non-empty & !isOff()
 	 * @post: Current element is deleted, successor is new current elt 
 	 * If deleted tail, then current is null and is off right
@@ -110,6 +130,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	}
 
 	/**
+	 * add a new node to the beginning of the list
+	 *
 	 * @pre: value is not null 
 	 * @post: adds element to head of list with value
 	 * newFirst, and make it the current element
@@ -124,6 +146,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	}
 
 	/**
+	 * remove the first node from the list
+	 *
 	 * @pre: list is not empty 
 	 * @post: removes first value from list, successor is current
 	 * 
@@ -135,6 +159,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	}
 
 	/**
+	 * add a new node to the end of the list
+	 *
 	 * @pre: value is not null 
 	 * @post: adds new value to tail of list and make it current
 	 * 
@@ -147,6 +173,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	}
 
 	/**
+	 * remove the last node from the list
+	 *
 	 * @pre: list is not empty 
 	 * @post: removes value from tail of list, and current is
 	 * set to null and off right side of list
@@ -158,6 +186,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	}
 
 	/**
+	 * return value of the first node in the list
+	 *
 	 * @pre: list is not empty
 	 * @post: sets current to first element of list
 	 * 
@@ -169,6 +199,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	}
 
 	/**
+	 * return value of the last node in the list
+	 *
 	 * @pre: list is not empty 
 	 * @post: sets current to last element of list
 	 * 
