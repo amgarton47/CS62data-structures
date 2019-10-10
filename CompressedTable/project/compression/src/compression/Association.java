@@ -62,7 +62,8 @@ public class Association<K,V> implements Map.Entry<K,V>
      */
     public Association(K key, V value)
     {
-        Assert.pre(key != null, "Key must not be null.");
+    	if (key == null)
+    		throw new IllegalArgumentException("Key must not be null");
         theKey = key;
         theValue = value;
     }
