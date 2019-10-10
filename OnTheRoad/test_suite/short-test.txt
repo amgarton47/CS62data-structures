@@ -1,0 +1,49 @@
+# LOCATIONS
+
+# number of locations
+5
+
+# intersections
+Foothill & Mills
+Baseline & Monte Vista
+1st & Indian Hill
+6th & Claremont
+Foothill & Indian Hill
+
+
+# ROAD SEGMENTS
+
+# number of road segments
+12
+
+# Foothill & Mills
+0 1 1.6 40
+0 3 0.7 35
+0 4 0.8 40
+
+# Baseline & Monte Vista
+1 0 1.6 40
+1 3 1.7 35
+
+# 1st & Indian Hill
+2 3 1.2 25
+2 4 0.9 30
+
+# 6th & Claremont
+3 0 0.7 35
+3 1 0.8 40
+3 2 1.2 25
+
+# Foothill & Indian Hill
+4 0 0.8 40
+4 2 0.9 30
+
+# TRIPS
+
+# number of trips to analyze
+3
+
+# the trips
+1 2 D
+1 2 T
+4 3 T

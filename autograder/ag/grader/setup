@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+################################################################################
+# This script installs the dependencies for the grading scripts.               #
+# This script should be run from withing the autograder directory on your      #
+# desktop. Running it anywhere else will not work.                             #
+#                                                                              #
+# If you find an error in it, or if it is not working, please email me at:     #
+# ross.wollman@pomona.edu                                                      #
+#                                                                              #
+# @author Ross A. Wollman                                                      #
+# @date   Tuesday, Feb. 2, 2016                                                #
+################################################################################
+
+AUTOGRADER=$HOME/Desktop/ag/grader
+
+if [ -d $AUTOGRADER ]; then
+  cd $AUTOGRADER                     && # move to place if not already
+  pip install --user virtualenv      && # install virtal environment module to user
+  python -m virtualenv grading-env   && # install virtual environment dependencies
+  source grading-env/bin/activate    && # activate the virtual env
+  pip install -r requirements.txt    && # install server and pdf dependencies
+  echo "Python dependencies done."   &&
+
+  echo 'alias gradeit="source $HOME/Desktop/ag/grader/grading-env/bin/activate && python $HOME/Desktop/ag/grader/application.py"' >> $HOME/.bash_profile &&
+  source $HOME/.bash_profile                                                  &&
+  echo "To run the grading script:"                                           &&
+  echo -e "     \033[1;42mcd <assignment directory> && gradeit\033[1;m"
+  exit
+else
+  echo "$AUTOGRADER does not exist."
+  echo "Please make sure you are in the grader directory."
+  exit 1
+fi

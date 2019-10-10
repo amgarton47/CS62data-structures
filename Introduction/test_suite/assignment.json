@@ -1,0 +1,66 @@
+{
+  "title": "Introduction",
+  "assignment": "assign00",
+  "writeup": "https://PUT-IN-A-REASONABLEW-ASSIGNMENT-URL",
+  "runner": {
+    "type": null,
+    "package": null,
+    "mainclass": null
+  },
+  "tests": [
+    {
+      "name": "getValue_returns_as_constructed(introduction.Autograder)",
+      "score": 0.5
+    },
+    {
+      "name": "setValue_changes_value(introduction.Autograder)",
+      "score": 0.5
+    },
+    {
+      "name": "setColor_changes_color(introduction.Autograder)",
+      "score": 0.5
+    },
+    {
+      "name": "highValue_for_half_max(introduction.Autograder)",
+      "score": 0.25
+    },
+    {
+      "name": "highValue_for_half_plus_1(introduction.Autograder)",
+      "score": 0.25
+    },
+    {
+      "name": "toString_as_expected(introduction.Autograder)",
+      "score": 1.0
+    },
+
+    {
+      "name": "addChips_sums_correctly(introduction.Autograder)",
+      "score": 1.0
+    },
+    {
+      "name": "chipHighValue_counts_correctly(introduction.Autograder)",
+      "score": 1.0
+    },
+    {
+      "name": "firstGreen_finds_correctly(introduction.Autograder)",
+      "score": 1.0
+    },
+
+    {
+      "name": "builds with no errors",
+      "score": 1.0
+    },
+    {
+      "name": "style and formatting",
+      "score": 1.0
+    },
+    {
+      "name": "submitted correctly",
+      "score": 2.0
+    },
+    {
+      "name": "submitted on time (negative if late)",
+      "score": 0.0
+    }
+  ]
+}

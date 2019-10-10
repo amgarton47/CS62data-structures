@@ -1,0 +1,31 @@
+# LOCATIONS
+
+# number of locations
+4
+
+# intersections
+one-A
+one-B
+two-X
+two-Y
+
+# ROAD SEGMENTS
+
+# number of road segments
+5
+
+0 1 1.0 4.0
+1 0 1.0 4.0
+2 3 1.0 4.0
+3 2 1.0 4.0
+3 0 10.0 4.0
+
+
+# TRIPS
+
+# number of trips to analyze
+2
+
+# the trips
+0 2 D
+3 1 T

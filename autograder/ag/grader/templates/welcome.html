@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="ui container">
+    <div class="ui grid">
+        <div class="eight wide column">
+            <div class="ui segments">
+                <div class="ui secondary segment">
+                    <h3>Assignment Info</h3>
+                </div>
+                <div class="ui segment">
+                    <h4>{{ specs.title }}</h4>
+                    <p>{{ specs.info }}</p>
+                    <a class="ui basic icon right labeled button"
+                       target="_blank"
+                       href="{{ specs.writeup}}">Full Writeup <i
+                            class="external icon"></i></a>
+                </div>
+            </div>
+            <div class="ui segments">
+                <div class="ui secondary segment">
+                    <h3>Comments, Questions, Feedback?</h3>
+                </div>
+                <div class="ui segment">
+                    <p>If you have suggestions for improving this grading
+                        environment, please
+                        contact <a href="mailto:ross.wollman@pomona.edu">ross.wollman@pomona.edu</a>.
+                    </p>
+                    <p>Feel free to clean up the source code and make
+                        improvements and send them
+                        along.</p>
+                </div>
+            </div>
+
+            <div class="ui segments">
+                <div class="ui secondary segment">
+                    <h3>Instructions</h3>
+                </div>
+                <div class="ui segment">
+                    <div class="ui ordered list">
+                        <div class="item">
+                            <div class="header">Preprocess Student Directories
+                            </div>
+                            <p>
+                                Please use the preprocess script to import the
+                                student directories into the
+                                folder you will be grading from. This script
+                                will
+                                attach meta data to the
+                                files and normalize the naming of the
+                                submissions.
+                                <strong>If your students
+                                    have already submitted directories with
+                                    manifest
+                                    files, this will be automatic.</strong>
+                            </p>
+                        </div>
+                        <div class="item">
+                            <div class="header">Grade Each Submission</div>
+
+
+                            <div class="ui ordered list">
+                                <div class="item">
+                                    <div class="header">Run Unittests</div>
+                                    <p>
+                                        If a unittest suite is detected at
+                                        compiletime
+                                        of the grading session, then the
+                                        unittest cases
+                                        will run when you request to grade a
+                                        student.
+                                    </p>
+                                    <p>If the unittest successfully completes,
+                                        the results will automatically be merged
+                                        into
+                                        the rubric that will open after the
+                                        tests finish.</p>
+                                </div>
+                                <div class="item">
+                                    <div class="header">Complete Human Grading
+                                    </div>
+                                    <p>Once you are directed to the rubric for a
+                                        student,
+                                        you should look through the rubric and
+                                        complete
+                                        any remaining fields. You may enter
+                                        negative scores
+                                        if necessary. Any valid floats will do.
+                                        <strong>
+                                            You may use the run button on the
+                                            rubric to launch the students
+                                            code. Please note, however, it will
+                                            block the server from
+                                            accepting any other requests so be
+                                            sure to close their process before
+                                            submitting the rubric.
+                                        </strong></p>
+                                    <p>Assuming you are using the lab machines,
+                                        when you view a rubric,
+                                        a folder with their code will pop open
+                                        for you to view. <strong>You should read
+                                            through their
+                                            code and make comments on it in the
+                                            comments box in the rubric.</strong>
+                                        Once you submit the rubric, a PDF
+                                        of the rubric and source code will be
+                                        compiled and opened. It is there that
+                                        you should comment on specific lines
+                                        using a PDF viewer like Preview.</p>
+
+                                    <p>
+                                    <div class="ui red segment">If a unittest
+                                        failed,
+                                        a red tag will be added to the comment
+                                        which will contain
+                                        the full stack trace of the failure.
+                                        <strong>If a test fails, you should
+                                            confirm by hand
+                                            that it is truly failing.</strong>
+                                        Some student code will fail with the
+                                        unittest case due to altered naming
+                                        of variables, so use your judgement and
+                                        don't definitevely accept the unit grade
+                                        score.
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="eight wide column">
+            <table class="ui celled striped table">
+                <thead class="center aligned">
+                <tr>
+                    <th colspan="4">
+                        Classroom Overview
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        DCI
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for student in classroom %}
+                <tr>
+                    <td class="collapsing">
+                        {{ classroom[student].fullname }}
+                    </td>
+                    <td class="center aligned">{{ student }}</td>
+                    <td class="center aligned">{{ classroom[student].email }}
+                    </td>
+                    <td class="center aligned collapsing">
+                        {% if classroom[student].complete %}
+                        <i
+                                class="ui green circular label"></i>
+                        {% else %}
+                        <form method="post" action="/grade/{{ student }}/">
+                            <input value="" type="submit"
+                                   href="/grade/{{ student }}/"
+                                   class="ui red circular label"/>
+                        </form>
+
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+

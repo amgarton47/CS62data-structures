@@ -1,0 +1,490 @@
+ 
+   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+   POINTERS--WHAT THEY ARE & HOW TO FIX THEM IF THEY BREAK
+   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+   PRODUCT   :  R:BASE                  VERSION      :  3.1
+   CATEGORY  :  POINTERS                SUBCATEGORY  :  INTEGRITY
+   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+   Here's a thorough explanation of broken pointers - what they are, how
+   to know if your database has them, how to fix them, and how to prepare
+   for the possibility of broken pointers, so you can easily recover from
+   them. Broken pointers can cause trouble unless you find them early and
+   fix them right away.
+ 
+ 
+   How R:BASE Stores & Tracks Data
+   """""""""""""""""""""""""""""""
+   Each R:BASE database is always made up of three files regardless of
+   the number of tables. File 1 (CONCOMP1.RBF) holds the database
+   structure and statistics about the database, file 2 (CONCOMP2.RBF)
+   holds data, and file 3 (CONCOMP3.RBF) holds indexes. All three files
+   must be thought of as a unit, a single database. When you back up a
+   database, you must back up all three files, or the backup will be
+   useless.
+ 
+   R:BASE finds a row of data in a database by using an address, just as
+   you use an address to find a house. Each row resides at a specific
+   address in database file 2.
+ 
+   A pointer is a row address. Each row stored in file 2 has two pointers
+   - the "next row pointer" (zero if it's the last row) and the "previous
+   row pointer" (zero if it's the first row).
+ 
+   A next row pointer is the address of the next row - it points to the
+   next row. A previous row pointer is the address of the previous row -
+   it points to the previous row. R:BASE follows the chain of next row
+   pointers to find all the rows in a table.
+ 
+ 
+   Broken Pointers Kink the Chain
+   """"""""""""""""""""""""""""""
+   When something happens to damage a database, the damage is usually not
+   as bad as it looks. Maybe only a single row is damaged (broken), but
+   even one broken pointer causes R:BASE to lose its place in the chain
+   that links all the rows in the table. R:BASE doesn't know where to
+   look for the next row because the next row pointer is broken.
+ 
+   However, if the table has an indexed column, you may be able to use a
+   procedure outlined later in this article to jump over the damage in
+   the chain and find the good rows on the other side. This is because
+   R:BASE stores row addresses in database file 3 with index values in
+   addition to storing row addresses as pointers in database file 2.
+ 
+ 
+   Indexes Store Values & Addresses
+   """"""""""""""""""""""""""""""""
+   For each row that contains an indexed column, R:BASE stores the index
+   value and row address in database file 3. An index on a column works
+   like an index in a book. R:BASE looks in the index (database file 3)
+   to get the correct row address. Then armed with the address, R:BASE
+   goes directly to the correct row in database file 2 instead of reading
+   through all the rows.
+ 
+   Whether or not a row has an indexed column is up to you. Usually
+   database designers will index one or more of the columns in a table
+   for fast access to selected rows in that table. Typically, you will
+ 
+   want to index columns that identify rows in the table or that link
+   that table to other tables.
+ 
+   An indexed four-byte column (INTEGER, TEXT 4, REAL, DATE, or TIME)
+   helps to protect the database because you may be able to use it to
+   recover from a broken pointer. Therefore, you might want to have an
+   indexed four-byte column in every table. To add an index to a column,
+   use the CREATE INDEX command or define the column as an indexed
+   column. R:BASE maintains the index for you.
+ 
+ 
+   Row Address Locations
+   """""""""""""""""""""
+   In summary, R:BASE stores each row's address in multiple locations:
+ 
+     o  In the next row pointer of the immediately preceding row.
+     o  In the previous row pointer of the next row.
+     o  In database file 3 if there is an indexed column in the row.
+ 
+ 
+   An Example Situation
+   """"""""""""""""""""
+   Say you have a hundred rows of data in your CUSTOMER table, and each
+   customer has a unique CUSTID number ranging from 1 to 100. On a normal
+   (non-indexed) search of your data, R:BASE consults file 1 to get the
+   address (pointer) for the first row of data. Then it goes to file 2 to
+   look for the data. Once it finds the first row, it uses the first
+   row's next row pointer (address), to go find the next row, then the
+   next, and so on.
+ 
+   But say R:BASE gets stuck at CUSTID 75 because the next row address is
+   somehow corrupted so that it has a value of zero or some astronomical
+   number. In such a case, R:BASE does not know where to find the next
+   row. CUSTID 76 is most likely still out there, but because CUSTID 75's
+   next row pointer is broken, R:BASE can't find the remaining 25 rows of
+   data.
+ 
+   R:BASE can use either of two methods to locate rows of data in
+   CUSTOMER: the forward pointing method or the direct indexing method.
+ 
+ 
+   Forward Pointing Method
+   """""""""""""""""""""""
+   Database file 1 points at (holds the address of) the first row of data
+   in each table. That first row stores the address for the next row,
+   which in turn stores the address for the next, and so on.
+ 
+   Database file 2 holds all the data - including not only the data that
+   you loaded, but also the definitions for rules, forms, reports,
+   labels, and views.
+ 
+   Many people think of their data as being in nice, neat, separate files
+   or tables in file 2. But actually, R:BASE adds data to file 2 as you
+   enter it. Therefore, the rows of data for any given table are not
+   always contiguous (right next to each other). One row may point to a
+   next row that is in fact separated by a lot of data from all the other
+   tables. Therefore, the addresses for any one table can often leap-frog
+   data from other tables.
+ 
+   Each row points to the next row in sequence in a table, so it's called
+   a "forward pointing address method."
+ 
+ 
+   Direct Indexing Method
+   """"""""""""""""""""""
+   In addition to the forward pointing address method, R:BASE also
+   locates rows by using the "direct indexing method." As mentioned
+   earlier, there's index information in database file 3 for every row in
+   file 2 that has an indexed column. File 3 holds the row's index value
+   and file 2 address. R:BASE uses the address to go directly to the row
+   in database file 2.
+ 
+   Going back to the example, say you had an index on the CUSTID column
+   in CUSTOMER. When you initially created that index, R:BASE went down
+   through all the current data in file 2 collecting the addresses from
+   the next row pointers in file 2 and recording the addresses in file 3.
+ 
+   When you add a new row to CUSTOMER, R:BASE inserts the new row's
+   address in file 2 as the previous row's next row pointer. If there's
+   an indexed column in the row, R:BASE also inserts the new row's
+   address in file 3.
+ 
+ 
+   Using Indexes to Recover Data
+   """""""""""""""""""""""""""""
+   R:BASE can't find the missing 25 rows in CUSTOMER because of the
+   broken pointer. But file 3 still has the address information stored
+   with each CUSTID index value, so you can recover the data by using the
+   direct indexing method.
+ 
+   For example, in R:BASE 3.1, use the following code to recover
+   CUSTOMER:
+ 
+     RENAME TABLE customer TO xx NOCHECK
+     PROJECT customer FROM xx USING +
+       ALL WHERE custid BETWEEN 0 AND 101
+     INSERT INTO customer SELECT * +
+       FROM xx WHERE custid IS NULL
+     DROP TABLE  xx
+     CREATE INDEX ON customer custid
+ 
+   The RENAME...NOCHECK command preserves all your form and report
+   locations. The PROJECT command uses the addresses stored in file 3
+   with each CUSTID index value to find all the rows because its WHERE
+   clause uses indexes.
+ 
+   The INSERT command adds any rows where the indexed column is null. You
+   need it because null values don't fall into the range specified in the
+   PROJECT WHERE clause. The DROP TABLE command erases the broken table
+   (XX). Then the CREATE INDEX command reindexes the CUSTID column in the
+   new CUSTOMER table.
+ 
+   If you're going to use an indexed column to recover data, it must be a
+   four-byte column; that is it must be defined as an indexed INTEGER,
+   REAL, DATE, TIME, or TEXT 4 column. Indexes on larger TEXT columns
+   like COMPANY or LASTNAME are useful for speed reasons, but they won't
+   recover data.
+ 
+ 
+   Using R:SCOPE to Recover Tables
+   """""""""""""""""""""""""""""""
+   Microrim's R:SCOPE is an easy-to-use tool that may make it possible
+   for you to recover a table that was heretofore unrecoverable. R:SCOPE
+   lets you see the raw data and pointers stored in file 2 and helps you
+   make sense of it so that you may be able to find and jump over the
+   break in the prointer chain.
+ 
+   Programs such as The Norton Utilities or PC Tools can also see raw
+   R:BASE data, but they have no mechanism for making sense of it, so
+   they won't help you fix broken pointers.
+ 
+ 
+   R:SCOPE's AUTOFIX feature makes recovery easy. AUTOFIX uses a
+   sophisticated recovery method, a technique that only a professional
+   programmer would know how to do manually. In addition, you can use
+   R:SCOPE to fix other problems. Use R:SCOPE regularly to examine your
+   database and correct problems while they're small.
+ 
+   Victor Andrews, an R:BASE application developer, told us of a client
+   who had a badly corrupted database. Using R:SCOPE, Victor was able to
+   fix more than  200 broken pointers. After fixing the pointers, his
+   client lost only three rows out of 50,000. R:SCOPE had saved months of
+   work.
+ 
+   You can purchase R:SCOPE by calling Microrim at 800-248-2001. The cost
+   of purchasing R:SCOPE to fix a table will often be less than the cost
+   of reentering the data.
+ 
+ 
+   Causes for Broken Pointers
+   """"""""""""""""""""""""""
+   Broken pointers are primarily caused by an interruption of some kind
+   while R:BASE writes or modifies data in database file 2. The source of
+   the interruption could be a power fluctuation, network connection
+   problems, interference from memory-resident programs, turning the
+   computer off while in R:BASE, or some electromagnetic interference
+   such as a sudden static discharge or radio frequencies coming from
+   speakers placed too close to your PC. Often it's impossible to know
+   exactly what caused the broken pointers.
+ 
+ 
+   Checking Database Health
+   """"""""""""""""""""""""
+   Use one of the following methods regularly to check your database for
+   broken pointers.
+ 
+ 
+   METHOD 1
+   """"""""
+   Enter this command at the R> prompt:
+ 
+     COMPUTE ALL (1) FROM tblname
+ 
+   Replace TBLNAME with the name of the table you're checking. The first
+   two numbers (rows and count) should be the same. If they're different,
+   you probably have a broken pointer. This technique works because the
+   COUNT function counts all the rows in database file 2 and the ROWS
+   function looks in file 1 for the row count.
+ 
+ 
+   METHOD 2
+   """"""""
+   Run the short R:BASE 3.1B program listed below to check tables for
+   broken pointers. First, connect the database. Then run TBLCHECK.CMD.
+   The program lists all the tables inside a check box menu. Check off
+   the tables you want to verify as correct, press [F2], and R:BASE will
+   automatically check each one.
+ 
+     *( TBLCHECK.CMD--Check table integrity.)
+     CLS
+     SET MESSAGES OFF
+     SET ERROR MESSAGES OFF
+     DEBUG SET MESSAGES ON
+     DEBUG SET ERROR MESSAGES ON
+     SET VAR vcnt INTEGER = 0, vtables TEXT
+     WRITE 'Press [Enter] to choose the tables +
+     you want to check. Press [F2] when finished.'
+     CHOOSE vtables FROM #TABLES CHKBOX
+     IF vtables IN ('[Esc]','HELP') +
+       OR vtables IS NULL THEN
+       WRITE 'You did not choose a table.'
+       QUIT
+     ENDIF
+     WHILE #PI IS NOT NULL THEN
+       SET VAR vcnt = (.vcnt + 1)
+       SET VAR vtblpick = (SSUB(.vtables,.vcnt))
+       IF vtblpick IS NULL THEN; BREAK; ENDIF
+       COMPUTE v1 AS COUNT (1) +
+         FROM &vtblpick
+       COMPUTE v2 AS ROWS FROM &vtblpick
+       IF v1 <> .v2 THEN
+         WRITE .vtblpick 'may have some errors.'
+         WRITE '  Database file 2 counts' +
+           .v1 'rows,'
+         WRITE '  but file 1 says there are' +
+           .v2 'rows.'
+       ELSE
+         WRITE .vtblpick 'looks good.'
+       ENDIF
+     ENDWHILE
+     WRITE 'Finished checking tables.'
+     CLEAR VAR v1, v2, vcnt, vtblpick, vtables
+     RETURN
+ 
+   You need R:BASE 3.1B because it allows check box menus with the
+   dynamic table (#TABLES) option in a CHOOSE command.
+ 
+ 
+   METHOD 3
+   """"""""
+   Use RBCHECK, a program that comes with Personal R:BASE and R:BASE 3.x.
+   To use it, exit to the DOS prompt, move to the directory that contains
+   your three database files, and enter this command:
+ 
+     RBCHECK dbname > rbcheck.dat
+ 
+   Replace DBNAME with the name of your database exclusive of the 1, 2,
+   or 3.RBF extensions. For example, use CONCOMP, not CONCOMP1.RBF.
+ 
+   The output will be captured in a file (RBCHECK.DAT). Print it out or
+   call it up in an editor when RBCHECK finishes. If you experience any
+   trouble or get error messages associated with file 2, such as "Id=
+   ..., ROW COUNT ...," or "IDEND ...," you may have a broken pointer.
+   For more information on RBCHECK, see "Blunder Insurance" in this
+   issue.
+ 
+ 
+   METHOD 4
+   """"""""
+   Use AUTOCHK, a program that comes with R:SCOPE and R:BASE 3.1B, to
+   check the integrity of your database. Here's the syntax:
+ 
+     AUTOCHK dbname /n
+ 
+   Replace DBNAME with the name of the database.
+ 
+   AUTOCHK opens the database and performs the same database integrity
+   checking routine that R:SCOPE performs when you choose the Database
+   Info, Structure, and Data options from the Check menu. AUTOCHK doesn't
+   check indexes.
+ 
+   If AUTOCHK finds an error, it stops checking and displays one error
+   message.  If AUTOCHK finds no errors, it displays "No errors found."
+   If you press a key while AUTOCHK is checking the database, the program
+   stops and displays "User abort." To suppress messages include the /n
+   option."
+ 
+   AUTOCHK automatically sets the DOS exit code (error variable) to the
+   number corresponding to the message returned. For example, if AUTOCHK
+   displays this error: "Unable to open database file number 2," it sets
+   the DOS error variable to 52 - if you specified the /n option.
+ 
+   Use the DOS error variable to alert a user to database errors. Below
+   are two examples showing you how. The first demonstrates how to run
+   AUTOCHK from inside R:BASE by using the ZIP command, and the second
+   shows how to use it in a DOS batch file.
+ 
+ 
+   AUTOCHK from Inside R:BASE
+   """"""""""""""""""""""""""
+   If you have R:BASE 3.1B, you can run AUTOCHK from inside R:BASE
+   because the ZIP command passes the DOS error variable back to R:BASE.
+ 
+   Set an error variable before executing ZIP. Then on return to R:BASE,
+   the error variable will hold the DOS error variable value. CHECKDB.CMD
+   (listed below) checks database integrity.
+ 
+     *( CHECKDB.CMD--Use AUTOCHK to)
+     *( check database integrity.)
+     SET MESSAGES OFF
+     SET ERROR MESSAGES OFF
+     DEBUG SET MESSAGES ON
+     DEBUG SET ERROR MESSAGES ON
+     CLS
+     WHILE #PI IS NOT NULL THEN
+       WRITE 'Choose a database or press [Esc].'
+       CHOOSE vdb FROM #DATABASE +
+         CLEAR FOOTING
+       IF vdb IN ('[Esc]','HELP') +
+         OR vdb IS NULL THEN
+         BREAK
+       ENDIF
+       WRITE 'Checking database for errors...'
+       DISCONNECT
+       SET ERROR VAR evar
+       ZIP AUTOCHK &vdb /n
+       SET VAR e1 = .evar
+       IF e1 > 53 AND e1 <> 456 THEN
+         WRITE 'AUTOCHK found errors in' .vdb
+         BEEP
+       ENDIF
+       IF e1 > 0 AND e1 < 54 OR e1 = 456 THEN
+         WRITE 'AUTOCHK did not run.'
+         BEEP
+       ENDIF
+       IF e1 = 0 THEN
+         WRITE 'No errors found in' .vdb
+       ENDIF
+     ENDWHILE
+     CLEAR VAR e1, evar, vdb
+     RETURN
+ 
+   If you don't have R:BASE 3.1B, run AUTOCHK from a DOS batch file.
+ 
+ 
+   AUTOCHK from a DOS Batch File
+   """""""""""""""""""""""""""""
+   When executing AUTOCHK from a DOS batch file, use the DOS IF command
+   to check the DOS error variable. Below is an example batch file that
+   uses AUTOCHK to check the database and, depending on the outcome,
+   starts R:BASE or displays a message. It assumes DBNAME is the database
+   name and DBFILES is the directory holding the database.
+ 
+     @ECHO OFF
+     CD \dbfiles
+     ECHO Checking database for errors...
+     AUTOCHK dbname /n
+ 
+     IF errorlevel 50 GOTO errors
+     IF errorlevel 20 GOTO abort
+     :rbase
+     ECHO No errors found  - Starting R:BASE.
+     RBASE -r
+     PAUSE
+     GOTO end
+     :errors
+     ECHO Errors found in the database.
+     ECHO Correct before running R:BASE.
+     GOTO end
+     :abort
+     ECHO AUTOCHK not run - User aborted.
+     ECHO You must check the database before
+     ECHO starting R:BASE.
+     :end
+ 
+ 
+   AUTOCHK Errors
+   """"""""""""""
+   After examining a database, AUTOCHK may return a zero, meaning no
+   errors were found, or it may return any one of 37 error messages, each
+   with its own number. All 37 are listed in the R:BASE 3.1B
+   documentation.
+ 
+   Once AUTOCHK determines there is an error, you'll want to use R:SCOPE
+   to see complete information.
+ 
+ 
+   AUTOCHK in Multi-user
+   """""""""""""""""""""
+   If you use AUTOCHK on a database that's currently open with MULTI set
+   ON, AUTOCHK opens the database and places a database lock on it. The
+   database stays locked until AUTOCHK finishes. The other users must
+   wait to make any changes.
+ 
+   If you use AUTOCHK on a database that's currently open with MULTI set
+   OFF, AUTOCHK won't be able to open the database. It says: "Unable to
+   open the database file 1."
+ 
+   If you try to open a database currently being checked by AUTOCHK and
+   nobody else is in the database, you'll see this message: "The database
+   is currently open in a mode that makes it unavailable." If others have
+   the database open with MULTI set ON and the database is currently
+   being checked, you'll see the "Waiting in lock queue" message.
+ 
+ 
+   AUTOCHK & Passwords
+   """""""""""""""""""
+   If you run AUTOCHK on a database that has an owner password, AUTOCHK
+   won't prompt you for the password but will continue the integrity
+   check. AUTOCHK doesn't display data or structure information, so
+   security isn't compromised.
+ 
+ 
+   An Indexed INTEGER in Each Table
+   """"""""""""""""""""""""""""""""
+   As explained above, you can use an indexed INTEGER column containing
+   unique values to quickly restore a table that has broken pointers.
+   Therefore, as a precaution, you might want to make sure every table
+   has one.
+ 
+   First, use one of the methods outlined above to ensure database
+   integrity. Then add an indexed INTEGER autonumber column to those
+   tables that don't already have an indexed four-byte column.
+ 
+   By making it an autonumber column, you'll ensure unique values. Give
+   each autonumber column a unique name, so it doesn't become a common
+   (linking) column. Then create an index for each autonumber column.
+ 
+   R:BASE will manage the indexes and automatically number the autonumber
+   columns for you, but the overhead involved will slow down data entry.
+   You have to decide if the extra protection is worth the cost in speed.
+ 
+ 
+   Back Up, Back Up, Back Up
+   """""""""""""""""""""""""
+   Back up your database regularly. First, check database integrity. Then
+   back it up by using the R:BASE BACKUP command, the DOS BACKUP command,
+   or a third-party backup utility. The few minutes it takes to make a
+   backup may save you hours, even months, of work.
+ 
+   Rotate your set of backup disks so you never overwrite your most
+   recent backup. That is, back up Wednesday's database on top of
+   Monday's. Then if Wednesday's database is bad, you'll still have
+   Tuesday's database.

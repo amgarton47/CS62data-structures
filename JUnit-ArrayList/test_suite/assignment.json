@@ -1,0 +1,32 @@
+{
+  "title": "ArrayList JUnit",
+  "assignment": "lab03",
+  "runner": {
+    "type": "manual"
+  },
+  "tests": [
+    {
+      "name": "builds with no errors/wwarnings",
+      "score": 1.0
+    },
+
+    { "name": "Reasonable correctness assertion",
+      "score": 1.0
+    },
+    { "name": "Implementation matches assertion",
+      "score": 2.0
+    },
+    { "name": "Reasonable JUnit test case",
+      "score": 2.0
+    },
+    { "name": "ArrayList implementation passses",
+      "score": 2.0
+    },
+    { "name": "comments, format, names",
+      "score": 2.0
+    },
+    { "name": "submitted on time (negative if late)",
+      "score": 0.0
+    }
+  ]
+}

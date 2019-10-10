@@ -1,0 +1,142 @@
+{
+    "assignment": "assign05",
+    "info": "If students did extra credit, the unnittests will likely fail!",
+    "runner": {
+        "mainclass": "Calculator",
+        "package": "calc",
+        "type": "java_single_package_runner"
+    },
+    "max_score": 22,
+    "tests": [
+        {
+            "name": "testEnterTwice(calc.Autograder)",
+            "score": 0.5
+        },
+        {
+            "name": "testDiv_noEnter(calc.Autograder)",
+            "score": 0.25
+        },
+        {
+            "name": "testExchange(calc.Autograder)",
+            "score": 1.0
+        },
+        {
+            "name": "testDiv(calc.Autograder)",
+            "score": 0.5
+        },
+        {
+            "name": "testPop(calc.Autograder)",
+            "score": 1.0
+        },
+        {
+            "name": "testAddVLargeDigitAndEnter(calc.Autograder)",
+            "score": 0.5
+        },
+        {
+            "name": "testAddSingleDigitAndEnter(calc.Autograder)",
+            "score": 1.0
+        },
+        {
+            "name": "testPlus_noEnter(calc.Autograder)",
+            "score": 0.25
+        },
+        {
+            "name": "testClear(calc.Autograder)",
+            "score": 1.0
+        },
+        {
+            "name": "testMinus(calc.Autograder)",
+            "score": 0.5
+        },
+        {
+            "name": "testMult(calc.Autograder)",
+            "score": 0.5
+        },
+        {
+            "name": "testPlus(calc.Autograder)",
+            "score": 0.5
+        },
+        {
+            "name": "testDiv_noElement(calc.Autograder)",
+            "score": 0.2
+        },
+        {
+            "name": "testMult_noEnter(calc.Autograder)",
+            "score": 0.25
+        },
+        {
+            "name": "testDiv_notEnoughElement(calc.Autograder)",
+            "score": 0.2
+        },
+        {
+            "name": "testMult_notEnoughElement(calc.Autograder)",
+            "score": 0.2
+        },
+        {
+            "name": "testPlus_noElement(calc.Autograder)",
+            "score": 0.2
+        },
+        {
+            "name": "testMult_noElement(calc.Autograder)",
+            "score": 0.2
+        },
+        {
+            "name": "testMinus_notEnoughElement(calc.Autograder)",
+            "score": 0.2
+        },
+        {
+            "name": "testMinus_noElement(calc.Autograder)",
+            "score": 0.2
+        },
+        {
+            "name": "testAddSimpleDigitAndEnter(calc.Autograder)",
+            "score": 1.0
+        },
+        {
+            "name": "testPlus_notEnoughElement(calc.Autograder)",
+            "score": 0.2
+        },
+        {
+            "name": "testMinus_noEnter(calc.Autograder)",
+            "score": 0.25
+        },
+        {
+            "name": "testDiv_divByZero(calc.Autograder)",
+            "score": 0.4
+        },
+        {
+            "name": "JUnit tests for each method in State",
+            "score": 3.0
+        },
+        {
+             "name": "Appropriately handles errors and shows message",
+             "score": 2.0
+        },
+        {
+            "name": "Extra method/Calculator functionality",
+            "score": 2.0
+        },
+        {
+            "name": "appropriate comments (including JavaDoc) ",
+            "score": 2.0
+        },
+        {
+            "name": "extra credit (two points max)",
+            "score": 0.0
+        },
+        {
+            "name": "style and formatting",
+            "score": 2.0
+        },
+        {
+            "name": "submitted correctly (negative if incorrect)",
+            "score": 0.0
+        },
+        {
+            "name": "submitted on time (negative if late)",
+            "score": 0.0
+        }
+    ],
+    "title": "Calculator Assignment",
+    "writeup": "http://www.michaeljbannister.com/teaching/62-s16/Assignment05/Assignment05.html"
+}

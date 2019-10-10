@@ -1,0 +1,22 @@
+{{ title }}
+================================================================================
+================================================================================
+
+{{ header_text }}
+
+================================================================================
+
+Hi, {{ name }}!
+
+{% for p in body %}
+{{ p }}
+
+{% endfor %}
+
+The CS062 Course Assistants
+
+--------------------------------------------------------------------------------
+Questions? Comments?
+
+This email has been automatically sent. Do NOT reply directly.
+If you have questions, please contact us through Piazza ( https://piazza.com/ ).
