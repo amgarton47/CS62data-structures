@@ -107,6 +107,13 @@ When you have your results, please find space on the side wall of the room and p
 
 We will discuss the significance of your results, and those of your classmates, as they appear.
 
+Write up a brief summary of your analysis in a new file called `analysis.txt` in which you describe
+and suggest explanations for the  quantititive relationships between:
+* the linear(1) and linear(10) times.
+* the linear and (default) doubling times.
+* the time per operation (in any given column) vs the size (number of adds).
+
+
 ## Submission Instructions
 
 Please fill out the `assignment.json` file. Include your Github name in the collaborators list and your partner's username as well if you worked with someone. If you have anything you want to say to the graders, put it in the notes field. Don't forget to put your name(s) in a comment at the top of the `ArrayListTimer` class.
