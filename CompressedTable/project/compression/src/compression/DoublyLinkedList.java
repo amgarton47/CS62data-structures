@@ -252,8 +252,6 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 	 * @return the item that was removed
 	 */
 	public Item remove(Item item) {
-		rangeCheck(index);
-
 		Node finger = first;
 		// search for index-th element or end of list
 		while (finger !=null && !finger.item.equals(item)) {
