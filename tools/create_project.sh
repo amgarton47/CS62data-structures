@@ -1,14 +1,23 @@
 #!/bin/bash
 #
-# Usage: create_project.sh project_path url_name
+# Usage: create_project.sh project_path name-of-repo
 #
 # Note: the (empty) repo must exist on github before you do this
 #
 
 GIT_ACCOUNT="pomonacs622019fa"
 
+# validate the arguments
+if [ -z "$1" -o -z "$2" ]
+then
+	>&2 echo "Usage: $0 path-to-project name-of-repo (under github.com:$GIT_ACCOUNT)"
+else
+	PROJECT="$1"
+	REPO_NAME="$2"
+fi
+
 # confirm the validity of the project path
-if [ -d "$1" ]
+if [ -d "$PROJECT" ]
 then
 	if [ -d "$1/project" ]
 	then
@@ -32,11 +41,17 @@ git init
 git add * .gitignore
 git commit -m "Created from $1"
 
-# push it to github
-#git remote add origin git@github.com://$GIT_ACCOUNT/$2
-git remote add origin https://github.com/$GIT_ACCOUNT/$2.git
-
-#git push -u origin master
+# set the origin (either ssh or http)
+git remote add origin git@github.com:$GIT_ACCOUNT/$REPO_NAME.git
+#git remote add origin https://github.com/$GIT_ACCOUNT/$REPO_NAME.git
 
 # make sure we are OK
+echo
 git status
+git remote -v
+
+echo
+echo "To complete project repo creation:"
+echo "   1. create the repo $GIT_ACCOUNT/$REPO_NAME on github"
+echo "   2. cd $REPO_DIR"
+echo "   3. git push --set-upstream origin master"
