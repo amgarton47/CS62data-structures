@@ -7,8 +7,7 @@
  * @version 3/1/98, Revised for Java 5, 2/2007, revised for standard graphics 2/12
  * @param <ValueType> type of value stored in the table
  */
-
-import structure5.*;
+package compression;
 
 class CompressedTable<ValueType> implements TwoDTable<ValueType> {
 

@@ -1,5 +1,5 @@
-// RowOrderPosn.java
-// Written 2/28/98 by Kim Bruce
+package compression;
+
 // Class of 2-Dimensional table subscripts which are ordered first by row and then column
 
 class RowOrderedPosn{
@@ -54,7 +54,7 @@ class RowOrderedPosn{
 	}
 	
 	/**
-	 *  pre: other != null
+	 * @pre: other != null
 	 * @param other  position to be compared with this one
 	 * @return true iff this position comes before other.
 	 */
@@ -63,7 +63,7 @@ class RowOrderedPosn{
 	}
 	
 	/**
-	 *  pre: other != null
+	 * @pre: other != null
 	 * @param other  position to be compared with this one
 	 * @return true iff this position comes after other.
 	 */
@@ -71,7 +71,7 @@ class RowOrderedPosn{
 		return !(equals(other) || less(other));
 	}
 	/**
-	 * pre: other != null
+	 * @pre: other != null
 	 * @param other  position to be compared with this one
 	 * @return true iff this position has same row and column as other.
 	 */

@@ -1,3 +1,5 @@
+package compression;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -8,9 +10,6 @@ import javax.swing.*;
 /**
  * Class representing the panel displaying the two dimensional grid of colored
  * rectangles.
- * 
- * @author kim
- * @version Mar 2, 2004, revised 2/2011
  * 
  */
 
@@ -60,7 +59,7 @@ public class DrawingPanel extends JPanel {
 	}
 
 	/**
-	 * post: currentColor is updated to newColor and canvas redrawn
+	 * @post: currentColor is updated to newColor and canvas redrawn
 	 * 
 	 * @param newColor
 	 */
@@ -70,7 +69,7 @@ public class DrawingPanel extends JPanel {
 	}
 
 	/**
-	 * post: Canvas is repainted, displaying grid and color swatch
+	 * @post: Canvas is repainted, displaying grid and color swatch
 	 * 
 	 * @param g
 	 *            Current graphics context for drawing
@@ -107,7 +106,7 @@ public class DrawingPanel extends JPanel {
 	 */
 	public class GridMouseListener extends MouseAdapter {
 		/**
-		 * post: if pt in square in grid, its color is now currentColor
+		 * @post: if pt in square in grid, its color is now currentColor
 		 * otherwise nothing was changed
 		 * 
 		 * @param evt

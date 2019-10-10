@@ -1,17 +1,17 @@
+package compression;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
 /**
  * Program that draws 2-dimensional grid of squares on canvas.  User
  * can change colors by clicking on cells.  Colors are chosen from a
  * list of colored buttons on the right edge of the screen.  The current
  * color being used is shown in a square on the left edge of the screen.
-
- * @author kim
- * Created on Feb 28, 2004, revised 2/2011
  *
  */
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 
 public class GridTest extends JFrame {
 	private static final int HGAP = 10; // gap between panels
@@ -48,7 +48,7 @@ public class GridTest extends JFrame {
 	}
 
 	/**
-	 *  post:  Drew grid of rectangles on screen, buttons on right,
+	 *  @post:  Drew grid of rectangles on screen, buttons on right,
 	 *         and color swatch on left showing current color used.
 	 */
 	public GridTest() {

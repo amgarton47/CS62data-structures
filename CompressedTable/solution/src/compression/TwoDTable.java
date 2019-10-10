@@ -1,8 +1,8 @@
+package compression;
+
 /**
  *  TwoDTable.java
  *  Interface representing a 2-dimensional table
- * @author kim
- * @version 3/98, revised 2/2011
  *
  * @param <ValueType>
  */
@@ -10,7 +10,7 @@
 interface TwoDTable<ValueType> {
 
 	/**
-	 * pre: (row,col) is legal position in table post: value in table for
+	 * @pre: (row,col) is legal position in table @post: value in table for
 	 * (row,col) is newInfo
 	 * 
 	 * @param row
@@ -23,7 +23,7 @@ interface TwoDTable<ValueType> {
 	public void updateInfo(int row, int col, ValueType newInfo);
 
 	/**
-	 * pre: (row,col) is legal position in table
+	 * @pre: (row,col) is legal position in table
 	 * 
 	 * @param row
 	 *            a row of the table
