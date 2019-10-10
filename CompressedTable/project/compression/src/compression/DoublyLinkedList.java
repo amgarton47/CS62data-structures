@@ -68,6 +68,22 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 		}
 		return finger.item;
 	}
+	
+	/**
+	 * Returns index of the specified item
+	 * 
+	 * @param item ... the item to be located
+	 * @return index of that item (or -1)
+	 */
+	public int getIndex(Item desired) {
+		int index = 0;
+		for(Node finger = first; finger != null; finger = finger.next) {
+			if (finger.item == desired)
+				return index;
+			index++;
+		}
+		return(-1);
+	}
 
 	 /**
      * Add a value to head of list.
@@ -252,6 +268,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 	 * @return the item that was removed
 	 */
 	public Item remove(Item item) {
+
 		Node finger = first;
 		// search for index-th element or end of list
 		while (finger !=null && !finger.item.equals(item)) {
@@ -296,7 +313,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 		if (index >= n || index < 0)
 			throw new IndexOutOfBoundsException("Index " + index + " out of bounds");
 	}
-
+	
 	/**
 	 * Converts the doubly linked list to a String.
 	 */
