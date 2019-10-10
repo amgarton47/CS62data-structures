@@ -2,7 +2,11 @@ package compression;
 
 /**
  *  Implementation of lists, using doubly linked elements and keeping track of
- *  current reference.
+ *  current reference.  This enables get/insert/delete operations relative to
+ *  the current position.
+ *
+ *  There is also a notion of having gone "off" the list (e.g. by going next
+ *  from the last or back from the first element).
  */
 
 public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
@@ -42,6 +46,9 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * @pre: list is non-empty && current is not off right side of list 
 	 * @post: if is off left then make first elt the current elt, else reset current elt
 	 * to be the next element of list.
+	 *
+	 * throws exception if called on an empty list or if we are already off
+	 * the right side.
 	 */
 	public void next() {
 		// TODO implement
@@ -55,6 +62,9 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * tail the current elt and no longer off right, if current
 	 * is head then set current to null and remember off left side of list, else
 	 * set current elt to be previous element of list.
+	 *
+	 * throws exception if called on an empty list or we are already
+	 * off the left side
 	 */
 	public void back() {
 		// TODO implement
@@ -97,6 +107,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * @pre: List is not empty & current not off list
 	 * 
 	 * @return value in current node
+	 *
+	 * throws exception if list is empty or current is off either side
 	 */
 	public E currentValue() {
 		return null;  // FIX THIS
