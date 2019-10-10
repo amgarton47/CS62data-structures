@@ -6,14 +6,14 @@ package compression;
  */
 
 public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
-	protected DoublyLinkedList.Node current; // special designated node, site of actions
+	protected DoublyLinkedList<E>.Node current; // special designated node, site of actions
 	// add other instance variables
 
 	/**
 	 * @post: constructs an empty list
 	 */
 	public CurDoublyLinkedList() {
-
+		// TODO implement
 	}
 
 	/**
@@ -21,7 +21,7 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * @post: current set to first node of list
 	 */
 	public void first() {
-
+		// TODO implement
 	}
 
 	/**
@@ -29,7 +29,7 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * @post: current set to last node of list
 	 */
 	public void last() {
-
+		// TODO implement
 	}
 
 	/**
@@ -38,7 +38,7 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * to be the next element of list.
 	 */
 	public void next() {
-
+		// TODO implement
 	}
 
 	/**
@@ -49,6 +49,7 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * set current elt to be previous element of list.
 	 */
 	public void back() {
+		// TODO implement
 	}
 
 	/**
@@ -96,7 +97,7 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 *            new value for node inserted after current
 	 */
 	public void addAfterCurrent(E value) {
-
+		// TODO implement
 	}
 
 	/**
@@ -105,7 +106,7 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * If deleted tail, then current is null and is off right
 	 */
 	public void removeCurrent() {
-
+		// TODO implement
 	}
 
 	/**
