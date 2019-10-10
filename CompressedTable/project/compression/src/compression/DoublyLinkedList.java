@@ -278,6 +278,15 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 	}
 
 	/**
+	 * remove all items from list
+	 */
+	public void clear() {
+		first = null;
+		last = null;
+		n = 0;
+	}
+
+	/**
 	 * A helper method to check if the specified index is in range.
 	 * 
 	 * @param index
