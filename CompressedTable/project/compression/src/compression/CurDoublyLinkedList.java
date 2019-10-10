@@ -14,7 +14,7 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	// add other instance variables
 
 	/**
-	 * @post: constructs an empty list
+	 * @post: constructs an empty list, not off
 	 */
 	public CurDoublyLinkedList() {
 		// TODO implement
@@ -25,6 +25,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 *
 	 * @pre: list is non-empty 
 	 * @post: current set to first node of list
+	 *
+	 * throws exeception if list is empty
 	 */
 	public void first() {
 		// TODO implement
@@ -35,6 +37,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 *
 	 * @pre: list is non-empty 
 	 * @post: current set to last node of list
+	 *
+	 * throws exeception if list is empty
 	 */
 	public void last() {
 		// TODO implement
@@ -108,7 +112,7 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * 
 	 * @return value in current node
 	 *
-	 * throws exception if list is empty or current is off either side
+	 * throws exception if list is empty or current is off either side
 	 */
 	public E currentValue() {
 		return null;  // FIX THIS
@@ -123,6 +127,9 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * 
 	 * @param value
 	 *            new value for node inserted after current
+	 *
+	 * throws exception if called on an empty list or we are already
+	 *	      off of either side
 	 */
 	public void addAfterCurrent(E value) {
 		// TODO implement
@@ -136,6 +143,9 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * @pre: list is non-empty & !isOff()
 	 * @post: Current element is deleted, successor is new current elt 
 	 * If deleted tail, then current is null and is off right
+	 *
+	 * throws exception if called on an empty list or we are already
+	 *	      off of either side
 	 */
 	public void removeCurrent() {
 		// TODO implement
@@ -164,6 +174,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * @post: removes first value from list, successor is current
 	 * 
 	 * @return value of element formerly first i list
+	 *
+	 * throws exception if called on an empty list
 	 */
 	public E removeFirst() {
 
@@ -190,6 +202,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * @pre: list is not empty 
 	 * @post: removes value from tail of list, and current is
 	 * set to null and off right side of list
+	 *
+	 * throws exception if called on an empty list
 	 * 
 	 * @return value formerly in last element of list
 	 */
@@ -204,6 +218,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * @post: sets current to first element of list
 	 * 
 	 * @return value of first element in list
+	 *
+	 * throws exception if called on an empty list
 	 */
 	public E getFirst() {
 		current = first;
@@ -217,6 +233,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * @post: sets current to last element of list
 	 * 
 	 * @return value of last element in list
+	 *
+	 * throws exception if called on an empty list
 	 */
 	public E getLast() {
 		current = last;
@@ -253,6 +271,4 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	    }
 	    return ans.toString();
 	}
-
 }
-
