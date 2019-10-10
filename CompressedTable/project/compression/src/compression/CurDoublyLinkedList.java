@@ -93,7 +93,7 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * @return whether current is off left side of list
 	 */
 	public boolean isOffLeft() {
-		return true;  // Fix this
+		return true;  // FIX THIS
 	}
 
 	/**
@@ -161,7 +161,6 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * @param newFirst
 	 *            value of new first element of list
 	 */
-	// 
 	public void addFirst(E newFirst) {
 		super.addFirst(newFirst);
 		current = first;
