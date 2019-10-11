@@ -2,7 +2,7 @@
 #
 # Build and run the submitted solutions
 #
-# Usage: build_and_run.sh [--save] [--verbose] [submission-dir ...]
+# Usage: build_and_run.sh [--verbose] [submission-dir ...]
 #
 #  plus, we may look for one more file in the grading directory
 #	DO_NOT_RUN list of classes (with main) that should not be run
@@ -18,7 +18,9 @@ then
 	verbose=1
 	shift
 fi
-save=0
+
+# get the report generator
+. report.sh
 
 # is there any main class we should not run?
 if [ -f DO_NOT_RUN ]
@@ -59,9 +61,12 @@ do
 		continue
 	fi
 
+	# see if we can infer a student name
+	student=`echo $1 | cut -d- -f1`
+
 	if [ $verbose -eq 1 ]
 	then
-		echo "Submission directory $1"
+		echo "Submission directory $1: "
 	fi
 
 	# see if there seems to be a single package under src
@@ -117,6 +122,7 @@ do
 	if [ -z "$sources" ]
 	then
 		echo "WARNING: $sourcedir does not contain any java sources"
+		report $student no_submission
 		shift
 		continue
 	fi
@@ -127,7 +133,11 @@ do
 		rm $1/OUTPUT
 	fi
 	cd "$sourcedir"
-	javac *.java > "$HEADDIR/$1/OUTPUT" 2>&1
+	echo "   $1 ... attempting to compile " *.java
+	echo "===================" >> "$HEADDIR/$1/OUTPUT"
+	echo "COMPILATION RESULTS" >> "$HEADDIR/$1/OUTPUT"
+	echo "===================" >> "$HEADDIR/$1/OUTPUT"
+	javac *.java >> "$HEADDIR/$1/OUTPUT" 2>&1
 	if [ $? -eq 0 ]
 	then
 		if [ -n "$runnable" ]
@@ -136,6 +146,12 @@ do
 			cd "$HEADDIR/$srcdir"
 
 			# run the runnable classes
+			echo 			   >> "$HEADDIR/$1/OUTPUT"
+			echo "===================" >> "$HEADDIR/$1/OUTPUT"
+			echo "EXECUTION RESULTS"   >> "$HEADDIR/$1/OUTPUT"
+			echo "===================" >> "$HEADDIR/$1/OUTPUT"
+			echo 			   >> "$HEADDIR/$1/OUTPUT"
+			ok=0
 			for c in $runnable
 			do
 				if [ -n "$package" ]
@@ -146,17 +162,30 @@ do
 				java $c >> "$HEADDIR/$1/OUTPUT"
 				if [ $? -eq 0 ]
 				then
-					echo "   $1/$c ... exit status 0" >> "$HEADDIR/$1/OUTPUT"
+
+					echo >> "$HEADDIR/$1/OUTPUT"
+					echo "=====================================" >> "$HEADDIR/$1/OUTPUT"
+					echo "$1/$c ... exit status 0" >> "$HEADDIR/$1/OUTPUT"
+					ok=$((ok+1))
 				else
 					echo "   $1/$c ... NON-ZERO EXIT STATUS" >> "$HEADDIR/$1/OUTPUT"
 				fi
 			done
+
+			if [ $ok -gt 0 ]
+			then
+				report $student run_ok
+			else
+				report $student run_error
+			fi
 		else
 			echo "   $1 ... build successful"
+			report $student build_ok
 		fi
 	else
 		echo
 		>&2 echo "ERROR: build failed, results in $sourcedir"
+		report $student build_error
 	fi
 
 	# and move on to the next project

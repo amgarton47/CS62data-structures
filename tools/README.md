@@ -29,6 +29,7 @@
        3. compile the sources
        4. if any main classes are found, run them (unless they appear in DO_NOT_RUN)
        5. capture output in a file called OUTPUT in the submission directory
+       6. create a (per-student) _ouptput/SID.autos file w/the build results
 
 
 ## merge_scores.py
