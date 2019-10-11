@@ -4,9 +4,11 @@
 #
 # Usage: build_and_run.sh [--save] [--verbose] [submission-dir ...]
 #
-#  plus, we expect to find two files in the grading directory:
-#	PACKAGE	... name of the package (if any) to be tested
-#	MAINCLASS ... name of the main class (if any) to be run
+#  plus, we may look for one more file in the grading directory
+#	DO_NOT_RUN list of classes (with main) that should not be run
+#
+# TODO: automatically create appropriate .autos files
+#
 #
 HEADDIR=`pwd`
 	
