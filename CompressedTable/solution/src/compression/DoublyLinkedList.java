@@ -24,6 +24,13 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 		Item item;
 		Node next;
 		Node prev;
+
+		/**
+		 * a Node displays as its item
+		 */
+		public String toString() {
+			return item.toString();
+		}
 	}
 
 	/**
