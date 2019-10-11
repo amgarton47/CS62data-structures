@@ -32,6 +32,8 @@ public class GraphicsCoinStrip extends JFrame {
 	private static final Color BOUNDARY_COLOR = Color.BLACK;
 	private static final Color COIN_COLOR = Color.RED;
 
+	private BufferedImage bf = new BufferedImage(DISPLAY_WIDTH, SQUARE_SIZE, 
+												BufferedImage.TYPE_INT_RGB);
 	private ArrayList<CoinSquare> strip;  // the arraylist of squares for the game
 	private Coin movingCoin;          // the coin that is currently being dragged by the mouse
 	
