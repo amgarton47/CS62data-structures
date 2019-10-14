@@ -6,7 +6,7 @@
  * an element with a higher ordinal than the one we are seeking.
 
  * additional well-formed list invariants:
- *	 1. if n1.next == n2, then n2.value >= n1.value
+ *   1. if n1.next == n2, then n2.value >= n1.value
  *   2. if n1.prev == n2, then n2.value <= n1.value
  *
  * @author: YOUR NAME HERE
