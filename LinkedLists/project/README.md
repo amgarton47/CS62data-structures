@@ -33,6 +33,8 @@ Lists, any node can (at some cost) be reached from any other
 node, so the choice of whether to maintain head and/or tail
 pointers can be a little more flexible.
 
+Finish the implementation of the `DLL_Node` class:
+
    1. Based on the defined fields, and the correctness invariants, 
       implement the `insert` operation.
    2. Based on the defined fields, and the correctness invariants,
@@ -55,7 +57,7 @@ Once you have a working implementation of the `DLL_Node` class:
 1. Follow the same steps for previous labs/assignments to clone the github 
    repository for this assignment. 
 
-2. Study the included [DLL_NOde starter](LinkedList/src/DLL_Node.java), 
+2. Study the included [DLL_Node starter](LinkedList/src/DLL_Node.java), 
    with its well-formed-list invariants, method descriptions, and
    instance variables.
 
@@ -87,7 +89,7 @@ Your submission will be graded based on the following criteria:
 | :------------------------------------------ | :----- |
 | clean compilation w/no warnings             | 1      |
 | correctly implements DLL_Node methods       | 2      |
-| comprehensivness of DLL_Note test cases     | 2      |
+| comprehensivness of DLL_Node test cases     | 2      |
 | correctly implements Ordered_DLL methods    | 2      |
 | comprehensivness of Ordered_DLL test cases  | 2      |
 | format, clarity                             | 1      |
