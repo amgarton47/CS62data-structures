@@ -10,8 +10,9 @@ import java.util.Iterator;
  *
  * well-formed list invariants:
  *	 1. if n1.prev == n2 then n2.next == n1
- *       2. if n1.next == n2 then n2.prev == n1
- *	 3. if there are N elements in the list 
+ *   2. if n1.next == n2 then n2.prev == n1
+ *	 3. circularity:
+ *      if there are N elements in the list 
  *      following n.next N times leads back to n
  *      following n.prev N times leads back to n
  * 

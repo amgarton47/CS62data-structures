@@ -8,16 +8,17 @@
  * additional well-formed list invariants:
  *   1. if n1.next == n2, then n2.value >= n1.value
  *   2. if n1.prev == n2, then n2.value <= n1.value
+ *   3. an ordered list begins with (value 0) a header node 
  *
  * @author: YOUR NAME HERE
  */
 public class Ordered_DLL extends DLL_Node {
-	public int ordinal;		// basis for list sequencing
+	public int ordinal;		// positive integer, basis for ordering
 
 	/**
 	 * New Ordered_DLL Node, not in any list
 	 *
-	 * @param: sequencing value
+	 * @param: (positive integer) sequencing value
 	 */
 	public Ordered_DLL(int value) {
 		// a newly allocated DLL_Node is not on any list
@@ -31,6 +32,7 @@ public class Ordered_DLL extends DLL_Node {
 	 *
 	 * @precondition: head is (0 value) node in a well-formed list
 	 * @postcondition: this is properly inserted into that list
+	 *				   (which might be between the last element and head)
 	 */
 	public void insert(DLL_Node head) {
 		// TODO: find insertion point, and insert correctly
