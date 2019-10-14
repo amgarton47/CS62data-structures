@@ -25,8 +25,8 @@ opaquely encapsulated the underlying data structures and
 the implementations of insertion, deletion, and enumeration
 operations.
 
-In this project, you will do the low level implementation of 
-circular a Doubly Linked List.  This is a much simpler implementation
+In this project, you will do the low level implementation of a
+*Circular Doubly Linked List*.  This is a much simpler implementation
 than the ones to which you have previously been exposed, and
 focuses more on the correct maintenance of inter-node references.
 
