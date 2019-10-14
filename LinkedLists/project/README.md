@@ -9,9 +9,12 @@
 * `Doubly Linked List` - a data structure that consists of a set of sequentially
    linked records (called nodes).  Each node contains (at least) three fields:
    a forward link, a backwards link, and one or more fields of data information.
-   The benefit of maintaining both forwards and backwards pointers is that it
-   becomes possible to insert and delete nodes without having to traverse
-   the entire list to find the affected elements.
+
+   The principle benefits of maintaining both forwards and backwards pointers
+   are:
+   * it becomes possible to insert and delete nodes anywhere in the list
+     without having to traverse the entire list to find the affected elements.
+   * the list can be traversed in either direction (e.g. LIFO or FIFO).
 
 ## Description
 
@@ -23,7 +26,7 @@ the implementations of insertion, deletion, and enumeration
 operations.
 
 In this project, you will do the low level implementation of 
-a Doubly Linked List.  This is a much simpler implementation
+circular a Doubly Linked List.  This is a much simpler implementation
 than the ones to which you have previously been exposed, and
 focuses more on the correct maintenance of inter-node references.
 
@@ -43,7 +46,7 @@ Finish the implementation of the `DLL_Node` class:
       implement the `DLL_Node_Iterator` class and `iterator`
       method.
 
-Once you have a working implementation of the `DLL_Node` class:
+Then, for extra credit, you can:
 
    4. Implement a new insert method that will maintain the nodes in 
       an order determined by their `ordinal` fields.  
@@ -62,23 +65,22 @@ Once you have a working implementation of the `DLL_Node` class:
    instance variables.
 
 3. Implement the `insert`, `remove` and `iterator` methods, and the
-   `DLL_Node_Iterator` class, and then (either with a *JUnit Test* 
-   or tests in a `main` method) satisfy yourself of its correctness.
+   `DLL_Node_Iterator` class.
 
-4. Study the included [Ordered_DLL starter](LinkedList/src/Ordered_DLL.java)
+4. Describe (e.g. in a block comment at the end of the `DLL_Node`
+   class) the set of test cases you would use to satisfy yourself
+   of the correctness of this implementation.
+
+** Extra Credit
+
+5. Study the included [Ordered_DLL starter](LinkedList/src/Ordered_DLL.java)
    with its well-formed-list invariants, method descriptions, and
    instance variables.
 
-5. Implement the `insert` and `find` methods, and then (either with 
-   a *Junit Test* or tests in a `main` method) satisfy yourself of
-   its correctness.
-
-4. Make sure that your test cases 
-   * have mnemonic names (suggesting the assertions to be tested).
-   * your code comments fully describe 
-     - the pre-conditions that must be established to test this assertion
-     - the (combination of) operations that will be invoked
-     - the expected results that will be checked
+6. Implement the `insert` and `find` methods, and describe (e.g.
+   in a block comment at the end of the `Ordered_DLL` class) the
+   set of test cases you would use to satisfy yourself of the
+   correctness of this implementation.
 
 ## Grading
 
@@ -88,11 +90,12 @@ Your submission will be graded based on the following criteria:
 | Criterion                                   | Points |
 | :------------------------------------------ | :----- |
 | clean compilation w/no warnings             | 1      |
-| correctly implements DLL_Node methods       | 2      |
-| comprehensivness of DLL_Node test cases     | 2      |
+| correctly implements DLL_Node methods       | 4      |
+| comprehensivness of DLL_Node test cases     | 3      |
+| format, clarity                             | 2      |
+|                                             |        |
 | correctly implements Ordered_DLL methods    | 2      |
-| comprehensiveness of Ordered_DLL test cases | 2      |
-| format, clarity                             | 1      |
+| comprehensiveness of Ordered_DLL test cases | 3      |
 
 NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
 
