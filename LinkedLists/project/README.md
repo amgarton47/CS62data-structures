@@ -15,14 +15,14 @@
 
 ## Description
 
-In previous labs and lectures you have used Doubly Linked List 
+In previous labs and lectures, you have used Doubly Linked List 
 classes to store information.  But you were actually given
 the underlying Doubly Linked List implementation, which 
 opaquely encapsulated the underlying data structures and
 the implementations of insertion, deletion, and enumeration
 operations.
 
-In this project you will do the low level implementation of 
+In this project, you will do the low level implementation of 
 a Doubly Linked List.  This is a much simpler implementation
 than the ones to which you have previously been exposed, and
 focuses more on the correct maintenance of inter-node references.
@@ -39,7 +39,7 @@ Finish the implementation of the `DLL_Node` class:
       implement the `insert` operation.
    2. Based on the defined fields, and the correctness invariants,
       implement the `remove` operation.
-   3. Based on the defined fields, and the correctness invaraiants,
+   3. Based on the defined fields, and the correctness invariants,
       implement the `DLL_Node_Iterator` class and `iterator`
       method.
 
@@ -91,7 +91,7 @@ Your submission will be graded based on the following criteria:
 | correctly implements DLL_Node methods       | 2      |
 | comprehensivness of DLL_Node test cases     | 2      |
 | correctly implements Ordered_DLL methods    | 2      |
-| comprehensivness of Ordered_DLL test cases  | 2      |
+| comprehensiveness of Ordered_DLL test cases | 2      |
 | format, clarity                             | 1      |
 
 NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
