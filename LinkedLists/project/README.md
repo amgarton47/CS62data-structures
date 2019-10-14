@@ -93,7 +93,7 @@ Your submission will be graded based on the following criteria:
 | correctly implements DLL_Node methods       | 4      |
 | comprehensivness of DLL_Node test cases     | 3      |
 | format, clarity                             | 2      |
-| :------------------------------------------ | :----- |
+|                                             |        |
 | Extra Credit                                |        |
 | correctly implements Ordered_DLL methods    | 2      |
 | comprehensiveness of Ordered_DLL test cases | 3      |
