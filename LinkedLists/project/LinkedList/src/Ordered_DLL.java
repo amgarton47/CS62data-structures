@@ -21,7 +21,7 @@ public class Ordered_DLL extends DLL_Node {
 	 * @param: (positive integer) sequencing value
 	 */
 	public Ordered_DLL(int value) {
-		// a newly allocated DLL_Node is not on any list
+		// a newly allocated Ordered_DLL might be a list unto itself
 		ordinal = value;
 	}
 
@@ -41,7 +41,7 @@ public class Ordered_DLL extends DLL_Node {
 	/**
 	 * locate the first node with a specified value
 	 *
-	 * @param: desired sequencing value
+	 * @param: desired (positive) sequencing value
 	 * @return: node with ordinal==value, or null
 	 *
 	 * @precondition: this a (0 value) node in a well-formed list
