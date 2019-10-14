@@ -26,9 +26,9 @@ public class DLL_Node implements Iterable<DLL_Node> {
 	 * New DLL_Node, not in any list
 	 */
 	public DLL_Node() {
-		// a newly allocated DLL_Node is not on any list
-		next = null;
-		prev = null;
+		// a newly allocated DLL_Node is a list unto itself
+		next = this;
+		prev = this;
 	}
 
 	/**
@@ -76,6 +76,8 @@ public class DLL_Node implements Iterable<DLL_Node> {
 		 * @param start: starting point for the iteration
 		 *
 		 * @precondition: start is node in a well-formed list
+		 *				  if start.next is null, it is not well-formed
+		 *				  if start.prev is null, it is not well-formed
 		 * @postcondition: successive calls to next will visit entire list
 	     */
 		public DLL_Node_Iterator(DLL_Node start) {
@@ -86,6 +88,8 @@ public class DLL_Node implements Iterable<DLL_Node> {
 		 * returns whether or not there is another Node in the iteration
 		 *
 		 * @return boolean: are there more nodes to be returned
+		 *
+		 * DO NOT ASSUME that head is well formed (non-null pointers)
 		 */
 		public boolean hasNext() {
 			return false;	// TODO: determine whether enumeration is done
@@ -93,9 +97,21 @@ public class DLL_Node implements Iterable<DLL_Node> {
 		
 		/**
 		 * return next node in list, and advance the current pointer
+		 *
+		 * @return: reference to next node in list, or null after wrap-around
+		 *
+		 * DO NOT ASSUME that head is well formed (non-null pointers)
 		 */
 		 public DLL_Node next() {
 			return null;	// TODO: return next node and advance the pointer
 		 }
 	 }
+
+	 /*
+	  * Description of sugested test cases:
+	  *
+	  *		operations				expected iteration
+	  *		----------				------------------	
+	  *
+	  */
 }
