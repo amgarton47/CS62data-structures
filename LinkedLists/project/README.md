@@ -92,7 +92,7 @@ Your submission will be graded based on the following criteria:
 | clean compilation w/no warnings             | 1      |
 | correctly implements DLL_Node methods       | 4      |
 | comprehensivness of DLL_Node test cases     | 3      |
-| format, clarity                             | 2      |
+| format, names, clarity, code quality        | 2      |
 |                                             |        |
 | Extra Credit                                |        |
 | correctly implements Ordered_DLL methods    | 2      |
