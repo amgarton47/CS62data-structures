@@ -71,7 +71,7 @@ Then, for extra credit, you can:
    class) the set of test cases you would use to satisfy yourself
    of the correctness of this implementation.
 
-** Extra Credit
+## Extra Credit
 
 5. Study the included [Ordered_DLL starter](LinkedList/src/Ordered_DLL.java)
    with its well-formed-list invariants, method descriptions, and
@@ -94,7 +94,7 @@ Your submission will be graded based on the following criteria:
 | comprehensivness of DLL_Node test cases     | 3      |
 | format, names, clarity, code quality        | 2      |
 |                                             |        |
-| Extra Credit                                |        |
+| **Extra Credit**                            |        |
 | correctly implements Ordered_DLL methods    | 2      |
 | comprehensiveness of Ordered_DLL test cases | 3      |
 
