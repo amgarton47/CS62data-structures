@@ -48,8 +48,9 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * set current to element after current
 	 *
 	 * @pre: list is non-empty && current is not off right side of list 
-	 * @post: if is off left then make first elt the current elt, else reset current elt
-	 * to be the next element of list.
+	 * @post: if is off left then make first elt the current elt, 
+	 *        if current is last, set current to null and remember off_right
+	 *        else reset current elt to be the next element of list.
 	 *
 	 * throws exception if called on an empty list or if we are already off
 	 * the right side.
@@ -62,10 +63,9 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * set current to element before current
 	 *
 	 * @pre: list is non-empty && is not off left side of list
-	 * @post: if is off right side of list then make 
-	 * tail the current elt and no longer off right, if current
-	 * is head then set current to null and remember off left side of list, else
-	 * set current elt to be previous element of list.
+	 * @post: if is off right side of list then make * tail the current elt,
+	 *        if current is head then set current to null and remember off left,
+	 *        set current elt to be previous element of list.
 	 *
 	 * throws exception if called on an empty list or we are already
 	 * off the left side
