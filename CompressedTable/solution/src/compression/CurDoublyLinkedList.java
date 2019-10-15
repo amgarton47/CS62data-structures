@@ -1,5 +1,7 @@
 package compression;
 
+import java.util.NoSuchElementException;
+
 /**
  *  Implementation of lists, using doubly linked elements and keeping track of
  *  current reference.  This enables get/insert/delete operations relative to
@@ -11,18 +13,17 @@ package compression;
 
 public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	protected DoublyLinkedList<E>.Node current; // special designated node, site of actions
-	// add other instance variables
-	private boolean off_right;	// current would be after the last
-	private boolean off_left;	// current would be before the first
+	
+	private boolean off_left;		// current has been shifted off left edge
+	private boolean off_right;		// current has been shifted off right edge
 
 	/**
 	 * @post: constructs an empty list, not off
 	 */
 	public CurDoublyLinkedList() {
-		super();
-		current = null;
 		off_left = false;
 		off_right = false;
+		current = null;
 	}
 
 	/**
@@ -34,12 +35,12 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * throws exeception if list is empty
 	 */
 	public void first() {
-		if (n == 0)
-			throw(new IndexOutOfBoundsException("list is empty"));
-		
-		current = first;
-		off_left = false;
-		off_right = false;
+		if (this.n > 0) {
+			current = this.first;
+			off_left = false;
+			off_right = false;
+		} else
+			throw new NoSuchElementException("empty list");
 	}
 
 	/**
@@ -51,12 +52,12 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * throws exeception if list is empty
 	 */
 	public void last() {
-		if (n == 0)
-			throw(new IndexOutOfBoundsException("list is empty"));
-		
-		current = last;
-		off_left = false;
-		off_right = false;
+		if (this.n > 0) {
+			current = this.last;
+			off_left = false;
+			off_right = false;
+		} else
+			throw new NoSuchElementException("empty list");
 	}
 
 	/**
@@ -70,17 +71,16 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * the right side.
 	 */
 	public void next() {
-		if (n == 0)
-			throw(new IndexOutOfBoundsException("list is empty"));
-		if (off_right)
-			throw(new IndexOutOfBoundsException("current is offRight"));
-		
-		if (off_left) {
-			current = first;
+		if (this.n <= 0)
+			throw new NoSuchElementException("empty list");
+		else if (off_right)
+			throw new NoSuchElementException("off right");
+		else if (off_left ) {
+			current = this.first;
 			off_left = false;
-		} else if (current.next == null) {
+		} else if (current == this.last) {
 			current = null;
-			off_right = true;
+			this.off_right = true;
 		} else
 			current = current.next;
 	}
@@ -98,15 +98,14 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * off the left side
 	 */
 	public void back() {
-		if (n == 0)
-			throw(new IndexOutOfBoundsException("list is empty"));
-		if (off_left)
-			throw(new IndexOutOfBoundsException("current is offLeft"));
-		
-		if (off_right) {
-			current = last;
+		if (this.n <= 0)
+			throw new NoSuchElementException("empty list");
+		else if (off_left)
+			throw new NoSuchElementException("off left");
+		else if (off_right ) {
+			current = this.last;
 			off_right = false;
-		} else if (current.prev == null) {
+		} else if (current == this.first) {
 			current = null;
 			off_left = true;
 		} else
@@ -154,13 +153,14 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * throws exception if list is empty or current is off either side
 	 */
 	public E currentValue() {
-		if (n == 0)
-			throw(new IndexOutOfBoundsException("list is empty"));
-		if (off_left)
-			throw(new IndexOutOfBoundsException("current is offLeft"));
-		if (off_right)
-			throw(new IndexOutOfBoundsException("current is offRight"));
-		return current.item;
+		if (this.n <= 0)
+			throw new NoSuchElementException("empty list");
+		else if (off_left)
+			throw new NoSuchElementException("off left");
+		else if (off_right)
+			throw new NoSuchElementException("off right");
+		else
+			return current.item;
 	}
 
 	/**
@@ -177,21 +177,20 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 *	      off of either side
 	 */
 	public void addAfterCurrent(E value) {
-		if (value == null)
-			throw(new IllegalArgumentException("null value"));
-		if (n == 0)
-			throw(new IndexOutOfBoundsException("list is empty"));
-		if (off_left)
-			throw(new IndexOutOfBoundsException("current is offLeft"));
-		if (off_right)
-			throw(new IndexOutOfBoundsException("current is offRight"));
 		
-		if (current == last) {
-			addLast(value);
-			current = last;
-		} else {
-			int index = getIndex(current.item);
-			add(index+1, value);
+		if (this.n <= 0)
+			throw new NoSuchElementException("empty list");
+		else if (off_left)
+			throw new NoSuchElementException("off left");
+		else if (off_right)
+			throw new NoSuchElementException("off right");
+		
+		// figure out where we are in the list
+		if (current == this.last)
+			this.addLast(value);
+		else {
+			int x = super.getIndex(current.item);
+			super.add(x+1, value);
 			current = current.next;
 		}
 	}
@@ -207,21 +206,22 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 *	      off of either side
 	 */
 	public void removeCurrent() {
-		if (n == 0)
-			throw(new IndexOutOfBoundsException("list is empty"));
-		if (off_left)
-			throw(new IndexOutOfBoundsException("current is offLeft"));
-		if (off_right)
-			throw(new IndexOutOfBoundsException("current is offRight"));
+		if (this.n <= 0)
+			throw new NoSuchElementException("empty list");
+		else if (off_left)
+			throw new NoSuchElementException("off left");
+		else if (off_right)
+			throw new NoSuchElementException("off right");
 		
-		E victim = current.item;
-		if (current == last) {
-			current = null;
-			off_right = true;
-		} else
+		if (current == this.first)
+			this.removeFirst();
+		else if (current == this.last)
+			this.removeLast();
+		else {
+			int x = this.getIndex(current.item);
 			current = current.next;
-		
-		remove(victim);
+			super.remove(x);
+		}	
 	}
 
 	/**
@@ -234,11 +234,12 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * @param newFirst
 	 *            value of new first element of list
 	 */
+	// 
 	public void addFirst(E newFirst) {
-		if (newFirst == null)
-			throw(new IllegalArgumentException("null value"));
 		super.addFirst(newFirst);
 		current = first;
+		off_left = false;
+		off_right = false;
 	}
 
 	/**
@@ -252,19 +253,19 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * throws exception if called on an empty list
 	 */
 	public E removeFirst() {
-		if (n == 0)
-			throw(new IndexOutOfBoundsException("list is empty"));
-		
-		E item = super.removeFirst();
-		if (n == 0) {
-			current = null;
-			off_left = true;
-		} else {
-			current = first;
-			off_left = false;
-			off_right = false;
+		if (this.n <= 0)
+			throw new NoSuchElementException("empty list");
+		else {
+			if (this.n == 1) {
+				current = null;
+				off_left = true;
+			} else {
+				current = first.next;
+				off_left = false;
+				off_right = false;
+			}
+			return super.removeFirst();
 		}
-		return item;
 	}
 
 	/**
@@ -277,10 +278,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 *            value of new last element of list
 	 */
 	public void addLast(E newLast) {
-		if (newLast == null)
-			throw(new IllegalArgumentException("null value"));
 		super.addLast(newLast);
-		current = last;
+		current = this.last;
 		off_left = false;
 		off_right = false;
 	}
@@ -291,20 +290,20 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * @pre: list is not empty 
 	 * @post: removes value from tail of list, and current is
 	 * set to null and off right side of list
+	 *
+	 * throws exception if called on an empty list
 	 * 
 	 * @return value formerly in last element of list
-	 * 
-	 * throws exception if called on an empty list
 	 */
 	public E removeLast() {
-		if (n == 0)
-			throw(new IndexOutOfBoundsException("list is empty"));
-		
-		E victim = super.removeLast();
-		current = null;
-		off_right = true;
-		off_left = false;
-		return victim;
+		if (this.n <= 0)
+			throw new NoSuchElementException("empty list");
+		else {
+			current = null;
+			off_right = true;
+			off_left = false;
+			return super.removeLast();
+		}
 	}
 
 	/**
@@ -318,13 +317,14 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * throws exception if called on an empty list
 	 */
 	public E getFirst() {
-		if (n == 0)
-			throw(new IndexOutOfBoundsException("list is empty"));
-		
-		current = first;
-		off_left = false;
-		off_right = false;
-		return first.item;
+		if (this.n <= 0)
+			throw new NoSuchElementException("empty list");
+		else {
+			off_left = false;
+			off_right = false;
+			current = first;
+			return first.item;
+		}
 	}
 
 	/**
@@ -338,13 +338,14 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 * throws exception if called on an empty list
 	 */
 	public E getLast() {
-		if (n == 0)
-			throw(new IndexOutOfBoundsException("list is empty"));
-		
-		current = last;
-		off_left = false;
-		off_right = false;
-		return last.item;
+		if (this.n <= 0)
+			throw new NoSuchElementException("empty list");
+		else {
+			off_left = false;
+			off_right = false;
+			current = last;
+			return last.item;
+		}
 	}
 
 	/**

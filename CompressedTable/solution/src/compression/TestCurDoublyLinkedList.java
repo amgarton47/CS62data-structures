@@ -1,5 +1,6 @@
 package compression;
 
+import java.util.NoSuchElementException;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,14 +52,14 @@ public class TestCurDoublyLinkedList {
 
 	// Calls next() on an empty list. Replace the "NoSuchElementException"
 	// with whatever exception you throw when the precondition is violated
-	@Test(expected=IndexOutOfBoundsException.class)
+	@Test(expected=NoSuchElementException.class)
 	public void testNext_EmptyList() {
 		list.next();
 	}
 
 	// Calls next() on a non-empty list where current is off the right side
 	// Replace with whatever exception you throw when the precondition is violated 
-	@Test(expected=IndexOutOfBoundsException.class)	
+	@Test(expected=NoSuchElementException.class)	
 	public void testNext_OffRightSide() {
 		list.addFirst(47);
 		list.next(); // this moves current off right
@@ -96,7 +97,7 @@ public class TestCurDoublyLinkedList {
 	}
 
 	// calls back() on empty list
-	@Test(expected=IndexOutOfBoundsException.class)	
+	@Test(expected=NoSuchElementException.class)	
 	public void testBack_empty() {
 		assertNull(list.current);
 		list.back();
@@ -141,14 +142,14 @@ public class TestCurDoublyLinkedList {
 
 	// Calls currentValue() on an empty list. Replace the "NoSuchElementException"
 	// with whatever exception you throw when the precondition is violated
-	@Test(expected=IndexOutOfBoundsException.class)
+	@Test(expected=NoSuchElementException.class)
 	public void testCurrentValue_EmptyList() {
 		list.currentValue();
 	}
 
 	// Calls currentValue() on non-empty list where current is off right.
 	// Replace with whatever exception you throw when precondition is violated
-	@Test(expected=IndexOutOfBoundsException.class)	
+	@Test(expected=NoSuchElementException.class)	
 	public void testCurrentValue_isOff() {
 		list.addFirst(47);
 		list.next();  // this moves current off right
