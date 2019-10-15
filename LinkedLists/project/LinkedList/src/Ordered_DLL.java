@@ -36,6 +36,10 @@ public class Ordered_DLL extends DLL_Node {
 	 */
 	public void insert(DLL_Node head) {
 		// TODO: find insertion point, and insert correctly
+
+		// NOTE: we use the super-class iterator function, and 
+		//       must cast the returned DLL_Nodes to Ordered_DLL
+		//	     before we can access the ordinal field.
 	}
 
 	/**
