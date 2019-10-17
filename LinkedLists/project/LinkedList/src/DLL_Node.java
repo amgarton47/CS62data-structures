@@ -82,9 +82,10 @@ public class DLL_Node implements Iterable<DLL_Node> {
 		 *				  if start.prev is null, it is not well-formed
 		 * @postcondition: successive calls to next will visit entire list
 		 *
-		 * This is a circular iteration, that should vist every node
-		 * in the list (even a single-node-list), but should stop 
-		 * when it reaches tha starting point for the 2nd time.
+		 * NOTE:
+		 *	This is a circular list.  We should vist every node
+		 *	in the list (even a single-node-list), but should stop 
+		 *	when we reach the starting point for the 2nd time.
 	     */
 		public DLL_Node_Iterator(DLL_Node start) {
 			// TODO: establish the initial state for this iteration
@@ -96,6 +97,7 @@ public class DLL_Node implements Iterable<DLL_Node> {
 		 * @return boolean: are there more nodes to be returned
 		 *
 		 * DO NOT ASSUME that head is well formed (non-null pointers)
+		 *		protect yourself from this error on the caller's part
 		 */
 		public boolean hasNext() {
 			return false;	// TODO: determine whether enumeration is done
@@ -107,6 +109,7 @@ public class DLL_Node implements Iterable<DLL_Node> {
 		 * @return: reference to next node in list, or null after wrap-around
 		 *
 		 * DO NOT ASSUME that head is well formed (non-null pointers)
+		 *		protect yourself from this error on the caller's part
 		 */
 		 public DLL_Node next() {
 			return null;	// TODO: return next node and advance the pointer
@@ -121,6 +124,6 @@ public class DLL_Node implements Iterable<DLL_Node> {
 	  *	    new(a)					a: [a]
 	  *		new(b); b.insert(a)		a: [a b]
 	  *		new(c); c.insert(a)		a: [a c b]
-	  *		...
+	  *		... add your own ...
 	  */
 }
