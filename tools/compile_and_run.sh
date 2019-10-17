@@ -20,7 +20,13 @@ then
 fi
 
 # get the report generator
-. report.sh
+if [ -f report.sh ]
+then
+	. report.sh
+else
+	echo "This script requires a copy of the report.sh script"
+	exit 1
+fi
 
 # is there any main class we should not run?
 if [ -f DO_NOT_RUN ]
@@ -71,7 +77,7 @@ do
 
 	# see if there seems to be a single package under src
 	count=0
-	for file in "$srcdir/*"
+	for file in $srcdir/*
 	do
 		if [ -d $file ]
 		then
