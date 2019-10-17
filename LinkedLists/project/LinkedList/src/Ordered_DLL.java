@@ -34,7 +34,7 @@ public class Ordered_DLL extends DLL_Node {
 	 * @postcondition: this is properly inserted into that list
 	 *				   (which might be between the last element and head)
 	 */
-	public void insert(DLL_Node head) {
+	public void insert(Ordered_DLL head) {
 		// TODO: find insertion point, and insert correctly
 
 		// NOTE: we use the super-class iterator function, and 
