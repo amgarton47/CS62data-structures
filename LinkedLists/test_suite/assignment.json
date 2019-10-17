@@ -1,0 +1,31 @@
+{
+  "title": "Linked Lists",
+  "assignment": "lab06",
+  "runner": {
+    "type": "manual"
+  },
+  "tests": [
+    {
+      "name": "imports and builds with no errors/warnings",
+      "score": 1.0
+    },
+    { "name": "correctly implements DLL_Node methods",
+      "score": 4.0
+    },
+    { "name": "comprehensive DL_Node test cases",
+      "score": 3.0
+    },
+    { "name": "correctly implements Ordered_DLL methods",
+      "score": 2.0
+    },
+    { "name": "comprehensive Ordered_DLL test cases",
+      "score": 3.0
+    },
+    { "name": "style and formatting",
+      "score": 2.0
+    },
+    { "name": "submitted on time (negative if late)",
+      "score": 0.0
+    }
+  ]
+}
