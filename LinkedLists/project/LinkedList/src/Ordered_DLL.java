@@ -21,7 +21,7 @@ public class Ordered_DLL extends DLL_Node {
 	 * @param: (positive integer) sequencing value
 	 */
 	public Ordered_DLL(int value) {
-		// a newly allocated Ordered_DLL might be a list unto itself
+		// super-class constructor has already been (automatically) called
 		ordinal = value;
 	}
 
@@ -34,12 +34,17 @@ public class Ordered_DLL extends DLL_Node {
 	 * @postcondition: this is properly inserted into that list
 	 *				   (which might be between the last element and head)
 	 */
-	public void insert(DLL_Node head) {
+	public void insert(Ordered_DLL head) {
 		// TODO: find insertion point, and insert correctly
 
-		// NOTE: we use the super-class iterator function, and 
-		//       must cast the returned DLL_Nodes to Ordered_DLL
-		//	     before we can access the ordinal field.
+		// NOTE: the prev/next fields are private to the DLL_Node
+		//		 class.  We must use a DLL_Node iterator to find
+		//		 our insertion point.  That iterator will not
+		//		 return Ordered_DLL nodes, but rather DLL_Nodes.
+		//		 Since we know that everything in our list is 
+		//		 actually an instance of our sub-class, we have
+		//		 to down-cast the returned DLL_Node back into
+		//		 (its true) Ordered_DLL.
 	}
 
 	/**
