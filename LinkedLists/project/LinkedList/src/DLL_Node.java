@@ -48,6 +48,8 @@ public class DLL_Node implements Iterable<DLL_Node> {
 	 * 
 	 * @precondition: this is an element of a well-formed list
 	 * @postcondition: that list no longer contains this
+	 *				   after removing an element from a list,
+	 *				   its next/prev pointers should be null
 	 */
 	public void remove() {
 		// TODO: update all prev/next pointers appropriately
@@ -79,6 +81,10 @@ public class DLL_Node implements Iterable<DLL_Node> {
 		 *				  if start.next is null, it is not well-formed
 		 *				  if start.prev is null, it is not well-formed
 		 * @postcondition: successive calls to next will visit entire list
+		 *
+		 * This is a circular iteration, that should vist every node
+		 * in the list (even a single-node-list), but should stop 
+		 * when it reaches tha starting point for the 2nd time.
 	     */
 		public DLL_Node_Iterator(DLL_Node start) {
 			// TODO: establish the initial state for this iteration
@@ -112,6 +118,9 @@ public class DLL_Node implements Iterable<DLL_Node> {
 	  *
 	  *		operations				expected iteration
 	  *		----------				------------------	
-	  *
+	  *	    new(a)					a: [a]
+	  *		new(b); b.insert(a)		a: [a b]
+	  *		new(c); c.insert(a)		a: [a c b]
+	  *		...
 	  */
 }
