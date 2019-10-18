@@ -1,3 +1,4 @@
+package linkedlist;
 import java.util.Iterator;
 
 /**
@@ -65,6 +66,29 @@ public class DLL_Node implements Iterable<DLL_Node> {
 	}
 
 	/**
+	 * return a string reprentation of the list this node is in
+	 *
+	 * Note: this method will be very useful for testing,
+	 *	     and is a good place to work out the circular
+	 *		 list enumeration problems you will have to 
+	 *		 solve in the iterator.
+	 */
+	public String listToString() {
+
+		// if list is not well formed, consider it to be empty
+		if (this.prev == null || this.next == null)
+			return("[]");
+
+		String list = "";
+		// TODO: assemble the string description of this list
+		//	    walk the list
+		//		appending comman-separated toString() of each node
+		//		stopping when we come back around to our starting point.
+
+		return "[" + list + "]";
+	}
+
+	/**
 	 * a sub-class that defines the iterator for this class
 	 */
 	 public class DLL_Node_Iterator implements Iterator<DLL_Node> {
@@ -98,6 +122,7 @@ public class DLL_Node implements Iterable<DLL_Node> {
 		 *
 		 * DO NOT ASSUME that head is well formed (non-null pointers)
 		 *		protect yourself from this error on the caller's part
+		 *	    Always return false for such a list.
 		 */
 		public boolean hasNext() {
 			return false;	// TODO: determine whether enumeration is done
@@ -110,6 +135,7 @@ public class DLL_Node implements Iterable<DLL_Node> {
 		 *
 		 * DO NOT ASSUME that head is well formed (non-null pointers)
 		 *		protect yourself from this error on the caller's part
+		 *	    Always return null for such a list.
 		 */
 		 public DLL_Node next() {
 			return null;	// TODO: return next node and advance the pointer
@@ -122,8 +148,22 @@ public class DLL_Node implements Iterable<DLL_Node> {
 	  *		operations				expected iteration
 	  *		----------				------------------	
 	  *	    new(a)					a: [a]
-	  *		new(b); b.insert(a)		a: [a b]
-	  *		new(c); c.insert(a)		a: [a c b]
-	  *		... add your own ...
+	  *		new(b); b.insert(a)		a: [a,b]
+	  *		b.remove()				a: [a], b: []
+	  *		... add your own to fully exercise insert/remove
 	  */
+	public void main(String args[]) {
+		a = new DLL_Node();
+		System.out.println("a: " + a + " = " + a.listToString());
+
+		b = new DLL_Node();
+		System.out.println("b: " + b + " = " + b.listToString());
+
+		b.insert(a);
+		System.out.println("a + b = " + a.listToString());
+		
+		b.remove();
+		System.out.println("[a,b] - b = " + a.listToString());
+		System.out.println("        b = " + b.listToString());
+	}
 }
