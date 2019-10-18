@@ -1,3 +1,5 @@
+package linkedlist;
+
 /**
  * An OrderedDLL is a DLL that is guaranteed to store elements
  * in order (based on an ordinal instance variable).
