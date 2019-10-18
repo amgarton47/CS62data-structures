@@ -222,7 +222,7 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 */
 	public E getFirst() {
 		current = first;
-		return last.item;
+		return first.item;
 	}
 
 	/**
