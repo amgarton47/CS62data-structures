@@ -1,3 +1,4 @@
+package linkedlist;
 import java.util.Iterator;
 
 /**
@@ -75,26 +76,30 @@ public class Ordered_DLL extends DLL_Node {
 	}
 
 	/**
-	  * TESTING print contents of list as enumerated from specified point
+	  * TESTING return a string representation of the list contents
 	  * 
 	  * @param start	Ordered_DLL list head
 	  * @return description of the list
 	  */
-	 private static String diag_list(Ordered_DLL head) {
-		 String list = "";	// output report
+	 public String listToString() {
+		String list = "";	// output report
 		 
-		 Iterator<DLL_Node> it = head.iterator();
-		 boolean first = true;
-		 while(it.hasNext()) {
-			 Ordered_DLL next = (Ordered_DLL) it.next();
-	
+		Iterator<DLL_Node> it = this.iterator();
+		boolean first = true;
+		while(it.hasNext()) {
 			 if (first)
 				 first = false;
 			 else
-				 list += ", ";
-			 list += Integer.toString(next.ordinal);
+				 list += ",";
+
+			Ordered_DLL n = (Ordered_DLL) it.next();
+			if (n == null) {
+				list += "!NULL!";
+				break;
+			 } else
+				 list += Integer.toString(n.ordinal);
 		 }
-		 return list;
+		 return "[" + list + "]";
 	 }
 	 
 	/**
@@ -106,45 +111,47 @@ public class Ordered_DLL extends DLL_Node {
 		Ordered_DLL head = new Ordered_DLL(0);
 		
 		// new(0)			expect 0
-		System.out.println("new(0) -> " + diag_list(head));
+		System.out.println("new(0) -> " + head.listToString());
 		
 		// insert(5)		expect 0, 5
 		new Ordered_DLL(5).insert(head);
-		System.out.println("new(5) -> " + diag_list(head));
+		System.out.println("new(5) -> " + head.listToString());
 		
 		// insert(3)		expect 0, 3, 5
 		new Ordered_DLL(3).insert(head);
-		System.out.println("new(3) -> " + diag_list(head));
+		System.out.println("new(3) -> " + head.listToString());
 		
 		// insert(4)		expect 0, 3, 4, 5
 		new Ordered_DLL(4).insert(head);
-		System.out.println("new(4) -> " + diag_list(head));
+		System.out.println("new(4) -> " + head.listToString());
 		
 		// insert(7)		expect 0, 3, 4, 5, 7
 		new Ordered_DLL(7).insert(head);
-		System.out.println("new(7) -> " + diag_list(head));
+		System.out.println("new(7) -> " + head.listToString());
 		
 		// make sure we can find everything
 		for(int i = 0; i < 10; i++) {
 			Ordered_DLL node = head.find(i);
 			if (node != null)
 				System.out.println("find(" + i + ") => " + node.ordinal);
+			else
+				System.out.println("find(" + i + ") => " + "!NULL!");	
 		}
 		
 		// remove(3)		expect 0, 4, 5, 7
 		head.find(3).remove();
-		System.out.println("remove(3) -> " + diag_list(head));
+		System.out.println("remove(3) -> " + head.listToString());
 		
 		// remove(5)		expect 0, 4, 7
 		head.find(5).remove();
-		System.out.println("remove(5) -> " + diag_list(head));
+		System.out.println("remove(5) -> " + head.listToString());
 		
 		// remove(7)		expect 0, 4
 		head.find(7).remove();
-		System.out.println("remove(7) -> " + diag_list(head));
+		System.out.println("remove(7) -> " + head.listToString());
 		
 		// remove(4)		expect 0
 		head.find(4).remove();
-		System.out.println("remove(4) -> " + diag_list(head));
+		System.out.println("remove(4) -> " + head.listToString());
 	}
 }

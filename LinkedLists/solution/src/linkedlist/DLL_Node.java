@@ -41,7 +41,13 @@ public class DLL_Node implements Iterable<DLL_Node> {
 	 * @postcondition: after.next = this, in a well-formed list
 	 */
 	public void insert(DLL_Node after) {
-		// TODO: update all prev/next pointers appropriately
+		// set my next and prev pointer
+		this.next = after.next;
+		this.prev = after;
+		
+		// set prev and next nodes to point at me
+		after.next = this;
+		next.prev = this;
 	}
 
 	/**
@@ -53,7 +59,14 @@ public class DLL_Node implements Iterable<DLL_Node> {
 	 *				   its next/prev pointers should be null
 	 */
 	public void remove() {
-		// TODO: update all prev/next pointers appropriately
+		// my prev and next now point past me
+		if (this.next != this) {
+			this.prev.next = this.next;
+			this.next.prev = this.prev;
+		}
+		// I am no longer on any list
+		this.next = null;
+		this.prev = null;
 	}
 
 	/**
@@ -62,7 +75,7 @@ public class DLL_Node implements Iterable<DLL_Node> {
 	 * @precondition: this node in a well-formed list
 	 */
 	public Iterator<DLL_Node>  iterator() {
-		return null;	// TODO: instantiate and return an iterator
+		return new DLL_Node_Iterator(this);
 	}
 
 	/**
@@ -80,10 +93,13 @@ public class DLL_Node implements Iterable<DLL_Node> {
 			return("[]");
 
 		String list = "";
-		// TODO: assemble the string description of this list
-		//	    walk the list
-		//		appending comman-separated toString() of each node
-		//		stopping when we come back around to our starting point.
+		int seen = 0;		// for wrap-around detection
+		for(DLL_Node current = this; current != this || seen == 0; current = current.next) {
+			if (seen != 0)
+				list += ",";
+			list += current;
+			seen++;
+		}
 
 		return "[" + list + "]";
 	}
@@ -112,7 +128,8 @@ public class DLL_Node implements Iterable<DLL_Node> {
 		 *	when we reach the starting point for the 2nd time.
 	     */
 		public DLL_Node_Iterator(DLL_Node start) {
-			// TODO: establish the initial state for this iteration
+			this.head = start;		// end for wrap-around
+			this.current = null;	// haven't seen any nodes yet
 		}
 
 		/**
@@ -125,7 +142,12 @@ public class DLL_Node implements Iterable<DLL_Node> {
 		 *	    Always return false for such a list.
 		 */
 		public boolean hasNext() {
-			return false;	// TODO: determine whether enumeration is done
+			// make sure head is well formed
+			if (head.next == null || head.prev == null)
+				return false;
+			
+			// we haven't started, or we haven't wrapped around
+			return current == null || current.next != head;
 		}
 		
 		/**
@@ -138,7 +160,18 @@ public class DLL_Node implements Iterable<DLL_Node> {
 		 *	    Always return null for such a list.
 		 */
 		 public DLL_Node next() {
-			return null;	// TODO: return next node and advance the pointer
+			// make sure head is well formed
+			if (head.next == null || head.prev == null)
+				return null;
+			 
+			 if (current == null)
+				 current = head;			// first node in list
+			 else if (current.next != head)
+				 current = current.next;	// next node in list
+			 else
+				 return null;				// we have wrapped around
+				 
+			return current;
 		 }
 	 }
 
@@ -152,11 +185,15 @@ public class DLL_Node implements Iterable<DLL_Node> {
 	  *		b.remove()				a: [a], b: []
 	  *		... add your own to fully exercise insert/remove
 	  */
-	public void main(String args[]) {
-		a = new DLL_Node();
+	 
+	/**
+	 * a very simple smoke-test for insert and remove
+	 */
+	public static void main(String args[]) {
+		DLL_Node a = new DLL_Node();
 		System.out.println("a: " + a + " = " + a.listToString());
 
-		b = new DLL_Node();
+		DLL_Node b = new DLL_Node();
 		System.out.println("b: " + b + " = " + b.listToString());
 
 		b.insert(a);
