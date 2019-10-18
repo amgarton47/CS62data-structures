@@ -78,6 +78,8 @@ def merge_scores(raw_scores):
             test['comment'] = "Automatically passed."
             earned_score += test_score
             continue
+        elif verbose:
+            print("... " + test_name + " is not in passes")
 
         # if we are in the failures list, copy the error message
         if 'failures' in raw_results:
@@ -99,6 +101,8 @@ def merge_scores(raw_scores):
                     else:
                         test['comment'] = "PLEASE REVIEW JUNIT OUTPUT"
                     break
+        elif verbose:
+            print("... " + testname + " is not in failures")
 
         # if we know what we've earned tally it
         if 'earned' in test:
