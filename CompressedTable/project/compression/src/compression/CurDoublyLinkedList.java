@@ -76,8 +76,6 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 
 	/**
 	 * has current gone off the right side of the list
-	 *
-	 * @pre: list is non-empty
 	 * 
 	 * @return whether current is off right side of list
 	 */
@@ -87,8 +85,6 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 
 	/**
 	 * has current gone off the left side of the list
-	 *
-	 * @pre: list is non-empty
 	 * 
 	 * @return whether current is off left side of list
 	 */
@@ -98,8 +94,6 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 
 	/**
 	 * has current gone off either side of the list
-	 *
-	 * @pre: list is non-empty
 	 * 
 	 * @return whether current is off right or left side of list
 	 */
