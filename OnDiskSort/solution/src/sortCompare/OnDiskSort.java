@@ -1,12 +1,33 @@
 package sortCompare;
+
 import java.io.*;
 import java.util.*;
 
 /**
  * Sorts the data on-disk, by sorting the data in small chunks and then merging
  * the data into one larger chunk
+ * 
  */
-public class OnDiskSort{	
+public class OnDiskSort{
+	private static final String TEMP_FILE_ENDING = ".tempSorted";
+	private static final String TEMP_FILE = "temp" + TEMP_FILE_ENDING;
+	
+	private int maxSize;
+	private File workingDirectory;
+	private Sorter<String> sorter;
+	
+	public static void main(String[] args){
+		MergeSort<String> sorter = new MergeSort<String>();
+		OnDiskSort diskSorter = new OnDiskSort(10, new File("sorting_run"), 
+				sorter);
+		
+		WordScanner scanner = new WordScanner(new File("sorting_run//Ihaveadream.txt"));
+		
+		System.out.println("running");		
+		diskSorter.sort(scanner, new File("sorting_run//data.sorted"));
+		System.out.println("done");
+	}
+	
 	/**
 	 * Creates a new sorter for sorting string data on disk.  The sorter operates by reading
 	 * in maxSize worth of data elements (in this case, Strings) and then sorts them using
@@ -20,13 +41,16 @@ public class OnDiskSort{
 	 * @param sorter the sorter to use to sort the chunks in memory
 	 */
 	public OnDiskSort(int maxSize, File workingDirectory, Sorter<String> sorter){
-		// TODO: put some code here
-		
+		this.maxSize = maxSize;
+		this.workingDirectory = workingDirectory;
+		this.sorter = sorter;
 		
 		// create directory if it doesn't exist
 		if( !workingDirectory.exists() ){
 			workingDirectory.mkdir();
 		}
+		
+		//clearOutDirectory(workingDirectory, TEMP_FILE_ENDING);
 	}
 	
 	/**
@@ -37,7 +61,7 @@ public class OnDiskSort{
 	 * 
 	 * @param workingDirectory the directory to clear
 	 * @param fileEnding clear only those files with fileEnding
-	 */
+	*/
 	private void clearOutDirectory(File workingDirectory, String fileEnding){
 		for( File file: workingDirectory.listFiles() ){
 			if( file.getName().endsWith(fileEnding) ){
@@ -45,7 +69,17 @@ public class OnDiskSort{
 			}
 		}
 	}
-		
+	
+	/**
+	 * Generates the full filename based on the working directory and the temporary file ending
+	 * 
+	 * @param fileStart the prefix of the filename
+	 * @return a new file
+	 */
+	private File getWorkingDirFilename(String fileStart){
+		return new File(workingDirectory.getAbsolutePath() + File.separator + fileStart + TEMP_FILE_ENDING);
+	}
+	
 	/**
 	 * Write the data in dataToWrite to outfile one String per line
 	 * 
@@ -64,6 +98,43 @@ public class OnDiskSort{
 		}catch(IOException e){
 			throw new RuntimeException(e.toString());
 		}
+	}
+	
+	/** 
+	 * Sort the data in dataReader using an on-disk version of sorting
+	 * 
+	 * @param dataReader an Iterator for the data to be sorted
+	 * @param outputFile the destination for the final sorted data
+	 */
+	public void sort(Iterator<String> dataReader, File outputFile){
+		int fileNum = 0;		
+		ArrayList<String> sortMe = new ArrayList<String>(maxSize);
+		ArrayList<File> writtenFiles = new ArrayList<File>();
+		
+		while( dataReader.hasNext() ){
+			sortMe.add(dataReader.next());
+			
+			if( sortMe.size() >= maxSize ){
+				sorter.sort(sortMe);
+				File outfile = getWorkingDirFilename(Integer.toString(fileNum));
+				writeToDisk(outfile, sortMe);
+				writtenFiles.add(outfile);
+				sortMe = new ArrayList<String>(maxSize);
+				fileNum++;
+			}
+		}
+		
+		// if there's still some data left, write it out to a new file
+		if( sortMe.size() > 0 ){
+			sorter.sort(sortMe);
+			File outfile = getWorkingDirFilename(Integer.toString(fileNum));
+			writeToDisk(outfile, sortMe);
+			writtenFiles.add(outfile);
+			sortMe = new ArrayList<String>(maxSize);
+		}
+		
+		mergeFiles(writtenFiles, outputFile);
+		clearOutDirectory(workingDirectory, TEMP_FILE_ENDING);
 	}
 	
 	/**
@@ -91,16 +162,6 @@ public class OnDiskSort{
 		}
 	}
 	
-	/** 
-	 * Sort the data in data using an on-disk version of sorting
-	 * 
-	 * @param dataReader an Iterator for the data to be sorted
-	 * @param outputFile the destination for the final sorted data
-	 */
-	public void sort(Iterator<String> dataReader, File outputFile){
-		// TODO: put some code here
-	}
-	
 	/**
 	 * Merges all the Files in sortedFiles into one sorted file, whose destination is outputFile.
 	 * 
@@ -109,7 +170,26 @@ public class OnDiskSort{
 	 * @param outputFile the destination file for the final sorted data
 	 */
 	protected void mergeFiles(ArrayList<File> sortedFiles, File outputFile){
-		// TODO: put some code here
+		// the easiest way to do this is to have a temporary file that contains all of
+		// your merged data so far and then just merge in one more file
+		
+		// to start with, we'll just copy the first sortedFile to the temp file and then
+		// merge in the remaining files linearly
+		
+		if( sortedFiles.size() == 1 ){
+			copyFile(sortedFiles.get(0), outputFile);
+		}else{
+			merge(sortedFiles.get(0), sortedFiles.get(1), outputFile);
+
+			File tempFile = new File(workingDirectory.getAbsolutePath() + 
+					File.separator + TEMP_FILE);	
+			copyFile(outputFile, tempFile);
+		
+			for( int i = 2; i < sortedFiles.size(); i++ ){
+				merge(tempFile, sortedFiles.get(i), outputFile);
+				copyFile(outputFile, tempFile);
+			}
+		}
 	}
 	
 	/**
@@ -121,27 +201,40 @@ public class OnDiskSort{
 	 * @param outFile destination file for the results of merging the two files
 	 */
 	protected void merge(File file1, File file2, File outFile){
-		// TODO: put some code here
+		try{
+			BufferedReader in1 = new BufferedReader(new FileReader(file1));
+			BufferedReader in2 = new BufferedReader(new FileReader(file2));
+			PrintWriter out = new PrintWriter(new FileOutputStream(outFile));
+			
+			String from1 = in1.readLine();
+			String from2 = in2.readLine();
+			
+			while( from1 != null &&
+				   from2 != null ){
+				if( from1.compareTo(from2) < 0 ){
+					out.println(from1);
+					from1 = in1.readLine();
+				}else{
+					out.println(from2);
+					from2 = in2.readLine();
+				}
+			}
+			
+			while( from1 != null ){
+				out.println(from1);
+				from1 = in1.readLine();
+			}
+			
+			while( from2 != null ){
+				out.println(from2);
+				from2 = in2.readLine();
+			}
+			
+			out.close();
+			in1.close();
+			in2.close();
+		}catch(IOException e){
+			throw new RuntimeException(e);
+		}
 	}
-	
-	/**
-	 * Create a sorter that does a mergesort in memory
-	 * Create a diskSorter to do external merges
-	 * Use subdirectory "sorting_run" of your project as the working directory
-	 * Create a word scanner to read King's "I have a dream" speech.
-	 * Sort all the words of the speech and put them in dile data.sorted
-	 * @param args -- not used!
-	 */
-	public static void main(String[] args){
-		MergeSort<String> sorter = new MergeSort<String>();
-		OnDiskSort diskSorter = new OnDiskSort(10, new File("sorting_run"), 
-				sorter);
-		
-		WordScanner scanner = new WordScanner(new File("sorting_run//Ihaveadream.txt"));
-		
-		System.out.println("running");		
-		diskSorter.sort(scanner, new File("sorting_run//data.sorted"));
-		System.out.println("done");
-	}
-
 }

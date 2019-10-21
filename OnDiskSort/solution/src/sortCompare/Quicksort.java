@@ -1,9 +1,10 @@
 package sortCompare;
+
 import java.util.ArrayList;
 
 /**
  * An implementation of the Quicksort algorithm
- *
+ * 
  * @param <E> the type of element to be sorted
  */
 public class Quicksort<E extends Comparable<E>> implements Sorter<E>{
