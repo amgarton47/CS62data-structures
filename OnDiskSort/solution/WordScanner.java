@@ -1,4 +1,5 @@
 package sortCompare;
+
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.NoSuchElementException;

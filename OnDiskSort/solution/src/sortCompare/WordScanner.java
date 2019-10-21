@@ -10,7 +10,7 @@ import java.util.Iterator;
 /**
  *  WordScanner
  *
- *  Reads from the input stream word by word
+ *  Copied from the assignment, where there is documentation.
  */
 public class WordScanner implements Iterator<String>{
 	private Scanner theScanner;
