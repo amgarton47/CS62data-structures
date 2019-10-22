@@ -1,21 +1,14 @@
-# Lab 03: Timing Sorting Algorithms
-
-## Important Dates
-
-* Release Date: February 12, 2019
-* Due Date: February 13, 2019
+# Lab 07: Timing Sorting Algorithms
 
 ## Objectives
 
-In this lab, we'll be playing with some of the sorting algorithms we're discussing in class. In addition, you'll get some familiarity with the `merge` method of `MergeSort`, which you will be implementing an on-disk version of for the next assignment.
+In this lab, we'll be playing with some of the sorting algorithms we've been discussing in class. In addition, you'll get some familiarity with the `merge` method of `MergeSort`, which you will be implementing an on-disk version of for the next assignment.
 
 You may again work in pairs on this lab, but choose a partner that you have not worked with before.
 
-Note: this lab assumes you've kept up with the reading for the class! In particular, we'll be looking Bubble sort, Insertion sort, Selection sort, Heapsort, Quicksort, and Mergesort, with an emphasis on the last two. Most algorithms are described in Chapter 6 of [Java Structures](http://www.cs.williams.edu/~bailey/JavaStructures/Book.html).
+Note: this lab assumes you've kept up with the reading for the class! In particular, we'll be looking at selectionsort, insertionsort, quicksort, and mergesort but we'll also encounter bubblesort and heapsort.
 
 ## Getting Started
-
-Follow the same instructions as before to create an Eclipse project.
 
 After you've setup your project, spend 5 minutes looking at the different classes to orient yourself.
 

@@ -5,7 +5,8 @@ import java.awt.geom.Rectangle2D;
 /**
  * A Square class, for the Silver Dollar Game
  * <p>
- * A Square is one element of a coin strip. There are methods to add, query, and remove coins from Squares.
+ * See chapter 3 of Java Structures, by Duane Bailey. A Square is one element of
+ * a coin strip. There are methods to add, query, and remove coins from Squares.
  * <p>
  * No graphics are necessary. However, the position of the square in the strip
  * is necessary so that we can inform the coin where to move.

@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 /**
  * A Coin class, for the Silver Dollar Game
  * <p>
+ * See chapter 3 of Java Structures, by Duane Bailey.
  * We simply extend the Ellipse2D.Double class to
  * produce circles with the reference point at the
  * center.

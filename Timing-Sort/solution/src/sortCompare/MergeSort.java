@@ -1,10 +1,9 @@
+package sortCompare;
+
 import java.util.ArrayList;
 
 /**
  * Implementation of the MergeSort algorithm
- * 
- * @author dave
- * @data 2/7/1009
  *
  * @param <E> type of data to be sorted
  */
@@ -18,7 +17,7 @@ public class MergeSort<E extends Comparable<E>> implements Sorter<E>{
 	public void sort(ArrayList<E> data){
 		sortHelper(data, 0, data.size());
 	}
-	
+
 	/**
 	 * MergeSort helper method.  Sorts data >= start and < end
 	 * 
