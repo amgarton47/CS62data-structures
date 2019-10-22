@@ -49,7 +49,7 @@ public class Autograder {
 		list.add(47);
 		list.first();
 		assertNotNull("current not null after calling first().", list.current);
-		assertEquals("list is: 47, first is 47.", 47, list.current.value(), 0);
+		assertEquals("list is: 47, first is 47.", 47, list.current.item, 0);
 		// off right
 
 		// 83 <=> 47
@@ -60,7 +60,7 @@ public class Autograder {
 		assertNotNull("current not null after insert.", list.current);
 		assertEquals(
 				"list is: 83 <=> 47, called next(), first(), then get current:",
-				83, list.current.value(), 0);
+				83, list.current.item, 0);
 
 	}
 
@@ -75,7 +75,7 @@ public class Autograder {
 				"current not null after calling first() on non-empty list.",
 				list.current);
 		assertEquals("list is: 47, called next(), first(), then get current:",
-				47, list.current.value(), 0);
+				47, list.current.item, 0);
 		assertFalse("list should not be off right after calling first()",
 				list.isOffRight());
 
@@ -98,7 +98,7 @@ public class Autograder {
 		list.add(47);
 		list.first();
 		assertNotNull("current not null after calling last().", list.current);
-		assertEquals("list is: 47, last is 47.", 47, list.current.value(), 0);
+		assertEquals("list is: 47, last is 47.", 47, list.current.item, 0);
 		// off right
 
 		// 83 <=> 47
@@ -107,7 +107,7 @@ public class Autograder {
 		list.last();
 		assertNotNull("current not null after insert.", list.current);
 		assertEquals("list is: 83 <=> 47, called last(), then get current:",
-				47, list.current.value(), 0);
+				47, list.current.item, 0);
 	}
 
 	@Test
@@ -121,7 +121,7 @@ public class Autograder {
 				"current not null after calling last() on non-empty list.",
 				list.current);
 		assertEquals("list is: 47, called next(), lst(), then get current:",
-				47, list.current.value(), 0);
+				47, list.current.item, 0);
 		assertFalse("list should not be off right after calling lst()",
 				list.isOffRight());
 
@@ -163,7 +163,7 @@ public class Autograder {
 		list.add(83);
 		list.next();
 		assertEquals("list is: 83 <=> 47, called next() after add().", 47,
-				list.current.value(), 0);
+				list.current.item, 0);
 		assertFalse(
 				"list is: 83 <=> 47, called next() after add(). list is not off right.",
 				list.isOffRight());
@@ -204,7 +204,7 @@ public class Autograder {
 		list.back();
 		assertEquals(
 				"list is: 83 <=> 47, called add(), back(), add(), next(), and back(). current at 83.",
-				83, list.current.value(), 0);
+				83, list.current.item, 0);
 		assertFalse(
 				"list is: 83 <=> 47, called add(), back(), add(), next(), and back(). list is not off left.",
 				list.isOffLeft());
@@ -290,7 +290,7 @@ public class Autograder {
 				list.size());
 		assertEquals(
 				"list is 47, called add(), first(). current should be 47.", 47,
-				list.current.value(), 0);
+				list.current.item, 0);
 
 		// 47 <=> 83
 		list.addAfterCurrent(83);
@@ -300,7 +300,7 @@ public class Autograder {
 				2, list.size());
 		assertEquals(
 				"list is 47 <=> 83, called add(), first(), addAfterCurrent(). Current should be 83.",
-				83, list.current.value(), 0); // current should point to
+				83, list.current.item, 0); // current should point to
 		// new node
 		// 47 <=> 134 <=> 83
 		list.back();
@@ -311,7 +311,7 @@ public class Autograder {
 				3, list.size());
 		assertEquals(
 				"list is 47 <=> 83, called add(), first(), addAfterCurrent(), back(), addAfterCurrent(). Current should be 134.",
-				134, list.current.value(), 0); // current should point to
+				134, list.current.item, 0); // current should point to
 		// new node
 	}
 
@@ -369,11 +369,11 @@ public class Autograder {
 
 		assertEquals(
 				"list was 47 <=> 134 <=> 83 and removed 134. current at 83.",
-				83, list.current.value(), 0);
+				83, list.current.item, 0);
 		list.first();
 		assertEquals(
 				"list was 47 <=> 134 <=> 83 and removed 134 and called first(). current at 47.",
-				47, list.current.value(), 0);
+				47, list.current.item, 0);
 	}
 
 	@Test(expected = Exception.class)
@@ -430,7 +430,7 @@ public class Autograder {
 		list.add(83);
 		list.removeFirst();
 		assertEquals("list was 83 <=> 47, and removed first", 47,
-				list.current.value(), 0);
+				list.current.item, 0);
 	}
 
 	@Test
@@ -544,7 +544,7 @@ public class Autograder {
 				47, list.getLast(), 0);
 		assertEquals(
 				"list is 83<=>47, current was at 83, then called getLast(), current should be at 47.",
-				47, list.current.value(), 0);
+				47, list.current.item, 0);
 	}
 
 	@Test
