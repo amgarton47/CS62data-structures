@@ -1,4 +1,4 @@
-# Assignment 05 - OnDisk Sort
+# OnDisk Sort
 
 ## Key Terms and Concepts
 
@@ -96,7 +96,7 @@ Java file I/O. For more on file I/O, you can also see **Appendix A - File I/O in
 
 2. You will also need a directory in which to put the files to be sorted. We suggest you create a directory called `sorting_run` in your project directory. In that directory put a file containing a copy of King's
 “I have a dream” speech. It is in a file named "Ihaveadream.txt" and is in with files from last week’s assignment. Be sure to name these exactly as given here, and make sure the directory `sorting_run` is
-in the same directory as the `.class` files from your program. (If not, then the program won’t find them
+in the same directory as the `src` and `bin` directories. (If not, then the program won’t find them
 and it will crash!) See the main method of `OnDiskSort` for the names. Note that we may test your
 code using a different directory for temporary files, so your code shouldnt use the name sorting run
 except in its main method as a default value.
