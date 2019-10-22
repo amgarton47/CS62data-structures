@@ -46,7 +46,7 @@ public class Stopwatch {
      */
     public double elapsedTime() {
         long now = System.currentTimeMillis();
-        return (now - start) / 1000.0;
+        return ((double) (now - start)) / 1000.0;
     }
 
     
@@ -107,61 +107,3 @@ public class Stopwatch {
  *  You should have received a copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/
-
-//
-//// A solution to Problem 1.9 in Java Structures, by Duane Bailey
-///**
-// * A simple stopwatch class
-// */
-//public class Stopwatch {
-//
-//    protected long startTime;        // when we started
-//    protected long accumulatedTime;  // the time accumulated by previous runs
-//    protected boolean running;       // true, if we are timing
-//    
-//    /**
-//     * @post creates a functioning Stopwatch
-//     */
-//    public Stopwatch() {
-//        running = false;
-//        startTime = 0;
-//        accumulatedTime = 0;
-//    }
-//
-//    /**
-//     * @post sets the time to zero
-//     */
-//    public void reset() {
-//        accumulatedTime = 0;
-//    }
-//    
-//    /**
-//     * @post starts timing
-//     */
-//    public void start() {
-//        if (!running) {
-//           startTime = System.nanoTime ();
-//           running = true;
-//        }
-//    }
-//    
-//    /**
-//     * @post stops (perhaps temporarily) the timing
-//     */
-//    public void stop() {
-//        if (running) {
-//           accumulatedTime += System.nanoTime () - startTime;
-//           running = false;
-//        }
-//    }
-//    
-//    /**
-//     * @post returns the elapsed time
-//     */
-//    public long getTime() {
-//        if (running)
-//           return accumulatedTime + System.nanoTime () - startTime;
-//        else
-//           return accumulatedTime;
-//    }
-//}
