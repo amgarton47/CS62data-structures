@@ -1,4 +1,4 @@
-# Lab 07: Timing Sorting Algorithms
+# Lab: Timing Sorting Algorithms
 
 ## Objectives
 
@@ -48,9 +48,32 @@ The program you are using has a few additional features. Typing `f` (for "freeze
 
 Typing `c` selects one of the sorting algorithms at random and executes it. Practice with the `c` command to develop your skill in identifying the algorithm from the pattern of comparisons and swaps.
 
-## Submission
+## Analysis
 
-When you have completed the lab, make sure you edit the `.json` file with your name as well as your partner's and push a final commit.
+Create a file (in the top level directory of your repo) called `analysis.txt`, in which you (briefly) discuss:
+
+   1. the motivation for ten-runs-per <sort,size> pair, and (quantitatively) what that tells you about the 
+      reliability of your results.
+   2. for each algorithm, the time as a function of the number of items to sort.
+   3. why each algorithm has that performance.
+
+
+## Submission Instructions
+
+Please fill out the `assignment.json` file. Include your Github name in the collaborators list and your partner's username as well if you worked with someone. If you have anything you want to say to the graders, put it in the notes field. Don't forget to put your name(s) in a comment at the top of the `ArrayListTimer` class.
+
+## Grading
+
+Your submission will be graded based on the following criteria:
+
+
+| Criterion                                | Points |
+| :--------------------------------------- | :----- |
+| clean compilation w/no warnings          | 1      |
+| correctly implements MergeSort.merge     | 3      |
+| plausible results (and analysis)         | 3      |
+| comments (for added methods/code)        | 2      |
+| style and formatting                     | 1      |
 
 ## If You Still Have Time
 
