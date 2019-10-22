@@ -60,7 +60,7 @@ Create a file (in the top level directory of your repo) called `analysis.txt`, i
 
 ## Submission Instructions
 
-Please fill out the `assignment.json` file. Include your Github name in the collaborators list and your partner's username as well if you worked with someone. If you have anything you want to say to the graders, put it in the notes field. Don't forget to put your name(s) in a comment at the top of the `ArrayListTimer` class.
+Please fill out the `assignment.json` file. Include your Github name in the collaborators list and your partner's username as well if you worked with someone. If you have anything you want to say to the graders, put it in the notes field. Don't forget to put your name(s) in a comment at the top of the `MergeList` class.
 
 ## Grading
 
