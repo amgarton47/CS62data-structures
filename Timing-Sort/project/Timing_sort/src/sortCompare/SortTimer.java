@@ -55,7 +55,11 @@ public class SortTimer {
 		// note the use of "getClass().toString()" to print out the class name
 		// associated with Sorter s.
 		for (Sorter<Integer> s : sorters) {
-			System.out.printf(" | %12s", s.getClass().toString());
+			String className = s.getClass().toString();
+			int lastDot = className.lastIndexOf(".");
+			if (lastDot > 0)
+				className = className.substring(lastDot+1);
+			System.out.printf(" | %15s", className);
 		}
 
 		System.out.println();
