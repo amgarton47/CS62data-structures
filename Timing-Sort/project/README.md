@@ -52,8 +52,8 @@ Typing `c` selects one of the sorting algorithms at random and executes it. Prac
 
 Create a file (in the top level directory of your repo) called `analysis.txt`, in which you (briefly) discuss:
 
-   1. the motivation for ten-runs-per <sort,size> pair, and (quantitatively) what that tells you about the 
-      reliability of your results.
+   1. the motivation for ten-runs-per <sort,size> pair, and (quantitatively) what the range of
+      values you got tells you about the reliability of *these* results.
    2. for each algorithm, the time as a function of the number of items to sort.
    3. why each algorithm has that performance.
 
