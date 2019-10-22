@@ -36,6 +36,14 @@ else
 	never_run=""
 fi
 
+# do we know which (of multiple) package to build and run
+if [ -f PACKAGE ]
+then
+	only_package=`cat PACKAGE`
+else
+	only_package=""
+fi
+
 # if we weren't given directories to process, try everything
 if [ -z "$1" ]
 then
@@ -88,6 +96,16 @@ do
 	if [ $count -eq 1 ]
 	then
 		sourcedir=$srcdir/$package
+	elif [ $count -gt 1 ]
+	then
+		if [ -n "$only_package" -a -d "$srcdir/$only_package" ]
+		then
+			sourcedir=$srcdir/$only_package
+		else
+			echo "WARNING: $srcdir seems to contain multiple packages ... create PACKAGE file"
+			shift
+			continue
+		fi
 	else
 		sourcedir=$srcdir
 	fi
@@ -184,6 +202,7 @@ do
 			else
 				report $student run_error
 			fi
+			echo "   $1 ... compilation and execution results in $1/OUTPUT"
 		else
 			echo "   $1 ... build successful"
 			report $student build_ok
