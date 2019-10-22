@@ -90,8 +90,8 @@ do
 		if [ -d $file ]
 		then
 			package=`basename $file`
+			count=$((count+1))
 		fi
-		count=$((count+1))
 	done
 	if [ $count -eq 1 ]
 	then
