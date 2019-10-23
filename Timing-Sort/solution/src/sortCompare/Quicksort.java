@@ -1,11 +1,9 @@
+package sortCompare;
+
 import java.util.ArrayList;
 
 /**
  * An implementation of the Quicksort algorithm
- * 
- * 
- * @author dave
- * @date 2/7/2009
  *
  * @param <E> the type of element to be sorted
  */

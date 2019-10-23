@@ -20,7 +20,13 @@ then
 fi
 
 # get the report generator
-. report.sh
+if [ -f report.sh ]
+then
+	. report.sh
+else
+	echo "This script requires a copy of the report.sh script"
+	exit 1
+fi
 
 # is there any main class we should not run?
 if [ -f DO_NOT_RUN ]
@@ -28,6 +34,14 @@ then
 	never_run=`cat DO_NOT_RUN`
 else
 	never_run=""
+fi
+
+# do we know which (of multiple) package to build and run
+if [ -f PACKAGE ]
+then
+	only_package=`cat PACKAGE`
+else
+	only_package=""
 fi
 
 # if we weren't given directories to process, try everything
@@ -71,17 +85,27 @@ do
 
 	# see if there seems to be a single package under src
 	count=0
-	for file in "$srcdir/*"
+	for file in $srcdir/*
 	do
 		if [ -d $file ]
 		then
 			package=`basename $file`
+			count=$((count+1))
 		fi
-		count=$((count+1))
 	done
 	if [ $count -eq 1 ]
 	then
 		sourcedir=$srcdir/$package
+	elif [ $count -gt 1 ]
+	then
+		if [ -n "$only_package" -a -d "$srcdir/$only_package" ]
+		then
+			sourcedir=$srcdir/$only_package
+		else
+			echo "WARNING: $srcdir seems to contain multiple packages ... create PACKAGE file"
+			shift
+			continue
+		fi
 	else
 		sourcedir=$srcdir
 	fi
@@ -178,6 +202,7 @@ do
 			else
 				report $student run_error
 			fi
+			echo "   $1 ... compilation and execution results in $1/OUTPUT"
 		else
 			echo "   $1 ... build successful"
 			report $student build_ok

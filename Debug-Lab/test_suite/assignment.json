@@ -1,0 +1,31 @@
+{
+    "title": "Eclipse Debugging",
+    "assignment": "lab02",
+    "runner": {
+        "type": "manual"
+    },
+    "tests": [
+        {
+            "name": "Screen-shot #1: exception in code",
+            "score": 1.0
+        },
+        {
+            "name": "Screen-shot #2: later exception due to invalid argument",
+            "score": 2.0
+        },
+        {
+        {
+            "name": "Screen-shot #3: breakpoint and pre-call variables",
+            "score": 3.0
+        },
+        {
+        {
+            "name": "Screen-shot: step through call, post-call variables",
+            "score": 4.0
+        },
+        {
+            "name": "submitted on time (negative if late)",
+            "score": 0.0
+        }
+    ],
+}

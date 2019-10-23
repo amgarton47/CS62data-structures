@@ -1,0 +1,115 @@
+{
+  "title": "Linked Lists",
+  "assignment": "lab06",
+  "writeup": "https://PUT-IN-A-REASONABLEW-ASSIGNMENT-URL",
+  "runner": {
+        "mainclass": "AutoCompleteMain",
+        "package": null,
+        "type": "java_single_package_runner"
+  },
+  "tests": [
+    {
+      "name": "insert_at_end(linkedlist.Autograder)",
+      "score": 0.75
+    },
+    {
+      "name": "insert_in_middle(linkedlist.Autograder)",
+      "score": 0.75
+    },
+    {
+      "name": "remove_first(linkedlist.Autograder)",
+      "score": 0.4
+    },
+    {
+      "name": "remove_middle(linkedlist.Autograder)",
+      "score": 0.4
+    },
+    {
+      "name": "remove_end(linkedlist.Autograder)",
+      "score": 0.4
+    },
+    {
+      "name": "remove_only(linkedlist.Autograder)",
+      "score": 0.3
+    },
+    {
+      "name": "iterate_none(linkedlist.Autograder)",
+      "score": 0.25
+    },
+    {
+      "name": "iterate_one(linkedlist.Autograder)",
+      "score": 0.25
+    },
+    {
+      "name": "iterate_two(linkedlist.Autograder)",
+      "score": 0.25
+    },
+    {
+      "name": "iterate_three(linkedlist.Autograder)",
+      "score": 0.25
+    },
+
+
+    {
+      "name": "add_one(linkedlist.Autograder)",
+      "score": 0.3
+    },
+    {
+      "name": "add_one_five(linkedlist.Autograder)",
+      "score": 0.3
+    },
+    {
+      "name": "add_one_five_three(linkedlist.Autograder)",
+      "score": 0.4
+    },
+    {
+      "name": "find_first(linkedlist.Autograder)",
+      "score": 0.25
+    },
+    {
+      "name": "find_last(linkedlist.Autograder)",
+      "score": 0.25
+    },
+    {
+      "name": "find_none_middle(linkedlist.Autograder)",
+      "score": 0.25
+    },
+    {
+      "name": "find_none_end(linkedlist.Autograder)",
+      "score": 0.25
+    },
+
+
+    {
+      "name": "DLL_Node testcase: insert (after first, other)",
+      "score": 1.5
+    },
+    {
+      "name": "DLL_Node testcase: remove(first, middle, last)",
+      "score": 1.5
+    },
+
+    {
+      "name": "Ordered_DLL testcase: insert(first, middle, last)",
+      "score": 1.5
+    },
+
+    {
+      "name": "Ordered_DLL testcase: find(first, last, absent)",
+      "score": 1.5
+    },
+
+    {
+      "name": "builds with no errors",
+      "score": 1.0
+    },
+    {
+      "name": "style and formatting",
+      "score": 2.0
+    },
+    {
+      "name": "submitted on time (negative if late)",
+      "score": 0.0
+    }
+  ]
+}

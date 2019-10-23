@@ -64,22 +64,31 @@ Then, for extra credit, you can:
    with its well-formed-list invariants, method descriptions, and
    instance variables.
 
-3. Implement the `insert`, `remove` and `iterator` methods, and the
-   `DLL_Node_Iterator` class.
+3. Implement the `insert`, `remove` methods, and then implement the
+   `listToString` method and create a few more test cases in the `main`
+    method.
 
-4. Describe (e.g. in a block comment at the end of the `DLL_Node`
-   class) the set of test cases you would use to satisfy yourself
+4. based on the experience you gained implementing the `listToString`
+   method, implement the `iterator` method, and the `DLL_Node_Iterator` class.
+
+5. Describe (e.g. in a block comment at the end of the `DLL_Node`
+   class) the *complete* set of test cases you would use to satisfy yourself
    of the correctness of this implementation.
 
 ## Extra Credit
 
-5. Study the included [Ordered_DLL starter](LinkedList/src/Ordered_DLL.java)
+6. Study the included [Ordered_DLL starter](LinkedList/src/Ordered_DLL.java)
    with its well-formed-list invariants, method descriptions, and
    instance variables.
 
-6. Implement the `insert` and `find` methods, and describe (e.g.
-   in a block comment at the end of the `Ordered_DLL` class) the
-   set of test cases you would use to satisfy yourself of the
+7. Implement the `insert` and `find` methods.  These implementations will
+   require you to traverse the `DLL_Node` list, but the `next` and `prev`
+   fields in that class are `private`.  This means that you will have to
+   use the `DLL_Node.iterator` method to find the desired element or
+   insertion point.
+
+8. Describe (e.g.  in a block comment at the end of the `Ordered_DLL` 
+   class) the set of test cases you would use to satisfy yourself of the
    correctness of this implementation.
 
 ## Grading

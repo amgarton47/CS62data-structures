@@ -1,0 +1,39 @@
+Notes from my own solution of Timing-Sort
+
+    reading
+    	Sorter Interface: obvious
+	QuickSort:
+		quicksortHelper: partition and recursively sub-divide
+		partition: anything less than last gets swapped to the bottom
+			   put the (pivot value) last in the middle
+			   return index above the (now placed) pivot value
+	MergeSort:
+		sortHelper: divide list in half, recursively sort/merge each
+	        >>> merge:  [requires an in-place merge]
+
+	SortTimer:
+		ArrayList<int> fillAraray ... create and populate an array
+		double time(sorter, data) ... do it and return the time
+		boolean isSorted(data) ... verify it was done correctly
+
+		printTimes(sorters, sizes)
+		    print column headings (for sorters)
+		    for each size
+		    	for each sorter
+			    create data
+			    time the sort
+			    check correctness
+			newline
+		
+		main
+		    list of sorters: QuickSort, MergeSort
+		    list of 7 data sizes: 1000 * 2^n
+		    do 10 times
+		    	printTimes(sorters, sizes)
+
+	Stopwatch:	as before
+
+    implementation
+    	I was nervous about whether or not my stopping subscripts
+	for the competing loops were correct, but it worked perfectly
+	first time (with the most obvious interpretations).

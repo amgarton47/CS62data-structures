@@ -8,7 +8,7 @@ import java.util.Random;
  * sizes
  */
 public class SortTimer {
-	private Stopwatch timer = new Stopwatch();
+	private Stopwatch timer;
 	private Random rand = new Random();
 
 	/**
@@ -55,7 +55,11 @@ public class SortTimer {
 		// note the use of "getClass().toString()" to print out the class name
 		// associated with Sorter s.
 		for (Sorter<Integer> s : sorters) {
-			System.out.printf(" | %12s", s.getClass().toString());
+			String className = s.getClass().toString();
+			int lastDot = className.lastIndexOf(".");
+			if (lastDot > 0)
+				className = className.substring(lastDot+1);
+			System.out.printf(" | %15s", className);
 		}
 
 		System.out.println();
@@ -66,8 +70,7 @@ public class SortTimer {
 
 			for (Sorter<Integer> s : sorters) {
 				ArrayList<Integer> data = fillArrayWRandom(size);
-				// Divide times by 1000 to get microseconds
-				System.out.printf(" | %15d", time(s, data)/1000);
+				System.out.printf(" | %15f", time(s, data)*1000);
 
 				if (!isSorted(data)) {
 					System.err.println("Data wasn't sorted correctly by: "
@@ -122,12 +125,10 @@ public class SortTimer {
 	 *            the numbers to sort
 	 * @return the time taken to sort nums using sorting algorithm s
 	 */
-	private long time(Sorter<Integer> s, ArrayList<Integer> nums) {
+	private double time(Sorter<Integer> s, ArrayList<Integer> nums) {
 		System.gc();
-		timer.reset();
-		timer.start();
+		timer = new Stopwatch();
 		s.sort(nums);
-		timer.stop();
-		return timer.getTime();
+		return timer.elapsedTime();
 	}
 }

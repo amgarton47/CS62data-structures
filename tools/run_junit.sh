@@ -164,7 +164,8 @@ do
 			then
 				echo "... copying solution source $file"
 			fi
-			cp $file $TEMPDIR/$package
+			to=`basename $file`
+			sed 's/private/protected/' $file > $TEMPDIR/$package/$to
 		fi
 	done
 

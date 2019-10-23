@@ -44,6 +44,9 @@ public class MergeSort<E extends Comparable<E>> implements Sorter<E>{
 	 * @param low bottom index of the data to be merged
 	 * @param mid midpoint of the data to be merged
 	 * @param high end of the data to be merged (exclusive)
+	 *
+	 * Note: the merged data must be in the same data array that
+	 *       was passed as a parameter.
 	 */
 	public void merge(ArrayList<E> data, int low, int mid, int high){
 		//TODO: write the merge method

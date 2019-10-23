@@ -185,6 +185,9 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 		else if (off_right)
 			throw new NoSuchElementException("off right");
 		
+		if (value == null)
+			throw new IllegalArgumentException("null value");
+		
 		// figure out where we are in the list
 		if (current == this.last)
 			this.addLast(value);
@@ -236,6 +239,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 */
 	// 
 	public void addFirst(E newFirst) {
+		if (newFirst == null)
+			throw new IllegalArgumentException("null value");
 		super.addFirst(newFirst);
 		current = first;
 		off_left = false;
@@ -278,6 +283,8 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 *            value of new last element of list
 	 */
 	public void addLast(E newLast) {
+		if (newLast == null)
+			throw new IllegalArgumentException("null value");
 		super.addLast(newLast);
 		current = this.last;
 		off_left = false;

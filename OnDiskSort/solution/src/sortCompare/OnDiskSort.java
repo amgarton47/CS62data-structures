@@ -1,3 +1,5 @@
+package sortCompare;
+
 import java.io.*;
 import java.util.*;
 
@@ -5,8 +7,6 @@ import java.util.*;
  * Sorts the data on-disk, by sorting the data in small chunks and then merging
  * the data into one larger chunk
  * 
- * @author dave
- * @date 2/9/2010
  */
 public class OnDiskSort{
 	private static final String TEMP_FILE_ENDING = ".tempSorted";

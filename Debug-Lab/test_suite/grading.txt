@@ -1,0 +1,28 @@
+1. to get the point
+   the program must compile and run
+   the program must get an exception (e.g. a zero divide nor null deref)
+   the exception must have occured in student code (not later in some library)
+
+2. to get the first point
+   the program must compile and run
+   the program must pass an invalid or illegal argument to a call
+   the program must get an exception down stream from the call (preferably in a library)
+
+   to get the second point they must highlight the (down stack) line of code that 
+      passed the illegal argument
+   
+3. to get any points
+   the program must compile and run
+   they must have set and hit a breakpoint
+   screen shot must be debug-mode after having hit the breakpoint
+
+   to get the second point they must have stopped before making a call
+
+   to get the third point they must display the pre-call value of a variable
+
+4. to get the first two points
+   they must have continued (from step 3) to the return from the aforementioned call
+
+   to get the third point they must be at the instruction after call
+
+   to get the fourth point they must display the (chaged) post-call value of that variable

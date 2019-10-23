@@ -1,3 +1,4 @@
+package linkedlist;
 import java.util.Iterator;
 
 /**
@@ -48,6 +49,8 @@ public class DLL_Node implements Iterable<DLL_Node> {
 	 * 
 	 * @precondition: this is an element of a well-formed list
 	 * @postcondition: that list no longer contains this
+	 *				   after removing an element from a list,
+	 *				   its next/prev pointers should be null
 	 */
 	public void remove() {
 		// TODO: update all prev/next pointers appropriately
@@ -60,6 +63,29 @@ public class DLL_Node implements Iterable<DLL_Node> {
 	 */
 	public Iterator<DLL_Node>  iterator() {
 		return null;	// TODO: instantiate and return an iterator
+	}
+
+	/**
+	 * return a string reprentation of the list this node is in
+	 *
+	 * Note: this method will be very useful for testing,
+	 *	     and is a good place to work out the circular
+	 *		 list enumeration problems you will have to 
+	 *		 solve in the iterator.
+	 */
+	public String listToString() {
+
+		// if list is not well formed, consider it to be empty
+		if (this.prev == null || this.next == null)
+			return("[]");
+
+		String list = "";
+		// TODO: assemble the string description of this list
+		//	    walk the list
+		//		appending comman-separated toString() of each node
+		//		stopping when we come back around to our starting point.
+
+		return "[" + list + "]";
 	}
 
 	/**
@@ -79,6 +105,11 @@ public class DLL_Node implements Iterable<DLL_Node> {
 		 *				  if start.next is null, it is not well-formed
 		 *				  if start.prev is null, it is not well-formed
 		 * @postcondition: successive calls to next will visit entire list
+		 *
+		 * NOTE:
+		 *	This is a circular list.  We should vist every node
+		 *	in the list (even a single-node-list), but should stop 
+		 *	when we reach the starting point for the 2nd time.
 	     */
 		public DLL_Node_Iterator(DLL_Node start) {
 			// TODO: establish the initial state for this iteration
@@ -90,6 +121,8 @@ public class DLL_Node implements Iterable<DLL_Node> {
 		 * @return boolean: are there more nodes to be returned
 		 *
 		 * DO NOT ASSUME that head is well formed (non-null pointers)
+		 *		protect yourself from this error on the caller's part
+		 *	    Always return false for such a list.
 		 */
 		public boolean hasNext() {
 			return false;	// TODO: determine whether enumeration is done
@@ -101,6 +134,8 @@ public class DLL_Node implements Iterable<DLL_Node> {
 		 * @return: reference to next node in list, or null after wrap-around
 		 *
 		 * DO NOT ASSUME that head is well formed (non-null pointers)
+		 *		protect yourself from this error on the caller's part
+		 *	    Always return null for such a list.
 		 */
 		 public DLL_Node next() {
 			return null;	// TODO: return next node and advance the pointer
@@ -112,6 +147,23 @@ public class DLL_Node implements Iterable<DLL_Node> {
 	  *
 	  *		operations				expected iteration
 	  *		----------				------------------	
-	  *
+	  *	    new(a)					a: [a]
+	  *		new(b); b.insert(a)		a: [a,b]
+	  *		b.remove()				a: [a], b: []
+	  *		... add your own to fully exercise insert/remove
 	  */
+	public void main(String args[]) {
+		a = new DLL_Node();
+		System.out.println("a: " + a + " = " + a.listToString());
+
+		b = new DLL_Node();
+		System.out.println("b: " + b + " = " + b.listToString());
+
+		b.insert(a);
+		System.out.println("a + b = " + a.listToString());
+		
+		b.remove();
+		System.out.println("[a,b] - b = " + a.listToString());
+		System.out.println("        b = " + b.listToString());
+	}
 }

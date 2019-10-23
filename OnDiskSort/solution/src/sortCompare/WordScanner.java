@@ -1,3 +1,5 @@
+package sortCompare;
+
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.NoSuchElementException;
@@ -9,10 +11,7 @@ import java.util.Iterator;
 /**
  *  WordScanner
  *
- *  Copied from the assignment, where there is documentation.
- *
- *  @author Rett Bull
- *  @date February 21, 2009
+ *  Reads from the input stream word by word
  */
 public class WordScanner implements Iterator<String>{
 	private Scanner theScanner;

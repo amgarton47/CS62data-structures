@@ -1,0 +1,38 @@
+{
+  "title": "Sort Timing",
+  "assignment": "lab07",
+  "runner": {
+    "type": "manual"
+  },
+  "tests": [
+    {
+      "name": "imports and builds with no errors/warnings",
+      "score": 1.0
+    },
+
+    { "name": "correct MergeSort.merge() results",
+      "score": 2.0
+    },
+    { "name": "correct MergeSort.merge() implementation",
+      "score": 1.0
+    },
+    { "name": "plausible results",
+      "score": 1.0
+    },
+    { "name": "analysis: multiple runs",
+      "score": 0.5
+    },
+    { "name": "analysis: relative performance",
+      "score": 1.5
+    },
+    { "name": "comments (for added methods/code)",
+      "score": 2.0
+    },
+    { "name": "style and formatting",
+      "score": 1.0
+    },
+    { "name": "submitted on time (negative if late)",
+      "score": 0.0
+    }
+  ]
+}

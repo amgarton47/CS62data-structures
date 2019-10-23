@@ -1,21 +1,14 @@
-# Lab 03: Timing Sorting Algorithms
-
-## Important Dates
-
-* Release Date: February 12, 2019
-* Due Date: February 13, 2019
+# Lab: Timing Sorting Algorithms
 
 ## Objectives
 
-In this lab, we'll be playing with some of the sorting algorithms we're discussing in class. In addition, you'll get some familiarity with the `merge` method of `MergeSort`, which you will be implementing an on-disk version of for the next assignment.
+In this lab, we'll be playing with some of the sorting algorithms we've been discussing in class. In addition, you'll get some familiarity with the `merge` method of `MergeSort`, which you will be implementing an on-disk version of for the next assignment.
 
 You may again work in pairs on this lab, but choose a partner that you have not worked with before.
 
-Note: this lab assumes you've kept up with the reading for the class! In particular, we'll be looking Bubble sort, Insertion sort, Selection sort, Heapsort, Quicksort, and Mergesort, with an emphasis on the last two. Most algorithms are described in Chapter 6 of [Java Structures](http://www.cs.williams.edu/~bailey/JavaStructures/Book.html).
+Note: this lab assumes you've kept up with the reading for the class! In particular, we'll be looking at selectionsort, insertionsort, quicksort, and mergesort but we'll also encounter bubblesort and heapsort.
 
 ## Getting Started
-
-Follow the same instructions as before to create an Eclipse project.
 
 After you've setup your project, spend 5 minutes looking at the different classes to orient yourself.
 
@@ -55,9 +48,32 @@ The program you are using has a few additional features. Typing `f` (for "freeze
 
 Typing `c` selects one of the sorting algorithms at random and executes it. Practice with the `c` command to develop your skill in identifying the algorithm from the pattern of comparisons and swaps.
 
-## Submission
+## Analysis
 
-When you have completed the lab, make sure you edit the `.json` file with your name as well as your partner's and push a final commit.
+Create a file (in the top level directory of your repo) called `analysis.txt`, in which you (briefly) discuss:
+
+   1. the motivation for ten-runs-per <sort,size> pair, and (quantitatively) what the range of
+      values you got tells you about the reliability of *these* results.
+   2. for each algorithm, the time as a function of the number of items to sort.
+   3. why each algorithm has that performance.
+
+
+## Submission Instructions
+
+Please fill out the `assignment.json` file. Include your Github name in the collaborators list and your partner's username as well if you worked with someone. If you have anything you want to say to the graders, put it in the notes field. Don't forget to put your name(s) in a comment at the top of the `MergeSort` class.
+
+## Grading
+
+Your submission will be graded based on the following criteria:
+
+
+| Criterion                                | Points |
+| :--------------------------------------- | :----- |
+| clean compilation w/no warnings          | 1      |
+| correctly implements MergeSort.merge     | 3      |
+| plausible results (and analysis)         | 3      |
+| comments (for added methods/code)        | 2      |
+| style and formatting                     | 1      |
 
 ## If You Still Have Time
 
