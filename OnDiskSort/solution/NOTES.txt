@@ -1,0 +1,51 @@
+CurDoublyLinkedList.java
+
+	most of the code in every method is pre-condition checking
+		(and associated exception throwing)
+
+	the next most common complexity is where to leave current,
+		and how to set offLeft/Right after each operation.
+		Not difficult of you carefully study the specs.
+		But the rules for how you set offLeft/Right are
+		slightly less than intuitive.
+
+	the only real problem is that we can't get at the next/prev
+		pointers in the underlying DLL class, so we have
+		to translate our insert/delete operations into
+		first/last/by-index ... the last of which involves
+		using an iterator.
+
+TestCurDoublyLinkedList.java
+
+	missing methods are all labeled:
+		TODO:	constructur, testClear
+		fail: NYI
+			testBack, 
+			testIsOffRight, testIsOffLeft, testIsOff
+			testRemove{Current,First,Last}
+			testAdd{First,LastE}
+			testGet{First,Last}
+
+
+CompressedTable.java
+
+	constructor ... what ever you need
+			Kim set <0,0> to default (vs implementing default)
+
+	getInfo (simple) is a clue to what is needed
+
+	updateInfo is the whole show
+
+		the basic idea of find the set at or before the
+		selected item is not too hard.
+
+		the next step is to do-no-harm to successors,
+		perhaps setting back to what they previously
+		inherited.
+
+		but if you want to be efficient (removing all moot
+		or redundant changes) there are many different cases 
+		of what comes in and what your successors do
+
+	find ... fairly obvious after updateInfo is written
+
