@@ -169,6 +169,9 @@ do
 			# try to run the submission
 			cd "$HEADDIR/$srcdir"
 
+			# note where the output is expected to be left
+			where="$1/OUTPUT"
+
 			# run the runnable classes
 			echo 			   >> "$HEADDIR/$1/OUTPUT"
 			echo "===================" >> "$HEADDIR/$1/OUTPUT"
@@ -183,14 +186,21 @@ do
 					c=$package.$c
 				fi
 				echo "   $1 ... attempting to run $c"
-				java $c >> "$HEADDIR/$1/OUTPUT"
+				java $c >> "$HEADDIR/$1/OUTPUT" 2> "$HEADDIR/$1/ERRORS"
 				if [ $? -eq 0 ]
 				then
 
 					echo >> "$HEADDIR/$1/OUTPUT"
 					echo "=====================================" >> "$HEADDIR/$1/OUTPUT"
-					echo "$1/$c ... exit status 0" >> "$HEADDIR/$1/OUTPUT"
-					ok=$((ok+1))
+					if [ -s "$HEADDIR/$1/ERRORS" ]
+					then
+						echo "$1/$c ... output to stderr" >> "$HEADDIR/$1/OUTPUT"
+						where="$1/OUTPUT (and ERRORS)"
+					else
+						echo "$1/$c ... exit status 0" >> "$HEADDIR/$1/OUTPUT"
+						ok=$((ok+1))
+						rm "$HEADDIR/$1/ERRORS"
+					fi
 				else
 					echo "   $1/$c ... NON-ZERO EXIT STATUS" >> "$HEADDIR/$1/OUTPUT"
 				fi
@@ -202,7 +212,7 @@ do
 			else
 				report $student run_error
 			fi
-			echo "   $1 ... compilation and execution results in $1/OUTPUT"
+			echo "   $1 ... compilation and execution results in $where"
 		else
 			echo "   $1 ... build successful"
 			report $student build_ok
