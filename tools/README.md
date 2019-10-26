@@ -1,3 +1,65 @@
+# Grading process
+
+    1. create a grading directory containing copies of the submission repos 
+       to be graded.
+    2. pull in a copy of classroom.json
+    3. copy in everything from the test_suite directory for that project
+
+## projects covered by full autograder suites
+
+    4. run the run_junit.sh script, and see if it seems to be correctly
+       processing all of the assignments.  
+       
+       The most common problems involve compilation errors or files that 
+       students moved to a different place in the hierarchy.  I make notes
+       of these (for point deductions) but then fix them so that testing
+       can continue.
+
+    5. use the merge(socres.py program to transfer the .autos results 
+       from the autograder into more complete per-submission .json files.
+
+## projects not covered by full autograder suites
+
+    4. run the compile_and_run.sh script (which will probably require
+       a copy of either a generic or per-project report.sh script.
+
+       Again, te most common problems involve compilation errors or files 
+       that students moved to a different place in the hierarchy.  I make 
+       notes of these (for point deductions) but then fix them so that 
+       testing can continue.
+
+       The resulting .auto reports will only cover whether or not
+       the resulting projects built and ran.  All additional scoring
+       will be done manually.
+
+    5. You have a decision to make on how you want to do the rest of the
+       scoring:
+
+       5a) use the auto2csv.py program to create a spreadsheet for all of
+           the submissions, and do the remainder of the grading on the
+	   spreadsheet.
+
+	   When you are done, use the csv2json.py program to produce the
+	   per-submission .json files.
+
+       5b) use the merge_scores.py to create a preliminary .json file
+           from each of the autograder-produced .auto files.
+
+       Either way, you can continue by directly editing
+       the per-submission .json files.  Editing JSON files is error
+       prone (commas, quotes, and braces matter), but makes it possible
+       for you to provide detailed comments.
+
+## final report generation
+
+   6. use the score_report.py program to turn per-submission json
+      files into (more human-readable) .txt files.
+
+   7. if, in addition to score summaries, you want a pdf (e.g. so
+      that you can provide detailed feedback on the submitted
+      code), you can use the make_pdfs.sh script to create, for
+      each submission, a pdf containing all of the named source files.
+
 # Grading tools
 
 ## run_junit.sh
