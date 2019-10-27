@@ -22,7 +22,7 @@ public class Term implements Comparable<Term> {
 	 * @return comparator ordering elts by descending weight
 	 */
 	public static Comparator<Term> byReverseWeightOrder() {
-		return null;  // fix this!
+		return null;  // TODO: implement and return appt comparator
 	}
 
 	/**
@@ -32,17 +32,17 @@ public class Term implements Comparable<Term> {
 	 *         letters of each word
 	 */
 	public static Comparator<Term> byPrefixOrder(int r) {
-		return null;   // fix this
+		return null;   // TODO: implement and return appt comparator
 	}
 
 	/**
 	 * @param that
 	 *            Term to be compared
-	 * @return -1, 0, or 1 depending on whether the word for that is smaller,
-	 *         the same or larger than for the receiver
+	 * @return -1, 0, or 1 depending on whether the word for THIS is
+	 *		   lexicographically smaller, same or larger than THAT
 	 */
 	public int compareTo(Term that) {
-		return 0;       // fix this
+		return 0;       // TODO: implement standard comparator
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class Term implements Comparable<Term> {
 	 *         weight, followed by 2 tabs, followed by the word.
 	 **/
 	public String toString() {
-		return null;    // fix this
+		return null;    // TODO: return appropriate string
 	}
 
 }
