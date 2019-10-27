@@ -1,10 +1,5 @@
 # Assignment 08 - You (auto) complete me!
 
-## Important Dates
-
-* Release Date: October 29, 2019
-* Due Date: November 5, 2019
-
 ## Key Terms and Concepts
 
 * `Comparators` - An interface used to order objects in Java. For Java objects that do have an inherent order like `int`s and `String`s, you can implement this interface to let the program know how they should be ordered. (See 2.5, 339-352 and the lecture slides in the textbook for more)
@@ -129,7 +124,7 @@ returned. In that case, just print out all the matching items.
 To test your program we have provided two files, `cities.txt` and `wiktionary.txt`. They are both very
 large so don’t print them out. For testing feel free to select a small amount of data from these files.
 
-Here is some sample output if the command line parameters are 5 and `cities.txt`.
+Here is some sample output if the command line parameters are 5 and `wiktionary.txt`.
 
 ```
 Enter a new prefix: hel
