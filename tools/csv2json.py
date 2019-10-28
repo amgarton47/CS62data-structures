@@ -6,33 +6,17 @@ import logging
 verbose = False
 
 
-def make_json(template, scores):
+def make_json(tests, scores):
     """
     create json score descriptions from a csv list
 
-    @param template: name of the json assignment definition
+    @param [tests]: list of tests from this assgt
     @param scores: name of the csv file with scores
 
         row 1:  headings
         col 1:  student ID (to use for filenames)
         col 2-n: scores (corresponding to "tests" in template
     """
-
-    # read in the base lab description
-    try:
-        with open(template, 'r') as infile:
-            master = json.load(infile)
-            infile.close()
-    except Exception as e:
-        msg = e.message if hasattr(e, 'message') else str(e)
-        logging.error("unable to read test template " + template +
-                      " - " + msg)
-        return
-
-    # make sure we have a list of tests
-    if 'tests' not in master:
-        logging.error("ERROR: " + template + " contains no tests")
-        return
 
     # read the CSV score file
     try:
@@ -51,7 +35,7 @@ def make_json(template, scores):
                 column = 1
 
                 # accumulate the tests and scores
-                for test in master['tests']:
+                for test in tests:
                     if column >= len(row) or row[column].strip() == "":
                         this_tests.append(test)
                     else:
@@ -100,5 +84,21 @@ if __name__ == "__main__":
     (opts, files) = parser.parse_args()
     verbose = opts.verbose
 
+    # read in the base lab description
+    try:
+        with open(opts.template, 'r') as infile:
+            all_scores = json.load(infile)
+            infile.close()
+    except Exception as e:
+        logging.error("unable to read test template " + opts.template +
+                      " - " + e.message)
+        sys.exit(-1)
+
+    # make sure we have a list of tests
+    if 'tests' not in all_scores:
+        logging.error("ERROR: " + opts.template + " contains no tests")
+        sys.exit(-1)
+
+    # generate a json for each row in the csv
     for file in files:
-        make_json(opts.template, file)
+        make_json(tests, file)
