@@ -30,19 +30,19 @@ public class Autograder {
 	@Test
 	public void testTermByReverseWeightOrder() {
 		List<Term> lst = new ArrayList<Term>();
-		lst.add(term1);
-		lst.add(term2);
-		lst.add(term3);
-		lst.add(term4);
-		lst.add(term5);
+		lst.add(term1);		// hello, 7
+		lst.add(term2);		// goodbye, 99
+		lst.add(term3);		// banana, 27
+		lst.add(term4);		// goodie, 47
+		lst.add(term5);		// goofie, 12
 
 		Collections.sort(lst, Term.byReverseWeightOrder());
 
 		List<Term> lst2 = new ArrayList<Term>();
-		lst2.add(term2);
-		lst2.add(term4);
-		lst2.add(term3);
-		lst2.add(term5);
+		lst2.add(term2);		// goodbye, 99
+		lst2.add(term4);		// goodie, 47
+		lst2.add(term3);		// banana, 27
+		lst2.add(term5);		// goofie, 12
 		lst2.add(term1);
 
 		assertEquals(lst2, lst);
@@ -51,20 +51,20 @@ public class Autograder {
 	@Test
 	public void testTermByPrefixOrder() {
 		List<Term> lst = new ArrayList<Term>();
-		lst.add(term1);
-		lst.add(term2);
-		lst.add(term3);
-		lst.add(term4);
-		lst.add(term5);
+		lst.add(term1);		// hello, 7
+		lst.add(term2);		// goodbye, 99
+		lst.add(term3);		// banana, 27
+		lst.add(term4);		// goodie, 47
+		lst.add(term5);		// goofie, 12
 
 		Collections.sort(lst, Term.byPrefixOrder(1));
 
 		List<Term> lst2 = new ArrayList<Term>();
-		lst2.add(term3);
-		lst2.add(term2);
-		lst2.add(term4);
-		lst2.add(term5);
-		lst2.add(term1);
+		lst2.add(term3);		// banana, 27
+		lst2.add(term2);		// goodbye, 99
+		lst2.add(term4);		// goodie, 47
+		lst2.add(term5);		// goofie, 12
+		lst2.add(term1);		// hello, 7
 
 		assertEquals(lst2, lst);
 	}
@@ -75,13 +75,13 @@ public class Autograder {
 	@Test
 	public void testFirstIndexOf() {
 		List<Term> lst = new ArrayList<Term>();
-		lst.add(term1);
-		lst.add(term2);
-		lst.add(term3);
-		lst.add(term4);
-		lst.add(term5);
+		lst.add(term3);		// banana, 27
+		lst.add(term2);		// goodbye, 99
+		lst.add(term4);		// goodie, 47
+		lst.add(term5);		// goofie, 12
+		lst.add(term1);		// hello, 7
 
-		int index = BinarySearchForAll.firstIndexOf(lst, term1, Term.byPrefixOrder(3));
+		int index = BinarySearchForAll.firstIndexOf(lst, term3, Term.byPrefixOrder(3));
 
 		assertEquals(0, index);
 	}
@@ -89,15 +89,15 @@ public class Autograder {
 	@Test
 	public void testLastIndexOf() {
 		List<Term> lst = new ArrayList<Term>();
-		lst.add(term1);
-		lst.add(term1);
-		lst.add(term1);
-		lst.add(term4);
-		lst.add(term5);
+		lst.add(term4);		// goodie, 47
+		lst.add(term5);		// goofie, 12
+		lst.add(term1);		// hello, 7
+		lst.add(term1);		// hello, 7
+		lst.add(term1);		// hello, 7
 
-		int index = BinarySearchForAll.firstIndexOf(lst, term1, Term.byPrefixOrder(3));
+		int index = BinarySearchForAll.lastIndexOf(lst, term1, Term.byPrefixOrder(3));
 
-		assertEquals(2, index);
+		assertEquals(4, index);
 	}
 
 
@@ -105,19 +105,18 @@ public class Autograder {
 	@Test
 	public void testAllMatches(){
 		List<Term> lst = new ArrayList<Term>();
-                lst.add(term1);
-                lst.add(term2);
-                lst.add(term3);
-                lst.add(term4);
-                lst.add(term5);
+                lst.add(term1);		// hello, 7
+                lst.add(term2);		// goodbye, 99
+                lst.add(term3);		// banana, 27
+                lst.add(term4);		// goodie, 47
+                lst.add(term5);		// goofie, 12
                 Autocomplete auto = new Autocomplete(lst);
                 String key = "good";
                 List<Term> matches = auto.allMatches(key);
 
 		List<Term> lst2 = new ArrayList<Term>();
-		lst2.add(term2);
-		lst2.add(term4);
-		lst2.add(term5);
+		lst2.add(term2);	// goodbye, 99
+		lst2.add(term4);	// goodie, 47
 
 		assertEquals(matches, lst2);
 	}

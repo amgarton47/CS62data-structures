@@ -2,7 +2,7 @@
 #
 # Build and run the junit tests for submitted solutions
 #
-# Usage: run_junit.sh [--save] [--verbose] [submission-dir ...]
+# Usage: run_junit.sh [--verbose] [--save] [submission-dir ...]
 #
 TEMPDIR="/tmp/JUNIT_$$"
 HEADDIR=`pwd`
@@ -114,18 +114,12 @@ do
 	echo "Autograding submission $1 in $TEMPDIR"
 	mkdir $TEMPDIR
 
-	# copy the needed libraries
-	for file in $HEADDIR/_autos/dependencies/*
-	do
-		if [ -f $file ]
-		then
-			if [ $verbose -gt 0 ]
-			then
-				echo "... symlinking $file"
-			fi
-			ln -s $file $TEMPDIR
-		fi
-	done
+	# link in the dependencies (jars and files)
+	if [ $verbose -gt 0 ]
+	then
+		echo "... linking to dependencies directory"
+	fi
+	ln -s $HEADDIR/_autos/dependencies $TEMPDIR
 
 	# copy our JUnit extensions
 	mkdir $TEMPDIR/junitmods
@@ -174,7 +168,7 @@ do
 		echo "... building JUNIT Test suite for package $package"
 	fi
 	cd $TEMPDIR
-	javac -cp './*' junitmods/*.java $package/*.java
+	javac -cp 'dependencies/*' junitmods/*.java $package/*.java
 
 	if [ $? -eq 0 ]
 	then
@@ -182,7 +176,7 @@ do
 		then
 			echo "... running JUNIT Test suite for package $package"
 		fi
-		java -cp '.:junitmods:./*' junitmods.PomonaRunner $name.autos
+		java -cp '.:junitmods:dependencies/*' -Dtesting=$TEMPDIR junitmods.PomonaRunner $name.autos
 		
 		# pretty-print the output
 		python3 -m json.tool $name.autos > $HEADDIR/_output/$name.autos
