@@ -9,7 +9,7 @@ Notes from my own solution of Timing-Sort
 			   return index above the (now placed) pivot value
 	MergeSort:
 		sortHelper: divide list in half, recursively sort/merge each
-	        >>> merge:  [requires an in-place merge]
+	        >>> merge:  [implementation of 2 file merge)
 
 	SortTimer:
 		ArrayList<int> fillAraray ... create and populate an array
@@ -34,6 +34,20 @@ Notes from my own solution of Timing-Sort
 	Stopwatch:	as before
 
     implementation
-    	I was nervous about whether or not my stopping subscripts
-	for the competing loops were correct, but it worked perfectly
-	first time (with the most obvious interpretations).
+	only one function to implement: merge
+
+		in-place: merge into a temp array and the copy back
+
+		    run through both lists (data[low-mid], data[mid-high] (exclusive)
+			append the smaller value to the temp list
+		    copy the temp list back on top of the original
+
+		I was nervous about whether or not my stopping subscripts
+		for the competing loops were correct, but it worked perfectly
+		first time (with the most obvious interpretations).
+
+	Analysis:
+	   1. just expect to see a comment on width of variation between runs
+	   2. QS: case O(n^2), MS: O(nLogn)
+	   3. QS: log(n) passes ???
+	      MS: log(n) passes w/n comparisons per pass
