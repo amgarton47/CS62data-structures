@@ -6,11 +6,34 @@ import logging
 verbose = False
 
 
+def read_tests(template):
+    """
+    read in assignment.json file
+    @param (str) template: name of file to read
+    @return: the read-in dict
+    """
+    try:
+        with open(template, 'r') as infile:
+            all_scores = json.load(infile)
+            infile.close()
+    except Exception as e:
+        logging.error("unable to read test template " + template +
+                      " - " + e.message)
+        sys.exit(-1)
+
+    # make sure we have a list of tests
+    if 'tests' not in all_scores:
+        logging.error("ERROR: " + template + " contains no tests")
+        sys.exit(-1)
+
+    return all_scores
+
+
 def make_json(tests, scores):
     """
     create json score descriptions from a csv list
 
-    @param [tests]: list of tests from this assgt
+    @param [descr]: dict from the assignment template
     @param scores: name of the csv file with scores
 
         row 1:  headings
@@ -35,7 +58,7 @@ def make_json(tests, scores):
                 column = 1
 
                 # accumulate the tests and scores
-                for test in tests:
+                for test in tests['tests']:
                     if column >= len(row) or row[column].strip() == "":
                         this_tests.append(test)
                     else:
@@ -54,8 +77,8 @@ def make_json(tests, scores):
                 # write them out in a per-student file
                 outfile = row[0] + ".json"
                 with open(outfile, 'w') as output:
-                    json.dump({'title': master['title'],
-                               'assignment': master['assignment'],
+                    json.dump({'title': tests['title'],
+                               'assignment': tests['assignment'],
                                'tests': this_tests,
                                'earned_score': round(this_score, 2),
                                'flags': []},
@@ -84,21 +107,9 @@ if __name__ == "__main__":
     (opts, files) = parser.parse_args()
     verbose = opts.verbose
 
-    # read in the base lab description
-    try:
-        with open(opts.template, 'r') as infile:
-            all_scores = json.load(infile)
-            infile.close()
-    except Exception as e:
-        logging.error("unable to read test template " + opts.template +
-                      " - " + e.message)
-        sys.exit(-1)
+    # read in the template
+    description = read_tests(opts.template)
 
-    # make sure we have a list of tests
-    if 'tests' not in all_scores:
-        logging.error("ERROR: " + opts.template + " contains no tests")
-        sys.exit(-1)
-
-    # generate a json for each row in the csv
+    # generate a json for each row in each csv
     for file in files:
-        make_json(tests, file)
+        make_json(description, file)
