@@ -6,81 +6,40 @@ import logging
 verbose = False
 
 
-def make_csv(template, classfile=None):
+def read_tests(template):
     """
-    output an empty csv file from a specified template (and class list)
-
-    @param template: name of the json assignment defintion
-    @param classfile: list of students (to pre-populate rows)
+    read in assignment.json file
+    @param (str) template: name of file to read
+    @return: the read-in dict
     """
-
-    # read in the base lab description
     try:
         with open(template, 'r') as infile:
             all_scores = json.load(infile)
             infile.close()
     except Exception as e:
-        logging.error("unable to read test template " + template
-              + " - " + e.message)
-        return
+        logging.error("unable to read test template " + template +
+                      " - " + e.message)
+        sys.exit(-1)
 
     # make sure we have a list of tests
     if 'tests' not in all_scores:
         logging.error("ERROR: " + template + " contains no tests")
-        return
+        sys.exit(-1)
 
-    # generate a list of column headings
-    header='"student ID"'
-    column = 1
-    for test in all_scores['tests']:
-        header += ',#' + str(column)
-        column += 1
-    print(header)
-
-    if classfile is not None:
-        try:
-            with open(classfile, 'r') as infile:
-                all_students = json.load(infile)
-                infile.close()
-        except Exception as e:
-            msg = e.message if hasattr(e, 'message') else str(e)
-            logging.error("unable to read roster" + classfile
-                  + " - " + msg)
-
-    # generate a row for each student in the roster
-    for student in all_students:
-        print(student)
-
-    return
+    return all_scores
 
 
-def make_json(template, scores):
+def make_json(tests, scores):
     """
     create json score descriptions from a csv list
 
-    @param template: name of the json assignment definition
+    @param [descr]: dict from the assignment template
     @param scores: name of the csv file with scores
 
         row 1:  headings
         col 1:  student ID (to use for filenames)
         col 2-n: scores (corresponding to "tests" in template
     """
-
-    # read in the base lab description
-    try:
-        with open(template, 'r') as infile:
-            master = json.load(infile)
-            infile.close()
-    except Exception as e:
-        msg = e.message if hasattr(e, 'message') else str(e)
-        logging.error("unable to read test template " + template
-              + " - " + msg)
-        return
-
-    # make sure we have a list of tests
-    if 'tests' not in master:
-        logging.error("ERROR: " + template + " contains no tests")
-        return
 
     # read the CSV score file
     try:
@@ -99,25 +58,27 @@ def make_json(template, scores):
                 column = 1
 
                 # accumulate the tests and scores
-                for test in master['tests']:
+                for test in tests['tests']:
                     if column >= len(row) or row[column].strip() == "":
                         this_tests.append(test)
                     else:
                         # create a new entry describing this score
                         temp = {}
-                        temp['comment'] = "FROM CSV"
                         temp['name'] = test['name']
                         temp['score'] = test['score']
-                        temp['earned'] = float(row[column])
+                        earned = float(row[column])
+                        temp['earned'] = earned
+                        if earned != temp['score']:
+                            temp['comment'] = "EXPLAIN DEDUCTION"
                         this_tests.append(temp)
-                        this_score += float(row[column])
+                        this_score += earned
                     column += 1
 
                 # write them out in a per-student file
                 outfile = row[0] + ".json"
                 with open(outfile, 'w') as output:
-                    json.dump({'title': master['title'],
-                               'assignment': master['assignment'],
+                    json.dump({'title': tests['title'],
+                               'assignment': tests['assignment'],
                                'tests': this_tests,
                                'earned_score': round(this_score, 2),
                                'flags': []},
@@ -127,8 +88,8 @@ def make_json(template, scores):
             input.close()
     except Exception as e:
         msg = e.message if hasattr(e, 'message') else str(e)
-        logging.error("unable to read CSV score file " + scores
-              + " - " + msg)
+        logging.error("unable to read CSV score file " + scores +
+                      " - " + msg)
 
 
 if __name__ == "__main__":
@@ -146,8 +107,9 @@ if __name__ == "__main__":
     (opts, files) = parser.parse_args()
     verbose = opts.verbose
 
-    if len(files) == 0:
-        make_csv(opts.template, opts.roster)
-    else:
-        for file in files:
-            make_json(opts.template, file)
+    # read in the template
+    description = read_tests(opts.template)
+
+    # generate a json for each row in each csv
+    for file in files:
+        make_json(description, file)
