@@ -60,8 +60,10 @@ public class BSTExercise<Item extends Comparable<Item>> {
 	 * @return number of nodes in the sub-tree
 	 */
 	private int size(Node x) {
-		// TODO: fix me (what are the two cases)?
-		return 0;
+		if (x == null)
+			return 0;
+		else
+			return 1 + size(x.left)+ size(x.right); 
 	}
 
 	/**
@@ -83,9 +85,13 @@ public class BSTExercise<Item extends Comparable<Item>> {
 	 * @return  existing tree node with desired item (or null)
 	 */
 	private Node locate(Node x, Item item) {
-		// TODO: recursively call locate on left or right child
-		// based on the comparison between x.item and item
-		return null;
+		int result = item.compareTo(x.item);
+		if (result == 0)	// match
+			return x;
+		if (result < 0)		// recurse left
+			return (x.left == null) ? null : locate(x.left, item);
+		else				// recurse right
+			return (x.right == null) ? null : locate(x.right, item);
 	}
 
 	/**
@@ -103,8 +109,8 @@ public class BSTExercise<Item extends Comparable<Item>> {
 	 * insert an item into its proper place in a sub-tree
 	 * 
 	 * @param x  node below which item should be inserted
-	 *			 (for first insert (x==null) return new node
-	 *			  which will become the root of the tree)
+	 * 			 (for first insert (x==null) return new node
+	 * 			 which will become the root of the tree)
 	 * @param item to be inserted insert
 	 * @return node for the new (or preexisting) item
 	 *
@@ -112,8 +118,27 @@ public class BSTExercise<Item extends Comparable<Item>> {
 	 *       will simply return the already-existing node
 	 */
 	private Node insert(Node x, Item item) {
-		// TODO: recursively call insert on left or right child
-		return null;
+		// insert into an empty tree
+        if (x == null)		// insert into an empty tree
+            return new Node(item);
+
+        int comparison = item.compareTo(x.item);
+        if (comparison == 0)    // already in tree
+            return x;
+        if (comparison < 0)
+            if (x.left != null)
+                return insert(x.left, item);
+            else {
+                x.left = new Node(item);
+                return x.left;
+            }
+        else
+            if (x.right != null)
+                return insert(x.right, item);
+            else {
+                x.right = new Node(item);
+                return x.right;
+            }
 	}
 
 	/**
@@ -126,14 +151,21 @@ public class BSTExercise<Item extends Comparable<Item>> {
 	}
 
 	/**
-	 * return (deepest) height of a specified sub-tree
+	 * return the height of a specified sub-tree
 	 * 
 	 * @param x root of sub-tree to be measured
 	 * @return height (a 1-node tree has a height of 0)
 	 */
 	private int height(Node x) {
-		//TODO: What are the two cases? Use recursion
-			return -1;
+		if (x == null)
+			return 0;	// called on empty sub-tree
+		if (x.left == null && x.right == null)
+			return 0;	// height of a single node is defined to be zero
+		
+		// figure out my tallest sub-tree
+		int l_height = height(x.left);
+		int r_height = height(x.right);
+		return 1 + ((l_height >= r_height) ? l_height : r_height);
 	}
 
 	/**
@@ -163,8 +195,11 @@ public class BSTExercise<Item extends Comparable<Item>> {
 	 * @return root node of the constructed tree
 	 */
 	public static BSTExercise<Integer> constructIntTree(int nodes) {
-		// TODO: Construct tree with nodes random ints and return it.
-		return null;
+		// Construct tree with #nodes random ints
+		BSTExercise<Integer> bt = new BSTExercise<Integer>();
+		for(int i = 0; i < nodes; i++)
+			bt.insert(rand.nextInt(RAND_INT_BOUND));
+		return bt;
 	}
 
 	/**
@@ -174,17 +209,56 @@ public class BSTExercise<Item extends Comparable<Item>> {
 	 * @param number of nodes in each tree
 	 */
 	public static void randomTreeHeights(int nodes, int trees) {
-		//TODO: create & measure heights of specified #trees w/#nodes each
-		//TODO:		measure the height of each
-		//TODO: report on their minimum, maximum, and mean height
+		int min_height = RAND_INT_BOUND + 1;
+		int max_height = 0;
+		int sum_of_heights = 0;
 		
+		// create & measure heights of specified #trees w/#nodes each
+		for(int i = 0; i < trees; i++) {
+			int height = constructIntTree(nodes).height();
+			if (height < min_height)
+				min_height = height;
+			if (height > max_height)
+				max_height = height;
+			sum_of_heights += height;
+		}
 		
-		//TODO: caclulate and report theoretical maximum and minimum heights
+		// report on max, min and mean heights
+		int mean_height = sum_of_heights/trees;
+		System.out.println(trees + " " + nodes + "-node trees: " +
+						   "min_height=" + min_height +
+						   ", max_height=" + max_height +
+						   ", avg_height=" + mean_height);
 		
+		// report the theoretical best- and worst-case heights
+		int worst_case = nodes - 1;		// if they are inserted in order
+		int best_case = -1;				// Log2(1) == 0
+		for(int n = nodes; n > 1; n /= 2)
+			best_case++;
+		System.out.println("Theoretical: best_case=" + best_case +
+						   ", worst_case=" + worst_case);
 		
-		//TODO: do your findings support that the average height is O(logn)?	
+		// construct and measure a worst case tree
+		BSTExercise<Integer> bt = new BSTExercise<Integer>();
+		for(int i = 0; i < nodes; i++)
+			bt.insert(i);
+		System.out.println("measured height of worst-case " + nodes + "-node tree: " + bt.height());
 
-		//TODO: what would it take to generate a best-case (shallowest) tree
+		// construct and measure a best-case tree
+		bt = new BSTExercise<Integer>();
+		for(int divisor = nodes/2; divisor >= 1; divisor /= 2) {
+			// add numbers in declining powers of 2
+			for(int value = divisor; value < nodes; value += divisor)
+				bt.insert(value);
+		}
+		int best = bt.height();
+		System.out.println("measured height of best-case " + nodes + "-node tree: " + best);
+		
+		System.out.println("CONCLUSION:");
+		if (best == best_case)
+			System.out.println("    Measured best-case == theoretical best-case: height=Log2(N) - 1");
+		else
+			System.out.println("    Measured best-case != theoretical best-case");
 	}
 
 	/**
