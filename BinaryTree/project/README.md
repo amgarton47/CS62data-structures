@@ -1,66 +1,119 @@
-# Lab 08: Binary Trees
+# Lab: Binary Trees
 
-## Introduction
+## Learning Goals
+
+* Gain experience with the maintainance and traversal of Binary Trees,
+  and their performance under different patterns of data insertion.
+
+## Key Terms and Concepts
+
+* `Binary Tree` - a data structure, descending from a single node, where each node has
+   (possibly null) left and right children.  When used as for sorting and searching:
+   * each node has a value
+   * the sub-tree to the left has lower values
+   * the sub-tree to the right has higher values
+
+## Description
 
 In this lab, we will experiment with creating a basic implementation of a Binary Search Tree in the provided `BSTExercise` class. Review the code we have given you carefully and pay special attention to the constructors and these fields and methods:
 
-* `item`
-* `left`
-* `right`
-* `size()`
-* `toString()`
-* `height()`
+* `item` ... the item represented by this node (in this lab, integers)
+* `left` ... reference to the left sub-tree (containing lower values)
+* `right` ... reference to the right sub-tree (containing higher values)
+* `size()` ... the total number of nodes in a tree (or sub-tree)
+* `height()` ... the maximum depth of a tree (below its root node)
+* `toString()` ... (in this lab) the sorted contents of the tree (or a sub-tree)
 
 We will use this class to construct some examples of binary *search* trees whose values are integers. For a binary search tree the value contained in a node *n* is
 
 * greater than all the values contained in nodes of the left subtree rooted at *n*, and
 * less than all the values contained in nodes of the right subtree rooted at *n*.
 
-We will not be allowing duplicate values.
+We will not store duplicate values.  If a value is already in the tree, it will not be added again.
 
 Notice that the textbook has a class called `BST` which automates most of the operations on binary search trees. We will not use it today because we want you to experience the joy of manipulating trees directly. We will also assume that BSTs hold only a key and not a key-value pair.
 
-## Getting started
+We have left TODO comments with things you need to fix or add.
 
-We have left TODO comments with things you need to fix. Start by filling in:
-* `size(Node x)`
-* `locate(Node x, Item item)`
-* `insert(Node x, Item item)`
+Finish the implementation of the `BSTExercise` class:
 
-The provided `main` method does some minimal testing.  Add more to convince
-yourself of the correctness of your implementations. 
+   1. Implement the (very simple) `size` method by recursively enumerating all of the
+      nodes in the tree, and returning a count of the total number of nodes
+      found.
 
-## Bigger trees
+   2. Implement the (almost as simple) `height` method, by a similar recursive
+      descent.  But keep in mind:
+      * we have defined height to be the depth of the tree, below its root.
+        The height of a single node is 0.
+      * the left and right sub-trees of a node may be of different heights.
+        The `height` method should return the maximum depth.
+   
+   3. Implement the `locate` method, which searches the tree for a specified
+      *item*.  This recursive descent will compare the item (which is 
+      `Comparable`) with the value of each node in the tree, descending
+      left or right depending on whether the item is less than or greater
+      than the current node.
 
-Now that everything is working write a method `construct128intTree` that creates a `BSTExercise` with 128 random integers.  We have already created an object of the `java.util.Random` class for you and an upper bound for the random number generator for you to use.
+   4. Implement the `insert` method, which does a (similar to `locate`) search
+      for the correct insertion point, and (assuming it is a new value) adds
+      a new node for that item at the appropriate point in the tree.
 
-## Tree heights
+   5. At this point you should be able to run the basic set of tests provided
+      in the starter's `main` method.  You may want to add additional test cases
+      to more thoroughly exercise your implementation.
 
-Finally, conduct some experiments on heights of trees. Fill the method called `randomTreeHeights`. Inside this method, you should determine the heights of several randomly-constructed 128-node trees and see how they compare. What is the theoretical minimum height? What is the theoretical maximum height? How do your trees relate? Can you create a tree with the exact minimum or maximum height?
+Exercise your implementation by creating and measuring the heights of larger
+trees:
 
-Calculate the average height of 100 random trees. Is the average height closer to the minimum or the maximum? We stated in class that a binary search tree with randomly added data maintains a height that is `O(log n)`. Does your data support this?
+   6. Complete the implementation of the `ConstructIntTree` method.
+      We have already created an object of the `java.util.Random` class for you and an upper bound for the 
+      random number generator for you to use.
+      Re-run the `main` exerciser to create a tree to sort 128 random integers.  
+      After you are done, Look at the output, and confirm that all 128 values 
+      have been correctly sorted.
 
-Write the answer to these questions in the  comments for the `randomTreeHeights` method.
+   7. Complete the implementation of the `randomTreeHeights` method, by creating
+      numerous trees (with calls to `ConstructIntTree`). 
+      Measure the minimum, maximum, and mean heights of the resulting trees,
+      and report those results.
 
+Analysis of Binary Search Tree performance:
 
-## What to hand in
+   8. Given your now (considerable) understanding of Binary Search Tree insertion
+      works, what are the theoretical best-case and worst-case heights for a tree 
+      of 128 numbers?  Extend your implementation of `randomTreeHeights` to print
+      out these numbers (e.g. "Theoretical heights for 128 nodes: best-case=#, worst-case=#")
 
-Commit and push the class `BSTExercise` created containing the above methods.
+## Extra credit:
+
+   9. Further extend your `randomTreeHeights` implementation to actually 
+      construct and measure the heights of best-case and worst-case trees,
+      and report on the actual measured heights.
 
 ## Grading
 
 Your submission will be graded based on the following criteria:
 
-
 | Criterion                                   | Points |
 | :------------------------------------------ | :----- |
 | clean compilation w/no warnings             | 1      |
-| correctly implements DLL_Node methods       | 4      |
-| comprehensivness of DLL_Node test cases     | 3      |
+| correctly implements size and height        | 1      |
+| correctly implements lookup		      | 1      |
+| correctly implements insert                 | 2      |
+| constructIntTree results                    | 1      |
+| randomTreeHeights min/max/mean results      | 1      |
+| randomTreeHeights best-case/worst-case      | 1      |
 | format, names, clarity, code quality        | 2      |
 |                                             |        |
 | **Extra Credit**                            |        |
-| correctly implements Ordered_DLL methods    | 2      |
-| comprehensiveness of Ordered_DLL test cases | 3      |
+| worst-case creation and results             | 2      |
+| best-case creation and results              | 2      |
 
 NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
+
+## Submitting your work
+
+Double-check that your work is indeed pushed to Github! 
+It is your responsibility to ensure that you do so before the deadline.
+Don't forget to commit and push your chages as you go,
+and to edit the provided `.json`.
