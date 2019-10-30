@@ -43,8 +43,8 @@ Finish the implementation of the `BSTExercise` class:
 
    2. Implement the (almost as simple) `height` method, by a similar recursive
       descent.  But keep in mind:
-      * we have defined height to be the depth of the tree, below its root.
-        The height of a single node is 0.
+      * we have defined height to be the number of edges between the root 
+        and the bottom-most node.  Thus height of a single node is 0.
       * the left and right sub-trees of a node may be of different heights.
         The `height` method should return the maximum depth.
    
