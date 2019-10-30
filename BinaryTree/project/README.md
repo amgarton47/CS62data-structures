@@ -75,8 +75,14 @@ trees:
       We have already created an object of the `java.util.Random` class for you and an upper bound for the 
       random number generator for you to use.
       Re-run the `main` exerciser to create a tree to sort 128 random integers.  
-      After you are done, Look at the output, and confirm that all 128 values 
+      After you are done, Look at the output, and confirm that all the values 
       have been correctly sorted.
+
+      Note that doing 128 inserts may not necessarily put 128 nodes in the tree.
+      These are randomly generated integers, and if one happens to be equal to
+      a value already inserted, it will not be inserted again.  Do not consider
+      it a bug if, after building the tree, it contains fewer nodes than you 
+      would have expected.
 
    7. Complete the implementation of the `randomTreeHeights` method, by creating
       numerous trees (with calls to `ConstructIntTree`). 
