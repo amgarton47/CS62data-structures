@@ -163,7 +163,7 @@ public class BSTExercise<Item extends Comparable<Item>> {
 	 * test method ... construct a tree with specified number of nodes
 	 *
 	 * @param nodes desired number of (random value) nodes
-	 * @return root node of the constructed tree
+	 * @return the constructed tree
 	 */
 	public static BSTExercise<Integer> constructIntTree(int nodes) {
 		// TODO: Construct tree with nodes random ints and return it.
