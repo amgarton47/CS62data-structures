@@ -24,6 +24,12 @@ In this lab, we will experiment with creating a basic implementation of a Binary
 * `height()` ... the maximum depth of a tree (below its root node)
 * `toString()` ... (in this lab) the sorted contents of the tree (or a sub-tree)
 
+You will notice that there are both public and private versions of most of these functions.
+The most natural methods operate reccursively from a specified node.  But the insert/locate/size/height
+operations on a binary tree almost always want to operate on the entire tree.  For this
+reason we define (and give you code for) public methods that operate on the entire
+tree.  The real underlying implementations go into the private, per-node, recursive methods.
+
 We will use this class to construct some examples of binary *search* trees whose values are integers. For a binary search tree the value contained in a node *n* is
 
 * greater than all the values contained in nodes of the left subtree rooted at *n*, and
