@@ -119,7 +119,10 @@ public class BSTExercise<Item extends Comparable<Item>> {
 	/**
 	 * Returns the height of the BT.
 	 *
-	 * @return the height of the BT (a 1-node tree has height 0)
+	 * @return the height of the BT
+	 *			the height of the tree is a count of the
+	 *			longest path edges (rather than nodes).
+	 *			Thus the height of a one-node tree is 0.
 	 */
 	public int height() {
 		return height(root);
