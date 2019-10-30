@@ -22,8 +22,13 @@ Notice that the textbook has a class called `BST` which automates most of the op
 
 ## Getting started
 
-We have left todo comments with things you need to fix. Start by filling the `size(Node x)`, `locate(Node x, Item item)`, and `insert(Node x, Item item)` methods.
-Look into the `main` method for some minimal testing but feel free to add your own tests.
+We have left TODO comments with things you need to fix. Start by filling in:
+* `size(Node x)`
+* `locate(Node x, Item item)`
+* `insert(Node x, Item item)`
+
+The provided `main` method does some minimal testing.  Add more to convince
+yourself of the correctness of your implementations. 
 
 ## Bigger trees
 
@@ -41,3 +46,21 @@ Write the answer to these questions in the  comments for the `randomTreeHeights`
 ## What to hand in
 
 Commit and push the class `BSTExercise` created containing the above methods.
+
+## Grading
+
+Your submission will be graded based on the following criteria:
+
+
+| Criterion                                   | Points |
+| :------------------------------------------ | :----- |
+| clean compilation w/no warnings             | 1      |
+| correctly implements DLL_Node methods       | 4      |
+| comprehensivness of DLL_Node test cases     | 3      |
+| format, names, clarity, code quality        | 2      |
+|                                             |        |
+| **Extra Credit**                            |        |
+| correctly implements Ordered_DLL methods    | 2      |
+| comprehensiveness of Ordered_DLL test cases | 3      |
+
+NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
