@@ -6,7 +6,7 @@
 #
 TEMPDIR="/tmp/JUNIT_$$"
 HEADDIR=`pwd`
-
+JAVA_OPTS="-Xlint:unchecked"
 	
 verbose=0
 if [ "$1" == "--verbose" ]
@@ -168,7 +168,7 @@ do
 		echo "... building JUNIT Test suite for package $package"
 	fi
 	cd $TEMPDIR
-	javac -cp 'dependencies/*' junitmods/*.java $package/*.java
+	javac $JAVA_OPTS -cp 'dependencies/*' junitmods/*.java $package/*.java
 
 	if [ $? -eq 0 ]
 	then
@@ -187,17 +187,19 @@ do
 		total=`grep total_count $HEADDIR/_output/$name.autos | cut -d: -f2 | cut -d, -f1 | tr -d ' '`
 		echo "... passed: $passed/$total, failed: $failed/$total"
 
-		if [ $save -eq 0 ]
-		then
-			if [ $verbose -gt 0 ]
-			then
-				echo "... deleting temporary directory $TEMPDIR"
-			fi
-			rm -rf $TEMPDIR
-		fi
 	else
 		echo
-		>&2 echo "ERROR: build failed, results in $TEMPDIR"
+		>&2 echo "ERROR: build failed"
+	fi
+
+	# see if we are supposed to keep the directory around
+	if [ $save -eq 0 ]
+	then
+		if [ $verbose -gt 0 ]
+		then
+			echo "... deleting temporary directory $TEMPDIR"
+		fi
+		rm -rf $TEMPDIR
 	fi
 
 	# and move on to the next project
