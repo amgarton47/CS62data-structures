@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.NoSuchElementException;
 import java.io.File;
-import java.io.InputStream;q
+import java.io.InputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
