@@ -1,0 +1,122 @@
+{
+    "title": "Binary Search Trees",
+    "assignment": "lab08",
+    "info": "new test suite, only used once by MK",
+    "runner": {
+        "mainclass": "BSTExercise",
+        "package": "BSTree",
+        "type": "java_single_package_runner"
+    },
+    "max_score": 14,
+    "tests": [
+        {
+            "name": "buildsAndRuns(BSTree.Autograder)",
+            "score": 1.0
+        },
+
+        {
+            "name": "size_small(BSTree.Autograder)",
+            "score": 0.25
+        },
+        {
+            "name": "size_large(BSTree.Autograder)",
+            "score": 0.25
+        },
+        {
+            "name": "height_small(BSTree.Autograder)",
+            "score": 0.25
+        },
+        {
+            "name": "height_large(BSTree.Autograder)",
+            "score": 0.25
+        },
+	
+        {
+            "name": "locate_top(BSTree.Autograder)",
+            "score": 0.25
+        },
+        {
+            "name": "locate_shallow(BSTree.Autograder)",
+            "score": 0.25
+        },
+        {
+            "name": "locate_leaf(BSTree.Autograder)",
+            "score": 0.25
+        },
+        {
+            "name": "locate_none(BSTree.Autograder)",
+            "score": 0.25
+        },
+
+        {
+            "name": "insert_root(BSTree.Autograder)",
+            "score": 0.3
+        },
+        {
+            "name": "insert_root_child(BSTree.Autograder)",
+            "score": 0.3
+        },
+        {
+            "name": "insert_deep_left(BSTree.Autograder)",
+            "score": 0.3
+        },
+        {
+            "name": "insert_deep_right(BSTree.Autograder)",
+            "score": 0.3
+        },
+        {
+            "name": "insert_same_root(BSTree.Autograder)",
+            "score": 0.25
+        },
+        {
+            "name": "insert_same_deep(BSTree.Autograder)",
+            "score": 0.3
+        },
+        {
+            "name": "insert_same_leaf(BSTree.Autograder)",
+            "score": 0.25
+        },
+
+        {
+            "name": "construct_height(BSTree.Autograder)",
+            "score": 0.5
+        },
+        {
+            "name": "construct_size(BSTree.Autograder)",
+            "score": 0.5
+        },
+
+        {
+            "name": "randomTreeHeights min/max/mean results",
+            "score": 1.0
+        },
+        {
+            "name": "randomTreeHeights best-case/worst-case analysis",
+            "score": 1.0
+        },
+
+        {
+            "name": "XC: worst case creation/results",
+            "score": 2.0
+        },
+        {
+            "name": "XC: best case creation/results",
+            "score": 2.0
+        },
+	
+        {
+            "name": "comments, format, names, clarity, code quality",
+            "score": 2.0
+        },
+
+        {
+            "name": "submitted correctly (negative if incorrect)",
+            "score": 0.0
+        },
+        {
+            "name": "submitted on time (negative if late)",
+            "score": 0.0
+        }
+    ],
+    "writeup": "in assignment repo"
+}
