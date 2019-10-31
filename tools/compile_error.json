@@ -1,0 +1,13 @@
+If you want to add compilation errors to the .autos file (rather than
+deal with them by hand later), you can:
+ 1. fix the testname and CLASSNAME to match the assignment
+ 2. edit the following failure case into student.autos
+ 3. increment the fail count and decrement the pass count
+
+    "failures": [
+        {
+            "testname": "buildsAndRuns(CLASSNAME.Autograder)",
+	    "message": "compilation errors"
+        }
+    ],
+

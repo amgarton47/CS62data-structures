@@ -15,6 +15,9 @@
        of these (for point deductions) but then fix them so that testing
        can continue.
 
+       If there were compliation errors, you might want to edit the
+       stuff in comple_error.json into the affected .autos files.
+
     5. use the merge(socres.py program to transfer the .autos results 
        from the autograder into more complete per-submission .json files.
 
