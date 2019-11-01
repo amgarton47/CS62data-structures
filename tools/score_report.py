@@ -90,7 +90,7 @@ def report(score_file):
                 earned_score += test['earned']
                 outfile.write("\tScore: " + str(test['earned']) + "/" +
                               str(test['score']) + "\n")
-            else:
+            elif test['score'] > 0:
                 outfile.write("\tNO POINTS RECORDED" + "\n")
             possible_score += test['score']
 
