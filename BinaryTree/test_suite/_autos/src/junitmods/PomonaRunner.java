@@ -16,7 +16,7 @@ public class PomonaRunner {
 			JUnitCore runner = new JUnitCore();
 			Writer writer = new FileWriter(args[0]);
 			runner.addListener(new JSONListener(writer, new JUnitJSONObject()));
-			runner.run(BSTtree.Autograder.class);
+			runner.run(BSTree.Autograder.class);
 			writer.close();
 			System.exit(0);
 		} catch (IOException e) {
