@@ -44,6 +44,7 @@ def report(score_file):
     username = os.path.splitext(os.path.basename(score_file))[0]
 
     # read in the base into which we are merging
+    print("Processing " + score_file + " ...")
     try:
         with open(score_file, 'r') as infile:
             all_scores = json.load(infile)
@@ -66,8 +67,8 @@ def report(score_file):
 
     # form the output file name from the user and assignment names
     output = out_directory + "/" + assgt_name + "-" + username + ".txt"
+    print(" ... Generating report " + output)
 
-    print("Generating report from " + score_file + " into " + output)
     with open(output, 'w') as outfile:
         outfile.write("Assignment: " + assgt_title + "\n")
         outfile.write("\n")
@@ -92,6 +93,7 @@ def report(score_file):
                               str(test['score']) + "\n")
             elif test['score'] > 0:
                 outfile.write("\tNO POINTS RECORDED" + "\n")
+                print("WARNING: no 'earned' for " + test_name)
             possible_score += test['score']
 
             if 'comment' in test:
