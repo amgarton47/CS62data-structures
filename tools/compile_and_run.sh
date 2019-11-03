@@ -20,12 +20,19 @@ then
 fi
 
 # get the report generator
-if [ -f report.sh ]
+path=`dirname $0`
+if [ -f $path/report.sh ]
 then
-	. report.sh
+	. $path/report.sh
 else
-	echo "This script requires a copy of the report.sh script"
-	exit 1
+	# local copy?
+	if [ -f ./report.sh ]
+	then
+		. ./report.sh
+	else
+		echo "This script requires a copy of the report.sh script"
+		exit 1
+	fi
 fi
 
 # is there any main class we should not run?
