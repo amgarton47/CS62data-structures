@@ -233,7 +233,7 @@ Each person, working on their own machine, will, _in their own branch_:
   with the changes made by the first person in step 5.
 
 * now that your branch is up-todate with *master*, merge *your changes* back into the *master* branch
-  (oote: The command `git merge branch1` when executed in *master* will update
+  (note: The command `git merge branch1` when executed in *master* will update
   *master* to include changes made to *branch1*).
 
   ```
