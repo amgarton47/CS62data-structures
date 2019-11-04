@@ -92,6 +92,7 @@ One team member should:
    * check off `public` and `with README` options
    * click the green `Create repository` button
    * copy the returned URL and send it to your team mate
+   * click `settings` and un-check the `Restrict editing to collaborators only` box.
 * create a local clone (on a personal or lab machine)
    * start a Terminal window
    * `cd` to a directory where you want to do your work (e.g. your CSCI062 workspace).
@@ -150,7 +151,7 @@ own personal branch names.
   ```
 * adds a new line to file1.txt ... with contents like
      ```
-     STEP 3:  addedd by YOUR_NAME on 11/06/19 at 14:10
+     STEP 3:  added by YOUR_NAME on 11/06/19 at 14:10
      ```
    * commit your changes
      ```
@@ -190,7 +191,8 @@ Each person, working on their own machine, _in their own branch_ will:
 ### Step 5 - Merge the (now conflicting) updates
 
 This is a two step process:
-1. update personal branch to be based on the latest updates in *master*.
+1. update personal branch to be based on the latest updates in *master* (which 
+   has been updated since your branch was created).
 2. update *master* to include the (now consistent) updates from your branch.
 
 Each person, working on their own machine, will, _in their own branch_:
@@ -199,24 +201,29 @@ Each person, working on their own machine, will, _in their own branch_:
   ```
   git pull origin master
   ```
-* try to bring *your branch* up-to-date with respect to the *master* branch
-  ```
-  git merge master
-  ```
-  Only to be told that you cannot do a fast-forward merge because *master*
-  has changed since your branch was forked from it.
+  Because your branch is based on *master*, git will automatically check
+  to see if your branch is still up-to-date with respect to master.  It
+  is not.  Moreover, *master* contains an update to a file that you have
+  also changed, so git will insist that you must fix the conficts manually.
+
 * merge your updates to file1.txt with those in the *master* branch
   * edit the conflicted file1.txt and correctly organize the multiple versions
     (and deleting the notations about which text came from which version)
-  * resolve the conflicted merge by committing these corrections
+  * resolve the conflicted merge by adding the corrected version and committing 
+    (all of) the merge.
     ```
     git add file1.txt
-    git commit file1.txt
-    git merge master
+    git commit -a
     ```
+    The `commit -a` tells git that you want to commit *all* of the changes
+    associated with this merge.
+
 * now that your branch is up-todate with *master*, merge *your changes* back into the *master* branch
   ```
   git checkout master
+  ```
+  after which git may warn you that your branch is behind, and you need to do another pull
+  ```
   git merge *person1*
   git push
   ```
