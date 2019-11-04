@@ -30,8 +30,8 @@ systems for distributed version control.
   a branch back into the main-line is called a *merge*.
 * In distributed version control (where it is assumed that numerous people
   all over the world are working on the same software at the same time), the key operations
-  are *merge* (combine my changes with those from others) and *rebase* (adjust my working
-  copy to be based on a new starting point).
+  are *rebase* (adjust my working copy to be based on a new starting point)
+  and *merge* (combine my changes with those from others).
 * As the *merge* and *rebase* operations have become more central, modern version
   control systems (like *Git*) have evolved to better guide developers through
   those processes.
@@ -64,7 +64,7 @@ In this lab:
 
 ### Github ssh keys
 
-Most of you have been using `https:` URLs to access projects on `github` and
+Most of you have been using `https:` URLs to access projects on *github* and
 typing your password (or letting Eclipse provide it) for each pull/push operation.
 There is a much simpler way to authenticate yourself to github (if you use
 *ssh keys*):
@@ -78,7 +78,7 @@ After this, you can use *ssh* URLS to clone projects, and you will never again
 have to enter a password while working on a system with access to the corresponding
 private key.
 
-If you do not yet have an *ssh* key, you probably will not have time to create one
+If you do not yet have a *ssh* keys, you probably will not have time to create one
 during this lab ... but you should investigate them for future use.
 
 ### Step 1 - Repo creation
@@ -92,8 +92,8 @@ One team member should:
    * check off `public` and `with README` options
    * click the green `Create repository` button
    * copy the returned URL and send it to your team mate
-* create a local clone
-   * on a personal or lab machine, create a Terminal window
+* create a local clone (on a personal or lab machine)
+   * start a Terminal window
    * `cd` to a directory where you want to do your work (e.g. your CSCI062 workspace).
    * make a local clone of the new repo, using the URL you copied, with a command like
      (obviously substituting in your github ID and repo name)
@@ -123,6 +123,8 @@ One team member should:
      ```
      git push
      ```
+   At this point, if you go back to *github* and look at your repo,
+   you should see these changes.
 
 ### Step 2 - Create personal branches
    
@@ -140,7 +142,7 @@ own personal branch names.
   git checkout -b person2
   ```
 	
-### Step 3 - Move *master* beyond the new branches
+### Step 3 - Create conflicts by moving *master* beyond the new branches
 
 * One team member goes back to the *master* branch
   ```
@@ -159,10 +161,10 @@ own personal branch names.
      ```
      git push
      ```
-   * return to your personal branch
-     ```
-     git checkout *person1*
-     ```
+* return to your personal branch
+  ```
+  git checkout *person1*
+  ```
 
 At this point, both of the new personal branches are behind master ... 
 giving rise to conflicts that will have to be reconciled in step 5.
@@ -197,7 +199,7 @@ Each person, working on their own machine, will, _in their own branch_:
   ```
   git pull origin master
   ```
-* try try to bring *your branch* up-to-date with respect to the *master* branch
+* try to bring *your branch* up-to-date with respect to the *master* branch
   ```
   git merge master
   ```
@@ -227,6 +229,11 @@ The first person to do this will only have to merge their changes against the li
 added to file1.txt in step 3.  The second person to do this will also have to merge
 with the changes made by the first person in step 5.
 
+At this point, you should (each) be able to see the entire history of changes:
+  ```
+  git log
+  ```
+
 ### The `git` workflow
 
 This is the usual workflow of `git`: you create a branch for working on a specific feature, commit (perhaps
@@ -238,11 +245,6 @@ As a bonus, `git` keeps track of history for you, so it is unlikely that you wil
 what you have done since the last time you ran `git` commit (for this reason, it is a good idea to commit
 often). `git` stores all of its data in a hidden `.git` directory, so unless you wipe out that directory (and any
 clones other people may have made) you will be able to recover your project.
-
-At this point, you should (each) be able to see the entire history of changes:
-  ```
-  git log
-  ```
 
 ## Grading
 
