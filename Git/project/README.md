@@ -203,9 +203,6 @@ This is a two step process:
    has been updated since this branch was created).
 2. update *master* to include the (now consistent) updates from your branch.
 
-Note: The command `git merge branch1` when executed in *branch2* will update
-*branch2* to include changes made to *branch1*.
-
 Each person, working on their own machine, will, _in their own branch_:
 
 * update their copy of the master branch (which they are not currently on)
@@ -232,12 +229,15 @@ Each person, working on their own machine, will, _in their own branch_:
     "STEP 5: update my branch for changes in master".
 
 * now that your branch is up-todate with *master*, merge *your changes* back into the *master* branch
+  (oote: The command `git merge branch1` when executed in *master* will update
+  *master* to include changes made to *branch1*).
+
   ```
   git checkout master
-  git merge *person1*
+  git merge person1
   ```
   This time, because your (*person1*) branch is now up-to-date with respect
-  to master, git should be able to automatically perform a fast-forward merge.
+  to *master*, git should be able to automatically perform a fast-forward merge.
   If so, all you have to do is a *commit* and *push*.  But if there are other
   changes to be reconciled, you may have to resolve them as you did above.
 
@@ -251,12 +251,12 @@ Each person, working on their own machine, will, _in their own branch_:
   *master*, and that you have no uncommitted changes.
 
   The *log* command should show:
-  - the original STEP 1 creation and contents additions
-  - the STEP 3 change to master
-  - the STEP 4 changes from person1
-  - the STEP 4 changes from person2
-  - the STEP 5 merge from person1
   - the STEP 5 merge from person2
+  - the STEP 5 merge from person1
+  - the STEP 4 changes from person2
+  - the STEP 4 changes from person1
+  - the STEP 3 change to master
+  - the original STEP 1 creation and contents additions
 
 The first person to do this will only have to merge their changes against the line 
 added to file1.txt in step 3.  The second person to do this will also have to merge
