@@ -228,6 +228,10 @@ Each person, working on their own machine, will, _in their own branch_:
     associated with this merge.  Include in your commit comment the notation
     "STEP 5: update my branch for changes in master".
 
+  The first person to do this will only have to merge their changes against the line 
+  added to file1.txt in step 3.  The second person to do this will also have to merge
+  with the changes made by the first person in step 5.
+
 * now that your branch is up-todate with *master*, merge *your changes* back into the *master* branch
   (oote: The command `git merge branch1` when executed in *master* will update
   *master* to include changes made to *branch1*).
@@ -240,10 +244,6 @@ Each person, working on their own machine, will, _in their own branch_:
   to *master*, git should be able to automatically perform a fast-forward merge.
   If so, all you have to do is a *commit* and *push*.  But if there are other
   changes to be reconciled, you may have to resolve them as you did above.
-
-  The first person to do this will only have to merge their changes against the line 
-  added to file1.txt in step 3.  The second person to do this will also have to merge
-  with the changes made by the first person in step 5.
 
 * confirm that all of your work has now been checked in, and that you are fully up-to-date
   ```
