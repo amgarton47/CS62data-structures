@@ -115,7 +115,7 @@ One team member should:
      git commit README.md file1.txt file2.txt
      ```
      You will be put into an editor to enter a description of what you have
-     done in this commit.
+     done in this commit.  Include "STEP 1: in your commit comments.
    * look at what you have done
      ```
      git status
@@ -157,7 +157,8 @@ own personal branch names.
      ```
      git commit file1.txt
      ```
-     And, again, enter a comment to describe the changes you have made.
+     And, again, enter a comment (including "STEP 3:") to describe 
+     the changes you have made.
    * push these changes back to github
      ```
      git push
@@ -186,8 +187,13 @@ Each person, working on their own machine, _in their own branch_ will:
   git add person1.txt
   git commit file1.txt person1.txt
   ```
-  And, again, enter a comment to describe the changes you have made.
+  And, again, enter a comment (including "STEP 4:") to describe the 
+  changes you have made.
 
+* review the git log to confirm that all the changes have infact been made
+  ```
+  git log
+  ```
 ### Step 5 - Merge the (now conflicting) updates
 
 This is a two step process:
@@ -216,7 +222,8 @@ Each person, working on their own machine, will, _in their own branch_:
     git commit -a
     ```
     The `commit -a` tells git that you want to commit *all* of the changes
-    associated with this merge.
+    associated with this merge.  Include in your commit comment the notation
+    "STEP 5: update for changes in master".
 
 * now that your branch is up-todate with *master*, merge *your changes* back into the *master* branch
   ```
@@ -230,6 +237,7 @@ Each person, working on their own machine, will, _in their own branch_:
 * confirm that all of your work has now been checked in, and that you are fully up-to-date
   ```
   git status
+  git log
   ```
 
 The first person to do this will only have to merge their changes against the line 
