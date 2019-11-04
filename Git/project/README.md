@@ -241,6 +241,10 @@ Each person, working on their own machine, will, _in their own branch_:
   If so, all you have to do is a *commit* and *push*.  But if there are other
   changes to be reconciled, you may have to resolve them as you did above.
 
+  The first person to do this will only have to merge their changes against the line 
+  added to file1.txt in step 3.  The second person to do this will also have to merge
+  with the changes made by the first person in step 5.
+
 * confirm that all of your work has now been checked in, and that you are fully up-to-date
   ```
   git status
@@ -250,17 +254,13 @@ Each person, working on their own machine, will, _in their own branch_:
   The *status* command should show that you are up-to-date with respect to
   *master*, and that you have no uncommitted changes.
 
-  The *log* command should show:
+  The *log* command should show (in reverse chronological order):
   - the STEP 5 merge from person2
   - the STEP 5 merge from person1
   - the STEP 4 changes from person2
   - the STEP 4 changes from person1
   - the STEP 3 change to master
   - the original STEP 1 creation and contents additions
-
-The first person to do this will only have to merge their changes against the line 
-added to file1.txt in step 3.  The second person to do this will also have to merge
-with the changes made by the first person in step 5.
 
 ### The `git` workflow
 
