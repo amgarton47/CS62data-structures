@@ -18,13 +18,13 @@ First and second generation (centralized) version control systems (e.g. the orig
 the more recent *Subversion*) tried to prevent multiple people from working on the same software at
 the same time.  This is far too restrictive for large software projects, and the rise of world-wide
 collaboration (e.g. Linux and Open Source software) gave birth to a new generation of (distributed)
-version control software.  `Git` is one of the best known and (through *github*) most widely used 
+version control software.  *Git* is one of the best known and (through *github*) most widely used 
 systems for distributed version control.
 
 * In centralized version control, the key operations are *check-out* (lock the
   source code so that nobody else can change it) and *commit* (finalize my changes and un-lock
   the source code).  
-* Version control systems have long supported the notion of *branches*,
+* Version control systems have long supported the notion of *branches*:
   parallel threads of independent development, starting from a common source).
   The creation of a new branch is called a *fork*, and bringing changes from
   a branch back into the main-line is called a *merge*.
@@ -33,17 +33,17 @@ systems for distributed version control.
   are *merge* (combine my changes with those from others) and *rebase* (adjust my working
   copy to be based on a new starting point).
 * As the *merge* and *rebase* operations have become more central, modern version
-  control systems (like `Git`) have evolved to better guide developers through
+  control systems (like *Git*) have evolved to better guide developers through
   those processes.
 
-##  Using the `Git` command line
+##  Using the Git command line
 
-Thus far, most of our `Git` use has been performed through `Eclipse`, which has given
+Thus far, most of our *Git* use has been performed through *Eclipse*, which has given
 us a GUI wrapper for importing new projects, committing our changes, and pushing those
 changes back to a central repository.  This has mostly been very convenient ... except
-for when we needed to make changes to files that were outside of the `Eclipse` projects.
+for when we needed to make changes to files that were outside of the *Eclipse* projects.
 
-In this lab we will work directly with the underlying `git` commands (using the 
+In this lab we will work directly with the underlying *git* commands (using the 
 Command Line Interfaces in terminal windows).  These commands should be usable on
 most MacOS and Linux machines.  Students with Windows notebooks should use one of
 the lab machines for these exercises.
@@ -57,7 +57,7 @@ In this lab:
 2. each team member will *clone* local copies and create new personal branches.
 3. one team member will go back to the *master* branch, and make changes
    (that will not be reflected in the new branches).
-4. each team members will, in their personal branches, create some
+4. each team member will, in their personal branches, create some
    new files, and make changes to one of the original files.
 5. each team member will merge their personal branches back into 
    the master branch.
@@ -67,16 +67,19 @@ In this lab:
 Most of you have been using `https:` URLs to access projects on `github` and
 typing your password (or letting Eclipse provide it) for each pull/push operation.
 There is a much simpler way to authenticate yourself to github (if you use
-`ssh keys`):
+*ssh keys*):
 1. log into github
 2. from the upper right pull-down, select your personal `settings`
 3. from the menu on the left, select `SSH and GPG keys`
 4. click the `New SSH Key` button
-5. enter a name, copy your public key into the `Key` window, and click the `Add SH key` button.
+5. enter a name, copy your public key into the `Key` window, and click the `Add SSH key` button.
 
-After this, you can use `ssh` URLS to clone projects, and you will never again
+After this, you can use *ssh* URLS to clone projects, and you will never again
 have to enter a password while working on a system with access to the corresponding
 private key.
+
+If you do not yet have an *ssh* key, you probably will not have time to create one
+during this lab ... but you should investigate them for future use.
 
 ### Step 1 - Repo creation
 
@@ -86,18 +89,19 @@ One team member should:
    * click `Repositories` on the top menu bar
    * click the green `New` button
    * enter a name and description
-   * check off `public` and `with README`
+   * check off `public` and `with README` options
    * click the green `Create repository` button
-   * copy the URL
+   * copy the returned URL and send it to your team mate
 * create a local clone
    * on a personal or lab machine, create a Terminal window
    * `cd` to a directory where you want to do your work (e.g. your CSCI062 workspace).
    * make a local clone of the new repo, using the URL you copied, with a command like
+     (obviously substituting in your github ID and repo name)
      ```
-	git clone https://github.com/creators_github_id/your_new_repo.git
+     git clone https://github.com/creators_github_id/your_new_repo.git
+     cd your_new_repo
 
      ```
-   * `cd` into the newly cloned copy
 * create initial contents (in the cloned repo copy)
    * edit the `README.md` to identify the which lab this is and the names of your team members
    * create new files `file1.txt` and `file2.txt` with contents like:
@@ -127,13 +131,13 @@ own personal branch names.
 
 * For the person who already has a cloned copy of the repo:
   ```
-  git checkout -b *person1*
+  git checkout -b person1
   ```
 * For the person who has not yet cloned their own copy
   ```
   git clone https://github.com/creators_github_id/your_new_repo.git
   cd your_new_repo
-  git checkout -b *person2*
+  git checkout -b person2
   ```
 	
 ### Step 3 - Move *master* beyond the new branches
@@ -142,7 +146,7 @@ own personal branch names.
   ```
   git checkout master
   ```
-* adds a new line to file1.txt
+* adds a new line to file1.txt ... with contents like
      ```
      STEP 3:  addedd by YOUR_NAME on 11/06/19 at 14:10
      ```
@@ -160,11 +164,12 @@ own personal branch names.
      git checkout *person1*
      ```
 
-At this point, both of the new personal branches are behind master.
+At this point, both of the new personal branches are behind master ... 
+giving rise to conflicts that will have to be reconciled in step 5.
 
 ### Step 4 - People do work in their own branches
 
-Each person, working on their own machine, in their own branch will:
+Each person, working on their own machine, _in their own branch_ will:
 * create a new file (e.g. *person1.txt*) containing a line like:
   ```
   STEP 4:  new file created by YOUR_NAME on 11/06/19 at 14:15
@@ -182,28 +187,32 @@ Each person, working on their own machine, in their own branch will:
 
 ### Step 5 - Merge the (now conflicting) updates
 
-Each person, working on their own machine, will, in their own branch:
+This is a two step process:
+1. update personal branch to be based on the latest updates in *master*.
+2. update *master* to include the (now consistent) updates from your branch.
 
-* update their copy of the master branch
+Each person, working on their own machine, will, _in their own branch_:
+
+* update their copy of the master branch (which they are not currently on)
   ```
   git pull origin master
-  git commit file1.txt person1.txt
   ```
-* try try to bring your branch up-to-date with respect to the *master* branch
+* try try to bring *your branch* up-to-date with respect to the *master* branch
   ```
   git merge master
   ```
-  Only to be told that you cannot do a fast-forward merge because master
+  Only to be told that you cannot do a fast-forward merge because *master*
   has changed since your branch was forked from it.
 * merge your updates to file1.txt with those in the *master* branch
   * edit the conflicted file1.txt and correctly organize the multiple versions
     (and deleting the notations about which text came from which version)
-  ```
-  git add file1.txt
-  git commit file1.txt
-  git merge master
-  ```
-* now that your branch is up-todate with *master*, merge your changes back into the *master* branch
+  * resolve the conflicted merge by committing these corrections
+    ```
+    git add file1.txt
+    git commit file1.txt
+    git merge master
+    ```
+* now that your branch is up-todate with *master*, merge *your changes* back into the *master* branch
   ```
   git checkout master
   git merge *person1*
@@ -238,14 +247,14 @@ At this point, you should (each) be able to see the entire history of changes:
 ## Grading
 
 Your submission will be graded based on the the file contents and history 
-(including commit comments) in your *master* branch.  
-Each team should email their instructor the URL for the (public) repo in which this work was done.
+(including commit comments) in your *master* branch.  Each team should email 
+their instructor the URL for the (public) repo in which this work was done.
 
 
 | Criterion                                   | Points |
 | :------------------------------------------ | :----- |
-| | 1. repo created w/initial contents        | 1      |
-| | 2. creation of two personal branches      | 1      |
-| | 3. moving master past those branches      | 2      |
-| | 4. correct updates in personal branches   | 2      |
-| | 5. correct merging back into master       | 4      |
+| 1. repo created w/initial contents          | 1      |
+| 2. creation of two personal branches        | 1      |
+| 3. moving master past those branches        | 2      |
+| 4. correct updates in personal branches     | 2      |
+| 5. correct merging back into master         | 4      |
