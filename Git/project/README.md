@@ -115,7 +115,7 @@ One team member should:
      git commit README.md file1.txt file2.txt
      ```
      You will be put into an editor to enter a description of what you have
-     done in this commit.  Include "STEP 1: in your commit comments.
+     done in this commit.  Include "STEP 1:" in your commit comments.
    * look at what you have done
      ```
      git status
@@ -145,7 +145,8 @@ own personal branch names.
 	
 ### Step 3 - Create conflicts by moving *master* beyond the new branches
 
-* One team member goes back to the *master* branch
+After both personal branches have been created
+* one team member goes back to the *master* branch
   ```
   git checkout master
   ```
@@ -190,16 +191,20 @@ Each person, working on their own machine, _in their own branch_ will:
   And, again, enter a comment (including "STEP 4:") to describe the 
   changes you have made.
 
-* review the git log to confirm that all the changes have infact been made
+* review the git log to confirm that all of these changes have infact 
+been made
   ```
   git log
   ```
-### Step 5 - Merge the (now conflicting) updates
+### Step 5 - Merge the (now conflicted) branches back into *master*
 
 This is a two step process:
 1. update personal branch to be based on the latest updates in *master* (which 
-   has been updated since your branch was created).
+   has been updated since this branch was created).
 2. update *master* to include the (now consistent) updates from your branch.
+
+Note: The command `git merge branch1` when executed in *branch2* will update
+*branch2* to include changes made to *branch1*.
 
 Each person, working on their own machine, will, _in their own branch_:
 
@@ -208,46 +213,54 @@ Each person, working on their own machine, will, _in their own branch_:
   git pull origin master
   ```
   Because your branch is based on *master*, git will automatically check
-  to see if your branch is still up-to-date with respect to master.  It
-  is not.  Moreover, *master* contains an update to a file that you have
-  also changed, so git will insist that you must fix the conficts manually.
+  to see if *master* now contains updates that your branch does not ... which it does.
+  Worse, *master* contains an update to a file that you have
+  also changed, so git will insist that you must fix this confict manually.
 
 * merge your updates to file1.txt with those in the *master* branch
-  * edit the conflicted file1.txt and correctly organize the multiple versions
+  * edit the conflicted file1.txt and correctly organize the lines
+    (from different versions) in chronological order
     (and deleting the notations about which text came from which version)
-  * resolve the conflicted merge by adding the corrected version and committing 
-    (all of) the merge.
+  * tell git you have resolved the conflict by re-adding the corrected version 
+     and committing (all of) the merge.
     ```
     git add file1.txt
     git commit -a
     ```
     The `commit -a` tells git that you want to commit *all* of the changes
     associated with this merge.  Include in your commit comment the notation
-    "STEP 5: update for changes in master".
+    "STEP 5: update my branch for changes in master".
 
 * now that your branch is up-todate with *master*, merge *your changes* back into the *master* branch
   ```
   git checkout master
-  ```
-  after which git may warn you that your branch is behind, and you need to do another pull
-  ```
   git merge *person1*
-  git push
   ```
+  This time, because your (*person1*) branch is now up-to-date with respect
+  to master, git should be able to automatically perform a fast-forward merge.
+  If so, all you have to do is a *commit* and *push*.  But if there are other
+  changes to be reconciled, you may have to resolve them as you did above.
+
 * confirm that all of your work has now been checked in, and that you are fully up-to-date
   ```
   git status
   git log
   ```
 
+  The *status* command should show that you are up-to-date with respect to
+  *master*, and that you have no uncommitted changes.
+
+  The *log* command should show:
+  - the original STEP 1 creation and contents additions
+  - the STEP 3 change to master
+  - the STEP 4 changes from person1
+  - the STEP 4 changes from person2
+  - the STEP 5 merge from person1
+  - the STEP 5 merge from person2
+
 The first person to do this will only have to merge their changes against the line 
 added to file1.txt in step 3.  The second person to do this will also have to merge
 with the changes made by the first person in step 5.
-
-At this point, you should (each) be able to see the entire history of changes:
-  ```
-  git log
-  ```
 
 ### The `git` workflow
 
