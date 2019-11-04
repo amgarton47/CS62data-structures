@@ -1,268 +1,222 @@
-# Lab 08: Git
-
-## Important Dates
-
-* Release Date: April 2, 2019
-* Due Date: April 3, 2019
-
+# Lab: Git Branches and Merges
 
 ## Introduction
 
-`Git` is a version-control system, an essential tool in everyday software development, especially when multiple people are working on a project at once.
-Accordingly, you must work with a partner on this lab (or in a group of three if you have to), as you will be learning techniques to collaborate. Additionally, you and your partner will have to work on a lab computer for this lab in order for sharing things to work properly.
+Version control (managing and keeping track of who made what changes when) is essential
+to all software development.  The earliest version control software simply recorded
+the history and made it possible to designate check-points, and recreate the software 
+as it was at any checkpoint.  Version control tools are now much more powerful
+(and correspondingly more complex).  In this lab we will work with some of the more
+advanced features of a modern distributed version control system.
+
+Because we will be creating and reconciling diverging versions of files, this
+lab will be much easier to do in pairs.
 
 ## Background
 
-`Git` is a tool for "version control." This means that it keeps track of multiple versions of files, and allows you
-to switch between them freely. In general, we have two sources of file versions. First, over time, files change,
-so we have historical versions. Second, when multiple people work on the same file, they make different
-changes, so we have per-user versions, which may have different histories but at some point may be merged
-into one version again. git keeps track of both of these kinds of versions for us, and can even automatically
-merge changes in some cases!
-For this lab, we will work in pairs and make diverging edits to a file, but then use `git` to
-produce a combined version, all the while tracking the history of changes we have made.
+First and second generation (centralized) version control systems (e.g. the original Unix *Source Code Control System* and
+the more recent *Subversion*) tried to prevent multiple people from working on the same software at
+the same time.  This is far too restrictive for large software projects, and the rise of world-wide
+collaboration (e.g. Linux and Open Source software) gave birth to a new generation of (distributed)
+version control software.  `Git` is one of the best known and (through *github*) most widely used 
+systems for distributed version control.
 
-##  Setting up git
+* In centralized version control, the key operations are *check-out* (lock the
+  source code so that nobody else can change it) and *commit* (finalize my changes and un-lock
+  the source code).  
+* Version control systems have long supported the notion of *branches*,
+  parallel threads of independent development, starting from a common source).
+  The creation of a new branch is called a *fork*, and bringing changes from
+  a branch back into the main-line is called a *merge*.
+* In distributed version control (where it is assumed that numerous people
+  all over the world are working on the same software at the same time), the key operations
+  are *merge* (combine my changes with those from others) and *rebase* (adjust my working
+  copy to be based on a new starting point).
+* As the *merge* and *rebase* operations have become more central, modern version
+  control systems (like `Git`) have evolved to better guide developers through
+  those processes.
 
-`Git` is primarily a command-line tool, so we will start by opening up the terminal. Both partners should go ahead and use `cd` to get into your Eclipse workspace directory (possibly somewhere like `Documents/cs062/workspace`
-depending on what you did at the beginning of the semester; if you go to `Project – Properties` in Eclipse
-the `Location` item should tell you where this is). 
+##  Using the `Git` command line
 
-Now we will have one partner set up the project: leave
-the terminal there and create a new Java project in Eclipse called `Lab08`. It is important that only one
-partner does this step! (The other partner should follow along for a bit.)
-Whoever created the `Lab08` project should add a file called `Random.java` and then go back to the terminal
-and use `cd` to enter the newly created `Lab08` directory. In the terminal from within that directory, type:
+Thus far, most of our `Git` use has been performed through `Eclipse`, which has given
+us a GUI wrapper for importing new projects, committing our changes, and pushing those
+changes back to a central repository.  This has mostly been very convenient ... except
+for when we needed to make changes to files that were outside of the `Eclipse` projects.
 
-```
-git init
-```
-
-This command tells `git` that we want to start a new version-controlled repository in this folder. At this point, `git` may ask you to set up some basic information, like an author name. Follow the instructions it
-gives to do this. Once you are done with this step, it should say something about "Initialized empty git
-repository in?" Having a repository is nice, but we also need to tell `git` which files it should keep track of.
-
-To see the state of our repository we can use:
-
-```
-git status
-```
-
-This should print something like:
-
-```This should print out something like the following:
-On branch master
-
-Initial commit
-
-Untracked files:
-    (use "git add <file>..." to include in what will be committed)
-
-    .classpath
-    .project
-    bin/
-    src/
-
-    nothing added to commit but untracked files present (use "git add" to track)
-```
-This status report is telling us that a `git` repository exists here, but it has not been told to keep track
-of anything yet. To fix this, we will type:
-
-```
-git add .
-```
-
-Here the `.` means "the current directory" and by extension, "everything in the current directory." Afterwards, if we run `git status` again it should give us a big list of new file stuff. At this point, we have
-told `git` it should keep track of those files, but we have not yet told it that it should take a snapshot of
-them. We said earlier that `git` tracks versions over time, but it would not make sense for it to keep track of
-every individual letter that you type, so `git` waits for you to tell it when to capture a snapshot. We do this
-by using:
-
-```
-git commit -m "The message you want to remember this commit by"
-```
-
-At this point, we have saved a version of our project and our partner can now get a copy of it. We have one more step: we need to make our repository accessible to our partner. To do this, we
-will create a link to the repository from our home directory, and change permissions to let anyone access it.
-First, from the project directory (where you already are in the terminal), type:
-
-```
-chmod -R 775 .
-```
-
-This will set permissions on this folder and all included files to `775`, which enables anyone in the same
-group as us to have full permissions (including write permissions!) to those files. This is not normally
-something you would set up, but it is useful for this lab. Next, we need to make an accessible path from
-our home directory all the way to the project directory. To do this, use the following commands (or similar
-commands if your workspace is in a different place):
-
-```
-chmod 750 ~
-chmod 750 ~/Documents
-chmod 750 ~/Documents/cs062
-chmod 750 ~/Documents/cs062/workspace
-```
-If your workspace is somewhere else, use the correct path to the `Lab08` project directory, which you can
-find by typing `pwd` into the other terminal (keep that one around as we will be using it again).
-At this point, your partner, on their own computer, should be able to do the following (from their Eclipse
-workspace directory; `cd`  there if necessary):
-
-```
-git clone /home/partner/Documents/cs062/workspace/Lab08
-```
-
-Here, replace `partner` with your partner’s username. The `git clone` operation creates a copy of a repository, but it remembers the original source, so that you can send back updates later. At this point, both you and your partner have a copy of the same (empty) `Random.java` file, and in fact identical histories of that file (albeit with only a single entry each). In other words, `git clone` did not just copy the files,
-it copied their entire histories. 
-
-If you are curious about efficiency, rest assured that git is pretty smart: instead of storing actual copies of different versions of files, it only stores the differences between versions, which allows it to reconstruct different versions when it wants to without storing too much data.
-
-For the remaining sections of the lab, go ahead and work separately from your partner, each person
-picking one of the two tasks below and working on their own copy of the `Lab08` project in Eclipse.
-
-Do not forget that you may have to tell Eclipse to "refresh" on occasion in order to see the changes that
-`git` makes. Right after cloning the repository, you may also have to tell Eclipse that you want to open the
-project. Use `Import > Existing Projects` and select `Lab08`.
+In this lab we will work directly with the underlying `git` commands (using the 
+Command Line Interfaces in terminal windows).  These commands should be usable on
+most MacOS and Linux machines.  Students with Windows notebooks should use one of
+the lab machines for these exercises.
 
 
-## Task 1: Pseudo-random numbers
+## Lab Exercises
 
-Before starting this task, use `cd` to get into the project directory, and then execute the following commands:
+In this lab:
+1. one team member will log into *github* and create a new public repo,
+   clone that repo on their local machine, and create some initial content.
+2. each team member will *clone* local copies and create new personal branches.
+3. one team member will go back to the *master* branch, and make changes
+   (that will not be reflected in the new branches).
+4. each team members will, in their personal branches, create some
+   new files, and make changes to one of the original files.
+5. each team member will merge their personal branches back into 
+   the master branch.
 
-```
-git branch nextint
-git checkout nextint
-```
+### Github ssh keys
 
-This will create a new "branch" for working on this feature, so that our changes won't interfere with our
-partner. The second command switches over to the new branch.
+Most of you have been using `https:` URLs to access projects on `github` and
+typing your password (or letting Eclipse provide it) for each pull/push operation.
+There is a much simpler way to authenticate yourself to github (if you use
+`ssh keys`):
+1. log into github
+2. from the upper right pull-down, select your personal `settings`
+3. from the menu on the left, select `SSH and GPG keys`
+4. click the `New SSH Key` button
+5. enter a name, copy your public key into the `Key` window, and click the `Add SH key` button.
 
-For our `Random.java` file, we would like to implement a dead-simple pseudo-random number generator.
-We will need a constructor, which will store an integer instance variable that is passed in as a parameter,
-and a `nextInt` method:
+After this, you can use `ssh` URLS to clone projects, and you will never again
+have to enter a password while working on a system with access to the corresponding
+private key.
 
-```
-private int state;
+### Step 1 - Repo creation
 
-public Random(int seed) {
-    this.state = seed;
-}
+One team member should:
+* log into *github.com*
+* create a new repo:
+   * click `Repositories` on the top menu bar
+   * click the green `New` button
+   * enter a name and description
+   * check off `public` and `with README`
+   * click the green `Create repository` button
+   * copy the URL
+* create a local clone
+   * on a personal or lab machine, create a Terminal window
+   * `cd` to a directory where you want to do your work (e.g. your CSCI062 workspace).
+   * make a local clone of the new repo, using the URL you copied, with a command like
+     ```
+	git clone https://github.com/creators_github_id/your_new_repo.git
 
-public int nextInt() {
-    // code here
-}
-```
+     ```
+   * `cd` into the newly cloned copy
+* create initial contents (in the cloned repo copy)
+   * edit the `README.md` to identify the which lab this is and the names of your team members
+   * create new files `file1.txt` and `file2.txt` with contents like:
+     ```
+     STEP 1:  created by YOUR_NAME on 11/06/19 at 14:05
+     ```
+   * commit your changes
+     ```
+     git add file1.txt file2.txt
+     git commit README.md file1.txt file2.txt
+     ```
+     You will be put into an editor to enter a description of what you have
+     done in this commit.
+   * look at what you have done
+     ```
+     git status
+     ```
+   * push these changes back to the *master* branch on *github*
+     ```
+     git push
+     ```
 
-Go ahead and add these methods, and then implement the following algorithm for the `nextInt` method:
-1. To get the next "random" integer, we will first add a reasonably large prime number to our current
-`state` value (four digits should suffice, you can use Wolfram alpha to find a large prime by giving a
-query like "prime 1000").
-2. Next, we will take our `state` value and multiply it by another largish prime (three digits should be good
-enough).
-3. That’s it, we just return the `state` value.
+### Step 2 - Create personal branches
+   
+We will call these branches *person1* and *person2*.  You should use your
+own personal branch names.
 
-This random integer algorithm is not very random, especially for the first few results when given a small
-`seed` value, but it could be used in some applications where we don't care much about quality.
-When you’ve finished the `nextInt` function go ahead and commit your changes using `git commit` with
-an appropriate message, such as "Implemented Random constructor and Random.nextInt." Remember
-you have to add your changes to be tracked first using `git add` (in this case we could just say `git add
-src/Random.java` since we have only changed a single file). If you are lazy, you can give git commit the
-`-a` switch to tell it to automatically add all already-tracked files. 
-sNow you can wait for your partner to be
-done with their changes.
+* For the person who already has a cloned copy of the repo:
+  ```
+  git checkout -b *person1*
+  ```
+* For the person who has not yet cloned their own copy
+  ```
+  git clone https://github.com/creators_github_id/your_new_repo.git
+  cd your_new_repo
+  git checkout -b *person2*
+  ```
+	
+### Step 3 - Move *master* beyond the new branches
 
-## Task 2: Choose an item
+* One team member goes back to the *master* branch
+  ```
+  git checkout master
+  ```
+* adds a new line to file1.txt
+     ```
+     STEP 3:  addedd by YOUR_NAME on 11/06/19 at 14:10
+     ```
+   * commit your changes
+     ```
+     git commit file1.txt
+     ```
+     And, again, enter a comment to describe the changes you have made.
+   * push these changes back to github
+     ```
+     git push
+     ```
+   * return to your personal branch
+     ```
+     git checkout *person1*
+     ```
 
-Before starting this task, use `cd` to get into the project directory, and then execute the following commands:
+At this point, both of the new personal branches are behind master.
 
-```
-git branch choose
-git checkout choose
-```
+### Step 4 - People do work in their own branches
 
-This will create a new "branch" for working on this feature, so that our changes will not interfere with
-our partner. The second command switches over to the new branch.
+Each person, working on their own machine, in their own branch will:
+* create a new file (e.g. *person1.txt*) containing a line like:
+  ```
+  STEP 4:  new file created by YOUR_NAME on 11/06/19 at 14:15
+  ```
+* add a new line to the pre-existing *file1.txt*, like
+  ```
+  STEP 4:  line added by YOUR_NAME on 11/06/19 at 14:16
+  ```
+* commit your changes
+  ```
+  git add person1.txt
+  git commit file1.txt person1.txt
+  ```
+  And, again, enter a comment to describe the changes you have made.
 
-For our `Random.jav`a file, let's assume we have a working `nextInt` function that takes no arguments and
-returns an integer, and implements a `choose` function which picks an item out of a `List`. Go ahead and add
-a method:
-```
-public Object choose(List l) {
-    // code here
-}
-```
+### Step 5 - Merge the (now conflicting) updates
 
-Since our `nextInt` method might return any integer, positive or negative, we can just use a modulus
-operation (%) to constraint it to the range we want (`l.size()`). We can use `l.get()` to get the appropriate
-element as an `Object` and return it.
+Each person, working on their own machine, will, in their own branch:
 
-When you’ve finished the `choose` function go ahead and commit your changes using `git commit` with
-an appropriate message, such as "Implemented choose function." Remember
-you have to add your changes to be tracked first using `git add` (in this case we could just say `git add
-src/Random.java` since we have only changed a single file). If you are lazy, you can give git commit the
-`-a` switch to tell it to automatically add all already-tracked files. 
+* update their copy of the master branch
+  ```
+  git pull origin master
+  git commit file1.txt person1.txt
+  ```
+* try try to bring your branch up-to-date with respect to the *master* branch
+  ```
+  git merge master
+  ```
+  Only to be told that you cannot do a fast-forward merge because master
+  has changed since your branch was forked from it.
+* merge your updates to file1.txt with those in the *master* branch
+  * edit the conflicted file1.txt and correctly organize the multiple versions
+    (and deleting the notations about which text came from which version)
+  ```
+  git add file1.txt
+  git commit file1.txt
+  git merge master
+  ```
+* now that your branch is up-todate with *master*, merge your changes back into the *master* branch
+  ```
+  git checkout master
+  git merge *person1*
+  git push
+  ```
+* confirm that all of your work has now been checked in, and that you are fully up-to-date
+  ```
+  git status
+  ```
 
-Now you can wait for your partner to be
-done with their changes.
-
-## Merging
-
-Okay, now that both partners have made inconsistent changes to the `Random.java` file, we would like
-`git` to merge these into one version. Luckily, our changes were inconsistent at a high level, but conceptually
-they are not really opposed to each other: we worked on separate methods, and if you just put all the code
-together, things should work. In this case, `git` should be able to figure that out and merge automatically.
-
-To do this, **whoever did the `git clone` operation** should try to do:
-`git push`
-
-The `push` operation says: take my local changes, and push them back up to the place I got the code from
-in the beginning. There is an analogous `git pull` operation that pulls versions from the original repository.
-
-In this case, because the origin does not know about the new branch we created, git will tell us to do the
-following (where `<branch>` is whichever branch we worked on):
-```
-git push --set-upstream origin <branch>
-```
-
-After doing this once, the "upstream" repository will know about the branch we created, and we can just
-do a normal `git push`.
-Next, whoever set things up originally should go ahead and merge things together. To do this, we will
-first want to switch back to the "master" branch, by doing:
-
-```
-git checkout master
-```
-
-Notice that after doing this, all of your code changes are wiped out in Eclipse (you may have to refresh).
-That’s scary, but with `git`, everything you've ever committed is saved, and it is just a question of how to
-get it out again. In this case, we went back to the `master` branch which hasn't seen any of our changes yet.
-
-To pull them in, we use `git merge`. Since our partner has already pushed their branch, if we type just:
-
-```
-git branch
-```
-
-We should see all three branches in our repository: `master`, `nextint`, and `choose`. So let’s start with
-`nextint`:
-
-```
-git merge nextint
-```
-This should say something about "fast-forward" and pull in the changes from that branch, so that if we
-refresh in Eclipse, they're visible. 
-
-Next, merge the other branch, using:
-```
-git merge choose
-```
-
-This will pull our partner’s changes and try to merge them automatically. If it fails, it will show a warning
-and will put both versions together into the file while marking where they differ, so that we can fix up the
-disputed area and do a git commit.
-
-If git asks you to, fix up any overlap areas, (they should be clearly marked) and then do another `git commit`. Now that we have reconciled our differences into the `master` branch, our partner can do a `git pull`
-to see everything that we've done, followed by a `git checkout master` so that they're also on the `master`
-branch again and can see all the changes.
+The first person to do this will only have to merge their changes against the line 
+added to file1.txt in step 3.  The second person to do this will also have to merge
+with the changes made by the first person in step 5.
 
 ### The `git` workflow
 
@@ -275,6 +229,23 @@ As a bonus, `git` keeps track of history for you, so it is unlikely that you wil
 what you have done since the last time you ran `git` commit (for this reason, it is a good idea to commit
 often). `git` stores all of its data in a hidden `.git` directory, so unless you wipe out that directory (and any
 clones other people may have made) you will be able to recover your project.
-Note that with most development environments, including Eclipse as we've used it so far, there are plugins you can add to use
-git or other VCSs from within the IDE. These can be more convenient, but it is useful to know the raw
-operations so that you know what you are doing when you use those plugins.
+
+At this point, you should (each) be able to see the entire history of changes:
+  ```
+  git log
+  ```
+
+## Grading
+
+Your submission will be graded based on the the file contents and history 
+(including commit comments) in your *master* branch.  
+Each team should email their instructor the URL for the (public) repo in which this work was done.
+
+
+| Criterion                                   | Points |
+| :------------------------------------------ | :----- |
+| | 1. repo created w/initial contents        | 1      |
+| | 2. creation of two personal branches      | 1      |
+| | 3. moving master past those branches      | 2      |
+| | 4. correct updates in personal branches   | 2      |
+| | 5. correct merging back into master       | 4      |
