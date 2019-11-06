@@ -245,10 +245,12 @@ Each person, working on their own machine, will, _in their own branch_:
   If so, all you have to do is a *commit* and *push*.  But if there are other
   changes to be reconciled, you may have to resolve them as you did above.
 
-* confirm that all of your work has now been checked in, and that you are fully up-to-date
+* confirm that all of your work has now been checked in, and that you are fully up-to-date,
+  and then push these updates back to *github*.
   ```
   git status
   git log
+  git push
   ```
 
   The *status* command should show that you are up-to-date with respect to
