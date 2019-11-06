@@ -1,0 +1,17 @@
+For this problem, grading involves both the autograder and examining the output.
+
+The easiest way to this is to do two passes:
+
+   1. use compile_and_run.sh to build, run and generate an OUTPUT 
+      file for each submission (and deal with any compilation 
+      issues).
+
+   2. use run_junit.sh to (again build), run (under JUnit) and
+      create the <student>.autos files.
+
+After this we can:
+
+   3. use merge_scores.py to turn the .autos into .jsons
+
+   4. review the per-student OUTPUT to grade the results and 
+      analyses.
