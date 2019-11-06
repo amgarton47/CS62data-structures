@@ -1,4 +1,4 @@
-# Assignment 07 - Hex-a-Pawn
+# Assignment - Hex-a-Pawn
 
 ## Objectives
 
