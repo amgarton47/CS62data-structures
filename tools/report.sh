@@ -9,8 +9,25 @@
 #   that process.  But, note that it assumes names for the BUILD and RUN
 #   rubric items.
 #
+# it can also be run directly as a script to produce .autos with a
+# specified status for a list of people
+#	
+#   usage: report.sh status user ...
+#
 
-OUTPUT_DIR="$HEADDIR/_output"
+# this script has to know where to put the output
+if [ -n "$HEADDIR" -a -d "$HEADDIR" ]
+then
+	# we have been told where
+	OUTPUT_DIR="$HEADDIR/_output"
+elif [ -d _output ]
+then
+	# current working directory looks good
+	OUTPUT_DIR=`pwd`/_output
+else
+	echo "ERROR: report function requires HEADIR to be defined"
+	exit
+fi
 OUTPUT_SFX="autos"
 
 function report() {
@@ -84,3 +101,25 @@ function report() {
 	echo "    ]"		  			>> $SCOREFILE
 	echo "}"					>> $SCOREFILE
 }
+
+# if we are run as a script
+if [ "$0" == "bash" ]
+then
+	echo "just sourcing"
+else
+	if [ -z "$1" -o -z "$2" ]
+	then
+		echo "usage report.sh status name ..."
+		echo "      status: no_submission build_error build_ok run_error run_ok"
+	else
+		# generate .autos for each listed name
+		status="$1"
+		shift
+		while [ -n "$1" ]
+		do
+			echo $1 ... $status
+			report "$1" "$status"
+			shift
+		done
+	fi
+fi
