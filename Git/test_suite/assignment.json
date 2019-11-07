@@ -1,0 +1,32 @@
+{
+  "title": "Git and Merging",
+  "assignment": "lab09",
+  "runner": {
+    "type": "manual"
+  },
+  "tests": [
+    {
+      "name": "1. creation of repo and initial contents",
+      "score": 1.0
+    },
+
+    { "name": "2. forking two personal branches",
+      "score": 1.0
+    },
+    { "name": "3. post-fork commit in master",
+      "score": 2.0
+    },
+    { "name": "4. additions and changes in personal branches",
+      "score": 2.0
+    },
+    { "name": "5. log shows commits and merges from both branches",
+      "score": 2.0
+    },
+    { "name": "5. all Step 3 and 4 updates reflected master branch",
+      "score": 2.0
+    },
+    { "name": "submitted on time (negative if late)",
+      "score": 0.0
+    }
+  ]
+}
