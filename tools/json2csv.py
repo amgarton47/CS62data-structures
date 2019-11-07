@@ -1,3 +1,25 @@
+"""
+Print to stdout a (csv) spreadsheet with
+      a column per (non-autograder) rubric item
+      a row per student
+
+usage: python json2csv.py [-t assignment.json] [-r classroom.json]
+
+    rationale
+
+        I had once considered translating a partially completed json into a
+        csv spreadsheet for further editing ... but the csv cannot hold
+        comments, so information is lost in that json->csv conversion.
+
+        This led me to decide that json (despite editing difficulty)
+        is the primary format for score information, and the spreadsheet
+        is only for merging non-autograder scores into an in-progress
+        json.
+
+        Given this, I decided that the spreadsheet should only contain
+        columns for a subset of (non-autograder) rubric items.  And
+        that meant I needed a way to match columns with rubric items.
+"""
 import json
 import csv
 from optparse import OptionParser
@@ -17,7 +39,7 @@ def list_students(roster):
         with open(roster, 'r') as infile:
             all_students = json.load(infile)
             infile.close()
-            return all_students
+            return sorted(all_students)
     except Exception as e:
         msg = e.message if hasattr(e, 'message') else str(e)
         logging.error("unable to read roster" + roster +
@@ -25,24 +47,12 @@ def list_students(roster):
         return []
 
 
-def make_csv(tests, student_json):
-    """
-    return a csv line for the scores in a student json file
-    :param [tests]: list of defined tests
-    :param (str) student_json: name of student file to process
-    :return (str): csv line for student and their scores
-    """
-    # try to open the json file
-
-    # get the student name
-
-    # assemble a list of scores
-
-    # turn it into a string
-
-
 if __name__ == "__main__":
-    umsg = "usage: %prog [options] [input.json ...]"
+    """
+    1. process the command line arguments
+
+    """
+    umsg = "usage: %prog [options]"
     parser = OptionParser(usage=umsg)
     parser.add_option("-v", "--verbose", action="store_true", dest="verbose",
                       help="verbose output")
@@ -71,20 +81,21 @@ if __name__ == "__main__":
         logging.error("ERROR: " + opts.template + " contains no tests")
         sys.exit(-1)
 
+    # see if all rubric items are manual
+    manual = 'runner' in all_scores and \
+             'type' in all_scores['runner'] and \
+             all_scores['runner']['type'] == "manual"
+
     # generate a list of column headings
     header = '"student ID"'
-    column = 1
     for test in all_scores['tests']:
-        header += ',#' + str(column)
-        column += 1
+        testname = test["name"]
+        # do not include autograder tests
+        if not manual and ".Autograder)" in testname:
+            continue
+        header += ',"' + testname + '"'
     print(header)
 
-    # try to generate a line per student
-    if len(files) == 0:
-        # just the names
-        for student in list_students(opts.roster):
-            print(student)
-    else:
-        # all the accumulated scores
-        for json_file in files:
-            make_csv(all_scores[tests], json_file)
+    # generate a line per student
+    for student in list_students(opts.roster):
+        print(student)
