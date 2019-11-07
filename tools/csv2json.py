@@ -101,7 +101,7 @@ if __name__ == "__main__":
                       metavar="FILE", default="assignment.json",
                       help="assignment test description")
     parser.add_option("-r", "--roster", type="string", dest="roster",
-                      metavar="FILE", default="classroom.json",
+                      metavar="FILE", default="../classroom.json",
                       help="list of students")
 
     (opts, files) = parser.parse_args()

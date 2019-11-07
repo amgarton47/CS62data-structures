@@ -125,7 +125,7 @@ if __name__ == "__main__":
     parser.add_option("-v", "--verbose", action="store_true", dest="verbose",
                       help="verbose output")
     parser.add_option("-r", "--roster", type="string", dest="roster",
-                      metavar="FILE", default="classroom.json",
+                      metavar="FILE", default="../classroom.json",
                       help="list of students")
 
     (opts, files) = parser.parse_args()
