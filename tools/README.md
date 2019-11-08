@@ -1,13 +1,86 @@
+# Background
+
+A few years ago, TA's created a set of JUnit autograding test cases 
+and tools to manage the grading.  The general model was:
+
+    * the grading of an assignment is described by an "assignment.json"
+      file that enumerates test cases and points for each.
+
+    * the autograding is done by an (assignment specific) Autograder.java
+      containing JUnit test cases.
+
+    * each submission was copied into a temporary working directory,
+      compiled (with JUnit and other libraries), and run under a
+      customer JUnit runner.
+
+   * the JUnit runner produced a <student>.autos (json) file
+     that listed the passes and described the failures.
+
+   * the <student>.autos file was processed into a <student>.json
+     file (very similar to the assignment.json) that added in
+     the points earned for the autograder items.
+
+   * the grader would (using a grading GUI) fill-in and comment the 
+     non-autograder scores until all rubric-items were covered.
+
+   * the tool would then produce a per-submission pdf summary of
+     the results.
+
+This process was orchestrated by a Python GUI, which (while convenient)
+was complex, not-portable, and difficult to maintain.   To get around
+these problems, in 2019FA, I created a set of bash scripts and Python
+programs as a simpler and more portable alternative to the GUI:
+
+   * the underlying per-assignment configuration and tools are unchanged:
+
+      - the assignment.json description of the gradables and their values
+
+      - the JUnit extensions and Autograder.java test suites
+
+      - the <student>.autos auto-grader output and <student>.json
+        score sheets.
+
+   * two scripts:  run_junit.sh and compile_and_run.sh (depending
+     on whether or not a JUnit test is appropriate) do a very similar
+     copy, compile, run, and generate <student>.autos output.
+
+   * a new program: json2csv.py creates a CSV spreadsheet (that can
+     be editied with your favorite spreadsheet program) for all of
+     the non-autograder items in the rubric.
+
+   * a new program: merge_scores.py can be used to built a
+     <student>.json file from the <student>.autos files and/or
+     the CSV file.  This combination of tools is capable of
+     filling in all of the scores, but it may still be necessary
+     to edit the <student>.json files to update the per-item
+     grading comments.
+
+   * a new program: score_report.py, processes the <student>.json
+     files into (suitable for returning to the students)
+     <assgtname>-<student>.txt files.
+
+   * a new script: make_pdfs.sh can (if desired) create per-submission
+     pdfs of the (above) grading results and selected source-code
+     modules for further annotation.
+
 # Grading process
 
-    1. create a grading directory containing copies of the submission repos 
-       to be graded.
-    2. pull in a copy of classroom.json
-    3. copy in everything from the test_suite directory for that project
+    I use a per-semeseter grading directory, which contains:
+      * a classroom.json list of all students in the class
+      * a per-assignment sub-directory, into which I down-load all of the
+        submissions (into to per-submission sub-sub-directories)
 
-## projects covered by full autograder suites
+    1. If you download an (all submissions) zip from submit.cs.pomona.edu,
+       unzipping it will create the per-assignment grading sub-directory 
+       and per-submission sub-sub-directories.
 
-    4. run the run_junit.sh script, and see if it seems to be correctly
+    2. Copy everything in the (per-assignment) test_suite directory into
+       the per-assignment grading directory.  This will include (at minimum)
+       an assignment.json file that lays out the rubric.
+
+## projects covered by JUnit autograder suites
+
+    3. run the run_junit.sh script, and see if it seems to be correctly
        processing all of the assignments.  
        
        The most common problems involve compilation errors or files that 
@@ -18,40 +91,41 @@
        If there were compliation errors, you might want to edit the
        stuff in comple_error.json into the affected .autos files.
 
-    5. use the merge(socres.py program to transfer the .autos results 
-       from the autograder into more complete per-submission .json files.
-
 ## projects not covered by full autograder suites
 
-    4. run the compile_and_run.sh script (which will probably require
+    3. run the compile_and_run.sh script (which will probably require
        a copy of either a generic or per-project report.sh script.
 
        Again, te most common problems involve compilation errors or files 
        that students moved to a different place in the hierarchy.  I make 
        notes of these (for point deductions) but then fix them so that 
-       testing can continue.
+       testing can continue. 
 
        The resulting .auto reports will only cover whether or not
        the resulting projects built and ran.  All additional scoring
        will be done manually.
 
-    5. You have a decision to make on how you want to do the rest of the
-       scoring:
+## manual grading
 
-       5a) use the auto2csv.py program to create a spreadsheet for all of
-           the submissions, and do the remainder of the grading on the
-	   spreadsheet.
+    4. Editing score information into a JSON file is both brittle
+       (e.g. missed commas or quotes) and time consuming.  It is
+       therefore recommended that the manual grading (rubric items
+       not assessed by JUnit test cases) be done in a spreadsheet.
 
-	   When you are done, use the csv2json.py program to produce the
-	   per-submission .json files.
+       * use the json2csv.py program to create a (csv) spreadsheet
+         for all of the non-autograder items in all the submissions.
 
-       5b) use the merge_scores.py to create a preliminary .json file
-           from each of the autograder-produced .auto files.
+       * use your favorite spreadsheet program to assign scores for
+         those items.
 
-       Either way, you can continue by directly editing
-       the per-submission .json files.  Editing JSON files is error
-       prone (commas, quotes, and braces matter), but makes it possible
-       for you to provide detailed comments.
+## final per-submission comments and reporting
+
+    5. Use the merge_scores.py program to transfer results from the
+       <student>.autos files and the non-autograder-item spreadsheet
+       into <student>.json files.
+
+    6. Edit the comments in the <student>.json files to explain
+       non-autograder point deductions.
 
 ## final report generation
 
@@ -62,6 +136,9 @@
       that you can provide detailed feedback on the submitted
       code), you can use the make_pdfs.sh script to create, for
       each submission, a pdf containing all of the named source files.
+
+   The resulting <assignment>-<student>.txt and .pdf files should
+   be suitable for returing directly to students.
 
 # Grading tools
 
@@ -92,33 +169,58 @@
        1. Attempt to verify that each specified directory contains java sources.
        2. Attempt to infer the package name (assuming there is only one)
        3. compile the sources
-       4. if any main classes are found, run them (unless they appear in DO_NOT_RUN)
+       4. if any main classes are found, run them
        5. capture output in a file called OUTPUT in the submission directory
        6. create a (per-student) _ouptput/SID.autos file w/the build results
+
+    Because this is a catch-all grading mechanism, its behavior can be 
+    controlled by a few additional configuration files in the per-assignment
+    grading sub-directory:
+       * DO_NOT_RUN ... a list of classes that we should not execute (even
+         though they contain main methods).
+       * PACKAGE ... for assignments that contain multiple packages, only
+         one of which should be built and tested, this file contains the
+	 name of the package to be built and tested.
+
+
+## json2csv.py
+
+   usage: python json2csv.py
+
+   This program examines the assignment.json description, identifies
+   all of the non-autograder (manually graded) rubric items, and prints
+   (to stdout) a (CSV) spreadsheet with a row for each student and a 
+   column for each non-autograder item.
+
+   The row-1 column headings contain the name of each rubric item in
+   assignment.json, and so may be very wide.  These are necessary to
+   enable the correct merging of spreadsheet columns back into the
+   <student>.json files.   Most spreadsheet editors will allow you
+   to narrow the column widths.
 
 
 ## merge_scores.py
 
-    usage: python merge_scores.py [-t suite-description] [-f] [raw-JUnit-output-file ...]
+    usage: python merge_scores.py [-t suite-description] [-f] input-file ...
 
     assumes: ./assignment.json (or template specifed with -t option) contains a 
              test suite description
 
-    Merge the most recent JUnit test results into complete grading files.
+    Merge the most recent JUnit test (or CSV) results into complete grading files.
 
-    It is common for assignment rubric (from a suite-description file) to contain many
-    more items (e.g. style and process) than are covered by the automated test suite.
-    A complete set of scores for a submission are stored (in the _output directory)
-    in files with the .json suffix.
+    For .autos input files, it wil create (or update) a corresponding .json file 
+    in the same directory as the .autos file.  For .csv input files, it wil create
+    (in the current working directory) <student>.json files, where the <student>
+    names are taken from column 1 of the spreadsheet.
 
-    If such a file does not yet exist, a new one will be created (based on the default
-    or supplied suite-description).  Then the scores from the specified raw JUnit results
+    If the .json file does not yet exist, a new one will be created (based on the 
+    assignment.json template).  Then the scores from the specified input file(s)
     will be merged into that complete set of scores.  Any results not included in the
-    raw JUnit results will be left unchanged.
+    input files will be left unchanged.
 
-    You are free to edit these submission.json files to update scores not assessed
-    by the automated test suite.  Your changes will be preserved across all subsequent
-    merges.
+    You are free to edit these submission.json files to update comments or scores not 
+    assessed by the automated test suite.  Your changes will be preserved across all 
+    subsequent merges.
 
     If you expect most students to earn full credit on the rubric items not assessed by
     the automated test suite, you can specify the -f (fullcredit) option.  If a new
@@ -127,22 +229,6 @@
     such score will also have a comment that a default value has been assumed, and
     that the score must be reviewed.
 
-
-## csv2json.py
-
-   For non-auto-graded submissions, this tool lets you accumulate scores in a
-   spreadsheet (one row per student, one column per rubric item), and then
-   creates <SID>.json files that can be processed by the standard means below.
-
-   usage: python csv2json.py [--template=assignment.json] [--roster=classroom.json]
-	
-	print (to stdout) a new CSV file with a column for every test in the 
-	template and a row for every student in the roster.
-
-   usage: python csv2json.py [--template=assignment.json] scores.csv ...
-
-   	create, for each student in each CSV files a <SID>.json file
-	that includes all of the scores listed in the CSV files
 
 ## score_report.py
 
@@ -174,6 +260,7 @@
     For each submission-directory, find the enumerated source-files,
     and create a .pdf listing of those files (in the _output) 
     directory with a name of the form submission.pdf.
+
 
 ## configuration files
 
