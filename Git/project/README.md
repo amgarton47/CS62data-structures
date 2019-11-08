@@ -84,6 +84,25 @@ If you are not comfortable with any of the avilable editors, you
 should always use the **-m** "*comment*" to create your commit
 comments.
 
+### Following Instructions Carefully
+
+1. You will be graded based on your ability to create and merge 
+   conflicting updates.  I will look, not only at the text in
+   the modified files, but at your commit history to see which
+   steps were done in which order.  Make sure that all commit
+   comments include:
+   * the step you are working on (e.g. STEP 3, STEP 4, STEP 5)
+   * who made the commit, of what updates, in what branch
+
+2. If you make the STEP 3 changes before cloning your repos
+   and creating your branches, you will not have a conflicting
+   update in the master branch, and you will be unable to earn
+   points for resolving that conflict.
+
+3. The two team-mates should take turns doing their STEP 5 
+   merges of STEP 4 updates back into the *master* branch.
+   If you attempt to do them in parallel, you will have to
+   go through more pull/merge/push cycles.
 
 ### Step 1 - Repo creation
 
@@ -119,7 +138,8 @@ One team member should:
      git commit README.md file1.txt file2.txt
      ```
      You will be put into an editor to enter a description of what you have
-     done in this commit.  Include "STEP 1:" in your commit comments.
+     done in this commit.  
+     **Include "STEP 1:" in your commit comments.
    * look at what you have done
      ```
      git status
@@ -200,9 +220,13 @@ been made
   ```
   git log
   ```
+Note that because your personal branches were created on your
+personal machines, they do not (yet) exist on *github*, and so
+you will not be able to `push` them back to *github*.
+
 ### Step 5 - Merge the (now conflicted) branches back into *master*
 
-This is a two step process:
+This is (at minimum) a two step process:
 1. update personal branch to be based on the latest updates in *master* (which 
    has been updated since this branch was created).
 2. update *master* to include the (now consistent) updates from your branch.
@@ -249,6 +273,11 @@ Each person, working on their own machine, will, _in their own branch_:
   If so, all you have to do is a *commit* and *push*.  But if there are other
   changes to be reconciled, you may have to resolve them as you did above.
 
+* if you did not do *all* of these steps *in the correct order* you may find
+  yourself instructed to do additional *pull* and *merge* operations.  If
+  this happens, do the *pulls* (to update your local copies from recent
+  pushes to *github* and additional *merges*.
+
 * confirm that all of your work has now been checked in, and that you are fully up-to-date,
   and then push these updates back to *github*.
   ```
@@ -267,6 +296,12 @@ Each person, working on their own machine, will, _in their own branch_:
   - the STEP 4 changes from person1
   - the STEP 3 change to master
   - the original STEP 1 creation and contents additions
+
+  If the person who created the repo on *github* does not correctly authorize 
+  pushes from un-registered collaborators, the other team-mate may find their
+  pushes rejected.  The easiest way around this problem is, when prompted for
+  a git-ID and password, have the person to greated the repo enter their ID
+  and password.
 
 ### The `git` workflow
 
