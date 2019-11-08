@@ -62,24 +62,28 @@ In this lab:
 5. each team member will merge their personal branches back into 
    the master branch.
 
-### Github ssh keys
+![Succession of steps](GitSteps.jpg)
 
-Most of you have been using `https:` URLs to access projects on *github* and
-typing your password (or letting Eclipse provide it) for each pull/push operation.
-There is a much simpler way to authenticate yourself to github (if you use
-*ssh keys*):
-1. log into github
-2. from the upper right pull-down, select your personal `settings`
-3. from the menu on the left, select `SSH and GPG keys`
-4. click the `New SSH Key` button
-5. enter a name, copy your public key into the `Key` window, and click the `Add SSH key` button.
+### Git configuration
 
-After this, you can use *ssh* URLS to clone projects, and you will never again
-have to enter a password while working on a system with access to the corresponding
-private key.
+If you have not used the Git Command-Line-Interfaces before, it would be
+helpful to do a little bit of initial setup.  From a terminal window
+type the following commands:
+   ```
+   git config --global user.name "Your Name"
+   git config --global user.email your_email@your_domain
+   ```
 
-If you do not yet have a *ssh* keys, you probably will not have time to create one
-during this lab ... but you should investigate them for future use.
+When you do `git commit` command (without a **-m** argument), you will be put 
+into a text editor to see the files being committed and edit your comment.
+If you have a preferred editor, you can set it with a command like:
+   ```
+   git config --global core.edior emacs
+   ```
+If you are not comfortable with any of the avilable editors, you
+should always use the **-m** "*comment*" to create your commit
+comments.
+
 
 ### Step 1 - Repo creation
 
