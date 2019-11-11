@@ -1,1 +1,114 @@
-/** * Frequency List of word/# of occurrence pairs * @author Kim Bruce * @version 2/08, revised 1/11 */import java.util.ArrayList;import java.util.List;import structure5.Association;public class FreqList {	// list of associations holding words and their frequencies	protected List<Association<String, Integer>> flist;		// total # of instances of words held in list	protected int totalOccurrences;		/**	 *  Create empty list of word frequencies	 */	public FreqList() {		totalOccurrences = 0;		flist = new ArrayList<Association<String, Integer>>();	}	/**	 * @param word  the word to be tallied in frequency list	 *  post: if word was not in frequency list it is added w/ 	 *  frequency of 1. 	 *  If already in, then increase frequency by 1	 */	public void add(String word) {		Association<String, Integer> assoc = new Association<String, Integer>(				word, 0); // Association w/ word		int wordNo = flist.indexOf(assoc); // location of word in list		if (wordNo == -1) { // word was not in list, insert it			assoc.setValue(1);			flist.add(assoc);		} else { // word was in list, bump frequency			Association<String, Integer> element = flist.get(wordNo);			int newValue = element.getValue() + 1;			element.setValue(newValue);		}		totalOccurrences++;	}	/**	 * @param prob  probability chosen	 * @return Return a letter chosen randomly from the letters 	 *  in the frequency list. The probability of a letter being 	 *  chosen if proportional to its frequency stored in the list.	 */	public String get(double prob) {		int count = 0; // sum of frequencies seen so far		// number between 0 and size of list - 1 (inclusive)		int target = (int) Math.round(prob * (totalOccurrences - 1));		// letter, frequency pairs from list		Association<String, Integer> element = null; 				for (int letterNo = 0; count <= target && letterNo < flist.size(); letterNo++) {			// search until count exceeds random target			element = flist.get(letterNo);			// frequency of elt			int probOfElt = element.getValue();			count = count + probOfElt;		}		return element.getKey();	}		/**	 * @return readable representation of the frequency table	 */	public String toString() {		StringBuilder rep = new StringBuilder();		rep.append("Frequency List: ");		for(Association<String, Integer> elt:flist){			rep.append(elt);		}		return rep.toString();	}	// class to test	public static void main(String args[]) {		FreqList list = new FreqList();		WordStream ws = new WordStream();		String testString = "This is a test, to see if this is anything that is working.";		ws.addLexItems(testString.toLowerCase());		while(ws.hasMoreTokens()) {			list.add(ws.nextToken());		}		System.out.println(list.toString());		System.out.println(list.totalOccurrences);		// Pick some Strings w/ carefully chosen "random" numbers to make		// sure "get" works properly. 		System.out.println(list.get(0.1));		System.out.println(list.get(1.0));		System.out.println(list.get(0.5));		System.out.println("Done");	}}
+/**
+ * Frequency List of word/# of occurrence pairs
+ */
+package wordsGeneric;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Random;
+
+public class FreqList {
+	// symbol table associations holding words and their frequencies
+	protected HashMap<String, Integer> flist;
+
+	// This is a double to save time later when dividing
+	protected double totalFreq;
+
+	/**
+	 * Constructs a new FreqList
+	 */
+	public FreqList() {
+		flist = new HashMap<String, Integer>();
+		totalFreq = 0.0;
+	}
+
+	/**
+	 * Add word to list or, if word already occurs, increment its frequency
+	 * 
+	 * @param word
+	 */
+	public void insert(String word) {
+
+		// Determine if any entry in flist contains the key word
+		Integer value = flist.get(word);
+
+		// There is already an entry in flist with key word
+		if (value != null) {
+			flist.put(word, value + 1);
+		}
+
+		// There is no entry in flist with key word
+		else {
+			flist.put(word, 1);
+		}
+		totalFreq += 1.0;
+	}
+
+	/**
+	 * Return a word from the freqList
+	 * 
+	 * @param p
+	 *            probability
+	 * @pre 0 <= p <= 1
+	 * @returns randomly chosen word from the list
+	 * @throws IllegalArgumentException
+	 *             if p < 0 or p > 1
+	 * @throws AssertionError
+	 *             if no word from list is selected
+	 */
+	public String get(double p) {
+		if (p < 0 || p > 1) {
+			throw new IllegalArgumentException("p must be between 0 and 1 inclusive");
+		}
+		if (totalFreq == 0.0) {
+			return "";
+		} else {
+			double wordProb = 0.0;
+			Iterator hmIterator = flist.entrySet().iterator();
+
+			while (hmIterator.hasNext()) {
+				Map.Entry mapElement = (Map.Entry) hmIterator.next();
+				String key = (String) mapElement.getKey();
+				wordProb += (int) mapElement.getValue() / totalFreq;
+				if (p <= wordProb) {
+					return key;
+				}
+			}
+
+			// Should never reach here
+			throw new AssertionError("Reached end of list and prob still less than 1");
+		}
+	}
+	public String toString() {
+		
+		StringBuilder rep = new StringBuilder();
+		rep.append("Frequency List: ");
+		Iterator hmIterator = flist.entrySet().iterator();
+		// Iterate through the hashmap
+		while (hmIterator.hasNext()) {
+			Map.Entry mapElement = (Map.Entry) hmIterator.next();
+			rep.append("<" + mapElement.getKey() + "=" + (int) mapElement.getValue()+">");
+		}
+		return rep.toString();
+	}
+
+	// static method to test the class
+	public static void main(String args[]) {
+		FreqList list = new FreqList();
+		list.insert("cow");
+		list.insert("apple");
+		list.insert("cow");
+		list.insert("banana");
+		list.insert("dog");
+		System.out.println(list);
+		
+		Random rand = new Random();
+		for (int i = 0; i < 10; ++i) {
+			double randomOne = rand.nextDouble();
+			System.out.println(randomOne);
+			String word = list.get(randomOne);
+			System.out.println(word);
+		}
+	}
+}

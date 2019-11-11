@@ -3,24 +3,23 @@
  * 
  * Fix these comments!!
  * @author NAME GOES HERE!!
- */
+ **/
 package wordsGeneric;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import structure5.Association;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class TextGenerator {
 
-    // List of Association of letter pairs and frequency lists
-    protected List<Association<StringPair, FreqList>> letPairList;
+    // symbol table of string pairs and frequency lists
+    protected HashMap<StringPair, FreqList> letPairList;
 
     // add any instance variables needed and a constructor
     

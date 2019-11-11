@@ -1,16 +1,19 @@
 /**
  * Frequency List of word/# of occurrence pairs
- */
+ * @author NAME GOES HERE!!
+ **/
+ 
 package wordsGeneric;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import structure5.Association;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class FreqList {
     // list of associations holding words and their frequencies
-    private List<Association<String, Integer>> flist;
+    private HashMap<String, Integer> flist;
 
     // insert instance variables, constructor, and any other needed methods
     
