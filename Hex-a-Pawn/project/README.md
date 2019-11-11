@@ -1,4 +1,4 @@
-# Assignment 07 - Hex-a-Pawn
+# Assignment - Hex-a-Pawn
 
 ## Objectives
 
@@ -33,8 +33,10 @@ to different types of players. Each of these player classes will implement the `
 ### `GameTree` 
 
 You are responsible for designing the `GameTree` class. This is a tree structure with potentially many children
-instead of just two. Think about the methods you will need for this class and how you can represent the
-structure.
+instead of just two. The included starter defines the most basic methods to instantiate and traverse a
+GameTree.  But, as you design your `Player` sub-classes, you will surely identify additional methods
+that you would like to implement in the `GameTree` class.  Think about the methods you will need for 
+this class and how you can represent the structure.
 
 The picture below shows the top two levels (i.e. the nodes at depth 0 and 1) of the game tree that results
 from a call to the constructor: 
@@ -50,7 +52,7 @@ have multiple children each child corresponding to a legal action by the player.
 
 ### `Player` classes
 
-You will construct three player classes: `HumanPlayer`, `RandPlayer`, and `CompPlayer`. Each player implements
+You will implement three player classes: `HumanPlayer`, `RandPlayer`, and `CompPlayer`. Each player implements
 the `Player` interface. This interface has only one method:
 
     public Player play(GameTree node, Player opponent);
@@ -126,8 +128,9 @@ of possible moves.
 
 During the course of this assignment you are to
 1. Construct a tree of Hex-a-Pawn board positions. Each node of the tree is
-called a `GameTree`. The structure of the class is of your own design, but it
-is can be similarly implemented to a binary tree.
+called a `GameTree`. The underlying data structure is of your own design.
+Think about the ways in which you might want to navigate this tree (downwards
+and upwards) and design a data structure to enable those operations.
 
 2. Construct three classes of `Player`s that play the game of Hex-a-Pawn.
 These three classes may interact in pairs to play a series of games.
@@ -162,17 +165,22 @@ against the computer. You may wish to modify the size of the board. Very
 little is known about the games larger than 3x3.
 
 2. Implement a `GameTree` class. This class should have a constructor that,
-given a `HexBoard` and a color (a `char`, `HexBoard.WHITE` or `HexBoard.BLACK`),
-generates the tree of all boards reachable from the specified board position
-during normal game play. Alternate levels of the tree represent boards
-that are considered by alternate players. Leaves are winning positions for
-the player at hand. The references to other `GameTree` nodes are suggested
-by the individual moves returned from the moves method. A complete
- tree for 3 × 3 boards has 252 nodes.
+   given a `HexBoard` and a color (a `char`, `HexBoard.WHITE` or `HexBoard.BLACK`),
+   generates the tree of all boards reachable from the specified board position
+   during normal game play. Alternate levels of the tree represent boards
+   that are considered by alternate players. Leaves are winning positions for
+   the player at hand. The references to other `GameTree` nodes are suggested
+   by the individual moves returned from the moves method. A complete
+   tree for 3 × 3 boards has 252 nodes.
 
- Hint: 608 nodes? No win test. 370? Wrong win test. 150? early stop.
+   The hardest part of your initial implementation of this class will be
+   generating the (recursive) tree of all possible moves.  If you look
+   at the `HexBoard` class you will see sample code that generates 
+   a list of possible moves and the board resulting from each.
 
- 3. Implement the first of three players. It should be called `HumanPlayer`. If it
+ Hints: 608 nodes? No win test. 370? Wrong win test. 150? early stop.
+
+3. Implement the first of three players. It should be called `HumanPlayer`. If it
 hasn’t already lost (i.e., if the opponent hasn’t won), this player prints the
 board, presents the moves, and allows a human (through a scanner)
 to select a move. The play is then handed off to the opponent.

@@ -38,7 +38,11 @@ cp -r $PROJ_DIR $REPO_DIR
 # turn it into a repo
 cd $REPO_DIR
 git init
-git add * .gitignore
+git add * 
+if [ -f .gitignore ]
+then
+	git add .gitignore
+fi
 git commit -m "Created from $1"
 
 # set the origin (either ssh or http)

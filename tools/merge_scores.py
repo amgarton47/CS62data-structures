@@ -1,141 +1,159 @@
+"""
+At this moment, the only feature that works is csv->new json
+
+   2. merge .autos into new json
+      test comments for scores < possible
+
+   3. merge .autos into existing json
+      test not copying absent scores
+
+
+"""
 import json
+import csv
 import os.path
-import logging
+from sys import stderr
 from optparse import OptionParser
 
-full_credit = False
 verbose = False
-template = ""
 
 
-def merge_scores(raw_scores):
+def autos_score(autos_file, template):
     """
-    Merge a new set of raw scores into a set of complete scores.
-
-    @param raw_scores: name of input file
-    @return: name of new merged score file
+    merge info from (json) autograder output into a (json) score file
+    :param autos_file (str): name of the autograder output file
+    :param template (dict): the assignment defintion
+    :return (dict): test:(score, comment)
     """
-
-    # find the name of our json output ile
-    basename = os.path.splitext(raw_scores)[0]
-    output = basename + ".json"
-
-    # find the input file with which we are to merge
-    if os.path.exists(output):
-        merge_with = output
-        newfile = False
-    elif os.path.exists(template):
-        merge_with = template
-        newfile = True
-    else:
-        logging.error("no existing " + output + " or " + template)
-        return None
-
-    # read in the base into which we are merging
+    # read in the autos file
     try:
-        with open(merge_with, 'r') as infile:
-            all_scores = json.load(infile)
-            infile.close()
-    except Exception as e:
-        logging.error("unable to read test template " + merge_with
-              + " - " + e.message)
-        return None
-
-    # read in the updated raw scores
-    try:
-        with open(raw_scores, 'r') as infile:
+        with open(autos_file, 'r') as infile:
             raw_results = json.load(infile)
             infile.close()
     except Exception as e:
-        logging.error("unable to read raw results file " + raw_scores
-              + " - " + e.message)
+        stderr.write("unable to read input file" + autos_file
+                     + " - " + e.message)
         return None
 
-    # get the list of all known tests
-    assgt_title = all_scores['title'] \
-        if 'title' in all_scores else "UNKNOWN"
-    assgt_name = all_scores['assignment'] \
-        if 'assignment' in all_scores else "UNKNOWN"
-    assgt_flags = all_scores['flags'] if 'flags' in all_scores else []
-    if 'tests' in all_scores:
-        all_tests = all_scores['tests']
-    else:
-        logging.error(merge_with + " does not contain \"tests\":")
-        return None
-
-    print("Merging " + raw_scores + " w/" + merge_with +
-          " into " + output)
-
-    # merge earned and comment from raw results into the output file
+    # accumulate results from known tests
+    results = {}
     earned_score = 0.0
-    for test in all_tests:
-        test_name = test['name']
-        test_score = test['score']
-
-        # if we are in the passes list, we simply earn the full score
-        if 'passes' in raw_results and test_name in raw_results['passes']:
-            test['earned'] = test_score
-            test['comment'] = "Passed Autograder."
-            earned_score += test_score
-            continue
-        elif verbose:
-            print("... " + test_name + " is not in passes")
-
-        # if we are in the failures list, copy the error message
-        if 'failures' in raw_results:
-            failures = raw_results['failures']
-            for failure in failures:
-                if 'testname' in failure and failure['testname'] == test_name:
-                    test['earned'] = 0.0
-
-                    # figure out what information we want for the coment
+    for test in template['tests']:
+        name = test['name']
+        value = test['score']
+        if 'passes' in raw_results and name in raw_results['passes']:
+            results[name] = (value, None)
+        elif 'failures' in raw_results:
+            for failure in raw_results['failures']:
+                if failure['testname'] == name:
                     if 'message' in failure:
-                        # start with the JUnit message
-                        test['comment'] = failure['message']
-                        # if it wasn't a straight Assert, include the trace
+                        comment = failure['message']
                         if 'trace' in failure and \
-                           "AssertionError" not in failure['trace']:
-                            test['comment'] += ' ... Stack Trace Follows:\n\t' + failure['trace'];
+                           'AssertionError' not in failure['trace']:
+                            comment += ' ... Stack Trace Follows:\n\t' +\
+                                    failure['trace']
                     elif 'trace' in failure:
-                        test['comment'] = failure['trace']
+                        comment = failure['trace']
                     else:
-                        test['comment'] = "PLEASE REVIEW JUNIT OUTPUT"
+                        comment = "PLEASE REVIEW JUNIT OUTPUT"
+                    results[name] = (0.0, comment)
                     break
-        elif verbose:
-            print("... " + testname + " is not in failures")
 
-        # if we know what we've earned tally it
-        if 'earned' in test:
-            earned_score += test['earned']
-            continue
+    return results
 
-        # are we supposed to initialize to full credit?
-        if newfile and full_credit:
-            test['earned'] = test_score
-            test['comment'] = "DEFAULT - PLEASE REVIEW"
-            earned_score += test_score
 
-    # reconstruct the flag list
+def csv_score(row, headings):
+    """
+    merge info from a csv file into a (json) score file
+    :param row [str, ...]: input line from the json file
+    :param headers [str, ...]: per-column headers for CSV file
+    :param template (dict): the assignment defintion
+    :return (dict): test:(score, comment)
+    """
+    # the key to this merge is that the line 1 headings in the .csv
+    # are idntical to test names in the .json files
+    results = {}
+    for col in range(1, len(row)):
+        value = row[col]
+        if len(value) > 0:
+            results[headings[col]] = (float(value), None)
+
+    return results
+
+
+def merge(scores, current, filename, full_credit):
+    """
+    merge a set of new scores into a set of current values
+    and write them out as a json score file
+    :param scores (dict):   name : (int) score
+    :param current (dict):  existing score file (or template)
+    :param filename (string): name of desired output file
+    """
+    # accumulate tests, merging scores into current
+    results = []
+    earned_score = 0.0
+    for test in current['tests']:
+        # copy the basic information from the orginal
+        name = test['name']
+        entry = {}
+        entry['name'] = name
+        entry['score'] = test['score']
+
+        # new earned and comment can override the original
+        if name in scores:
+            (earned, comment) = scores[name]
+            entry['earned'] = earned
+            earned_score += earned
+            if comment is not None:
+                entry['comment'] = comment
+            elif earned != test['score']:
+                # less than full points requires a comment
+                entry['comment'] = "PLEASE REVIEW"
+        else:
+            # pass through the previous earned/comment
+            if 'earned' in test:
+                entry['earned'] = test['earned']
+                earned_score += test['earned']
+            elif full_credit:
+                entry['earned'] = test['score']
+                earned_score += test['score']
+
+            if 'comment' in test:
+                entry['comment'] = test['comment']
+        results.append(entry)
+
+    # reconstruct the flag list from the score file
     possible_flags = ['flag_quality', 'flag_general',
                       'flag_dishonesty', 'flag_regrade']
     flags = []
-    for flag in possible_flags:
-        if flag in assgt_flags:
-            flags.append(flag)
+    if 'flags' in current:
+        for flag in possible_flags:
+            if flag in current['flags']:
+                flags.append(flag)
 
-    with open(output, 'w') as outfile:
-        json.dump({'title': assgt_title,
-                   'assignment': assgt_name,
-                   'tests': all_tests,
+    # write out the results in a new json score file
+    if verbose:
+        stderr.write(" ... creating score file " + filename + "\n")
+
+    with open(filename, 'w') as outfile:
+        json.dump({'title': current['title'],
+                   'assignment': current['assignment'],
+                   'tests': results,
                    'earned_score': round(earned_score, 2),
                    'flags': flags},
                   outfile, indent=4)
+        outfile.write("\n")
         outfile.close()
-
-    return output
 
 
 if __name__ == "__main__":
+    """
+    1. parse the arguments
+    2. digest the assignment.json
+    3. do .auto or .csv merge
+    4. write result out to new .json
+    """
+    # 1. parse the argument
     umsg = "usage: %prog [options] input_file ..."
     parser = OptionParser(usage=umsg)
     parser.add_option("-v", "--verbose", action="store_true", dest="verbose",
@@ -148,8 +166,62 @@ if __name__ == "__main__":
 
     (opts, files) = parser.parse_args()
     verbose = opts.verbose
-    full_credit = opts.fullcredit
-    template = opts.template
 
+    # 2. digest the assignment template
+    try:
+        with open(opts.template, 'r') as infile:
+            template = json.load(infile)
+            infile.close()
+    except Exception as e:
+        stderr.write("unable to read test template " + opts.template
+                     + " - " + e.message + "\n")
+        sys.exit(-1)
+
+    # process each input file
     for file in files:
-        merge_scores(file)
+        # 3a.
+        if '.autos' in file:
+            # get a score dict for this file
+            results = autos_score(file, template)
+
+            # form output file name from input file name
+            basename = os.path.splitext(file)[0]
+            output = basename + ".json"
+            if os.path.exists(output):
+                with open(output, 'r') as infile:
+                    existing = json.load(infile)
+                    infile.close()
+                # merge .autos scores with existing score file
+                merge(results, existing, output, False)
+            else:
+                # merge .autos scores with the template
+                merge(results, template, output, opts.fullcredit)
+
+        # 3b. process a CSV file into a .json for each line
+        elif '.csv' in file:
+            with open(file) as input:
+                csv_reader = csv.reader(input, delimiter=',')
+                headings = None
+                for row in csv_reader:
+                    if headings is None:
+                        headings = row
+                    else:
+                        # form a score dict from this line
+                        results = csv_score(row, headings)
+
+                        # figure out the output file name
+                        student = row[0]
+                        output = student + ".json"
+                        if os.path.exists(output):
+                            with open(output, 'r') as infile:
+                                existing = json.load(infile)
+                                infile.close()
+                            # merge CSV scores with existing score file
+                            merge(results, existing, output, False)
+                        else:
+                            # merge CSV scores with the template
+                            merge(results, template, output, opts.fullcredit)
+                input.close()
+
+        else:
+            stderr.write("ERROR: " + file + " - unrecognized file type\n")
