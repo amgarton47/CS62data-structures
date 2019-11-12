@@ -5,36 +5,63 @@
  
 package wordsGeneric;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.Set;
 
 public class FreqList {
     // list of associations holding words and their frequencies
     private HashMap<String, Integer> flist;
 
-    // insert instance variables, constructor, and any other needed methods
+	/**
+	 * constructor
+	 */
+    public FreqList() {
+		// TODO implement FreqList constructor
+    }
     
     /** 
-     * Add appropriate comments
+     * Add a reference to a word to our list
+     * 
+     * @param word ... reference to add
      */
     public void add(String word) {
-
+		// TODO implement FreqList.add()
     }
 
+    /**
+     * return a word from the FreqList based on a 0-1 value
+     * 
+     * @param p ... number between 0 and 1
+     * @return a String from the list of recorded words
+     * 		the probability of returning a word should be directly
+     *		proportional to the number of times it has been referenced.
+     */
     public String get(double p) {
-    	return "";  // replace by real body
+		// TODO implement FreqList.get()
+    	return "";
     }
 
+    /**
+     * String representation of the list
+     * @return a string containing keys and counts
+     * 			e.g. "the=4, story=2, ..."
+     */
     public String toString() {
-        return "";
+		// TODO implement FreqList.getString()
+    	return "";
     }
     
-    // static method to test the class
+    /**
+     * static method to test this class
+     * 
+     * Suggested tests:
+     * 		instantiate a list
+     * 		add references to it
+     * 		print the list to confirm correct reference counts
+     * 		call p multiple times to confirm distribution of results
+     */
     public static void main(String args[]) {
-        FreqList list = new FreqList();
-        // Add code to test this class
+		// TODO: implement FreqList.main tester
     }
 }
