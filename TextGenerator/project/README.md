@@ -1,4 +1,4 @@
-# Assignment 08 - Text Generator
+# Assignment - Text Generator
 
 ## Objectives
 
