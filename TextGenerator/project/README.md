@@ -66,10 +66,6 @@ or feel free to think up a more creative solution.
 
 ## Classes
 
-### `StringPair`
-
-We suggest that you write the `StringPair` class first. `StringPair` should represent a pair of two strings. Fill in the constructor, getters, and setters. Given that we will be working with `HashMap`s it is important that you override the `equals` and `hashCode` methods.  
-
 ### `FreqList`
 
 `FreqList` should contain a `HashMap` (make sure to carefully read the [documentation of the class](https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html)). Its keys will be words and its values the number of times that each associated word occurs. When a word is added, if it already occurs in the array list then its value (i.e. its frequency)
@@ -89,6 +85,16 @@ empty, this method should return an empty string.
 Write this class and test it thoroughly by adding a `main` method to make sure all methods work correctly.
 We suggest implementing the `toString` method and print out a representation of the frequency list first to make sure that the table is correct
 before attempting to write or test the probabilistic `get` method.
+
+### `StringPair`
+
+We suggest that you write the `StringPair` class next.
+`StringPair` should represent a pair of two strings.
+Fill in the constructor, and write `getFirst` and `getSecond` methods,
+and a `toString` method that returns something like "<string_one,string_two>".
+Because we will be using these with `HashMap` you will also have to implement
+`equals` and `hashCode` methods that do their comparisons and computations
+based on *both* of the string values.
 
 ### `TextGenerator`
 
