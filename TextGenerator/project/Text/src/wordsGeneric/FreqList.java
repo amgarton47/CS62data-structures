@@ -48,7 +48,7 @@ public class FreqList {
      * 			e.g. "the=4, story=2, ..."
      */
     public String toString() {
-		// TODO implement FreqList.getString()
+		// TODO implement FreqList.toString()
     	return "";
     }
     

@@ -24,14 +24,26 @@ public class TextGenerator {
     // add any instance variables needed and a constructor
     
     /** 
-     * Add appropriate comments
+     * Add a reference to <first,second>->third to our letPairList
+     * @param first string in triad
+     * @param second string in triad
      */
     public void enter(String first, String second, String third) {
-
+		// TODO implement TextGenerator.enter()
     }
 
+    /**
+     * Use the <first,second> FreqList to choose a word to follow them
+     * @param first String in triad
+     * @param second String in triad
+     * @return likely third String to follow the first two
+	 *
+	 * Note: it would also be very good to do something graceful
+	 *       if nothing has followed the <first,second> pair.
+     */
     public String getNextWord(String first, String second) {
-        return "";  // replace by real body
+		// TODO implement TextGenerator.getNextWord()
+        return ""; 
     }
 
     // START OF CODE FOR MAIN PROGRAM -- WRITE & FIX COMMENTS
@@ -64,8 +76,15 @@ public class TextGenerator {
                         + e.getMessage());
             }
 
-            // insert code to print table & generate new text using
-            // random number generator
+			// TODO create extGenerator, populate it from the WordStream
+
+			// TODO (for debug) print resulting <StringPair,FreqList> map
+
+			// TODO (for debug) add a few getNextWord test cases
+
+			// TODO pick two starting words
+			// TODO generate 400 words of text, choosing likely random
+			//      words to follow each preceding pair.
         } else {
             System.out.println("User cancelled file chooser");
         }
