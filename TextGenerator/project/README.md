@@ -95,11 +95,20 @@ before attempting to write or test the probabilistic `get` method.
 
 We suggest that you write the `StringPair` class next.
 `StringPair` should represent a pair of two strings.
-Fill in the constructor, and write `getFirst` and `getSecond` methods,
-and a `toString` method that returns something like "<string_one,string_two>".
+Fill in the constructor, and write 
+a `toString` method that returns something like "<string_one,string_two>".
 Because we will be using these with `HashMap` you will also have to implement
 `equals` and `hashCode` methods that do their comparisons and computations
 based on *both* of the string values.
+
+To make sure that you have correctly implemented these methods, you should
+create a `main()` method that tests them by:
+
+- creating multiple `StringPair` objects, for the same and different pairs of strings.
+- ensuring your `equals` method correctly identifies matching and non-matching pairs.
+- creating a <StringPair,String> `HashMap`.
+- populating it with mappings for many different `StringPair`s.
+- confirming that you can find and update those mappings.
 
 ### `TextGenerator`
 
@@ -178,7 +187,19 @@ an `IndexOutOfBoundsException`.
 
 1. Think carefully about the design of this program before sitting down at a computer. What would a reasonable `hashCode` method be for `StringPair`? What other methods and instance variables might the `FreqList` class need? For the `get` method in the `FreqList` class, take a piece of paper and create different examples of frequency lists. For each example, work out what the `get` method would return for different values of `p` (e.g., if the frequency list contained 4 words that each occurred once and *p* = *0.45*, what word would be returned?)
 
-2.  You are now ready to get started! We recommend starting with the `FreqList` class. Again, try and develop incrementally. That is, get one small piece working and then move on to another piece. Add a `main` method to the `FreqList` class in order to test and ensure the correctness of your code.
+2.  You are now ready to get started! 
+
+   - We recommend starting with the `FreqList` class and its `main()` test cases.
+   - Next we suggest implementing the `StringPair` class and `main()` test cases.
+   - Next we suggest that you implement and test `TextGenerator.enter()`,
+     followed by `TextGenerator.getNextWord()`.
+   - Only after all of these work should you work on the actual text 
+     generation in `TextGenerator.main()`.
+
+Again, try and develop incrementally. That is, get one small piece working 
+and then move on to another piece.  Do not attempt to move on to the next
+step until you are confident of the correctness of the code you wrote in
+the previous step.
 
 ## Grading
 
