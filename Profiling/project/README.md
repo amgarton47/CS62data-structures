@@ -94,7 +94,7 @@ The included `Makefile` has rules to:
    * run the program to exercise each of the implementations
    * process the raw profiling data into a report
    
-Execution profiling of Java software is both difficult and noisy, due to the fact
+Execution profiling of Java software is both difficult and noisy due to the fact
 that Java is an interpreted language with run-time garbage collection.  To give you
 cleaner data, the test program and list implementations have been written in C, 
 which is similar enough to java that you should not have much trouble reading it.
@@ -109,7 +109,7 @@ a reasonable number of execution profiling samples.
 
 You must do this work on a Linux or MacOS system.  You will not be able to do it
 on a Windows system.  If you do not have access to such a system, you can *ssh*
-to a departmental Linix Virtual machine where this work can be done.
+to a departmental Linux Virtual machine where this work can be done.
 
    1. Read and understand the four list implementations: `linear_list.c`, `sorted_list.c`,
       `open_hash.c` and `bucket_hash.c`.
@@ -117,16 +117,16 @@ to a departmental Linix Virtual machine where this work can be done.
    2. Build the software, run the tests, and generate the reports.  
 
    3. Analyize and understand the results.  (Note that for the Open Hashing implementation
-      the execution time is the sum of the time for `open_add` and `open_find_entry`)
+      the time to add a reference is the sum of the time for `open_add` and `open_find_entry`)
 
    4. Write up an analysis (to be submitted as an ASCII text file `analysis.txt`) in which
-      you address the following questions.
+      you address the questions described below.
 
    5. Commit and push back and updated repo, which is to include:
       
       * the raw reports you generated (`linear.txt`, `sorted.txt`,
         `open.txt` and `bucket.txt`)
-      * your discussion of the following questions (`analysis.txt`)
+      * your discussion of the questions described below (`analysis.txt`)
       * any additionatl reports you generated for extra credit.
 
 ### Analysis
@@ -135,33 +135,33 @@ to a departmental Linix Virtual machine where this work can be done.
    between the sorted and un-sorted linear list implementations.
 
    Present your time-to-add performance results between those two
-   implementations, and how discuss they agree or disagree with 
+   implementations, and discuss how they agree or disagree with 
    those predictions.
 
 2. Discuss the performance differences you would expect to see
    between the linear-list and hashed implementations.
 
    Present your time-to-add performance results between those two
-   implementations, and how discuss they agree or disagree with 
+   implementations, and discuss how they agree or disagree with 
    those predictions.
 
 3. Disucss the performance differences you would expect to see
    between the Open and Bucket hashing implementations.
 
    Present your time-to-add performance results between those two
-   implementations, and how discuss they agree or disagree with 
+   implementations, and discuss how they agree or disagree with 
    those predictions.
 
 ### Extra Credit
 
 4. Explain the importance of the `OVER_ALLOCATE` macro in the `open_hash.c`
    implementation, do additional runs with larger and smaller margins, and
-   show how the resulting data supports your analysis.
+   discuss how the resulting data supports your analysis.
 
 5. Explain the importance of the `BUCKET_SIZE` parameter in the `bucket_hash.c`
    implementation, suggest a quantitative relationship between that parameter
    and the time-to-add performance, do additional runs with larger and smaller
-   values, and show how the resulting data supports your analysis.
+   values, and discuss how the resulting data supports your analysis.
 
 ## Grading
 
@@ -169,10 +169,10 @@ Your submission will be graded based on the following criteria:
 
 | Criterion                                   | Points |
 | :------------------------------------------ | :----- |
-| generated results                           | 2      |
+| generated results                           | 3      |
 | analysis: sorted/unsorted linear            | 2      |
 | analysis: linear vs hashed                  | 3      |
-| analysis: open vs bucket hashing            | 3      |
+| analysis: open vs bucket hashing            | 2      |
 |                                             |        |
 | **Extra Credit**                            |        |
 | open hash over-allocation                   | 2      |
