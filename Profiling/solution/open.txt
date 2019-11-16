@@ -1,0 +1,16 @@
+Exercising open hash table word-list implementation
+Generating random words ... 2048
+Generating references   ... 100000000
+Counting references     ... 100000000
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ns/call  ns/call  name    
+ 64.91      1.97     1.97 100002048    19.69    25.15  open_find_entry
+ 18.00      2.52     0.55 100002048     5.46     5.46  hash_word
+ 10.07      2.82     0.31 100000000     3.06    28.21  open_add
+  6.61      3.02     0.20                             main
+  0.66      3.04     0.02                             sorted_list
+  0.00      3.04     0.00     2048     0.00    25.15  open_refs
+  0.00      3.04     0.00        1     0.00     0.00  open_hash
