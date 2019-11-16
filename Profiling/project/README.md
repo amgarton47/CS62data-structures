@@ -131,17 +131,26 @@ to a departmental Linix Virtual machine where this work can be done.
 
 ### Analysis
 
-1. Describe (a) the time-to-add performance results between the sorted and 
-   un-sorted linear-list implementations and (b) suggest what in the 
-   implementations would explain those differences.
+1. Discuss the performance differences you would expect to see
+   between the sorted and un-sorted linear list implementations.
 
-2. Describe (a) the time-to-add performance results between the linear-list
-   and hashed implementations and (b) suggest what in the implementations
-   would explain those differences.
+   Present your time-to-add performance results between those two
+   implementations, and how discuss they agree or disagree with 
+   those predictions.
 
-3. Describe (a) the time-to-add performance results between the Open and
-   Bucket hahing implementations and (b) suggest what in the implementations
-   would explain those differences.
+2. Discuss the performance differences you would expect to see
+   between the linear-list and hashed implementations.
+
+   Present your time-to-add performance results between those two
+   implementations, and how discuss they agree or disagree with 
+   those predictions.
+
+3. Disucss the performance differences you would expect to see
+   between the Open and Bucket hashing implementations.
+
+   Present your time-to-add performance results between those two
+   implementations, and how discuss they agree or disagree with 
+   those predictions.
 
 ### Extra Credit
 
