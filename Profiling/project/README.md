@@ -9,8 +9,9 @@
 ## Key Terms and Concepts
 
 * Open Hashing with Linear Probing - All entries are stored in a single array, but the the location of a 
-  particular entry within that array is not fixed by its hash value.  Rather the hash value is used to
-  compute a starting index, and the entry will be placed in the first unused slot after that index.
+  particular entry within that array is not fixed by its hash value (the location is *open*).
+  Rather the hash value is used to compute a starting index, and the entry will be placed
+  (by *linear probing*) in the first unused slot after that index.
   This has the potential to be very fast, but slows down as the array fills up, the number of conflicts
   increase, and the searches become longer.
 
@@ -154,10 +155,10 @@ to a departmental Linux Virtual machine where this work can be done.
       (with *make*, *gcc*, and *gprof* installed) all you should need to do is type
       two commands:
 
-      `
+      ```
       cd <your_repo_directory>
       make
-      `
+      ```
       
       If you want to test the program with other options, you will find all
       of the necessary commands in the `Makefile`.
