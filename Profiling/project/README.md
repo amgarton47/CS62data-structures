@@ -3,21 +3,21 @@
 ## Learning Goals
 
 * Gain experience with execution profiling as a performance management tool.
-* Use execution profiling to gain a deeper understanding of hashing lookup implementations.
+* Use execution profiling to gain a deeper understanding of hashing lookup implementations 
   and their performance under different patterns of data insertion.
 
 ## Key Terms and Concepts
 
 * Open Hashing with Linear Probing - All entries are stored in a single array, but the the location of a 
   particular entry within that array is not fixed by its hash value (the location is *open*).
-  Rather the hash value is used to compute a starting index, and the entry will be placed
+  Rather, the hash value is used to compute a starting index, and the entry will be placed
   (by *linear probing*) in the first unused slot after that index.
   This has the potential to be very fast, but slows down as the array fills up, the number of conflicts
   increase, and the searches become longer.
 
-* Bucket Hashing with Linked List Chaining - The name-space is divided into some number of *buckets*
+* Bucket Hashing with Linked List (Separate) Chaining - The name-space is divided into some number of *buckets*
   (chosen by taking a hash value modulo the number of buckets).  Each bucket contains a linear linked
-  list of the items that hashed into that bucket.  If the number of buckets is chosen to be a reasonable
+  list (chain) of the items that hashed into that bucket.  If the number of buckets is chosen to be a reasonable
   fraction of the total number of (expected) entries, the lists should be relatively short.
 
 * Hash Collisions - A situation where multiple keys hash to the same value, necessitating
@@ -25,12 +25,12 @@
 
 ## Introduction
 
-A program is running not running as quickly as we would like.  How can we improve it?
+A program is not running as quickly as we would like.  How can we improve it?
 Stop-watch type measurements can enable us to compute operations-per-second, but this
 does not tell us where the cycles are going.  As the designers and implementers, we
-may be aware of things that could have been done better ... but intuition is, at best,
+may be aware of things that could have been done better... but intuition is, at best,
 an unreliable tool for performance management.  That poorly written function may indeed
-be 100x slower than a better version might be, but if it is only very seldom called, 
+be 100x slower than a better version might be, but if it is only very seldomly called, 
 it doesn't matter how slow it is.  We need fine-grained data about which code is consuming
 what fraction of our total time.
 
@@ -40,7 +40,7 @@ but a pair of standard tools can often provide us with a great deal of insight:
 * _call counting_ - we can ask the compiler to add a little bit of extra code to
   each routine/method to increment a counter each time it is called.
 
-* _execution profiling_ - we can set a timer to go off regularly (e.g. every few 
+* _execution profiling_ - we can set a timer to go off regularly (e.g., every few 
   milliseconds), note the address at which the program was executing when it was
   interrupted, and increment a counter associated with that region of code.
 
@@ -63,7 +63,7 @@ greatest, and where improvement yield the greatest benefits.
 
 ## Description
 
-In this lab, we will look at multiple implementations of a list for keeping track of references
+In this lab, we will look at multiple implementations of a symbol table for keeping track of references
 to strings.  Each known string will have an entry that contains the string, and the number of
 references.  The implementations we are supplying are:
 
@@ -77,32 +77,32 @@ references.  The implementations we are supplying are:
 
 The supplied `list_tester` program takes three command line parameters:
 
-   * a list implementation (linear, sorted, open bucket)
+   * a list implementation (linear, sorted, open, bucket)
    * (optional) the number of random words to create and use
    * (optional) the number of random word references to generate
 
 Execution profiling of Java software is both difficult and noisy due to the fact
 that Java is an interpreted language with run-time garbage collection.  To give you
 cleaner data, this test program and set of list implementations have been written in C, 
-which is similar enough to java that you should not have much trouble reading it.
+which is similar enough to Java that you should not have much trouble reading it.
 The compilation and execution should all be automated by the supplied `Makefile`.
 
 ### Files
 
 * Makefile - rules to:
 
-   * compile the test program and list implementations
-   * run the program to exercise each of the implementations
-   * process the raw profiling data into a per-implementation reports
+   * compile the test program and list implementations,
+   * run the program to exercise each of the implementations,
+   * process the raw profiling data into a per-implementation reports, and
    * create a combined report from the per-implementation reports
 
   If you type the command `make`, it will build everything.  If you only 
   want to rebuild a single report, you can specify what you want to build 
-  on the command line (e.g. `make bucket.txt`).
+  on the command line (e.g., `make bucket.txt`).
 
 * list_tester.c - this is the tester program. The `Makefile` causes it
   to be compiled with execution profiling and call counting enabled.
-  When run, it:
+  When you run it, it:
 
    1. generates a set of random words.
    2. makes the specified number of add_reference calls for randomly chosen words.
@@ -110,7 +110,7 @@ The compilation and execution should all be automated by the supplied `Makefile`
    4. writes out the profiling data (`gprof.out`)
 
 * words.c - implements functions to create a list of random words,
-  choose words from that list, and compute (reasonably well distributed)
+  choose words from that list, and compute (reasonably well-distributed)
   hash codes for those words.
 
 * word_list.h - this header file defines the *interface* for a word-list
@@ -124,7 +124,7 @@ The compilation and execution should all be automated by the supplied `Makefile`
   Each implementation has a constructor, an add method, and a references method.
 
   This is an example of how *objects* (with instance variables and methods)
-  were implemented in C before the advent of the (newer, object oriented)
+  were implemented in C before the advent of the (newer, object-oriented)
   C++ language.
 
  
@@ -163,13 +163,13 @@ to a departmental Linux Virtual machine where this work can be done.
       If you want to test the program with other options, you will find all
       of the necessary commands in the `Makefile`.
 
-   3. Analyize and understand the results.  (Note that for the Open Hashing implementation
+   3. Analyze and understand the results.  (Note that for the Open Hashing implementation
       the time to add a reference is the sum of the time for `open_add` and `open_find_entry`)
 
    4. Write up an analysis (to be submitted as an ASCII text file `analysis.txt`) in which
       you address the questions described below.
 
-   5. Commit and push back and updated repo, which is to include:
+   5. Commit and push back the updated repo, which is to include:
       
       * the raw reports you generated (`linear.txt`, `sorted.txt`,
         `open.txt` and `bucket.txt`)
