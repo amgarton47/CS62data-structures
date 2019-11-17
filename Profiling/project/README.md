@@ -80,25 +80,61 @@ The supplied `list_tester` program takes three command line parameters:
    * (optional) the number of random words to create and use
    * (optional) the number of random word references to generate
 
-This program has been built to enable execution profiling and call counting.
-When run, it:
+Execution profiling of Java software is both difficult and noisy due to the fact
+that Java is an interpreted language with run-time garbage collection.  To give you
+cleaner data, this test program and set of list implementations have been written in C, 
+which is similar enough to java that you should not have much trouble reading it.
+The compilation and execution should all be automated by the supplied `Makefile`.
+
+### Files
+
+* Makefile - rules to:
+
+   * compile the test program and list implementations
+   * run the program to exercise each of the implementations
+   * process the raw profiling data into a per-implementation reports
+   * create a combined report from the per-implementation reports
+
+  If you type the command `make`, it will build everything.  If you only 
+  want to rebuild a single report, you can specify what you want to build 
+  on the command line (e.g. `make bucket.txt`).
+
+* list_tester.c - this is the tester program. The `Makefile` causes it
+  to be compiled with execution profiling and call counting enabled.
+  When run, it:
 
    1. generates a set of random words.
    2. makes the specified number of add_reference calls for randomly chosen words.
    3. counts and reports the total number of references for all words.
    4. writes out the profiling data (`gprof.out`)
 
-The included `Makefile` has rules to:
+* words.c - implements functions to create a list of random words,
+  choose words from that list, and compute (reasonably well distributed)
+  hash codes for those words.
 
-   * compile the test program and list implementations
-   * run the program to exercise each of the implementations
-   * process the raw profiling data into a report
-   
-Execution profiling of Java software is both difficult and noisy due to the fact
-that Java is an interpreted language with run-time garbage collection.  To give you
-cleaner data, the test program and list implementations have been written in C, 
-which is similar enough to java that you should not have much trouble reading it.
-The compilation and execution should all be automated by the supplied `Makefile`.
+* word_list.h - this header file defines the *interface* for a word-list
+  manager.  This data structure contains::
+
+     * a string to identify the chosen implementation
+     * pointers to methods to add a new reference or return the number of references
+     * a `void *` (could be anything) pointer to the underlying data 
+       structures in the underlying implementation.
+
+  Each implementation has a constructor, an add method, and a references method.
+
+  This is an example of how *objects* (with instance variables and methods)
+  were implemented in C before the advent of the (newer, object oriented)
+  C++ language.
+
+ 
+* linear_list.c - the implementation of word-lists as a simple,
+  un-sorted, singly-linked list.
+* sorted_list.c - the implementation of word-lists as a sorted
+  singly-linked list.
+* open_hash.c - the implementation of word-lists as entries in
+  a fixed-sized array, managed as an *open* hash table.
+* bucket_hash.c - the implementation of word-lists as a collection
+  of un-sorted, singly-linked lists.
 
 You will notice that the `Makefile` runs the hashed implementations for many 
 more updates than the linear-list implementations.  The hashed implementations
@@ -114,7 +150,17 @@ to a departmental Linux Virtual machine where this work can be done.
    1. Read and understand the four list implementations: `linear_list.c`, `sorted_list.c`,
       `open_hash.c` and `bucket_hash.c`.
 
-   2. Build the software, run the tests, and generate the reports.  
+   2. Build the software, run the tests, and generate the reports.  On a *ix system
+      (with *make*, *gcc*, and *gprof* installed) all you should need to do is type
+      two commands:
+
+      `
+      cd <your_repo_directory>
+      make
+      `
+      
+      If you want to test the program with other options, you will find all
+      of the necessary commands in the `Makefile`.
 
    3. Analyize and understand the results.  (Note that for the Open Hashing implementation
       the time to add a reference is the sum of the time for `open_add` and `open_find_entry`)
