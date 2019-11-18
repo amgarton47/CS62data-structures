@@ -164,8 +164,11 @@ to a departmental Linux Virtual machine where this work can be done.
       If you want to test the program with other options, you will find all
       of the necessary commands in the `Makefile`.
 
-   3. Analyze and understand the results.  (Note that for the Open Hashing implementation
-      the time to add a reference is the sum of the time for `open_add` and `open_find_entry`)
+   3. Analyze and understand the results.  Note that:
+      * for the Open Hashing implementation, the time to add a reference is the sum of the time 
+        for `open_add`, `hash_word` and `open_find_entry`
+      * for the Bucket hasing implementation, the time to add a reference is the sum of the time
+        for `bucket_add` and `hash_word`
 
    4. Write up an analysis (to be submitted as an ASCII text file `analysis.txt`) in which
       you address the questions described below.
