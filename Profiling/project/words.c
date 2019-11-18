@@ -73,7 +73,7 @@ unsigned long hash_word(unsigned char *word) {
         unsigned long hash = 5381;
         int c;
 
-        while(c = *word++)
+        while((c = *word++))
                 hash = ((hash << 5) + hash) + c;
 
         return hash;
