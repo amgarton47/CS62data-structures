@@ -4,6 +4,8 @@
  */
 package wordsGeneric;
 
+import java.util.Objects;
+
 public class StringPair {
     // two items in pair
     private final String first;
@@ -37,17 +39,20 @@ public class StringPair {
      * @param other  another pair to be compared with this one
      * @return true iff both items in this pair are equal to the corresponding items in other
      */
-    public boolean equals(Object other) {
-        if (other instanceof StringPair) {
-        	StringPair otherPair = (StringPair)other;
-            return this.first.equals(otherPair.getFirst()) && this.second.equals(otherPair.getSecond());
-        } else {
-            return false;
-        }
+    public boolean equals(Object y) {
+    	if(y==this)
+    		return true;
+    	if(y == null)
+    		return false;
+    	if(y.getClass()!= this.getClass())
+    		return false;
+    	StringPair other = (StringPair) y;
+        return this.first.equals(other.getFirst()) && this.second.equals(other.getSecond());
+        
     }
     
     public int hashCode() {
-    	return this.first.hashCode()^this.second.hashCode();
+    	return Objects.hash(first, second);    
     }
     
     /**
