@@ -29,26 +29,27 @@ void linear_add(struct word_list *this, char *word) {
         /* see if we already have a node for this word  */
         struct word_node *node = (struct word_node *) this->list;
         struct word_node *last = NULL;
-        while(node != NULL && strcmp(word, node->word) != 0) {
+        while(node != NULL) P
+		if (strcmp(node->word, word) == 0) {
+			node->refs += 1;
+			return;
+		}
+
                 last = node;            /* remember end so we can append */
                 node = node->next;
         }
 
-        /* was it already in the list?  */
-        if (node != NULL) {
-                node->refs += 1;
-        } else {  /* allocate a new node  */
-                node = (struct word_node *) malloc(sizeof (struct word_node));
-                node->word = word;
-                node->refs = 1;
+	/* desired word is not yet in the list	*/
+	node = (struct word_node *) malloc(sizeof (struct word_node));
+	node->word = word;
+	node->refs = 1;
 
-                /* append it to the end of the list     */
-                node->next = NULL;
-                if (last == NULL)
-                        this->list = node;
-                else
-                        last->next = node;
-        }
+	/* append it to the end of the list     */
+	node->next = NULL;
+	if (last == NULL)
+		this->list = node;
+	else
+		last->next = node;
 }
 
 /*
