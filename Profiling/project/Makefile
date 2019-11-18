@@ -14,7 +14,7 @@
 
 
 # enable call-counting and execution profiling for all modules
-CC=gcc -pg
+CC=gcc -std=gnu99 -pg
 
 # brief output, no call-graphs, suppress reporting for make/choose_word
 GP_OPTS=-b -Q -Pmake_words -Pchoose_word
@@ -31,6 +31,8 @@ report.txt: $(REPORTS)
 	cat open.txt >> $@
 	@echo "\n======================================================\n" >> $@
 	cat bucket.txt >> $@
+	@echo
+	@echo Combined report is in $@
 
 # per-implementation reports
 linear.txt: list_tester
@@ -38,15 +40,15 @@ linear.txt: list_tester
 	gprof $(GP_OPTS) list_tester >> $@
 
 sorted.txt: list_tester
-	./list_tester sorted 2048 1000000 >> $@
+	./list_tester sorted 2048 1000000 > $@
 	gprof $(GP_OPTS) list_tester >> $@
 
 open.txt: list_tester
-	./list_tester open 2048 100000000 >> $@
+	./list_tester open 2048 100000000 > $@
 	gprof $(GP_OPTS) list_tester >> $@
 
 bucket.txt: list_tester
-	./list_tester bucket 2048 100000000 >> $@
+	./list_tester bucket 2048 100000000 > $@
 	gprof $(GP_OPTS) list_tester >> $@
 
 # this is the test program to be profiled
