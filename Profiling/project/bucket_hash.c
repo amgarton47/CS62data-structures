@@ -8,6 +8,7 @@
  */
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 #include "word_list.h"
 
 #define BUCKET_SIZE     15      /* target words per bucket      */

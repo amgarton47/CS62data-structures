@@ -8,6 +8,7 @@
  */
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 #include "word_list.h"
 
 /* 5% over-allocation should be safe   */
