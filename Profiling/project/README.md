@@ -144,8 +144,9 @@ a reasonable number of execution profiling samples.
 
 ### Assignment
 
-You must do this work on a Linux or MacOS system.  You will not be able to do it
-on a Windows system.  If you do not have access to such a system, you can *ssh*
+You must do this work on a Linux system.  You will not be able to do it
+on a Windows system (or newer MacOS system).
+If you do not have access to such a system, you can *ssh*
 to a departmental Linux Virtual machine where this work can be done.
 
    1. Read and understand the four list implementations: `linear_list.c`, `sorted_list.c`,
