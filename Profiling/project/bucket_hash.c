@@ -40,7 +40,7 @@ void bucket_add(struct word_list *this, char *word) {
         struct buckets *buckets = (struct buckets *) this->list;
 
         /* hash to find the right bucket        */
-        unsigned long index = hash_word(word) % buckets->num_buckets;
+        unsigned long index = hash_word((unsigned char *) word) % buckets->num_buckets;
 
         /* search that hash chain for a match   */
         struct word_node *last = NULL;
@@ -76,7 +76,7 @@ long bucket_refs(struct word_list *this, char *word) {
         struct buckets *buckets = (struct buckets *) this->list;
 
         /* hash to find the right bucket        */
-        unsigned long index = hash_word(word) % buckets->num_buckets;
+        unsigned long index = hash_word((unsigned char *) word) % buckets->num_buckets;
 
         /* search that hash chain for a match   */
         for(struct word_node *node = buckets->buckets[index]; node != NULL; node = node->next)

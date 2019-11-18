@@ -38,7 +38,7 @@ extern unsigned long hash_word(unsigned char *word);
  * @return (stuct word_entry *) allocated entry or free slot
  */
 struct word_entry *open_find_entry(struct open_hash_table *table, char *name) {
-        unsigned long index = hash_word(name) % table->num_entries;
+        unsigned long index = hash_word((unsigned char *) name) % table->num_entries;
         unsigned long start = index;
 
         do {    /* search til we find a match or a hole         */
