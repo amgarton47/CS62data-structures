@@ -41,11 +41,13 @@ void bucket_add(struct word_list *this, char *word) {
         struct buckets *buckets = (struct buckets *) this->list;
 
         /* hash to find the right bucket        */
-        unsigned long index = hash_word((unsigned char *) word) % buckets->num_buckets;
+        unsigned long index = hash_word((unsigned char *) word)
+			      % buckets->num_buckets;
 
         /* search that hash chain for a match   */
         struct word_node *last = NULL;
-        for(struct word_node *node = buckets->buckets[index]; node != NULL; node = node->next) {
+        for(struct word_node *node = buckets->buckets[index]; 
+	    node != NULL; node = node->next) {
                 if (strcmp(node->word, word) == 0) {
                         node->refs += 1;
                         return;
@@ -103,7 +105,8 @@ struct word_list *bucket_hash(int max_size) {
         int num_buckets = max_size / BUCKET_SIZE;
 
         /* allocate and initialize the open hash table          */
-        int size = sizeof (struct buckets) + (num_buckets * sizeof (struct word_node *));
+        int size = sizeof (struct buckets) + 
+		   (num_buckets * sizeof (struct word_node *));
         struct buckets *bucket_list = malloc(size);
         bzero(bucket_list, size);
         bucket_list->num_buckets = num_buckets;

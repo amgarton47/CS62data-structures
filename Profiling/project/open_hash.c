@@ -113,7 +113,8 @@ struct word_list *open_hash(int max_size) {
         int entries = OVER_ALLOCATE(max_size);
 
         /* allocate and initialize the open hash table          */
-        int size = sizeof (struct open_hash_table) + (entries * sizeof (struct word_entry));
+        int size = sizeof (struct open_hash_table) + 
+		   (entries * sizeof (struct word_entry));
         struct open_hash_table *table = malloc(size);
         bzero(table, size);
         table->num_entries = entries;
