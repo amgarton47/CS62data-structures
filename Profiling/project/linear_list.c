@@ -29,7 +29,7 @@ void linear_add(struct word_list *this, char *word) {
         /* see if we already have a node for this word  */
         struct word_node *node = (struct word_node *) this->list;
         struct word_node *last = NULL;
-        while(node != NULL) P
+        while(node != NULL) {
 		if (strcmp(node->word, word) == 0) {
 			node->refs += 1;
 			return;
