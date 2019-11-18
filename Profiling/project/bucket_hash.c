@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
+#include <assert.h>
 #include "word_list.h"
 
 #define BUCKET_SIZE     15      /* target words per bucket      */
@@ -25,11 +26,27 @@ struct word_node {
 };
 
 struct buckets {
-        int     num_buckets;
-        struct word_node *buckets[];
+        int     num_buckets;		/* number of buckets	*/
+	int	num_free;		/* size of free_list	*/
+	struct word_node *free_list;	/* free word_nodes	*/
+        struct word_node *buckets[];	/* bucket headers	*/
 };
 
 extern unsigned long hash_word(unsigned char *word);
+
+/*
+ * word_node allocator
+ *	to eliminate malloc-time from add calls
+ * @param (struct word_list *) our word_list descriptor
+ * @return address of next free word_node)
+ */
+struct word_node *hash_allocate(struct word_list *this) {
+        struct buckets *buckets = (struct buckets *) this->list;
+
+	assert(buckets->num_free > 0);
+	buckets->num_free -= 1;
+	return(buckets->free_list++);
+ }
 
 /*
  * find and incrment, or initialize new word_entry
@@ -56,7 +73,7 @@ void bucket_add(struct word_list *this, char *word) {
         }
 
         /* allocate a new node                  */
-        struct word_node *node = (struct word_node *) malloc(sizeof (struct word_node));
+        struct word_node *node = hash_allocate(this);
         node->word = word;
         node->refs = 1;
         node->next = NULL;
@@ -111,6 +128,11 @@ struct word_list *bucket_hash(int max_size) {
         bzero(bucket_list, size);
         bucket_list->num_buckets = num_buckets;
         my_list->list = bucket_list;
+
+	/* allocate and initialize the free node list */
+	bucket_list->num_free = max_size;
+	size = max_size * sizeof (struct word_node);
+	bucket_list->free_list = (struct word_node *) malloc(size);
 
         return(my_list);
 }

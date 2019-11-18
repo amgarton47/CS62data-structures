@@ -5,9 +5,11 @@
  *      linear_list(int)                constructor
  *      linear_add(WordList *, char *)  add reference to a word
  *      linear_refs(WordList *, char *) return # refs to a word
+ *	linear_allocate(wordList *)	allocate a new word_node
  */
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 #include "word_list.h"
 
 /*
@@ -19,6 +21,26 @@ struct word_node {
         struct word_node *next;         /* next node in the list         */
 };
 
+struct node_list {
+	struct word_node *first;	/* first word_node in list	*/
+	int num_free;			/* number of unused word_nodes	*/
+	struct word_node *free_list;	/* yet unused word_nodes	*/
+};
+
+/*
+ * word_node allocator
+ *	to eliminate malloc-time from add calls
+ * @param (struct word_list *) our word_list descriptor
+ * @return address of next free word_node)
+ */
+struct word_node *linear_allocate(struct word_list *this) {
+        struct node_list *nodeList = (struct node_list *) this->list;
+
+	assert(nodeList->num_free > 0);
+	nodeList->num_free -= 1;
+	return(nodeList->free_list++);
+}
+
 /*
  * allocate a new word_node and put it onto the front of the list
  *
@@ -27,7 +49,8 @@ struct word_node {
  */
 void linear_add(struct word_list *this, char *word) {
         /* see if we already have a node for this word  */
-        struct word_node *node = (struct word_node *) this->list;
+        struct node_list *nodeList = (struct node_list *) this->list;
+        struct word_node *node = nodeList->first;
         struct word_node *last = NULL;
         while(node != NULL) {
 		if (strcmp(node->word, word) == 0) {
@@ -40,14 +63,14 @@ void linear_add(struct word_list *this, char *word) {
         }
 
 	/* desired word is not yet in the list	*/
-	node = (struct word_node *) malloc(sizeof (struct word_node));
+	node = linear_allocate(this);
 	node->word = word;
 	node->refs = 1;
 
 	/* append it to the end of the list     */
 	node->next = NULL;
-	if (last == NULL)
-		this->list = node;
+	if (last == NULL)	/* list is empty	*/
+		nodeList->first = node;
 	else
 		last->next = node;
 }
@@ -59,7 +82,8 @@ void linear_add(struct word_list *this, char *word) {
  * @param (char *) word
  */
 long linear_refs(struct word_list *this, char *word) {
-        struct word_node *node = (struct word_node *) this->list;
+        struct node_list *nodeList = (struct node_list *) this->list;
+        struct word_node *node = nodeList->first;
         while(node != NULL) {
                 if (strcmp(node->word, word) == 0)
                         return node->refs;
@@ -80,7 +104,14 @@ struct word_list *linear_list(int max_size) {
         my_list->type = "unsorted linked list";
         my_list->add_method = linear_add;
         my_list->ref_method = linear_refs;
-        my_list->list = 0;      /* list starts out empty        */
 
+	/* allocate and initialize the free node list */
+	struct node_list *nodeList = (struct node_list *) malloc(sizeof(struct node_list));
+	nodeList->first = NULL;
+	nodeList->num_free = max_size;
+	int size = max_size * sizeof (struct word_node);
+	nodeList->free_list = (struct word_node *) malloc(size);
+
+	my_list->list = nodeList;
         return(my_list);
 }
