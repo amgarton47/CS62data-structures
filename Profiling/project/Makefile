@@ -15,11 +15,13 @@
 OS := $(shell uname)
 ifeq ($(OS),Darwin)
 	CC=clang -std=gnu99 -Wall -O2 -fprofile-instr-generate
+	RAWDATA=default.profraw
 else
 	# all warnings, call-counting and execution profiling for all modules
 	CC=gcc -std=gnu99 -pg -Wall
 	# brief output, no call-graphs, suppress reporting for make/choose_word
 	GP_OPTS=-b -Q -Pmake_words -Pchoose_word
+	RAWDATA=gmon.out 
 endif
 
 REPORTS=linear.txt sorted.txt open.txt bucket.txt
@@ -38,39 +40,43 @@ report.txt: $(REPORTS)
 	@echo Combined report is in $@
 
 # per-implementation reports
+ifeq ($(OS),Darwin)
+# Mac produces default.profraw, analyze with llvm-profdata
 linear.txt: list_tester
 	./list_tester linear 2048 1000000 > $@
-ifeq ($(OS),Darwin)
-	llvm-profdata merge *.profaw -output=linear-profdata
-	llvm-profdata show -all-functions lineard-profdata
-else
-	gprof $(GP_OPTS) list_tester >> $@
-endif
+	echo WIP:llvm-profdata merge default.profraw -output=linear-profdata
+	echo WIP:llvm-profdata show -all-functions linear-profdata >> $@
 
 sorted.txt: list_tester
 	./list_tester sorted 2048 1000000 > $@
-ifeq ($(OS),Darwin)
-	llvm-profdata merge *.profaw -output=sorted-profdata
-	llvm-profdata show -all-functions sorted-profdata
-else
-	gprof $(GP_OPTS) list_tester >> $@
-endif
+	echo WIP:llvm-profdata merge default.profraw -output=sorted-profdata
+	echo WIP:llvm-profdata show -all-functions sorted-profdata >> $@
 
 open.txt: list_tester
 	./list_tester open 2048 100000000 > $@
-ifeq ($(OS),Darwin)
-	llvm-profdata merge *.profaw -output=open-profdata
-	llvm-profdata show -all-functions opend-profdata
-else
-	gprof $(GP_OPTS) list_tester >> $@
-endif
+	echo WIP:llvm-profdata merge default.profraw -output=open-profdata
+	echo WIP:llvm-profdata show -all-functions open-profdata >> $@
 
 bucket.txt: list_tester
 	./list_tester bucket 2048 100000000 > $@
-ifeq ($(OS),Darwin)
-	llvm-profdata merge *.profaw -output=bucket-profdata
-	llvm-profdata show -all-functions bucketd-profdata
+	echo WIP:llvm-profdata merge default.profraw -output=bucket-profdata
+	echo WIP:llvm-profdata show -all-functions bucket-profdata >> $@
 else
+# Linux produces gmon.out, analyze with gprof
+linear.txt: list_tester
+	./list_tester linear 2048 1000000 > $@
+	gprof $(GP_OPTS) list_tester >> $@
+
+sorted.txt: list_tester
+	./list_tester sorted 2048 1000000 > $@
+	gprof $(GP_OPTS) list_tester >> $@
+
+open.txt: list_tester
+	./list_tester open 2048 100000000 > $@
+	gprof $(GP_OPTS) list_tester >> $@
+
+bucket.txt: list_tester
+	./list_tester bucket 2048 100000000 > $@
 	gprof $(GP_OPTS) list_tester >> $@
 endif
 
@@ -82,7 +88,7 @@ $(OBJS): word_list.h
 
 # delete all intermediate products
 clean:
-	rm -f $(OBJS) gmon.out
+	rm -f $(OBJS) $(RAWDATA)
 
 # restore working directory to its original state
 clobber: clean
