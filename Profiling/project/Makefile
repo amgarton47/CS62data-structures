@@ -44,23 +44,19 @@ ifeq ($(OS),Darwin)
 # Mac produces default.profraw, analyze with llvm-profdata
 linear.txt: list_tester
 	./list_tester linear 2048 1000000 > $@
-	echo WIP:llvm-profdata merge default.profraw -output=linear-profdata
-	echo WIP:llvm-profdata show -all-functions linear-profdata >> $@
+	xcrun llvm-profdata show -function=linear default.profraw | grep -v "Hash:" >> $@
 
 sorted.txt: list_tester
 	./list_tester sorted 2048 1000000 > $@
-	echo WIP:llvm-profdata merge default.profraw -output=sorted-profdata
-	echo WIP:llvm-profdata show -all-functions sorted-profdata >> $@
+	xcrun llvm-profdata show -function=sorted default.profraw | grep -v "Hash:" >> $@
 
 open.txt: list_tester
 	./list_tester open 2048 100000000 > $@
-	echo WIP:llvm-profdata merge default.profraw -output=open-profdata
-	echo WIP:llvm-profdata show -all-functions open-profdata >> $@
+	xcrun llvm-profdata show -function=open default.profraw | grep -v "Hash:" >> $@
 
 bucket.txt: list_tester
 	./list_tester bucket 2048 100000000 > $@
-	echo WIP:llvm-profdata merge default.profraw -output=bucket-profdata
-	echo WIP:llvm-profdata show -all-functions bucket-profdata >> $@
+	xcrun llvm-profdata show -function=bucket default.profraw | grep -v "Hash:" >> $@
 else
 # Linux produces gmon.out, analyze with gprof
 linear.txt: list_tester
