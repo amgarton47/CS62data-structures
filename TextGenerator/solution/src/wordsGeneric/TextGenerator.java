@@ -19,20 +19,20 @@ import javax.swing.JOptionPane;
 public class TextGenerator {
 
 	// map of letter pairs and their associated frequency lists
-	protected HashMap<StringPair, FreqList> trigrams;
+	protected HashMap<StringPair, FreqList> letPairList;
 
 	// Random number generator object
 	Random rng;
 
 	// Default constructor
 	public TextGenerator() {
-		trigrams = new HashMap<StringPair, FreqList>();
+		letPairList = new HashMap<StringPair, FreqList>();
 		rng = new Random();
 	}
 
 	public StringPair randomPair() {
-		int randomNumber = rng.nextInt(trigrams.size());
-		Object[] entries = trigrams.entrySet().toArray();
+		int randomNumber = rng.nextInt(letPairList.size());
+		Object[] entries = letPairList.entrySet().toArray();
 		Map.Entry randomEntry = (Map.Entry) entries[randomNumber];
 		return (StringPair) randomEntry.getKey();
 	}
@@ -41,15 +41,15 @@ public class TextGenerator {
 	 * Records the trigram <first, second, third>
 	 */
 	public void enter(String first, String second, String third) {
-		FreqList freqList = trigrams.get(new StringPair(first, second));
+		FreqList freqList = letPairList.get(new StringPair(first, second));
 		if (freqList == null) {
 			// Add the pair of words (along with a new frequency list containing
 			// the third word) to the list of trigrams
 			freqList = new FreqList();
-			freqList.insert(third);
-			trigrams.put(new StringPair(first, second), freqList);
+			freqList.add(third);
+			letPairList.put(new StringPair(first, second), freqList);
 		} else {
-			freqList.insert(third);
+			freqList.add(third);
 		}
 	}
 
@@ -64,7 +64,7 @@ public class TextGenerator {
 	 */
 	public String getNextWord(String first, String second) {
 		StringPair newPair = new StringPair(first, second);
-		FreqList freqList = trigrams.get(newPair);
+		FreqList freqList = letPairList.get(newPair);
 		String returnedWord = "";
 		
 		if (freqList != null) {
@@ -120,7 +120,7 @@ public class TextGenerator {
 			first = origFirst;
 			second = origSecond;
 			String newText = "" + origFirst + " " + origSecond;
-			for (int wordNo = 2; wordNo < 200; wordNo++) {
+			for (int wordNo = 2; wordNo < 400; wordNo++) {
 				String third = table.getNextWord(first, second);
 				newText = newText + " " + third;
 				if (wordNo % 20 == 0) {
@@ -129,7 +129,7 @@ public class TextGenerator {
 				first = second;
 				second = third;
 			}
-			System.out.println(table.trigrams);
+			System.out.println(table.letPairList);
 			System.out.println("Generated data:\n" + newText);
 
 		} else {

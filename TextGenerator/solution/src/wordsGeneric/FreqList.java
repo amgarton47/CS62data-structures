@@ -28,7 +28,7 @@ public class FreqList {
 	 * 
 	 * @param word
 	 */
-	public void insert(String word) {
+	public void add(String word) {
 
 		// Determine if any entry in flist contains the key word
 		Integer value = flist.get(word);
@@ -96,11 +96,11 @@ public class FreqList {
 	// static method to test the class
 	public static void main(String args[]) {
 		FreqList list = new FreqList();
-		list.insert("cow");
-		list.insert("apple");
-		list.insert("cow");
-		list.insert("banana");
-		list.insert("dog");
+		list.add("cow");
+		list.add("apple");
+		list.add("cow");
+		list.add("banana");
+		list.add("dog");
 		System.out.println(list);
 		
 		Random rand = new Random();

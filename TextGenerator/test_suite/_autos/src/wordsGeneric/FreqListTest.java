@@ -1,12 +1,18 @@
 package wordsGeneric;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
 
 /**
  * @author Sean Zhu and Peter Cowal
  * @version: 02/06/16
+ * @author Alexandra Papoutsaki
+ * @version: 11/19/19 
  *
  */
 public class FreqListTest {
@@ -17,7 +23,8 @@ public class FreqListTest {
 		list.add("cow");
 		String currentStr = list.get(0.5);
 		String expectedStr = "cow";
-		assertEquals("Adding one element", expectedStr, currentStr);
+		assertEquals(expectedStr, currentStr);
+		assertTrue(list.flist.get("cow")==1);
 	}
 	
 	@Test
@@ -29,8 +36,11 @@ public class FreqListTest {
 		for (double i = 0.3; i < 1.0; i += 0.5) {
 			currentStr += list.get(i) + " ";
 		}
-		String expectedStr = "cow apple ";
-		assertEquals("Adding two elements", expectedStr, currentStr);
+		List<String> validStrings = Arrays.asList("apple cow ", "cow apple ");
+		assertTrue(validStrings.contains(currentStr));
+		assertTrue(list.flist.get("cow")==1);
+		assertTrue(list.flist.get("apple")==1);
+
 	}
 	
 	@Test
@@ -43,8 +53,11 @@ public class FreqListTest {
 		for (double i = 0.3; i < 1.0; i += 0.3) {
 			currentStr += list.get(i) + " ";
 		}
-		String expectedStr = "cow cow apple ";
-		assertEquals("Adding duplicated elements", expectedStr, currentStr);
+		List<String> validStrings = Arrays.asList("apple cow cow ", "cow cow apple ");
+		assertTrue(validStrings.contains(currentStr));
+		assertTrue(list.flist.get("cow")==2);
+		assertTrue(list.flist.get("apple")==1);
+
 	}
 	
 	@Test
@@ -64,8 +77,15 @@ public class FreqListTest {
 		for (double i = 0.05; i < 1.0; i += 0.1) {
 			currentStr += list.get(i) + " ";
 		}
-		String expectedStr = "cow cow cow cow apple banana milk milk egg egg ";
-		assertEquals("Adding many elements", expectedStr, currentStr);
+		List<String> validStrings = Arrays.asList("cow cow cow cow apple banana milk milk egg egg", "banana apple egg egg milk milk cow cow cow cow ");
+		assertTrue(validStrings.contains(currentStr));
+		assertTrue(list.flist.get("cow")==4);
+		assertTrue(list.flist.get("apple")==1);
+		assertTrue(list.flist.get("banana")==1);
+		assertTrue(list.flist.get("milk")==2);
+		assertTrue(list.flist.get("egg")==2);
+
+
 	}
 	
 	@Test
@@ -73,7 +93,8 @@ public class FreqListTest {
 		FreqList list = new FreqList();
 		String currentStr = list.get(0.5);
 		String expectedStr = "";
-		assertEquals("Getting an element from an empty FreqList", expectedStr, currentStr);
+		assertEquals(expectedStr, currentStr);
+		assertTrue(list.flist.size()==0);
 	}
 	
 	@Test
