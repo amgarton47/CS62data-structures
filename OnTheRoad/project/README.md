@@ -1,10 +1,4 @@
-# Assignment 11 - Last Stop
-
-## Important Dates
-
-* Release Date: April 30, 2019
-* Due Date: May 7, 2019
-
+# Assignment 09 - Maps
 
 ## Objectives
 
@@ -36,9 +30,6 @@ actually one that's familiar to us in this course. For this project, you will wr
 important piece of such a system: given a map of streets and freeways, along with a snapshot of the current
 traffic between points on the map, your program will be capable of finding the shortest distance or fastest
 route to get from one location on the map to another.
-
-You are welcome to work with a partner, but it must be someone that you have not worked with on an
-assignment earlier in this semester.
 
 ## Our view of a street map
 
@@ -132,7 +123,7 @@ should end.
 2. Determines, for a sequence of trip requests listed in the input, shortest distances or shortest times
 between pairs of locations.
 
-Check out the sample input, which you'll find in the data directory in your project directory. A description
+Check out the sample input, which you'll find in the `data` directory in your project directory. A description
 of its format follows.
 
 The input is separated into three sections: the locations, the road segments connecting them, and the
@@ -179,15 +170,16 @@ vertices, different configurations of edges, different names, different distance
 The code to read in these values is provided in the class `FileParser`. As well as the constructor, this
 class provides methods `getVertices`, `getSegments`, and `getTrips`. There is also the method `makeGraph`:
 
-    public Graph<String, Double> makeGraph(boolean isDistance)
+    public EdgeWeightedDigraph makeGraph(boolean isDistance) {
 
-that returns a graph. If `isDistance` is true, the it should return a graph in which the edges represent
+
+that returns a weighted digraph. If `isDistance` is true, the it should return a graph in which the edges represent
 distances between location, while if it is false, the edges represent times.
 
 ## Implementing your program
 
-Use Bailey's `GraphListDirected` class to represent your directed graphs. (Why does it make more sense to use
-an adjacency list implementation than an matrix-based one for this particular problem?)
+Use the `EdgeWeightedDigraph` class to represent your directed graphs. (Why does it make more sense to use
+an adjacency list implementation than an matrix-based one for this particular problem?). Make sure you read its code carefully.
 
 The problem we need to solve, that of finding the fastest or shortest trip along a network of roads, is
 not an uncommon one in computing. In fact, it's so common that it's already been solved abstractly. Our
@@ -196,16 +188,14 @@ one particular vertex (a single source), we'll be finding the shortest path to a
 edges have a positive weight (in our case, distance or speed, neither of which will ever be negative or zero)
 associated with them. We'll use a well-known algorithm called Dijkstra's Shortest-Path Algorithm to solve
 this problem. You will want to use the version of Dijkstra Algorithm described in class, as it is the simplest
-to implement and often the fastest. You will need a priority queue to implement Dijkstra Algorithm. You
-should use the `PriorityQueue` class that is part of the `java.util` package (and is based on heaps).
+to implement and often the fastest. You will need a priority queue to implement Dijkstra Algorithm. You will be needing a min-priority queue and we have provided such a class, `IndexMinPQ` for your convenience.
 
 Depending on the request, you may be solving a “shortest distance” problem or a “shortest time” problem.
-You can decide whether you want to set up two separate graphs – one for distance and one for time – or just
-use a single graph (I used two separate graphs for simplicity). Whichever way you go, note that the input
+For that, we will build two separate graphs – one for distance and one for time. Note that the input
 gives speed data not time! Because you will be optimizing for time, you will need to calculate the time (as
 distance divided by speed) in order to use that as the edge cost.
 
-You have been provided with classes `FileParser`, `Segment`, and `TripRequest`. The constructor for class
+You have been provided with classes `FileParser`, `Segment`, and `TripRequest` and helper data structure classes `Bag`, `DirectedEdge`, `EdgeWeightedDigraph`,  and `IndexMinPQ`.  The constructor for class
 `FileParser` converts all the data from parameter `fileName` into a list of vertices (represented as `String`s),
 a list of edges (represented as `Segment`s), and a list of trip requests (represented as `TripRequest`s). All
 methods of `FileParser` are written for you except for `makeGraph`, whose job is to create a directed graph
@@ -218,18 +208,12 @@ error in the initial graph input (e.g., having an edge with an endpoint that is 
 result in terminating the program. If a trip request has an error, just skip that request and move onto the
 next one.
 
-Most of your work will be in filling out the methods in class `GraphAlgorithms`. The methods `graphEdgeReversal`,
-`breadthFirstSearch`, `isStronglyConnected`, and `dijkstra` have been described in the text, lecture, or lab.
-The interfaces often look quite ugly (just the return type on dijkstra is very hard to read), but try not to
-let that get you down. For example with dijkstra, the algorithm should return a map that associates each
-vertex in the graph with a pair of values: (i) the cost from the start node to the given node, and (ii) the last
-edge in that shortest path to the given node. Given this you should be able to compute the actual shortest
-path.
+Most of your work will be in filling out the static methods in class `GraphAlgorithms`. The methods `graphEdgeReversal`,
+`breadthFirstSearch`, `isStronglyConnected`, and `dijkstra` have been described in lecture or text. For example with dijkstra, the algorithm should return a map that associates each
+vertex in the graph with an arraylist of edges in the shortest path.
 
 The last few algorithms in this class have not been discussed earlier. `getShortestPath` takes a start and
-end node and uses the data calculated by dijkstra to return a pair consisting of the total cost of the shortest
-path from start to end as well as the actual path from the start to the end. `printShortestPathDistance` prints this information out as described below. `printShortestPathTime` is similar but for time. It uses
-method `hoursToHMS` to format the times nicely (as specified below).
+end node and uses the data calculated by dijkstra to return an arraylist of the edges of the shortest path that connects the start and end node. `printShortestPath` prints this information out as described below. 
 
 We've provided you with class `testGraphs` in order to provide some simple tests for these algorithms. (Of
 course, you should provide more testing to make sure your code is correct. Think `JUnit`!) We will want you
@@ -308,12 +292,14 @@ You will be graded based on the following criteria:
 | Criterion                                | Points |
 | :--------------------------------------- | :----- |
 | Properly builds graph from input data    | 2      |
+| BFS                                      | 2      |
 | Strong connectivity test                 | 4      |
 | Dijkstra's algorithm                     | 4      |
 | Handles trip requests correctly          | 3      |
 | Creates correct output                   | 4      |
 | Appropriate comments + JavaDoc           | 2      |
-| Style and formatting                     | 2      |
+| Total                                    | 21     |  
 
 
-NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it. Make sure that if you work with a partner, both of your names are included in the `.json` file.
+
+NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it. 

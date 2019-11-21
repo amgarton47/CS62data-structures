@@ -3,7 +3,6 @@ package onTheRoad;
 /**
  * Class representing a segment of a journey.  To be used in finding
  * shortest paths.
- * @author Kim Bruce
  */
 public class Segment {
 	// index of start and end nodes

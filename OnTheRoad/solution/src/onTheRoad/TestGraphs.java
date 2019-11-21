@@ -1,18 +1,10 @@
 package onTheRoad;
 /**
  * Testing code for graph algorithms
- * @author Kim Bruce
- * @date 11/27/2017
  */
 
-import java.util.Iterator;
-
-import structure5.Association;
-import structure5.Edge;
-import structure5.Graph;
-import structure5.GraphListDirected;
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class TestGraphs {
 	/**
@@ -21,27 +13,27 @@ public class TestGraphs {
 	 */
 	public static void main(String[] args) {
 		// Build a test graph
-		Graph<String, Double> testGraph = new GraphListDirected<String, Double>();
-		testGraph.add("a");
-		testGraph.add("b");
-		testGraph.add("c");
-		testGraph.add("d");
-		testGraph.addEdge("a", "b", 1.0);
-		testGraph.addEdge("a", "c", 1.0);
-		testGraph.addEdge("b", "d", 3.0);
-		testGraph.addEdge("c", "d", 3.0);
+		EdgeWeightedDigraph testGraph = new EdgeWeightedDigraph(4);
+		List<String> vertices = new ArrayList<String>();
+		vertices.add("Irvine");
+		vertices.add("Costa Mesa");
+		vertices.add("Chino Hills");
+		vertices.add("Claremont");
+		testGraph.addEdge(new DirectedEdge(0, 1, 1.0));
+		testGraph.addEdge(new DirectedEdge(0, 2, 1.0));
+		testGraph.addEdge(new DirectedEdge(1, 3, 3.0));
+		testGraph.addEdge(new DirectedEdge(2, 3, 2.0));
+		System.out.println(testGraph);
 		// rev is graph with reversed edges
-		Graph<String, Double> rev = GraphAlgorithms.graphEdgeReversal(testGraph);
-		Iterator<Edge<String, Double>> it = rev.edges();
+		EdgeWeightedDigraph rev = GraphAlgorithms.graphEdgeReversal(testGraph);
 		// print out edges in reversed graph
-		while (it.hasNext()) {
-			Edge<String, Double> edge = it.next();
-			System.out.println(edge + " " + edge.label());
+		for (DirectedEdge edge: rev.edges()) {
+			System.out.println(edge + " " + edge.weight());
 		}
 		
 		// Run breadth-first search and see if everything visited
-		GraphAlgorithms.breadthFirstSearch(testGraph, "a");
-		for (String vertex : testGraph) {
+		GraphAlgorithms.breadthFirstSearch(testGraph, 0);
+		for (int vertex=0; vertex<testGraph.V(); vertex++) {
 			System.out.println(vertex + " is visited: "
 					+ testGraph.isVisited(vertex));
 		}
@@ -51,11 +43,8 @@ public class TestGraphs {
 		} else {
 			System.out.println("not strongly connected");
 		}
-		// Add another vertex and some edges
-		testGraph.addEdge("d", "a", 3.0);
-		testGraph.add("e");
-		testGraph.addEdge("d", "e", 3.0);
-		testGraph.addEdge("e", "b", 3.0);
+		// Add another vertex and an edges
+		testGraph.addEdge(new DirectedEdge(3,0, 3.0));
 		// See if it is now strongly connected
 		if (GraphAlgorithms.isStronglyConnected(testGraph)) {
 			System.out.println("Strongly connected");
@@ -63,29 +52,38 @@ public class TestGraphs {
 			System.out.println("not strongly connected");
 		}
 		// Find the shortest path from "a" to "e" and print it.
-		Association<Double, ArrayList<Edge<String, Double>>> result = 
-				GraphAlgorithms.getShortestPath(testGraph, "a", "e");
-		System.out.println("Shortest path from a to e is");
-		GraphAlgorithms.printShortestPathDistance(result);
+		ArrayList<DirectedEdge> result = 
+				GraphAlgorithms.getShortestPath(testGraph, 0, 3);
+		System.out.println("Shortest path from "+ vertices.get(0) + " to " + vertices.get(3) + " is");
+		GraphAlgorithms.printShortestPath(result, true, vertices);
+		GraphAlgorithms.printShortestPath(result, false, vertices);
 	}
 
 /*
-The output from this program should be:
-<Edge: b -> a> 1.0
-<Edge: c -> a> 1.0
-<Edge: d -> b> 3.0
-<Edge: d -> c> 3.0
-a is visited: true
-b is visited: true
-c is visited: true
-d is visited: true
+4 4
+0: 0->2  1.00  0->1  1.00  
+1: 1->3  3.00  
+2: 2->3  2.00  
+3: 
+
+3->2  2.00 2.0
+3->1  3.00 3.0
+2->0  1.00 1.0
+1->0  1.00 1.0
+0 is visited: true
+1 is visited: true
+2 is visited: true
+3 is visited: true
 not strongly connected
 Strongly connected
-Shortest path from a to e is
-   Begin at a
-   Continue to b (1.0 miles)
-   Continue to d (3.0 miles)
-   Continue to e (3.0 miles)
-Total distance: 7.0 miles.
+Shortest path from Irvine to Claremont is
+ Begin at Irvine
+ Continue to Chino Hills (1.0)
+ Continue to Claremont (2.0)
+Total distance: 3.0 miles
+ Begin at Irvine
+ Continue to Chino Hills (1 hours 0 minutes 0.0 seconds)
+ Continue to Claremont (2 hours 0 minutes 0.0 seconds)
+Total time: 3 hours 0 minutes 0.0 seconds
 */
 }

@@ -2,17 +2,16 @@ package onTheRoad;
 /**
  * Class representing a trip request with start, end, and whether it
  * is optimizing distance or time.
- * @author Kim Bruce
  */
 import java.util.List;
 
 public class TripRequest {
 	
 	// Starting point of trip
-	private String start;
+	private int start;
 	
 	// Ending point of trip
-	private String end;
+	private int end;
 	
 	// Whether trip should optimize distance (instead of time)
 	private boolean isDistance;
@@ -26,34 +25,32 @@ public class TripRequest {
 	 * @param vertices
 	 * 	A list of vertices of the graph so can look up label of nodes.
 	 */
-	public TripRequest(String req, List<String> vertices) {
+	public TripRequest(String req) {
 		// TO DO: Check input to make sure it has requisite number of
 		// pieces, that the indices are legal, and tag letter is "D" or "T"
 		String[] reqPieces = req.split(" ");
 		
-		// index and label of start node
-		int startIndex = Integer.parseInt(reqPieces[0]);
-		start = vertices.get(startIndex);
+		// index of start node
+		start = Integer.parseInt(reqPieces[0]);
 		
-		// index and label of end node
-		int endIndex = Integer.parseInt(reqPieces[1]);
-		end = vertices.get(endIndex);
+		// index of end node
+		end = Integer.parseInt(reqPieces[1]);
 		
 		// true iff optimize by distance
 		isDistance = reqPieces[2].equals("D");
 	}
 	
 	/**
-	 * @return label of starting node for trip
+	 * @return index of starting node for trip
 	 */
-	public String getStart() {
+	public int getStart() {
 		return start;
 	}
 	
 	/** 
-	 * @return label of ending node for trip
+	 * @return index of ending node for trip
 	 */
-	public String getEnd() {
+	public int getEnd() {
 		return end;
 	}
 

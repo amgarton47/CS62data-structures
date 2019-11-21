@@ -1,115 +1,133 @@
 package onTheRoad;
 
-/** Common algorithms for Graphs.  All assume working with a directed graph.
- * Written ????
- * @author ???? (based on algorithms in Bailey, Java Structures)
+/**
+ * Common algorithms for Graphs. 
+ * They all assume working with a EdgeWeightedDirected graph.
  */
-import java.util.ArrayList;
 
-import structure5.Association;
-import structure5.ComparableAssociation;
-import structure5.Map;
-import structure5.Graph;
-import structure5.Edge;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.List;
 
 public class GraphAlgorithms {
 
 	/**
+	 * Reverses the edges of a graph
+	 * 
 	 * @param g
-	 *            directed graph
+	 *            edge weighted directed graph
 	 * @return graph like g except all edges are reversed
 	 */
-	public static <V, E> Graph<V, E> graphEdgeReversal(Graph<V, E> g) {
+	public static EdgeWeightedDigraph graphEdgeReversal(EdgeWeightedDigraph g) {
 		// FIX THIS!
 		return null;
 	}
 
 	/**
-	 * Perform breadTH-first search of g from vertex start. At end, can ask
-	 * vertices in if they were visited
+	 * Performs breadth-first search of g from vertex start.
 	 * 
 	 * @param g
-	 *            directed graph
+	 *            directed edge weighted graph
 	 * @param start
-	 *            starting vertex for search
+	 *            index of starting vertex for search
 	 */
-	public static <V, E> void breadthFirstSearch(Graph<V, E> g, V start) {
-		// FIX THIS!		
+	public static void breadthFirstSearch(EdgeWeightedDigraph g, int start) {
+		//reset graph so that no vertex starts marked as visited
+		// FIX THIS! 		
 	}
 
 	/**
+	 * Calculates whether the graph is strongly connected
+	 * 
 	 * @param g
-	 *            directed graph
+	 *            directed edge weighted graph
 	 * @return whether graph g is strongly connected.
 	 */
-	public static <V, E> boolean isStronglyConnected(Graph<V, E> g) {
-		// FIX THIS!
+	public static boolean isStronglyConnected(EdgeWeightedDigraph g) {
+		// do breadth-first search from start and make sure all vertices
+		// have been visited. If not, return false.
+		
+		
+		// now reverse the graph, do another breadth-first search,
+		// and make sure all visited again. If not, return false
+
+		//FIX THIS!
 		return false;
 	}
 
 	/**
-	 * Perform Dijkstra's algorithm on graph g from vertex start.
+	 * Runs Dijkstra's algorithm on path to calculate the shortest path from
+	 * starting vertex to every other vertex of the graph.
 	 * 
 	 * @param g
-	 * @param start
-	 * @return map taking each vertex to cost to get there from start and the
-	 *         last edge in a shortest path to the vertex
+	 *            directed edge weighted graph
+	 * @param s
+	 *            starting vertex
+	 * @return a hashmap where a key-value pair <i, path_i> corresponds to the i-th
+	 *         vertex and path_i is an arraylist that contains the edges along the
+	 *         shortest path from s to i.
 	 */
-	public static Map<String, ComparableAssociation<Double, Edge<String, Double>>> dijkstra(
-			Graph<String, Double> g, String start) {
+	public static HashMap<Integer, ArrayList<DirectedEdge>> dijkstra(EdgeWeightedDigraph g, int s) {
+		//reset graph
+		
+		
 		// FIX THIS!
 		return null;
 	}
+	
+	/**
+	 * Relaxes edge e of graph g and updates min-priority queue pq if changes.
+	 * 
+	 * @param g
+	 *            directed edge weighted graph
+	 * @param e
+	 *            edge to be relaxed
+	 * @param pq
+	 *            min-priority queue
+	 */
+	private static void relax(EdgeWeightedDigraph g, DirectedEdge e, IndexMinPQ<Double> pq) {
+		//FIX THIS!
+	}
 
 	/**
-	 * Compute shortest path from start to end using Dijkstra's algorithm
-	 * 
+	 * Computes shortest path from start to end using Dijkstra's algorithm.
+	 *
 	 * @param g
 	 *            directed graph
 	 * @param start
 	 *            starting node in search for shortest path
 	 * @param end
 	 *            ending node in search for shortest path
-	 * @return pair of the total cost from start to end in shortest path as well
-	 *         as a list of edges in that shortest path
+	 * @return a list of edges in that shortest path in correct order
 	 */
-	public static Association<Double, ArrayList<Edge<String, Double>>> getShortestPath(
-			Graph<String, Double> g, String start, String end) {
+	public static ArrayList<DirectedEdge> getShortestPath(EdgeWeightedDigraph g, int start, int end) {
+		// run dijkstra and create a new ArrayList with edges running from start to end.
+
 		// FIX THIS!
 		return null;
 	}
 
 	/**
-	 * Using the output from Dijkstra, print the shortest path (according to
-	 * distance) between two nodes
+	 * Using the output from getShortestPath, print the shortest path
+	 * between two nodes
 	 * 
-	 * @param pathInfo
-	 *            Cost and path information from run of Djikstra
+	 * @param path shortest path from start to end
+	 * @param isDistance prints it based on distance (true) or time (false)
 	 */
-	public static void printShortestPathDistance(
-			Association<Double, ArrayList<Edge<String, Double>>> pathInfo) {
+	public static void printShortestPath(ArrayList<DirectedEdge> path, boolean isDistance, List<String> vertices) {
 		// FIX THIS!
+		// Hint: Look into TestGraphs for format of printout
 	}
 
 	/**
-	 * Using the output from Dijkstra, print the shortest path (according to
-	 * time) between two nodes
-	 * 
-	 * @param pathInfo
-	 *            Pair consisting of total time and shortest times to each node
-	 */
-	public static void printShortestPathTime(
-			Association<Double, ArrayList<Edge<String, Double>>> pathInfo) {
-		// FIX THIS!
-	}
-
-	/**
-	 * Convert hours (in decimal) to
+	 * Converts hours (in decimal) to hours, minutes, and seconds
 	 * 
 	 * @param rawhours
 	 *            time elapsed
-	 * @return Equivalent of rawhours in hours, minutes, and seconds (to
-	 *         nearest 10th of a second)
+	 * @return Equivalent of rawhours in hours, minutes, and seconds (to nearest
+	 *         10th of a second)
 	 */
 	private static String hoursToHMS(double rawhours) {
 		// FIX THIS!

@@ -2,7 +2,6 @@ package onTheRoad;
 /**
  * Class to read in and parse the input data that can then be used to
  * build the graph used in finding shortest paths
- * @author Kim Bruce
  */
 
 import java.io.BufferedReader;
@@ -10,8 +9,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import structure5.Graph;
-import structure5.GraphListDirected;
 
 public class FileParser {
 	// list of all vertices & edges in graph being build
@@ -57,7 +54,7 @@ public class FileParser {
 
 			for (int count = 0; count < numTrips; count++) {
 				line = getDataLine(input);
-				trips.add(new TripRequest(line, vertices));
+				trips.add(new TripRequest(line));
 			}
 
 			input.close();
@@ -108,16 +105,13 @@ public class FileParser {
 	}
 
 	/**
-	 * Build graph from input file
+	 * Builds graph from input file
 	 * @param isDistance Whether to make graph with edges for distance or for time.
 	 * @return  Graph representing file read in
 	 */
-	public Graph<String, Double> makeGraph(boolean isDistance) {
+	public EdgeWeightedDigraph makeGraph(boolean isDistance) {
 		// roadNetwork is graph to be returned
-		Graph<String, Double> roadNetwork = new GraphListDirected<String, Double>();
-		for (String vertex : vertices) {
-			roadNetwork.add(vertex);
-		}
+		EdgeWeightedDigraph roadNetwork = new EdgeWeightedDigraph(vertices.size());
 		
 		// add edges to roadNetwork
 		for (Segment seg : segments) {
@@ -129,18 +123,19 @@ public class FileParser {
 			} else {           // edges represent time to traverse
 				cost = seg.getDistance() / seg.getSpeed();
 			}
-			roadNetwork.addEdge(vertices.get(startIndex),
-					vertices.get(endIndex), cost);
+			roadNetwork.addEdge(new DirectedEdge(startIndex,
+					endIndex, cost));
 		}
 		return roadNetwork;
 	}
 
+
 	// testing code for file parser
 	public static void main(String[] args) {
 		FileParser fp = new FileParser("data/sample.txt");
-
-		Graph<String, Double> roadNetworkDistance = fp.makeGraph(true);
-		Graph<String, Double> roadNetworkTime = fp.makeGraph(false);
+		
+		EdgeWeightedDigraph roadNetworkDistance = fp.makeGraph(true);
+		EdgeWeightedDigraph roadNetworkTime = fp.makeGraph(false);
 
 		System.out.println("Distance graph:\n" + roadNetworkDistance);
 		System.out.println("Time graph:\n" + roadNetworkTime);

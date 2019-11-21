@@ -1,102 +1,83 @@
 package onTheRoad;
 
-/** Common algorithms for Graphs.  All assume working with a directed graph.
- * Written 11/21/2017
- * @author Kim Bruce (based on algorithms in Bailey, Java Structures)
+/**
+ * Common algorithms for Graphs. 
+ * They all assume working with a EdgeWeightedDirected graph.
  */
+
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Deque;
+import java.util.HashMap;
 import java.util.List;
-
-import structure5.Association;
-import structure5.ComparableAssociation;
-import structure5.Map;
-import structure5.Graph;
-import structure5.GraphListDirected;
-import structure5.Edge;
-
-import java.util.PriorityQueue;
-
-import structure5.QueueList;
-import structure5.Queue;
-import structure5.Table;
 
 public class GraphAlgorithms {
 
 	/**
+	 * Reverses the edges of a graph
+	 * 
 	 * @param g
-	 *            directed graph
+	 *            edge weighted directed graph
 	 * @return graph like g except all edges are reversed
 	 */
-	public static <V, E> Graph<V, E> graphEdgeReversal(Graph<V, E> g) {
-		Graph<V, E> gRev = new GraphListDirected<V, E>();
-		for (V vertex : g) {
-			gRev.add(vertex);
-		}
-		Edge<V, E> edge;
-		for (Iterator<Edge<V, E>> edges = g.edges(); edges.hasNext();) {
-			edge = edges.next();
-			gRev.addEdge(edge.there(), edge.here(), edge.label());
+	public static EdgeWeightedDigraph graphEdgeReversal(EdgeWeightedDigraph g) {
+		EdgeWeightedDigraph gRev = new EdgeWeightedDigraph(g.V());
+
+		for (DirectedEdge edge : g.edges()) {
+			gRev.addEdge(new DirectedEdge(edge.to(), edge.from(), edge.weight()));
 		}
 
 		return gRev;
 	}
 
 	/**
-	 * Perform bread-first search of g from vertex start. At end, can ask
-	 * vertices in if they were visited
+	 * Performs breadth-first search of g from vertex start.
 	 * 
 	 * @param g
-	 *            directed graph
+	 *            directed edge weighted graph
 	 * @param start
-	 *            starting vertex for search
+	 *            index of starting vertex for search
 	 */
-	public static <V, E> void breadthFirstSearch(Graph<V, E> g, V start) {
+	public static void breadthFirstSearch(EdgeWeightedDigraph g, int start) {
 		g.reset();
-		Queue<V> q = new QueueList<V>();
-		g.visit(start);
+		Deque<Integer> q = new ArrayDeque<Integer>();
 		q.add(start);
-		while (q.size() != 0) {
-			// Dequeue a vertex from queue and print it
-			V s = q.remove();
-
-			// Get all adjacent vertices of the dequeued vertex s
-			// If an adjacent has not been visited, then mark it
-			// visited and enqueue it
-			Iterator<V> i = g.neighbors(s);
-			while (i.hasNext()) {
-				V n = i.next();
-				if (!g.isVisited(n)) {
-					g.visit(n);
-					q.add(n);
+		g.visit(new DirectedEdge(start, start, 0.0), 0.0);
+		while (!q.isEmpty()) {
+			int v = q.remove();
+			for (DirectedEdge edge : g.adj(v)) {
+				int w = edge.to();
+				if (!g.isVisited(w)) {
+					g.visit(edge, g.getDist(v) + 1.0);
+					q.add(w);
 				}
 			}
 		}
 	}
 
 	/**
+	 * Calculates whether the graph is strongly connected
+	 * 
 	 * @param g
-	 *            directed graph
+	 *            directed edge weighted graph
 	 * @return whether graph g is strongly connected.
 	 */
-	public static <V, E> boolean isStronglyConnected(Graph<V, E> g) {
-		Iterator<V> it = g.iterator();
-		V start = it.next();
+	public static boolean isStronglyConnected(EdgeWeightedDigraph g) {
 		// do breadth-first search from start and make sure all vertices
-		// have been visited. If not, return false
-		breadthFirstSearch(g, start);
-		for (V vertex : g) {
-			if (!g.isVisited(vertex)) {
+		// have been visited. If not, return false.
+		breadthFirstSearch(g, 0);
+		for (int i = 0; i < g.V(); i++) {
+			if (!g.isVisited(i)) {
 				return false;
 			}
 		}
 
 		// now reverse the graph, do another breadth-first search,
 		// and make sure all visited again. If not, return false
-		Graph<V, E> gRev = graphEdgeReversal(g);
-		breadthFirstSearch(gRev, start);
-		for (V vertex : gRev) {
-			if (!gRev.isVisited(vertex)) {
+		EdgeWeightedDigraph gRev = graphEdgeReversal(g);
+		breadthFirstSearch(gRev, 0);
+		for (int i = 0; i < g.V(); i++) {
+			if (!gRev.isVisited(i)) {
 				return false;
 			}
 		}
@@ -104,140 +85,131 @@ public class GraphAlgorithms {
 	}
 
 	/**
-	 * Perform Dijkstra's algorithm on graph g from vertex start.
+	 * Runs Dijkstra's algorithm on path to calculate the shortest path from
+	 * starting vertex to every other vertex of the graph.
 	 * 
 	 * @param g
-	 * @param start
-	 * @return map taking each vertex to cost to get there from start and the
-	 *         last edge in a shortest path to the vertex
+	 *            directed edge weighted graph
+	 * @param s
+	 *            starting vertex
+	 * @return a hashmap where a key-value pair <i, path_i> corresponds to the i-th
+	 *         vertex and path_i is an arraylist that contains the edges along the
+	 *         shortest path from s to i.
 	 */
-	public static Map<String, ComparableAssociation<Double, Edge<String, Double>>> dijkstra(
-			Graph<String, Double> g, String start) {
-		// priority queue to keep track of best distances so far & last edge
-		// to get there
-		PriorityQueue<ComparableAssociation<Double, Edge<String, Double>>> pq = new PriorityQueue<ComparableAssociation<Double, Edge<String, Double>>>();
+	public static HashMap<Integer, ArrayList<DirectedEdge>> dijkstra(EdgeWeightedDigraph g, int s) {
+		g.reset();
+		HashMap<Integer, ArrayList<DirectedEdge>> result = new HashMap<Integer, ArrayList<DirectedEdge>>();
 
-		// result tells for each vertex how much it costs to get there from
-		// start and what last edge taken to get there
-		Map<String, ComparableAssociation<Double, Edge<String, Double>>> result = new Table<String, ComparableAssociation<Double, Edge<String, Double>>>();
+		for (int v = 0; v < g.V(); v++)
+			g.setDist(v, Double.POSITIVE_INFINITY);
+		g.setDist(s, 0.0);
 
-		// We can get to start from start with 0 cost & no previous edge
-		String v = start;
-		ComparableAssociation<Double, Edge<String, Double>> possible = new ComparableAssociation<Double, Edge<String, Double>>(
-				0.0, null);
+		// relax vertices in order of distance from s
+		IndexMinPQ<Double> pq = new IndexMinPQ<Double>(g.V());
+		pq.insert(s, g.getDist(s));
+		while (!pq.isEmpty()) {
+			int v = pq.delMin();
+			for (DirectedEdge e : g.adj(v))
+				relax(g, e, pq);
+		}
 
-		// Still nodes to explore from v
-		while (v != null) {
-			if (!result.containsKey(v)) {// haven't recorded shortest path info
-											// yet
-
-				// Enter shortest path info on v
-				result.put(v, possible);
-
-				// total distance to get to v from start
-				double vDist = possible.getKey();
-
-				// Update costs to neighbors
-				Iterator<String> nearIt = g.neighbors(v);
-				while (nearIt.hasNext()) {
-					Edge<String, Double> e = g.getEdge(v, nearIt.next());
-					// add cost of edge e to update cost from start to e
-					possible = new ComparableAssociation<Double, Edge<String, Double>>(
-							vDist + e.label(), e);
-					pq.add(possible);
+		for (int t = 0; t < g.V(); t++) {
+			if (g.getDist(t) < Double.POSITIVE_INFINITY) {
+				ArrayList<DirectedEdge> path = new ArrayList<DirectedEdge>();
+				for (DirectedEdge e = g.getEdgeTo(t); e != null; e = g.getEdgeTo(e.from())) {
+					path.add(e);
 				}
+				result.put(t, path);
+			}
+			if (!result.containsKey(t)) {
+				result.put(t, null);
 			}
 
-			// get edge on pq w/shortest path from start
-			if (!pq.isEmpty()) {
-				possible = pq.remove(); // lowest cost vertex
-				// destination of new edge
-				v = possible.getValue().there();
-			} else { // no new vertex, so stop loop
-				v = null;
-			}
 		}
 		return result;
+
 	}
 
 	/**
-	 * Compute shortest path from start to end using Dijkstra's algorithm
+	 * Relaxes edge e of graph g and updates min-priority queue pq if changes.
 	 * 
+	 * @param g
+	 *            directed edge weighted graph
+	 * @param e
+	 *            edge to be relaxed
+	 * @param pq
+	 *            min-priority queue
+	 */
+	private static void relax(EdgeWeightedDigraph g, DirectedEdge e, IndexMinPQ<Double> pq) {
+		int v = e.from(), w = e.to();
+
+		if (g.getDist(w) > g.getDist(v) + e.weight()) {
+			g.setDist(w, g.getDist(v) + e.weight());
+			g.setEdgeTo(e);
+
+			if (pq.contains(w))
+				pq.decreaseKey(w, g.getDist(w));
+			else
+				pq.insert(w, g.getDist(w));
+		}
+	}
+
+	/**
+	 * Computes shortest path from start to end using Dijkstra's algorithm.
+	 *
 	 * @param g
 	 *            directed graph
 	 * @param start
 	 *            starting node in search for shortest path
 	 * @param end
 	 *            ending node in search for shortest path
-	 * @return pair of the total cost from start to end in shortest path as well
-	 *         as a list of edges in that shortest path
+	 * @return a list of edges in that shortest path in correct order
 	 */
-	public static Association<Double, ArrayList<Edge<String, Double>>> getShortestPath(
-			Graph<String, Double> g, String start, String end) {
-		Map<String, ComparableAssociation<Double, Edge<String, Double>>> map = dijkstra(
-				g, start);
+	public static ArrayList<DirectedEdge> getShortestPath(EdgeWeightedDigraph g, int start, int end) {
+		// run dijkstra and create a new ArrayList with edges running from start to end.
+		HashMap<Integer, ArrayList<DirectedEdge>> map = dijkstra(g, start);
+		ArrayList<DirectedEdge> backward = map.get(end);
+		ArrayList<DirectedEdge> forward = new ArrayList<DirectedEdge>();
+		for (int i = backward.size() - 1; i >= 0; i--) {
+			forward.add(backward.get(i));
+		}
 
-		ArrayList<Edge<String, Double>> backward = new ArrayList<Edge<String, Double>>();
-		ComparableAssociation<Double, Edge<String, Double>> assoc = map
-				.get(end);
-		double distance = assoc.getKey();
-		// put together path in reverse direction, from end to start
-		while (assoc.getValue() != null) {
-			backward.add(assoc.getValue());
-			assoc = map.get(assoc.getValue().here());
-		}
-		// fix it to go forward from start to end
-		ArrayList<Edge<String, Double>> forward = new ArrayList<Edge<String, Double>>();
-		for (int count = backward.size() - 1; count >= 0; count--) {
-			forward.add(backward.get(count));
-		}
-		return new Association<Double, ArrayList<Edge<String, Double>>>(
-				distance, forward);
+		return forward;
 	}
 
 	/**
-	 * Using the output from Dijkstra, print the shortest path (according to
-	 * distance) between two nodes
+	 * Using the output from getShortestPath, print the shortest path
+	 * between two nodes
 	 * 
-	 * @param pathInfo
-	 *            Cost and path information from run of Djikstra
+	 * @param path shortest path from start to end
+	 * @param isDistance prints it based on distance (true) or time (false)
 	 */
-	public static void printShortestPathDistance(
-			Association<Double, ArrayList<Edge<String, Double>>> pathInfo) {
-		ArrayList<Edge<String, Double>> path = pathInfo.getValue();
-		System.out.println("   Begin at " + path.get(0).here());
-		for (Edge<String, Double> e : path) {
-			System.out.println("   Continue to " + e.there() + " (" + e.label()
-					+ " miles)");
+	public static void printShortestPath(ArrayList<DirectedEdge> path, boolean isDistance, List<String> vertices) {
+		System.out.println(" Begin at " + vertices.get(path.get(0).from()));
+		double totalWeights = 0.0;
+		for (DirectedEdge e : path) {
+			if (e != null) {
+				if (isDistance)
+					System.out.println(" Continue to " + vertices.get(e.to()) + " (" + e.weight() + ")");
+				else
+					System.out.println(" Continue to " + vertices.get(e.to()) + " (" + hoursToHMS(e.weight()) + ")");
+				totalWeights += e.weight();
+			}
 		}
-		System.out.println("Total distance: " + pathInfo.getKey() + " miles.");
+
+		if (isDistance)
+			System.out.println("Total distance: " + totalWeights + " miles");
+		else
+			System.out.println("Total time: " + hoursToHMS(totalWeights));
 	}
 
 	/**
-	 * Using the output from Dijkstra, print the shortest path (according to
-	 * time) between two nodes
-	 * 
-	 * @param pathInfo
-	 *            Pair consisting of total time and shortest times to each node
-	 */
-	public static void printShortestPathTime(
-			Association<Double, ArrayList<Edge<String, Double>>> pathInfo) {
-		ArrayList<Edge<String, Double>> path = pathInfo.getValue();
-		System.out.println("   Begin at " + path.get(0).here());
-		for (Edge<String, Double> e : path) {
-			System.out.println("   Continue to " + e.there() + " ("
-					+ hoursToHMS(e.label()) + ")");
-		}
-		System.out.println("Total time: " + hoursToHMS(pathInfo.getKey()));
-	}
-
-	/**
-	 * Convert hours (in decimal) to
+	 * Converts hours (in decimal) to hours, minutes, and seconds
 	 * 
 	 * @param rawhours
 	 *            time elapsed
-	 * @return Equivalent of rawhours in hours, minutes, and seconds (to
-	 *         nearest 10th of a second)
+	 * @return Equivalent of rawhours in hours, minutes, and seconds (to nearest
+	 *         10th of a second)
 	 */
 	private static String hoursToHMS(double rawhours) {
 		// Will hold all output
