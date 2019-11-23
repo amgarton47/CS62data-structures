@@ -110,23 +110,12 @@ public class FileParser {
 	 * @return  Graph representing file read in
 	 */
 	public EdgeWeightedDigraph makeGraph(boolean isDistance) {
-		// roadNetwork is graph to be returned
-		EdgeWeightedDigraph roadNetwork = new EdgeWeightedDigraph(vertices.size());
-		
-		// add edges to roadNetwork
-		for (Segment seg : segments) {
-			int startIndex = seg.getStart();
-			int endIndex = seg.getEnd();
-			double cost;
-			if (isDistance) {  // edges have distances
-				cost = seg.getDistance();
-			} else {           // edges represent time to traverse
-				cost = seg.getDistance() / seg.getSpeed();
-			}
-			roadNetwork.addEdge(new DirectedEdge(startIndex,
-					endIndex, cost));
-		}
-		return roadNetwork;
+
+		//FIX THIS!
+
+		return null;
+
+		//Create a new weighted digraph and populate it with edges based on the segments
 	}
 
 
