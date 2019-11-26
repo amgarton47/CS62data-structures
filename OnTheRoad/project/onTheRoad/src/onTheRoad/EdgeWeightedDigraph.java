@@ -172,10 +172,9 @@ public class EdgeWeightedDigraph {
         this.edgeTo = new DirectedEdge[V];
     }
     
-    /**
-     * Marks vertex w as visited and updates its distance and last edge
-     * @param w
-     * @param v
+/**
+     * Marks destination vertex as visited and updates its distance
+     * @param e
      * @param distance
      */
     public void visit(DirectedEdge e, double distance) {
