@@ -54,7 +54,7 @@ public class FileParser {
 
 			for (int count = 0; count < numTrips; count++) {
 				line = getDataLine(input);
-				trips.add(new TripRequest(line));
+				trips.add(new TripRequest(line, vertices));
 			}
 
 			input.close();

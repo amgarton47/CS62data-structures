@@ -25,7 +25,7 @@ public class TripRequest {
 	 * @param vertices
 	 * 	A list of vertices of the graph so can look up label of nodes.
 	 */
-	public TripRequest(String req) {
+	public TripRequest(String req, List<String> vertices) {
 		// TO DO: Check input to make sure it has requisite number of
 		// pieces, that the indices are legal, and tag letter is "D" or "T"
 		String[] reqPieces = req.split(" ");
