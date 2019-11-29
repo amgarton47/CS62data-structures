@@ -220,6 +220,13 @@ This (not un-common) testing strategy is sometimes called
 *vindictive scheduling* ... trying to schedule threads in
 the worst possible way.
 
+The `Tester` program accepts command line parameters
+to force `yield()` calls within the critical sections:
+
+   * `--races=i` to force yields within `insert()`
+   * `--races=r` to force yields within `remove()`
+   * `--races=ir` to force yields in both places.
+
 Re-run your tests (with varying numbers of threads and 
 cycles) to see how these `yield()` calls change the probability
 of detection.  Again, list your runs, and report a range of
