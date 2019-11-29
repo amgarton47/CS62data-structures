@@ -65,9 +65,9 @@ parallel actors to take turns.  Preventing a second actor from
 operating on a protected system until the first actor has finished
 is called *mutual exclusion*.
 
-Long ago, when there were far fewer computers in the world, programs that
+Long ago, when there were slower and far fewer computers in the world, programs that
 allowed multiple threads (or processes) to operate (in parallel) on
-complex data structures were rare.  As a result, few people thought
+complex data were rare.  As a result, few people thought
 about such problems, and much code was written that would not work
 correctly in a parallel computing environment.  Multi-threaded and
 distributed applications are no-longer rare ... which means that 
@@ -230,7 +230,7 @@ method can execute (on that object) until the in-progress operation completes.
 Update the `DLL_Node` to make the `insert()` and `remove()` methods
 to be `synchronized` and re-run your tests.
 
-We expect that you will find thAe results to be disappointing.  
+We expect that you will find these results to be disappointing.
 Review the `DLL_Node` APIs and specifications for the `synchronized` 
 methods, and suggest an explanation for why this did not 
 elminate the problem.
@@ -245,11 +245,11 @@ to control *race conditions*:
      all method invocations on the **same** object.
 
    * the critical section spans multiple method invocations
-     on the `synchronized` ojmect, so that locking the object
+     on the `synchronized` object, so that locking the object
      for the duration of a single invocation is inadequate.
 
 In such cases synchronization must be performed at a higher level.
-In addition to *synchronized objects* Java also supports
+In addition to *synchronized methods*, Java also supports
 *block synchronization*.  If you surround a critical section with
 
 ```
@@ -273,7 +273,7 @@ race conditions between competing `insert()` and `remove()`
 operations.  Add that synchronization, re-run your tests,
 and report your results.
 You should find that it is impossible to create failures, 
-even if large numbers of threads anre used and  all `yield()`
+even if large numbers of threads are used and all `yield()`
 calls are enabled.
 
 ## Submission
