@@ -54,9 +54,7 @@ public class Tester extends Thread {
 					if (candidates++ %2 == 1)
 						continue;	// only every other candidate
 					
-					synchronized (myList) {
-						myNodes[i].insert(myList);
-					}
+					myNodes[i].insert(myList);
 					myNodes[i].in_list = true;
 					Thread.yield(); 	// let someone else run
 				}
@@ -74,9 +72,7 @@ public class Tester extends Thread {
 					if (candidates++ %2 == 1)
 						continue;	// only every other candidate
 					
-					synchronized (myList) {
-						myNodes[i].remove();
-					}
+					myNodes[i].remove();
 					myNodes[i].in_list = false;
 					Thread.yield(); // let someone else run
 				}

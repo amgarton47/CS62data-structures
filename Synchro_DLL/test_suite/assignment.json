@@ -1,0 +1,47 @@
+{
+  "title": "Synchro DLL",
+  "assignment": "lab11",
+  "writeup": "https://PUT-IN-A-REASONABLEW-ASSIGNMENT-URL",
+  "runner": {
+        "type": "manual""
+  },
+  "tests": [
+    {
+      "name": "builds with no errors",
+      "score": 1.0
+    },
+    {
+      "name": "vulnerability analysis",
+      "score": 2.0
+    },
+    {
+      "name": "no-yield failure rates",
+      "score": 1.5
+    },
+    {
+      "name": "yield failure rates",
+      "score": 1.5
+    },
+    {
+      "name": "method synchronization - code",
+      "score": 1.0
+    },
+    {
+      "name": "method synchronization - analysis",
+      "score": 1.0
+    },
+    {
+      "name": "block synchronization - code",
+      "score": 1.0
+    },
+    {
+      "name": "block synchronization - results",
+      "score": 1.0
+    },
+
+    {
+      "name": "submitted on time (negative if late)",
+      "score": 0.0
+    }
+  ]
+}
