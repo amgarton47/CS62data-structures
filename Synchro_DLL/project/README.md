@@ -160,8 +160,13 @@ You will:
     2. Identify the *critical sections* (regions of code during which
        conflicting parallel updates could result in errors).
 
-    3. Briefly describe the sorts of error or corruption that might
-       result from such conflicts.
+    3. Choose one of those *critical sections* and Briefly describe two 
+       distinct errors that could happen if another operation where to
+       happen at the same time:
+
+       * the order of the conflicting operations
+
+       * the (specific) consequences to the list structure
 
 ### 2. Multi-Threaded Stress Test
 
@@ -179,10 +184,11 @@ the integrity of the list.  If it finds any errors, it will report
 them and stop.  If it finds no errors, it will continue, and report 
 success after the specified number of cycles.
 
-Run the tester, for varying numbers of threads and cycles, to 
-get some sense of the likelihood of failure during any particular
-test.  You need not plot these numbers as graphs.  You can simply
-report a range of numbers (threads, per-cycle detection probability).
+Run the tester, multiple times, for varying numbers of threads and
+cycles, to get some sense of the likelihood of failure during any
+particular test.  You need not plot these numbers as graphs.
+You can simply list your runs and report a range of numbers
+(threads, error-free cycles, per-cycle detection probability).
 
 You can run the `Tester` program directly from Eclipse, but you will
 surely want to run it many times with different parameters.  This can
@@ -216,8 +222,8 @@ the worst possible way.
 
 Re-run your tests (with varying numbers of threads and 
 cycles) to see how these `yield()` calls change the probability
-of detection.  Again report a range of numbers
-(theads, per cycle detection probability).
+of detection.  Again, list your runs, and report a range of
+numbers (theads, error-free cycles, per cycle detection probability).
 
 ### 4. Java synchronized Methods
 
@@ -230,10 +236,13 @@ method can execute (on that object) until the in-progress operation completes.
 Update the `DLL_Node` to make the `insert()` and `remove()` methods
 to be `synchronized` and re-run your tests.
 
-We expect that you will find these results to be disappointing.
-Review the `DLL_Node` APIs and specifications for the `synchronized` 
-methods, and suggest an explanation for why this did not 
-elminate the problem.
+We expect that you will find these results to be disappointing:
+
+   1. report your results (threads, error-free cycles).
+
+   2.  Review the `DLL_Node` APIs and specifications for the
+       `synchronized` methods, and suggest an explanation for
+       why this did not completely elminate the problem.
 
 ### 5. Java Block Synchronization
 
@@ -271,7 +280,8 @@ Study at the `Tester.run()` method, and decide where to add
 *block synchronization* around which calls to eliminate the
 race conditions between competing `insert()` and `remove()`
 operations.  Add that synchronization, re-run your tests,
-and report your results.
+and report your results (threads, cycles, and whether or not
+each run was successful).
 You should find that it is impossible to create failures, 
 even if large numbers of threads are used and all `yield()`
 calls are enabled.

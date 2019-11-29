@@ -1,0 +1,38 @@
+complete/clean submission:
+   1.0	compile and run Tester.java
+
+vulnerability analysis
+
+    examples:
+   	insert: insert at same point replaces forward pointer to me ... my node lost
+	insert: insert at same point replaces backwards pointer to me ... inconsistency
+   	insert: insert after me puts a different node after me ... inconsistency
+	insert: remove after me, I replace pointer to removed node ... much list lost
+
+     0.5 for each (of two) plausible errors
+     0.5 for each (clear and correct) consequence
+
+non-yield failure rate
+
+    0.5 for (at least) three different thread counts
+    0.5 for indication of which cycles failed in each
+    0.5 for a computed probability (vs thread count)
+
+yield failure rate
+
+    0.5 for (at least) three different thread counts
+    0.5 for indication of which cycles failed in each
+    0.5 for a computed probability (vs thread count)
+
+method synchronization
+
+    0.5 code: correctly synchronized insert & remove
+    0.5 results: threads & cycles
+    0.5 plausible explanation
+    0.5 correct (locking node not same as locking list)
+
+block synchronization
+    0.5 code: correct synchronization of insert
+    0.5 code: correct synchronization of remove
+    0.5 results (more than ever succeeded before)
+    0.5 execution (I can run the program w/no failures)
