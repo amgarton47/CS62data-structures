@@ -232,6 +232,11 @@ cycles) to see how these `yield()` calls change the probability
 of detection.  Again, list your runs, and report a range of
 numbers (theads, error-free cycles, per cycle detection probability).
 
+As you look over the failures (in this and the previous step), 
+note the different types, and (briefly) explain how a
+preemption in the critical section could have caused 
+this error.
+
 ### 4. Java synchronized Methods
 
 Such problems are sufficiently common that the Java language has

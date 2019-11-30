@@ -15,14 +15,14 @@ vulnerability analysis
 non-yield failure rate
 
     0.5 for (at least) three different thread counts
-    0.5 for indication of which cycles failed in each
-    0.5 for a computed probability (vs thread count)
+    0.5 for failure reports and probability (vs thread count)
+    0.5 for explaining how each type of failure was caused
 
 yield failure rate
 
     0.5 for (at least) three different thread counts
-    0.5 for indication of which cycles failed in each
-    0.5 for a computed probability (vs thread count)
+    0.5 for failure reports and probability (vs thread count)
+    0.5 for explaining how each (new) type of failure was caused
 
 method synchronization
 
