@@ -10,6 +10,7 @@ then
 	ret=$?
 	echo "==================================="
 	echo "test suite exit code: $ret"
+	exit $ret
 else
 	echo "ERROR: unexpected project directory structure!"
 	exit 1
