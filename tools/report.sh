@@ -103,10 +103,8 @@ function report() {
 }
 
 # if we are run as a script
-if [ "$0" == "bash" ]
+if [ `basename $0` == "report.sh" ]
 then
-	echo "just sourcing"
-else
 	if [ -z "$1" -o -z "$2" ]
 	then
 		echo "usage report.sh status name ..."
