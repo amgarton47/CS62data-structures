@@ -4,11 +4,24 @@
 #
 # Usage: build_and_run.sh [--verbose] [submission-dir ...]
 #
-#  plus, we may look for one more file in the grading directory
-#	DO_NOT_RUN list of classes (with main) that should not be run
+# supporting files:
 #
-# TODO: automatically create appropriate .autos files
+#   autograde.sh
+#	by default we will build and run everything that
+#	has a main() method, but if tehre is an autograde.sh
+#	in the grading directory we will copy it into the
+#	submission directory and let it run things.
 #
+#   report.sh
+# 	after doing our compile and run we will invoke
+#	a report method (with what did/didn't work) to
+#	record the results (e.g. create a .autos file).
+#
+#   PACKAGE
+#	Most submissions contain only a single package.
+#	If there are multiple packages in a submission,
+#	this file contains the name of the only one we
+#	should build and run.
 #
 HEADDIR=`pwd`
 	
@@ -19,7 +32,7 @@ then
 	shift
 fi
 
-# get the report generator
+# get the report generator (for recording results)
 path=`dirname $0`
 if [ -f $path/report.sh ]
 then
@@ -35,20 +48,20 @@ else
 	fi
 fi
 
-# is there any main class we should not run?
-if [ -f DO_NOT_RUN ]
-then
-	never_run=`cat DO_NOT_RUN`
-else
-	never_run=""
-fi
-
 # do we know which (of multiple) package to build and run
 if [ -f PACKAGE ]
 then
 	only_package=`cat PACKAGE`
 else
 	only_package=""
+fi
+
+# do we have an (assignment specific) autograder script
+if [ -f autograde.sh ]
+then
+	autograder=`pwd`/autograde.sh
+else
+	autograder=""
 fi
 
 # if we weren't given directories to process, try everything
@@ -133,20 +146,8 @@ do
 			then
 				class=`basename $file .java`
 
-				# is this class on the never-run list?
-				skip=0
-				for n in $never_run
-				do
-					if [ "$class" == "$n" ]
-					then
-						skip=1
-					fi
-				done
-
-				if [ $skip -eq 0 ]
-				then
-					runnable="$runnable $class"
-				fi
+				# append this to the runnable list
+				runnable="$runnable $class"
 			fi
 		fi
 	done
@@ -171,7 +172,7 @@ do
 	javac *.java >> "$HEADDIR/$1/OUTPUT" 2>&1
 	if [ $? -eq 0 ]
 	then
-		if [ -n "$runnable" ]
+		if [ -n "$autograder" -o -n "$runnable" ]
 		then
 			# try to run the submission
 			cd "$HEADDIR/$srcdir"
@@ -182,42 +183,55 @@ do
 			# run the runnable classes
 			echo 			   >> "$HEADDIR/$1/OUTPUT"
 			echo "===================" >> "$HEADDIR/$1/OUTPUT"
-			echo "EXECUTION RESULTS"   >> "$HEADDIR/$1/OUTPUT"
+			echo "AUTOGRADER RESULTS"  >> "$HEADDIR/$1/OUTPUT"
 			echo "===================" >> "$HEADDIR/$1/OUTPUT"
 			echo 			   >> "$HEADDIR/$1/OUTPUT"
-			ok=0
-			for c in $runnable
-			do
-				if [ -n "$package" ]
-				then
-					c=$package.$c
-				fi
-				echo "   $1 ... attempting to run $c"
-				java $c >> "$HEADDIR/$1/OUTPUT" 2> "$HEADDIR/$1/ERRORS"
-				if [ $? -eq 0 ]
-				then
-
-					echo >> "$HEADDIR/$1/OUTPUT"
-					echo "=====================================" >> "$HEADDIR/$1/OUTPUT"
-					if [ -s "$HEADDIR/$1/ERRORS" ]
-					then
-						echo "$1/$c ... output to stderr" >> "$HEADDIR/$1/OUTPUT"
-						where="$1/OUTPUT (and ERRORS)"
-					else
-						echo "$1/$c ... exit status 0" >> "$HEADDIR/$1/OUTPUT"
-						ok=$((ok+1))
-						rm "$HEADDIR/$1/ERRORS"
-					fi
-				else
-					echo "   $1/$c ... NON-ZERO EXIT STATUS" >> "$HEADDIR/$1/OUTPUT"
-				fi
-			done
-
-			if [ $ok -gt 0 ]
+			errors=0
+			if [ -n "$autograder" ]
 			then
-				report $student run_ok
+				echo "   $1 ... running $autograder"
+				$autograder >> "$HEADDIR/$1/OUTPUT" 2>> "$HEADDIR/$1/ERRORS"
+				if [ $? -ne 0 ]
+				then
+					errors=1
+				fi
 			else
+				for c in $runnable
+				do
+					if [ -n "$package" ]
+					then
+						c=$package.$c
+					fi
+					echo >> "$HEADDIR/$1/OUTPUT"
+					echo "   $1 ... attempting to run $c"
+					echo "=====================================" >> "$HEADDIR/$1/OUTPUT"
+					java $c >> "$HEADDIR/$1/OUTPUT" 2> "$HEADDIR/$1/ERRORS"
+					echo "=====================================" >> "$HEADDIR/$1/OUTPUT"
+					if [ $? -eq 0 ]
+					then
+						echo "$1/$c ... exit status 0" >> "$HEADDIR/$1/OUTPUT"
+					else
+						errors=$((errors+1))
+						echo "$1/$c ... non-zero exit status" >> "$HEADDIR/$1/OUTPUT"
+					fi
+					echo >> "$HEADDIR/$1/OUTPUT"
+				done
+			fi
+
+			if [ -s "$HEADDIR/$1/ERRORS" ]
+			then
+				echo "=====================================" >> "$HEADDIR/$1/OUTPUT"
+				echo "$1/$c ... output to stderr" >> "$HEADDIR/$1/OUTPUT"
+				where="$1/OUTPUT (and ERRORS)"
+			else
+				rm -f "$HEADDIR/$1/ERRORS"
+			fi
+
+			if [ $errors -gt 0 ]
+			then
 				report $student run_error
+			else
+				report $student run_ok
 			fi
 			echo "   $1 ... compilation and execution results in $where"
 		else
