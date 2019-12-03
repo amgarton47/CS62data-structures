@@ -70,12 +70,17 @@ public class SortTimer {
 
 			for (Sorter<Integer> s : sorters) {
 				ArrayList<Integer> data = fillArrayWRandom(size);
+				int cksum = checkSum(data);
 				System.out.printf(" | %15f", time(s, data)*1000);
 
-				if (!isSorted(data)) {
+				// make sure the output is correctly sorted
+				if (!isSorted(data))
 					System.err.println("Data wasn't sorted correctly by: "
 							+ s.getClass().toString());
-				}
+				// make sure the output is the same numbers as the input
+				if (checkSum(data) != cksum)
+					System.err.println("Data values were changed by: "
+							+ s.getClass().toString());
 			}
 
 			System.out.println();
@@ -114,6 +119,21 @@ public class SortTimer {
 		}
 
 		return true;
+	}
+
+	/**
+	 * compute a checksum for an ArrayList
+	 *		to verify that the contents are unchanged
+	 *
+	 * @param data
+	 *				the data to ve checked
+	 * @return integer checksum
+	 */
+	private int checkSum(ArrayList<Integer> data) {
+		int sum = 0;
+		for (int i = 0; i < data.size(); i++)
+			sum += data.get(i);
+		return(sum);
 	}
 
 	/**
