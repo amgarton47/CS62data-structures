@@ -129,10 +129,10 @@ programs as a simpler and more portable alternative to the GUI:
 
 ## final report generation
 
-   6. use the score_report.py program to turn per-submission json
+   7. use the score_report.py program to turn per-submission json
       files into (more human-readable) .txt files.
 
-   7. if, in addition to score summaries, you want a pdf (e.g. so
+   8. if, in addition to score summaries, you want a pdf (e.g. so
       that you can provide detailed feedback on the submitted
       code), you can use the make_pdfs.sh script to create, for
       each submission, a pdf containing all of the named source files.
@@ -176,11 +176,14 @@ programs as a simpler and more portable alternative to the GUI:
     Because this is a catch-all grading mechanism, its behavior can be 
     controlled by a few additional configuration files in the per-assignment
     grading sub-directory:
-       * DO_NOT_RUN ... a list of classes that we should not execute (even
-         though they contain main methods).
        * PACKAGE ... for assignments that contain multiple packages, only
          one of which should be built and tested, this file contains the
 	 name of the package to be built and tested.
+       * the autograde.sh script will be run on every file listed in
+         grading.sh;  it was expected that this would be a tester, 
+	 but I have used this script to do more interesting things
+	 like unpack zip files, and then do checking and processing
+	 on the files within them.
 
 
 ## json2csv.py
