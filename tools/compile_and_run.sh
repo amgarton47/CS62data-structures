@@ -164,6 +164,9 @@ do
 	then
 		rm $1/OUTPUT
 	fi
+	echo "SUBMISSION $1" > "$HEADDIR/$1/OUTPUT"
+	echo >> "$HEADDIR/$1/OUTPUT"
+
 	cd "$sourcedir"
 	echo "   $1 ... attempting to compile " *.java
 	echo "===================" >> "$HEADDIR/$1/OUTPUT"
