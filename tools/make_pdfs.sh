@@ -13,27 +13,6 @@ then
 	shift
 fi
 
-# verify that we have a test suite
-fatal=0
-for subdir in _autos _autos/src _autos/src/junitmods
-do
-	if [ ! -d $subdir ]
-	then
-		>&2 echo "ERROR: unable to access test suite sub-directory $subdir"
-		fatal=1
-	fi
-done
-
-# figure out what our package is
-list=`ls _autos/src | grep -v junitmods`
-if [ -z "$list" -o ! -d "_autos/src/$list" ]
-then
-	>&2 echo "ERROR: unable to discover package in _autos/src"
-	fatal=1
-else
-	package=$list
-fi
-
 # make sure we have an output directory
 if [ ! -d "_output" ]
 then
@@ -44,7 +23,7 @@ then
 	mkdir "_output"
 fi
 
-# generate a list of source files
+# generate a list of source files to print
 printfiles=""
 while [ -n "$1" -a ! -d "$1" ]
 do
@@ -79,34 +58,18 @@ do
 		continue
 	fi
 
-	# see if this appears to be a java project
-	sourcedir=`find $1 -type d -name src`
-	if [ ! -d $sourcedir ]
-	then
-		echo "$1 does not appear to be an Eclipse project"
-		shift
-		continue
-	fi
-
-	# see if it seems to contain the expected project
-	if [ ! -d $sourcedir/$package ]
-	then
-		echo "WARNING: $1 does not appear to contain the $package package"
-		shift
-		continue
-	fi
-
-	# enumerage the java sources
+	# enumerate the files we were told to print
 	sources=""
 	list=""
 	for file in $printfiles
 	do
-		if [ -f $sourcedir/$package/$file ]
+		found=`find $1 -name $file`
+		if [ -n "$found" -a -s "$found" ]
 		then
-			sources="$sources $sourcedir/$package/$file"
+			sources="$sources $found"
 			list="$list $file"
 		else
-			echo "ERROR: $sourcedir/$package/$file ... no such file"
+			echo "WARNING: unable to find $file under $1"
 		fi
 	done
 
