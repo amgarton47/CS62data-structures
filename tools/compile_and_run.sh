@@ -33,15 +33,14 @@ then
 fi
 
 # get the report generator (for recording results)
-path=`dirname $0`
-if [ -f $path/report.sh ]
+if [ -f ./report.sh ]
 then
-	. $path/report.sh
+	. ./report.sh
 else
-	# local copy?
-	if [ -f ./report.sh ]
+	path=`dirname $0`
+	if [ -f $path/report.sh ]
 	then
-		. ./report.sh
+		. $path/report.sh
 	else
 		echo "This script requires a copy of the report.sh script"
 		exit 1
