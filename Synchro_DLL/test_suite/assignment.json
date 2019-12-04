@@ -1,46 +1,36 @@
 {
-  "title": "Synchro DLL",
+  "title": "Race Conditions",
   "assignment": "lab11",
-  "writeup": "https://PUT-IN-A-REASONABLEW-ASSIGNMENT-URL",
   "runner": {
-        "type": "manual""
+    "type": "manual"
   },
   "tests": [
     {
-      "name": "builds with no errors",
+      "name": "imports and builds with no errors/warnings",
       "score": 1.0
     },
-    {
-      "name": "vulnerability analysis",
+    { "name": "vulnerability analysis",
       "score": 2.0
     },
-    {
-      "name": "no-yield failure rates",
+    { "name": "non-yield failure results and analysis",
       "score": 1.5
     },
-    {
-      "name": "yield failure rates",
+    { "name": "yield failure results and analysis",
       "score": 1.5
     },
-    {
-      "name": "method synchronization - code",
+    { "name": "synchronized method code/results",
       "score": 1.0
     },
-    {
-      "name": "method synchronization - analysis",
+    { "name": "synchronized method analysis",
       "score": 1.0
     },
-    {
-      "name": "block synchronization - code",
+    { "name": "synchronized block code/results",
       "score": 1.0
     },
-    {
-      "name": "block synchronization - results",
+    { "name": "synchronized block analysis",
       "score": 1.0
     },
-
-    {
-      "name": "submitted on time (negative if late)",
+    { "name": "submitted on time (negative if late)",
       "score": 0.0
     }
   ]
