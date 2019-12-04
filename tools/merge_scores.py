@@ -1,15 +1,40 @@
 """
-At this moment, the only feature that works is csv->new json
+usage: python merge_scores.py [--template assignment.json] input-file ...
 
-   2. merge .autos into new json
-      test comments for scores < possible
+    each specified (.autos or .csv) input file will be
+    read, and merge those scores into a (new or already
+    existing) <student>.json score file (in the current
+    working directory).
 
-   3. merge .autos into existing json
-      test not copying absent scores
+    the template file is used to get a list of score item
+    names and possible values
 
+    there is also a --fullcredit option which says that any
+    item for which no score is found should be given full
+    credit (and a warning-to-review comment).  But given
+    the spreadsheet option (where it is very easy to give
+    everyone the same score) this option may no longer
+    make sense.
 
+    for any item that does not receive full credit, a
+    warning-please-update comment will be put in the
+    json file, so the grader can explain why points
+    were deducted.
+
+ Initial sets of scores are likely to come from two places:
+
+   1. the autograder creates <user>.autos files for each
+      run of Autograder.java
+
+   2. a human grader may use json2csv.py to create a csv
+      spreadsheet, and then edit that by hand (e.g. in excel).
+
+   These may both exist, and will likely be orthogonal
+   (containing scores for different items).
 """
-import json
+# TODO merge into new json, test comments for scores < possible
+# TODO merge into existing json, test not copying absent scores
+
 import csv
 import os.path
 from sys import stderr
@@ -20,10 +45,14 @@ verbose = False
 
 def autos_score(autos_file, template):
     """
-    merge info from (json) autograder output into a (json) score file
+    read a .autos file and return a dict of scores
+
     :param autos_file (str): name of the autograder output file
     :param template (dict): the assignment defintion
-    :return (dict): test:(score, comment)
+        this gives us item names and the value of each
+    :return (dict): testname:(score, comment)
+        returned dict includes ONLY testnames for which a
+        pass or fail was found in the .autos file
     """
     # read in the autos file
     try:
@@ -41,11 +70,14 @@ def autos_score(autos_file, template):
     for test in template['tests']:
         name = test['name']
         value = test['score']
+        # passes get full points and no comment
         if 'passes' in raw_results and name in raw_results['passes']:
             results[name] = (value, None)
         elif 'failures' in raw_results:
+            # see if this test is listed among those that failed
             for failure in raw_results['failures']:
                 if failure['testname'] == name:
+                    # if there was a message or stack trace, that is comment
                     if 'message' in failure:
                         comment = failure['message']
                         if 'trace' in failure and \
@@ -55,7 +87,9 @@ def autos_score(autos_file, template):
                     elif 'trace' in failure:
                         comment = failure['trace']
                     else:
+                        # otherwise, the grader will have to figure it out
                         comment = "PLEASE REVIEW JUNIT OUTPUT"
+                    # zero points for this item, best comment we could find
                     results[name] = (0.0, comment)
                     break
 
@@ -68,10 +102,14 @@ def csv_score(row, headings):
     :param row [str, ...]: input line from the json file
     :param headers [str, ...]: per-column headers for CSV file
     :param template (dict): the assignment defintion
+        this gives us item names and the value of each
     :return (dict): test:(score, comment)
+        returned dict includes ONLY testnames for which a score was found
+
+    The key to this merge is that the (line 1) heading strings
+    in the csv file are IDENTICAL to the test names in the .json
+    file.
     """
-    # the key to this merge is that the line 1 headings in the .csv
-    # are idntical to test names in the .json files
     results = {}
     for col in range(1, len(row)):
         value = row[col]
@@ -107,19 +145,19 @@ def merge(scores, current, filename, full_credit):
             if comment is not None:
                 entry['comment'] = comment
             elif earned != test['score']:
-                # less than full points requires a comment
-                entry['comment'] = "PLEASE REVIEW"
+                # other than full points requires a comment
+                entry['comment'] = "EXPLAIN PARTIAL CREDIT"
         else:
             # pass through the previous earned/comment
             if 'earned' in test:
                 entry['earned'] = test['earned']
                 earned_score += test['earned']
+                if 'comment' in test:
+                    entry['comment'] = test['comment']
             elif full_credit:
                 entry['earned'] = test['score']
                 earned_score += test['score']
-
-            if 'comment' in test:
-                entry['comment'] = test['comment']
+                entry['comment'] = "DEFAULT FULL CREDIT"
         results.append(entry)
 
     # reconstruct the flag list from the score file
@@ -149,9 +187,11 @@ def merge(scores, current, filename, full_credit):
 if __name__ == "__main__":
     """
     1. parse the arguments
-    2. digest the assignment.json
-    3. do .auto or .csv merge
-    4. write result out to new .json
+    2. digest the assignment.json into a dict
+    3a read the per-user scores (from .autos file)
+       merge the new scores into the old, and write a new .json
+    3b read the per-user scores (from each line of .csv file)
+       merge the new scores into the old, and write a new .json
     """
     # 1. parse the argument
     umsg = "usage: %prog [options] input_file ..."
@@ -181,12 +221,14 @@ if __name__ == "__main__":
     for file in files:
         # 3a.
         if '.autos' in file:
-            # get a score dict for this file
+            # get a score dict for this set of results
             results = autos_score(file, template)
 
-            # form output file name from input file name
+            # form output file name from input file base name
             basename = os.path.splitext(file)[0]
             output = basename + ".json"
+
+            # if there is an already existing score file
             if os.path.exists(output):
                 with open(output, 'r') as infile:
                     existing = json.load(infile)
@@ -194,7 +236,7 @@ if __name__ == "__main__":
                 # merge .autos scores with existing score file
                 merge(results, existing, output, False)
             else:
-                # merge .autos scores with the template
+                # merge .autos scores with the (no scores) template
                 merge(results, template, output, opts.fullcredit)
 
         # 3b. process a CSV file into a .json for each line
@@ -203,6 +245,7 @@ if __name__ == "__main__":
                 csv_reader = csv.reader(input, delimiter=',')
                 headings = None
                 for row in csv_reader:
+                    # pull off the line of column headings
                     if headings is None:
                         headings = row
                     else:
