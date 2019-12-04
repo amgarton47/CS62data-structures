@@ -19,6 +19,8 @@ usage: python json2csv.py [-t assignment.json] [-r classroom.json]
         Given this, I decided that the spreadsheet should only contain
         columns for a subset of (non-autograder) rubric items.  And
         that meant I needed a way to match columns with rubric items.
+        Using the rubric item 'name' as the column heading addresses
+        this need.
 """
 import json
 import csv
@@ -33,7 +35,7 @@ def list_students(roster):
     """
     return a list of names of all known students
     :param (str) roster: name of student roster file
-    :return [(str)...]: names of students
+    :return [(str), ...]: names of students
     """
     try:
         with open(roster, 'r') as infile:
@@ -81,7 +83,7 @@ if __name__ == "__main__":
         logging.error("ERROR: " + opts.template + " contains no tests")
         sys.exit(-1)
 
-    # see if all rubric items are manual
+    # see if ALL rubric items are manual
     manual = 'runner' in all_scores and \
              'type' in all_scores['runner'] and \
              all_scores['runner']['type'] == "manual"
