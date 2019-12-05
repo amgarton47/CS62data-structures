@@ -30,6 +30,12 @@
     { "name": "synchronized block analysis",
       "score": 1.0
     },
+    { "name": "XC: cause of fewer remove-related failures",
+      "score": 0.0
+    },
+    { "name": "XC: data in support of that theory",
+      "score": 0.0
+    },
     { "name": "submitted on time (negative if late)",
       "score": 0.0
     }

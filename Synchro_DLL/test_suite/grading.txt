@@ -36,3 +36,7 @@ block synchronization
     0.5 code: correct synchronization of remove
     0.5 results (more than ever succeeded before)
     0.5 execution (I can run the program w/no failures)
+
+extra credit
+    2.0 explanation (2 likely, 1 plausible)
+    2.0 details (1 specific, 1 compelling)
