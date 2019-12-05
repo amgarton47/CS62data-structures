@@ -158,7 +158,7 @@ do
 		continue
 	fi
 
-	# try to build the submission
+	# start the autograder report
 	if [ -s $1/OUTPUT ]
 	then
 		rm $1/OUTPUT
@@ -166,6 +166,15 @@ do
 	echo "SUBMISSION $1" > "$HEADDIR/$1/OUTPUT"
 	echo >> "$HEADDIR/$1/OUTPUT"
 
+	# see if we can get a list of submitters
+	if [ -f $1/lab.json ]
+	then
+		echo					>> "$HEADDIR/$1/OUTPUT"
+		grep -A2 collaborators $1/lab.json	>> "$HEADDIR/$1/OUTPUT"
+		echo					>> "$HEADDIR/$1/OUTPUT"
+	fi
+
+	# try to build the submission
 	cd "$sourcedir"
 	echo "   $1 ... attempting to compile " *.java
 	echo "===================" >> "$HEADDIR/$1/OUTPUT"
@@ -193,8 +202,15 @@ do
 			then
 				echo "   $1 ... running $autograder"
 				$autograder >> "$HEADDIR/$1/OUTPUT" 2>> "$HEADDIR/$1/ERRORS"
-				if [ $? -ne 0 ]
+				if [ $? -ne 0 -o -s "$HEADDIR/$1/ERRORS" ]
 				then
+					echo 			   >> "$HEADDIR/$1/OUTPUT"
+					echo "===================" >> "$HEADDIR/$1/OUTPUT"
+					echo "   ERROR OUTPUT"     >> "$HEADDIR/$1/OUTPUT"
+					echo "===================" >> "$HEADDIR/$1/OUTPUT"
+					echo 			   >> "$HEADDIR/$1/OUTPUT"
+					cat "$HEADDIR/$1/ERRORS"   >> "$HEADDIR/$1/OUTPUT"
+					echo 			   >> "$HEADDIR/$1/OUTPUT"
 					errors=1
 				fi
 			else
