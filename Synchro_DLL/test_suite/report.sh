@@ -33,7 +33,7 @@ OUTPUT_SFX="autos"
 function report() {
 
 	BUILDS="\"imports and builds with no errors/warnings\""
-	RUNS="\"synchronized block code/results\"",
+	RUNS="\"synchronized block code/results\""
 	REVIEW="\"PLEASE REVIEW\""
 	SCOREFILE="$OUTPUT_DIR/$1.$OUTPUT_SFX"
 
