@@ -1,0 +1,60 @@
+merge_score testing
+
+	general approach is:
+	    input: template, csv/autos, pre-existing json
+	    output: expected resulting json
+
+	it would be a good idea to have many of the pre-existing jsons
+	be the results of prior tests, so that we are also testing
+	successive merges: csv,autos or autos,csv
+	   
+	start with the CSV test cases, as they are simpler
+
+	for the autos pass and fail results, use real student results
+	(because I don't trust myself to be able to simulate it)
+
+test cases:
+    from CSV
+    	test full points into non-existing json
+	test less than full points into non-existing json
+	test no-value into non-existing json
+	test unmentioned* into non-existing json
+	test no-such into non-existing json
+
+    	test full points into existing json w/no values
+	test less than full points into existing json w/no values
+	test no-value into existing json w/no values
+	test unmentioned* into existing json w/no values
+	test no-such into existing json
+
+    	test full points into existing json w/values and comment
+	test less than full points into existing json w/values and comment
+	test no-value into existing json w/values and comment
+	test unmentioned* into existing json w/values and comment
+
+    from autos
+    	test pass into non-existing json
+	test fail-msg into non-existing json
+	test fail-trace into non-existing json
+	test fail-none into non-existing json
+	test unmentioned# into non-existing json
+	test no-such pass into non-existing json
+	test no-such fail into non-existing json
+
+    	test pass into existing json w/no values
+	test fail-msg into existing json w/no values
+	test fail-trace into existing json w/no values
+	test fail-none into existing json w/no values
+	test unmentioned# into existing json w/no values
+	test no-such pass into existing json
+	test no-such fail into existing json
+
+    	test pass into existing json w/values and comment
+	test fail-msg into existing json w/values and comments
+	test fail-trace into existing json w/values and comments
+	test fail-none into existing json w/values and comments
+	test unmentioned# into existing json w/values and commen5
+
+  no-such means a name not listed in the rubric
+* unmentioned means value not among the headers
+# unmentioned means not listed in passes or fails

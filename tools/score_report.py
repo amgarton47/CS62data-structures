@@ -1,5 +1,11 @@
-# TODO: get the strings rather than the test case names
-# TODO: generate the ID's so I can sort my output
+"""
+    score_report ... process .json score data into readable reports
+
+    usage: python score_report.py [--roster=file.json] raw-score-file.json ...
+
+    process each <username>.json score file
+    creating an <assignment>-<username>.txt file in the same directory
+"""
 import json
 import os.path
 import logging
@@ -83,6 +89,8 @@ def report(score_file):
         outfile.write("\n\nRubric points\n")
         earned_score = 0.0
         possible_score = 0.0
+
+        # write out earned/possible and comments for each test
         for test in all_tests:
             test_name = test['name']
             outfile.write("\n\t" + test_name + "\n")
@@ -99,6 +107,7 @@ def report(score_file):
             if 'comment' in test:
                 outfile.write("\tComments: " + test['comment'] + "\n")
 
+        # write out the final score
         outfile.write("\n")
         outfile.write("Final Score: " + str(round(earned_score,2)) + "/" +
                       str(round(possible_score,2)) + "\n")
@@ -120,6 +129,9 @@ def report(score_file):
 
 
 if __name__ == "__main__":
+    """
+    parse arguments, digest roster, and call report on each file
+    """
     umsg = "usage: %prog [options] input_file ..."
     parser = OptionParser(usage=umsg)
     parser.add_option("-v", "--verbose", action="store_true", dest="verbose",

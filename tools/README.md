@@ -48,10 +48,10 @@ programs as a simpler and more portable alternative to the GUI:
      be editied with your favorite spreadsheet program) for all of
      the non-autograder items in the rubric.
 
-   * a new program: merge_scores.py can be used to built a
+   * a new program: merge_scores.py can be used to build a
      <student>.json file from the <student>.autos files and/or
-     the CSV file.  This combination of tools is capable of
-     filling in all of the scores, but it may still be necessary
+     lines in the CSV file.  This combination of tools is capable 
+     of filling in all of the scores, but it may still be necessary
      to edit the <student>.json files to update the per-item
      grading comments.
 
@@ -72,7 +72,9 @@ programs as a simpler and more portable alternative to the GUI:
 
     1. If you download an (all submissions) zip from submit.cs.pomona.edu,
        unzipping it will create the per-assignment grading sub-directory 
-       and per-submission sub-sub-directories.
+       and per-submission sub-sub-directories.  If you download repos
+       from classroom.github.com, you git something very similar, though
+       the names are different.
 
     2. Copy everything in the (per-assignment) test_suite directory into
        the per-assignment grading directory.  This will include (at minimum)
@@ -93,15 +95,16 @@ programs as a simpler and more portable alternative to the GUI:
 
 ## projects not covered by full autograder suites
 
-    3. run the compile_and_run.sh script (which will probably require
-       a copy of either a generic or per-project report.sh script.
+    3. run the compile_and_run.sh script (which will may require
+       a per-project report.sh script (that should have come from
+       the test_suite directory).
 
        Again, te most common problems involve compilation errors or files 
        that students moved to a different place in the hierarchy.  I make 
        notes of these (for point deductions) but then fix them so that 
        testing can continue. 
 
-       The resulting .auto reports will only cover whether or not
+       The resulting .autos reports will only cover whether or not
        the resulting projects built and ran.  All additional scoring
        will be done manually.
 
@@ -122,7 +125,15 @@ programs as a simpler and more portable alternative to the GUI:
 
     5. Use the merge_scores.py program to transfer results from the
        <student>.autos files and the non-autograder-item spreadsheet
-       into <student>.json files.
+       into <student>.json files.  This should work in either direction:
+       	  * start by creating .json from .autos, then merge w/csv
+	  * start by creating .json from csv and then merge w/.autos
+
+       Each merge will copy scores from the source into (and perhaps
+       overriding previous values in) the corresponding .json file.
+       Non-full-point items from the spreadsheet will have no comments,
+       and so place-holder comments will be left in the .json file,
+       which you will have to edit by hand.
 
     6. Edit the comments in the <student>.json files to explain
        non-autograder point deductions.

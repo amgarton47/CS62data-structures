@@ -5,15 +5,24 @@
 # Note: the (empty) repo must exist on github before you do this
 #
 
-GIT_ACCOUNT="pomonacs622019fa"
+DFLT_ACCOUNT="pomonacs622019fa"
 
 # validate the arguments
 if [ -z "$1" -o -z "$2" ]
 then
-	>&2 echo "Usage: $0 path-to-project name-of-repo (under github.com:$GIT_ACCOUNT)"
+	>&2 echo "Usage: $0 path-to-project name-of-repo (on github.com:)"
 else
 	PROJECT="$1"
-	REPO_NAME="$2"
+
+	# repo name may or may not include an account
+	account=`dirname "$2"`
+	if [ "$account" == "." ]
+	then
+		echo "assuming $2 is under github.com:$DFLT_ACCOUNT"
+		REPO_NAME="$DFLT_ACCOUNT/$2"
+	else
+		REPO_NAME="$2"
+	fi
 fi
 
 # confirm the validity of the project path
@@ -46,8 +55,8 @@ fi
 git commit -m "Created from $1"
 
 # set the origin (either ssh or http)
-git remote add origin git@github.com:$GIT_ACCOUNT/$REPO_NAME.git
-#git remote add origin https://github.com/$GIT_ACCOUNT/$REPO_NAME.git
+git remote add origin git@github.com:$REPO_NAME.git
+#git remote add origin https://github.com/$REPO_NAME.git
 
 # make sure we are OK
 echo
@@ -56,6 +65,6 @@ git remote -v
 
 echo
 echo "To complete project repo creation:"
-echo "   1. create the repo $GIT_ACCOUNT/$REPO_NAME on github"
+echo "   1. create the repo $REPO_NAME on github"
 echo "   2. cd $REPO_DIR"
 echo "   3. git push --set-upstream origin master"
