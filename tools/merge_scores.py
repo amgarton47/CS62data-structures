@@ -61,7 +61,7 @@ def autos_score(autos_file, template):
             raw_results = json.load(infile)
             infile.close()
     except Exception as e:
-        stderr.write("unable to read input file" + autos_file
+        stderr.write("unable to read input file " + autos_file
                      + " - " + e.message)
         return None
 
