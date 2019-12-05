@@ -168,6 +168,23 @@ You will:
 
        * the (specific) consequences to the list structure
 
+An example of such an analysis might be:
+```
+	a check writing method contains the following code:
+
+	101	if balance >= check.amount {
+	102	    check.approve()
+	103	    balance -= check.amount
+	...
+
+
+	If a thread got to release the check (line 102), but
+	was preempted by another check before it could finish,
+	the new check would be checking an (old and too high)
+	balance, and might approve a check for which there was
+	no longer sufficient funds, resulting in an over-draft.
+```
+
 ### 2. Multi-Threaded Stress Test
 
 Failures due to race conditions are merely a risk.  They are not
@@ -182,7 +199,33 @@ The tester program will run a specified number of parallel threads
 for a specified number of cycles.  After each cycle it will audit
 the integrity of the list.  If it finds any errors, it will report
 them and stop.  If it finds no errors, it will continue, and report 
-success after the specified number of cycles.
+success after the specified number of cycles.  Typical output
+might be:
+
+```
+	DLL MT-Tester: cycles=16, threads=8, nodes=32, Ri=false, Rr=false
+	Audit #1:
+	    found 64/256 in complete and consistent list
+	Audit #2:
+	    found 96/256 in complete and consistent list
+	Audit #3:
+	    ERROR: 1030.next=3022, 3022.prev=3025
+	    ERROR: 3006.next=1012, 1012.prev=4
+	    ERROR: expected 112 nodes, found 104
+```
+This means:
+   * the program attempted to run 16 testing cycles
+   * the first two completed successfully
+   * after the third cycle, errors were found and the program exited.
+
+#### Estimating the likeihood of failure
+
+From this we might guess that the probabilty of failure was about 1/3
+per (8 thread) cycle.  Because scheduling is random, we cannot expect
+it to always fail in the third run ... but if we did a half-dozen runs
+and found that they were well clustered (e.g. failure after 1-5 
+successful runs, with an average of 2.5) then we could reasonably 
+estimate the per-cycle failure probability as being in the 25-30% range.
 
 Run the tester, multiple times, for varying numbers of threads and
 cycles, to get some sense of the likelihood of failure during any
@@ -190,7 +233,25 @@ particular test.  You need not plot these numbers as graphs.
 You can simply list your runs and report a range of numbers
 (threads, error-free cycles, per-cycle detection probability).
 
-You can run the `Tester` program directly from Eclipse, but you will
+This number need not be terribly accurate, but knowing a value 
+will enable you to:
+
+   * measure the effects of future changes (e.g. enabling 
+     yields in the critical sections, or adding synchronization
+     to prevent races).
+
+   * having some sense of the probability of a conflict will 
+     suggest how many tests you need to run to see if the 
+     problem has been fixed.  For example, if you found that
+     failures typically seemed to happen about 1/10 of the
+     time, running ten cycles without a failure would not 
+     mean much.  But running 100 cycles without a failure
+     would give strong testemony to the efficacy of your
+     improvements.
+
+
+Eclipse will compile your program, and you can run `Tester`
+directly from Eclipse, but you will
 surely want to run it many times with different parameters.  This can
 be done (in Eclipse) by changing the *Arguments* in the *Run configurations*,
 but you can do it much more easily by running the tester from the 
@@ -245,16 +306,23 @@ declared to be `synchronized`, the referenced object (`this`) will be
 locked for the duration of that method, so that no other `synchronized`
 method can execute (on that object) until the in-progress operation completes.
 
+When a method is declared to be *synchronized*, any invocation of
+that method will lock the object whose method was invoked (`this`)
+for the duration of that call.  No other calls to *synchronized*
+methods (on that object) will be allowed until the in-progress
+operation completes.
+
 Update the `DLL_Node` to make the `insert()` and `remove()` methods
 to be `synchronized` and re-run your tests.
 
 We expect that you will find these results to be disappointing:
 
-   1. report your results (threads, error-free cycles).
+   1. report your results: threads, error-free cycles, 
+      any change in the per-cycle probability of failure.
 
-   2.  Review the `DLL_Node` APIs and specifications for the
-       `synchronized` methods, and suggest an explanation for
-       why this did not completely elminate the problem.
+   2.  Review the `DLL_Node` code and APIs for the `synchronized`
+       methods, and suggest an explanation for why making these
+       methods *synchronized* did not elminate the problem.
 
 ### 5. Java Block Synchronization
 
@@ -298,6 +366,28 @@ You should find that it is impossible to create failures,
 even if large numbers of threads are used and all `yield()`
 calls are enabled.
 
+## Extra Credit
+
+You may have noticed that enabling yields in `remove` had
+resulted in a less dramatic failure rate increase than
+enabling yields in `insert`.
+
+The test code (in `Tester.run`) performs about the same
+number of `insert` and `remove` operations.  Apparently
+the `remove` critical section is either significantly 
+less likely to experience conflicts, or there is a
+significantly lower likelihood that such a conflict 
+will result in damage.
+
+Analyze the code in `DLL_Node.insert` and `DLL_Node.remove`,
+and the way these operations are used in `Tester.run`.
+Offer a clear explanation (backed up by specific 
+lines of code and quantitative estimate) for the difference 
+in the resulting failure rates.
+
+Submissions will be graded on the clarity of understanding,
+and the cogency of the data that supports it.
+
 ## Submission
 
 Create a file `analysis.txt` in which you record your 
@@ -315,6 +405,8 @@ Your submission will be graded based on the following criteria:
 | failure rate measurement (w/yields)         | 1.5    |
 | method synchronization (and analysis)       | 2      |
 | block synchronization (and results)         | 2      |
+:---------------------------------------------| :------|
+| extra credit                                | 4      |
 
 Most of the grading will be based on your discussions in `analsys.txt`, 
 but you will also be graded on your (ineffective) implementation
