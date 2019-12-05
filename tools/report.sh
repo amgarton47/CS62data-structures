@@ -32,8 +32,15 @@ OUTPUT_SFX="autos"
 
 function report() {
 
-	BUILDS="\"imports and builds with no errors/warnings\""
-	RUNS="\"runs with plausible results\""
+	# these messages may be overridden in the environment
+	if [ -z "$BUILDS" ]
+	then
+		BUILDS="\"imports and builds with no errors/warnings\""
+	fi
+	if [ -z "$RUNS" ]
+	then
+		RUNS="\"runs with plausible results\""
+	fi
 	REVIEW="\"PLEASE REVIEW\""
 	SCOREFILE="$OUTPUT_DIR/$1.$OUTPUT_SFX"
 

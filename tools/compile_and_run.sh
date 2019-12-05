@@ -32,19 +32,18 @@ then
 	shift
 fi
 
-# get the report generator (for recording results)
-if [ -f ./report.sh ]
+# get the report generator and its messages (for creating .autos)
+if [ -f ./report_messages.sh ]
 then
-	. ./report.sh
+	. ./report_messages.sh
+fi
+path=`dirname $0`
+if [ -f $path/report.sh ]
+then
+	. $path/report.sh
 else
-	path=`dirname $0`
-	if [ -f $path/report.sh ]
-	then
-		. $path/report.sh
-	else
-		echo "This script requires a copy of the report.sh script"
-		exit 1
-	fi
+	echo "This script requires a copy of the report.sh script"
+	exit 1
 fi
 
 # do we know which (of multiple) package to build and run
