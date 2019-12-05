@@ -95,9 +95,9 @@ programs as a simpler and more portable alternative to the GUI:
 
 ## projects not covered by full autograder suites
 
-    3. run the compile_and_run.sh script (which will may require
-       a per-project report.sh script (that should have come from
-       the test_suite directory).
+    3. run the compile_and_run.sh script (whose reporting may 
+       draw ona per-project report_messages.sh that should have
+       come from the test_suite directory).
 
        Again, te most common problems involve compilation errors or files 
        that students moved to a different place in the hierarchy.  I make 
@@ -190,12 +190,19 @@ programs as a simpler and more portable alternative to the GUI:
        * PACKAGE ... for assignments that contain multiple packages, only
          one of which should be built and tested, this file contains the
 	 name of the package to be built and tested.
-       * the autograde.sh script will be run on every file listed in
-         grading.sh;  it was expected that this would be a tester, 
-	 but I have used this script to do more interesting things
-	 like unpack zip files, and then do checking and processing
-	 on the files within them.
-
+       * if there is an autograde.sh script, that will be run instead
+         of the standard run-everything-that-has-a-main.  It can do
+	 much more (project specific) testing than merely running
+	 the compiled programs.
+       * after doing the compiles and runs, the script will generate
+         per-submission .autos files in the _output directory.  The
+	 standard names for build and run are coded in the report.sh
+	 script (that actually produces the .autos files).  But if
+	 you need to use different test names for a particular project
+	 these names can be set in a (project specific) report_messages.sh:
+	 
+	 	BUILDS ... name of the test that passes/fails with compile
+		RUNS ... name of the test that passes/fails with run/autograder
 
 ## json2csv.py
 
@@ -275,6 +282,20 @@ programs as a simpler and more portable alternative to the GUI:
     and create a .pdf listing of those files (in the _output) 
     directory with a name of the form submission.pdf.
 
+
+## report.sh
+
+   a trivial helper script that takes a situation:
+   	no_submission
+	build_error
+	run_error
+	run_ok
+   and produces a .autos to reflect those results under
+   tests with (default) names:
+   	"imports and builds with no errors/warnings"
+	"runs with plausible results"
+
+   although these names can be overridden by a report_names.sh
 
 ## configuration files
 
