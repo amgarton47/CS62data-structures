@@ -37,7 +37,8 @@ usage: python merge_scores.py [--template assignment.json] input-file ...
 
 import csv
 import os.path
-from sys import stderr
+import json
+from sys import stderr, exit
 from optparse import OptionParser
 
 verbose = False
@@ -215,7 +216,7 @@ if __name__ == "__main__":
     except Exception as e:
         stderr.write("unable to read test template " + opts.template
                      + " - " + e.message + "\n")
-        sys.exit(-1)
+        exit(-1)
 
     # process each input file
     for file in files:
