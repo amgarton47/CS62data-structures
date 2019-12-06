@@ -47,6 +47,8 @@ def report(score_file):
     """
     # find the user name
     out_directory = os.path.dirname(score_file)
+    if out_directory == "":
+        out_directory = "."
     username = os.path.splitext(os.path.basename(score_file))[0]
 
     # read in the base into which we are merging
