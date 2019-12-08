@@ -136,6 +136,8 @@ def merge(scores, current, filename, full_credit):
         name = test['name']
         entry = {}
         entry['name'] = name
+        if 'descr' in test:     # this field is optional
+            entry['descr'] = test['descr']
         entry['score'] = test['score']
 
         # new earned and comment can override the original

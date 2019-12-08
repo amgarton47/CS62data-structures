@@ -95,7 +95,10 @@ def report(score_file):
         # write out earned/possible and comments for each test
         for test in all_tests:
             test_name = test['name']
-            outfile.write("\n\t" + test_name + "\n")
+            if 'descr' in test:
+                outfile.write("\n\t" + test['descr'] + "\n")
+            else:
+                outfile.write("\n\t" + test_name + "\n")
 
             if 'earned' in test:
                 earned_score += test['earned']

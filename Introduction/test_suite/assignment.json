@@ -10,39 +10,48 @@
   "tests": [
     {
       "name": "getValue_returns_as_constructed(introduction.Autograder)",
+      "descr": "Token(,1) -> 1, Token(,10) -> 10",
       "score": 0.5
     },
     {
       "name": "setValue_changes_value(introduction.Autograder)",
+      "descr": "Token(,1).setValue(6), getValue -> 6",
       "score": 0.5
     },
     {
       "name": "setColor_changes_color(introduction.Autograder)",
+      "descr": "Token(vermilion,).setColor(Chartreuse), getColor -> Chartreuse",
       "score": 0.5
     },
     {
       "name": "highValue_for_half_max(introduction.Autograder)",
+      "descr": "Token(,5).highValue() -> False",
       "score": 0.25
     },
     {
       "name": "highValue_for_half_plus_1(introduction.Autograder)",
+      "descr": "Token(,6).highValue() -> True",
       "score": 0.25
     },
     {
       "name": "toString_as_expected(introduction.Autograder)",
+      "descr": "Token(Green,5) -> Chips is Green and has value 5",
       "score": 1.0
     },
 
     {
       "name": "addChips_sums_correctly(introduction.Autograder)",
+      "descr": "addChips returns expected sum",
       "score": 1.0
     },
     {
       "name": "chipHighValue_counts_correctly(introduction.Autograder)",
+      "descr": "chipHighValue returns expected count",
       "score": 1.0
     },
     {
       "name": "firstGreen_finds_correctly(introduction.Autograder)",
+      "descr": "firstGreen finds first Green chip",
       "score": 1.0
     },
 

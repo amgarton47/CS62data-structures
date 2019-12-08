@@ -8,35 +8,44 @@
   },
   "tests": [
     {
-      "name": "imports and builds with no errors/wwarnings",
+      "name": "imports and builds with no errors/warnings",
       "score": 1.0
     },
 
-    { "name: "toString_correct_after_init(silverdollar.Autograder)",
+    { "name": "toString_correct_after_init(silverdollar.Autograder)",
+      "descr": "toString of new game",
       "score": 1.0
     },
-    { "name: "legalMove_1(silverdollar.Autograder)",
+    { "name": "legalMove_1(silverdollar.Autograder)",
+      "descr": "recognize legal dist=1 move",
       "score": 0.5
     },
-    { "name: "legalMove_5(silverdollar.Autograder)",
+    { "name": "legalMove_5(silverdollar.Autograder)",
+      "descr": "recognize legal dist=5 move",
       "score": 0.5
     },
-    { "name: "legalMove_1_blocked(silverdollar.Autograder)",
+    { "name": "legalMove_1_blocked(silverdollar.Autograder)",
+      "descr": "recognize blocked dist=1 move",
       "score": 0.2
     },
-    { "name: "legalMove_6_blocked(silverdollar.Autograder)",
+    { "name": "legalMove_6_blocked(silverdollar.Autograder)",
+      "descr": "recognize blocked dist=6 move",
       "score": 0.2
     },
-    { "name: "legalMove_no_coin(silverdollar.Autograder)",
+    { "name": "legalMove_no_coin(silverdollar.Autograder)",
+      "descr": "recognize move from a place w/no coin",
       "score": 0.2
     },
-    { "name: "legalMove_too_far(silverdollar.Autograder)",
+    { "name": "legalMove_too_far(silverdollar.Autograder)",
+      "descr": "recognize move off left side",
       "score": 0.2
     },
-    { "name: "legalMove_off_right(silverdollar.Autograder)",
+    { "name": "legalMove_off_right(silverdollar.Autograder)",
+      "descr": "recognize move off right side",
       "score": 0.2
     },
-    { "name: "move_and_check(silverdollar.Autograder)",
+    { "name": "move_and_check(silverdollar.Autograder)",
+      "descr": "complete game simulation",
       "score": 2.0
     },
 

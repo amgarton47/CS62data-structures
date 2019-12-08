@@ -151,6 +151,12 @@ programs as a simpler and more portable alternative to the GUI:
    The resulting <assignment>-<student>.txt and .pdf files should
    be suitable for returing directly to students.
 
+   I have made one (upwards compatable) change to the assignment.json
+   files by adding an (optional) "descr" attribute to each test.  If
+   this is present this will be preserved in the <student>.json 
+   (created by merge_scores.py) and printed (in the final report) 
+   rather than the (more obtuse) name of the Autograder.java method.
+
 # Grading tools
 
 ## run_junit.sh

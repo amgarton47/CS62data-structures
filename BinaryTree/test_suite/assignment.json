@@ -16,73 +16,90 @@
 
         {
             "name": "size_small(BSTree.Autograder)",
+	    "descr": "size of small tree",
             "score": 0.25
         },
         {
             "name": "size_large(BSTree.Autograder)",
+	    "descr": "size of large tree",
             "score": 0.25
         },
         {
             "name": "height_small(BSTree.Autograder)",
+	    "descr": "height of small tree",
             "score": 0.25
         },
         {
             "name": "height_large(BSTree.Autograder)",
+	    "descr": "height of large tree",
             "score": 0.25
         },
 	
         {
             "name": "locate_top(BSTree.Autograder)",
+	    "descr": "locate top element in tree",
             "score": 0.25
         },
         {
             "name": "locate_shallow(BSTree.Autograder)",
+	    "descr": "locate mid-tree item",
             "score": 0.25
         },
         {
             "name": "locate_leaf(BSTree.Autograder)",
+	    "descr": "locate leaf-node item",
             "score": 0.25
         },
         {
             "name": "locate_none(BSTree.Autograder)",
+	    "descr": "locate item not in tree",
             "score": 0.25
         },
 
         {
             "name": "insert_root(BSTree.Autograder)",
+	    "descr": "first insertion into empty tree",
             "score": 0.3
         },
         {
             "name": "insert_root_child(BSTree.Autograder)",
+	    "descr": "insert child of first node",
             "score": 0.3
         },
         {
             "name": "insert_deep_left(BSTree.Autograder)",
+	    "descr": "insert left child deep in tree",
             "score": 0.3
         },
         {
             "name": "insert_deep_right(BSTree.Autograder)",
+	    "descr": "insert right child deep in tree",
             "score": 0.3
         },
         {
             "name": "insert_same_root(BSTree.Autograder)",
+	    "descr": "recognize re-insertion of root node value",
             "score": 0.25
         },
         {
             "name": "insert_same_deep(BSTree.Autograder)",
+	    "descr": "recognize re-insertion of mid-tree value",
             "score": 0.3
         },
         {
             "name": "insert_same_leaf(BSTree.Autograder)",
+	    "descr": "recognize re-insertion of leaf-node value",
             "score": 0.25
         },
 
         {
             "name": "construct_height(BSTree.Autograder)",
+	    "descr": "construct_IntTree produces tree of plausible height",
             "score": 0.5
         },
         {
             "name": "construct_size(BSTree.Autograder)",
+	    "descr": "construct_IntTree produces tree of plausible size",
             "score": 0.5
         },
 
