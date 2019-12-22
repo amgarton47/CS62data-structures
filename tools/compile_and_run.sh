@@ -62,6 +62,14 @@ else
 	autograder=""
 fi
 
+# do we have dependencies to include in the compilation
+if [ -d "$HEADDIR/_autos/dependencies" ]
+then
+	DEPS="-cp $HEADDIR/_autos/dependencies/"'*'
+else
+	DEPS=""
+fi
+
 # if we weren't given directories to process, try everything
 if [ -z "$1" ]
 then
@@ -179,7 +187,7 @@ do
 	echo "===================" >> "$HEADDIR/$1/OUTPUT"
 	echo "COMPILATION RESULTS" >> "$HEADDIR/$1/OUTPUT"
 	echo "===================" >> "$HEADDIR/$1/OUTPUT"
-	javac *.java >> "$HEADDIR/$1/OUTPUT" 2>&1
+	javac $DEPS *.java >> "$HEADDIR/$1/OUTPUT" 2>&1
 	if [ $? -eq 0 ]
 	then
 		if [ -n "$autograder" -o -n "$runnable" ]
