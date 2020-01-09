@@ -93,7 +93,7 @@ mkdir workspace
 3. You will receive an email invitation to join each lab.  Follow that
    URL and you should see a message like:
 
-   ![Accept Invitation](http://cs.pomona.edu/classes/cs62/boilerplate/assignment_invitation.png)
+![Accept Invitation](http://cs.pomona.edu/classes/cs62/boilerplate/assignment_invitation.png)
    
    Once you accept the invitation, you will be provided with a unique URL for
    your (private) version of this project.  Click it.
