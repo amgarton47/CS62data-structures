@@ -179,7 +179,13 @@ do
 		java -cp '.:junitmods:dependencies/*' -Dtesting=$TEMPDIR junitmods.PomonaRunner $name.autos
 		
 		# pretty-print the output
-		python3 -m json.tool $name.autos > $HEADDIR/_output/$name.autos
+		which python3 > /dev/null
+		if [ $? -eq 0 ]
+		then
+			python3 -m json.tool $name.autos > $HEADDIR/_output/$name.autos
+		else
+			python -m json.tool $name.autos > $HEADDIR/_output/$name.autos
+		fi
 
 		# and report the bottom line
 		passed=`grep passed_count $HEADDIR/_output/$name.autos | cut -d: -f2 | cut -d, -f1 | tr -d ' '`
