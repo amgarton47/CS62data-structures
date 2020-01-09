@@ -94,7 +94,8 @@ do
 	fi
 
 	# see if we can infer a student name
-	student=`echo $1 | cut -d- -f1`
+	#student=`echo $1 | cut -d- -f1`
+	student="$1"
 
 	if [ $verbose -eq 1 ]
 	then
