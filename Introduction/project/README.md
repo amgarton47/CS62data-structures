@@ -93,17 +93,17 @@ mkdir workspace
 3. You will receive an email invitation to join each lab.  Follow that
    URL and you should see a message like:
 
-   ![Accept Invitation](images/assignment_invitation.png "Accept this Assignment")
+   ![Accept Invitation](http://cs.pomona.edu/classes/cs62/boilerplate/assignment_invitation.png "Accept this Assignment")
    
    Once you accept the invitation, you will be provided with a unique URL for
    your (private) version of this project.  Click it.
 
-   ![Accepted Invitation](images/accepted_invitation.png "Invitation Accepted")
+   ![Accepted Invitation](http://cs.pomona.edu/classes/cs62/boilerplate/accepted_invitation.png "Invitation Accepted")
 
    You will see a unique copy of your lab repository. Click on the green `Clone or download` button and copy the returned
    HTTPS URL:
 
-   ![HTTPS_Clone](images/https_clone.png "HTTPS Clone")
+   ![HTTPS_Clone](http://cs.pomona.edu/classes/cs62/boilerplate/https_clone.png "HTTPS Clone")
 
 4. Start Eclipse on your local machine.  It will ask you to choose
    a workspace.   You should browse to the workspace folder that you 
@@ -113,11 +113,11 @@ mkdir workspace
 
 5. Clone your new github repo onto the machine where you are working.
 
-   ![Git View](images/git_view.png "Git View")
+   ![Git View](http://cs.pomona.edu/classes/cs62/boilerplate/git_view.png "Git View")
 
    Click on `Clone a Git repository ` to see the following window appear
 
-   ![Source Git](images/source_git.png "Source Git")
+   ![Source Git](http://cs.pomona.edu/classes/cs62/boilerplate/source_git.png "Source Git")
 
    Paste the URL you copied from Github. It will automatically populate the fields. 
    Add your Github username and password. 
@@ -127,7 +127,7 @@ mkdir workspace
    (**Note:** If you have two-factor authentication enabled for your Github account, 
    you will need to disable it prior to entering your credentials here)
 
-   ![Populate Source Git](images/populate_source_git.png "Populate Source Git")
+   ![Populate Source Git](http://cs.pomona.edu/classes/cs62/boilerplate/populate_source_git.png "Populate Source Git")
 
    Follow the Wizard by clicking `Next`. 
    ***Make sure you choose your newly-created workspace as the destination before 
@@ -138,7 +138,7 @@ mkdir workspace
 
    You will now see the repository appearing in your Git repositories.
 
-   ![Destination](images/destination.png "Destination")
+   ![Destination](http://cs.pomona.edu/classes/cs62/boilerplate/destination.png "Destination")
 
 6. Edit the `Token.java` and `Bag.java` files to add the missing code (which
    is indicated by **// TODO** comments).  If you are not yet sure how to code
@@ -174,7 +174,7 @@ mkdir workspace
 
    Right click on the repository and then click `Commit`.
 
-   ![Commit](images/commit.png "Commit")
+   ![Commit](http://cs.pomona.edu/classes/cs62/boilerplate/commit.png "Commit")
 
    Transfer all your files from `Unstaged Changes` to `Staged Changes`. 
    If you don't see options for `Unstaged Changes` and `Staged Changes`, 
@@ -194,7 +194,7 @@ mkdir workspace
    to the [origin](https://www.git-tower.com/learn/git/glossary/origin) on github.
 
 
-   ![Push](images/push.png "Push")
+   ![Push](http://cs.pomona.edu/classes/cs62/boilerplate/push.png "Push")
 
    When you click the `Push` (or `Commit and Push`) button, all committed
    changes will be pushed back to Github ... at which they will be saved
