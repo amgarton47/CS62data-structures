@@ -1,0 +1,27 @@
+{
+  "title": "JSON Scorefile",
+  "type": "object",
+  "properties": {
+    "title": { "type": "string" },
+    "assignment": { "type": "string" },
+    "earned_score": { "type": "number" },
+    "tests": {
+      "type": "array",
+      "items": { 
+	"type": "object",
+	"properties": {
+          "name": { "type": "string" },
+          "score": { "type": "number" },
+	  "earned": { "type": "number" },
+	  "comment": { "type": "string" }
+	},
+	"required": [ "name", "score" ]
+      }
+    },
+    "flags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}
+
