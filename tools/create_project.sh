@@ -1,11 +1,13 @@
 #!/bin/bash
 #
 # Usage: create_project.sh project_path name-of-repo
+# cd in CS062_Projects
+# Example: tools/create_project.sh Introduction pomonacs622020sp/lab0
 #
 # Note: the (empty) repo must exist on github before you do this
 #
 
-DFLT_ACCOUNT="pomonacs622019fa"
+DFLT_ACCOUNT="pomonacs622020sp"
 
 # validate the arguments
 if [ -z "$1" -o -z "$2" ]
@@ -55,8 +57,8 @@ fi
 git commit -m "Created from $1"
 
 # set the origin (either ssh or http)
-git remote add origin git@github.com:$REPO_NAME.git
-#git remote add origin https://github.com/$REPO_NAME.git
+#git remote add origin git@github.com:$REPO_NAME.git
+git remote add origin https://github.com/$REPO_NAME.git
 
 # make sure we are OK
 echo

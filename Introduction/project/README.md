@@ -92,12 +92,12 @@ mkdir workspace
 3. You will receive an email invitation to join each lab.  Follow that
    URL and you should see a message like:
 
-   ![Accept Invitation](images/assignment_invitation.png "Accept this Assignment")
+   ![Accepted Invitation](images/accepted_invitation.png "Accept this Assignment")
    
    Once you accept the invitation, you will be provided with a unique URL for
    your (private) version of this project.  Click it.
 
-   ![Accepted Invitation](images/accepted_invitation.png "Invitation Accepted")
+   ![Assignment Invitation](images/assignment_invitation.png "Invitation Accepted")
 
    You will see a unique copy of your lab repository. Click on the green `Clone or download` button and copy the returned
    HTTPS URL:
@@ -110,15 +110,16 @@ mkdir workspace
    and prompt it as a default (or in the list of Recent Workspaces)
    when you start Eclipse in the future.
 
-5. Clone your new github repo onto the machine where you are working.
+5. Import your new github repo onto the machine where you are working.
+  ![Import](images/import.png "Import")
+  Click on `File`->`Import` and follow the windows below: 
+   
+   ![Type](images/type.png "Type")
 
-   ![Git View](images/git_view.png "Git View")
+   ![Clone URI](images/cloneURI.png "Clone URI")
 
-   Click on `Clone a Git repository ` to see the following window appear
-
-   ![Source Git](images/source_git.png "Source Git")
-
-   Paste the URL you copied from Github. It will automatically populate the fields. 
+6. Paste the URL you copied from Github. It will automatically populate 
+   the fields. 
    Add your Github username and password. 
    Make sure to check `Store in Secure Store` unless you want to re-enter your 
    credentials every time you interact with the repository. 
@@ -126,40 +127,30 @@ mkdir workspace
    (**Note:** If you have two-factor authentication enabled for your Github account, 
    you will need to disable it prior to entering your credentials here)
 
-   ![Populate Source Git](images/populate_source_git.png "Populate Source Git")
 
-   Follow the Wizard by clicking `Next`. 
-   ***Make sure you choose your newly-created workspace as the destination before 
-   clickinging `Finish`.***
+7. **Carefully** browse to the destination which needs to be your workspace that you created in Desktop. 
 
-   In the `Projects` section, check the box that is entitled
-   `Import all existing Eclipse projects after clone finishes`.
+![Destination](images/destination.png "Destination")
 
-   You will now see the repository appearing in your Git repositories.
+8. Follow the following screens to complete cloning.
 
-   ![Destination](images/destination.png "Destination")
+![Existing](images/existing.png "Existing")
 
-6. Edit the `Token.java` and `Bag.java` files to add the missing code (which
-   is indicated by **// TODO** comments).  If you are not yet sure how to code
-   a particular type of statement (e.g., a Java `for` loop), Google for examples
-   or ask the instructor and the TAs for assistance.
+![Finish](images/finish.png "Finish")
 
-   If your program contains any obvious syntax errors, Eclipse will give you
-   red warning indications on the affected lines of code.  If the errors are
-   distributed over multiple modules you can see all of them by selecting the
-   `Problems` tab in the bottom part of the Eclipse window.
+9. You should now be able to see your newly-cloned starter code. 
+
+10. Edit the `Token.java` and `Bag.java` files to add the missing code (which is indicated by **// TODO** comments).  If you are not yet sure how to codea particular type of statement (e.g., a Java `for` loop), Google for examples or ask the instructor and the TAs for assistance.
+
+If your program contains any obvious syntax errors, Eclipse will give you red warning indications on the affected lines of code.  If the errors are distributed over multiple modules you can see all of them by selecting the `Problems` tab in the bottom part of the Eclipse window.
    
-   If you want to try compiling and running one of your programs:
+If you want to try compiling and running one of your programs:
 
-      - select (in the *Package Explorer* on the left) the module you want to
-        compile and run.
-      - select the `Run` item from the top menu bar.
-      - the output from your program should appear in the `Console` tab
-        of the bottom part of the Eclipse window.
+   - select (in the *Package Explorer* on the left) the module you want to compile and run.
+   - select the `Run` item from the top menu bar.
+   - the output from your program should appear in the `Console` tab of the bottom part of the Eclipse window.
 
-   You should fill in the missing code in `Token.java` first because
-   `Bag.java` depends on `Token.java`. When you start building `Token.java`
-   you will be warned that there are still errors in the project (because
+You should fill in the missing code in `Token.java` first because  `Bag.java` depends on `Token.java`. When you start building `Token.java` you will be warned that there are still errors in the project (because
    you have not yet fixed `Bag.java`). You can safely ignore this warning.
 
 ## Submitting your work
@@ -169,6 +160,10 @@ mkdir workspace
    Make sure you edit the `.json` file you are given with every lab/assignment to include 
    your username, your partner's username (if collaboration is allowed), and indicate 
    if you did any extra credit work.
+
+   Enable the Git Repositories view:
+
+   ![Git View](images/git_view.png "Git View")
 
    Right click on the repository and then click `Commit`.
 
@@ -215,16 +210,16 @@ We want to be able to see the progressive development process that you followed.
 ## Grading
 Your submission (in your own personal github repo) will be graded based on the following criteria:
 
-| Criterion                                         | Points |
-| :------------------------------------------------ | :----- |
-| programs compile with no errors                   | 1      |
-| all Token methods work correctly                  | 3      |
-| all Bag methods work correctly                    | 3      |
-| submitted correctly                               | 2      |
-| [Style and formatting*](https://github.com/pomonacs622020sp/Handouts/blob/master/style_guide.md)                               | 1      |
-| **Total**                                         | **10** |
+| Criterion                                                                                        | Points |
+| :----------------------------------------------------------------------------------------------- | :----- |
+| programs compile with no errors                                                                  | 1      |
+| all Token methods work correctly                                                                 | 3      |
+| all Bag methods work correctly                                                                   | 3      |
+| submitted correctly                                                                              | 2      |
+| [Style and formatting*](https://github.com/pomonacs622020sp/Handouts/blob/master/style_guide.md) | 1      |
+| **Total**                                                                                        | **10** |
 
-Style and Formatting refers to the correct use of Java constructs including booleans, loop constructs, etc. Think of it as good writing style for programs.
+*Style and Formatting refers to the correct use of Java constructs including booleans, loop constructs, etc. Think of it as good writing style for programs.
 
 NOTE: Code that does not compile will not be accepted! Make sure that your code compiles and runs before submitting it.
 
