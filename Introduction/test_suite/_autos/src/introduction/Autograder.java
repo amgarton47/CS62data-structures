@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * Auto-grader unit tests for <strong>Bag/Token Set-up project</strong>.
  *
- * @author Mark Kampe
+ * @author cs62 staff
  */
 public class Autograder {
 
@@ -108,8 +108,8 @@ public class Autograder {
 		String result = t5g.toString();
 	
 		// a typo in the starter invited a simple mistake
-		String preferred = "Chip is Green and has value 5";
-		String sort_of = "Chip is Green and has value5";
+		String preferred = "Token's color is Green and has value 5";
+		String sort_of = "Token's color is Green and has value5";
 
 		if (result.equals(sort_of))
 			assertEquals("toString(Token(\"Green\", 5) works awkwardly.", sort_of, result);
@@ -119,34 +119,34 @@ public class Autograder {
 
 
 	/*
-	 * testing allChips and allChipsWhile is a little difficult,
+	 * testing allTokens and allTokensWhile is a little difficult,
 	 * because their output is printed to stdout rather than
 	 * returned.
 	 */
 
 	/**
-	 * Determine if addChips produces expected sum
+	 * Determine if addTokens produces expected sum
 	 */
 	@Test
-	public void addChips_sums_correctly() {
-		assertEquals("addChips properly finds sum of " + sum + ".",
-					sum, testBag.addChips());
+	public void addTokens_sums_correctly() {
+		assertEquals("addTokens properly finds sum of " + sum + ".",
+					sum, testBag.addTokens());
 	}
 
 	/**
-	 * Determine if chipHighValue finds expected number of chips
+	 * Determine if highValueTokens finds expected number of Tokens
 	 */
 	@Test
-	public void chipHighValue_counts_correctly() {
-		assertEquals("chipHighValuew correctly finds " + num_high + "high value chips.", 
-					num_high, testBag.chipHighValue());
+	public void highValueTokens_counts_correctly() {
+		assertEquals("highValueTokens correctly finds " + num_high + "high value Tokens.", 
+					num_high, testBag.highValueTokens());
 	}
 
 	/**
-	 * Determine if firstGreen finds the expected chip
+	 * Determine if firstGreen finds the expected Token
 	 */
 	@Test
 	public void firstGreen_finds_correctly() {
-		assertEquals("firstGreen correctly finds first Green chip.", first_green, testBag.firstGreen());
+		assertEquals("firstGreen correctly finds first Green Token.", first_green, testBag.firstGreen());
 	}
 }

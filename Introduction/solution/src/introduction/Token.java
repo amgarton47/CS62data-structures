@@ -3,12 +3,12 @@ package introduction;
 import java.util.Random;
 
 /**
- * a Token is a virtual with a color and a numeric value
+ * A Token is a virtual chip with a color and a numeric value
  *
- * @author: Mark Kampe
+ * @author: cs62 staff
  */
 public class Token {
-	private static final int MAX_VALUE = 10;	// max legal value
+	private static final int MAX_VALUE = 10;	// max legal value the token can take
 
 	private String color;	// The color of the imagined token
 	private int value;		// The value of the imagined token
@@ -18,10 +18,10 @@ public class Token {
 	};
 
 	/**
-	 * create a token with a specified color and value
+	 * Creates a Token with a specified color and value
 	 *
-	 *	@param	color of the desired token
-	 *	@param	numerical value of desired token
+	 *	@param	color of the desired Token
+	 *	@param	numerical value of desired Token
 	 */
 	public Token(String color, int value) {
 		this.color = color;
@@ -29,66 +29,75 @@ public class Token {
 	}
 
 	/**
-	 * create a token with randomly chosen color and value
+	 * Creates a Token with randomly chosen color and value
 	 */
 	public Token() {
 		Random rand = new Random();
-
 		color = colors[rand.nextInt(colors.length)];
 		value = rand.nextInt(MAX_VALUE + 1);
 	}
 
 	/**
-	 * @return color of this token
+	 * Return color of this Token
+	 *
+	 * @return color of this Token
 	 */
 	public String getColor() {
 		return color;
 	}
 
 	/**
-	 * @return value of this token
+	 * Returns value of this Token
+	 *
+	 * @return value of this Token
 	 */
 	public int getValue() {
-		return(value);
-	}
+		return value;
+ 	}
 
 	/**
-	 * set the color of this token
-	 * @param newColor ... desired color
+	 * Sets the color of this Token
+	 *
+	 * @param color desired color
 	 */
-	public void setColor(String newColor) {
-		color = newColor;
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 	/**
-	 * set the value of this token
-	 * @param newValue ... desired value
+	 * Sets the value of this Token
+	 *
+	 * @param newValue desired value
 	 */
 	public void setValue(int newValue) {
-		value = newValue;
-	}
+		this.value = value;
+ 	}
 
 	/**
-	 * @return True if token has maximum value
+	 * Returns if this Token has the maximum value
+	 *
+	 * @return true if this Token has maximum value
 	 */
 	public boolean isMax() {
-		return(value == MAX_VALUE);
+		return value == MAX_VALUE;
 	}
 
 	/**
-	 * @return True if token has a higher than average value
+	 * Returns if this Token has a higher than average value
+	 *
+	 * @return true if this Token has a higher than average value
 	 */
 	public boolean isHighValue() {
-		return(value > MAX_VALUE/2);
+		return value > (MAX_VALUE/2);	
 	}
 
 	/**
-	 * @return string representation of a token
+	 * Returns string representation of a Token
+	 * 
+	 * @return string representation of a Token
 	 */
-	public String toString() {
-		// TODO: Complete this line of code so that it will also print the value of the chip
-		
-		return "Chip is " + color + " and has value " + value;
+	public String toString() {		
+		return "Token's color is " + color + " and has value " + value;
 	}
 
 	/**
@@ -98,7 +107,7 @@ public class Token {
 	 *	5
 	 *	false
 	 *	true
-	 *	Chip is Yellow and has value 10
+	 *	Token's color is Yellow and has value 10
 	 */
 	public static void main(String[] args) {
 		// 1. create a token with specified value and color

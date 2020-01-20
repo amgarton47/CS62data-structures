@@ -21,7 +21,7 @@
    code efforts.
 
 ## Overview
-The goals  of this assignment are to:
+The goals of this assignment are to:
    1. learn to run a few basic commands in a Linux/OSX terminal window.
    2. bring up Eclipse as an Integrated Development Environment.
    3. establish (if you do not already have one) a free personal
@@ -56,7 +56,7 @@ methods:
      the functionality of the other methods.
 
 As provided, several of these methods are incomplete (and have **// TODO** comments explaining
-what needs to be done).  You are to fill in the missing code (mostly a few simple
+what needs to be done). You are to fill in the missing code (mostly a few simple
 assignments and loops) to complete all of the methods so that they work correctly.
 
 ## Getting Started
@@ -72,8 +72,8 @@ cd cs062
 mkdir workspace
 ```
    The effect of these commands are:
-   * Create a new directory for this course on your Desktop 
-     (Though you might prefer to create it within your Documents folder).
+   * Create a new directory for this course on your `Desktop` 
+     (Though you might prefer to create it within your `Documents` folder).
    * Change the protection on this folder so that *only you* are able to access it.
    * Within the new `cs062` folder, create a `workspace` folder, where
      Eclipse will store all of the information associated with your projects.
@@ -106,8 +106,8 @@ mkdir workspace
    ![HTTPS_Clone](images/https_clone.png "HTTPS Clone")
 
 4. Start Eclipse on your local machine.  It will ask you to choose
-   a workspace.   You should browse to the workspace folder that you 
-   created above.  Eclipse will remember this selection
+   a workspace. You should browse to the workspace folder that you 
+   created above. Eclipse will remember this selection
    and prompt it as a default (or in the list of Recent Workspaces)
    when you start Eclipse in the future.
 
@@ -142,8 +142,8 @@ mkdir workspace
 
 6. Edit the `Token.java` and `Bag.java` files to add the missing code (which
    is indicated by **// TODO** comments).  If you are not yet sure how to code
-   a particular type of statement (e.g. a Java `for` loop), Google for examples
-   or ask the instructor for assistance.
+   a particular type of statement (e.g., a Java `for` loop), Google for examples
+   or ask the instructor and the TAs for assistance.
 
    If your program contains any obvious syntax errors, Eclipse will give you
    red warning indications on the affected lines of code.  If the errors are
@@ -159,15 +159,14 @@ mkdir workspace
         of the bottom part of the Eclipse window.
 
    You should fill in the missing code in `Token.java` first because
-   `Bag.java` depends on `Token.java`.  When you start building `Token.java`
+   `Bag.java` depends on `Token.java`. When you start building `Token.java`
    you will be warned that there are still errors in the project (because
-   you have not yet fixed `Bag.java`).  You can safely ignore this warning.
+   you have not yet fixed `Bag.java`). You can safely ignore this warning.
 
 ## Submitting your work
 
 8. *Commit* your changes and *Push* them back to Github.
    
-
    Make sure you edit the `.json` file you are given with every lab/assignment to include 
    your username, your partner's username (if collaboration is allowed), and indicate 
    if you did any extra credit work.
@@ -193,7 +192,6 @@ mkdir workspace
    These changes will only be on your local machine until you do a *Push* back
    to the [origin](https://www.git-tower.com/learn/git/glossary/origin) on github.
 
-
    ![Push](images/push.png "Push")
 
    When you click the `Push` (or `Commit and Push`) button, all committed
@@ -202,7 +200,6 @@ mkdir workspace
 
    If you want to confirm that we can see your work, go to the URL that you were given 
    on github. You should see the latest commit you pushed.
-
 
    Submitting correctly is your responsibility, and if you forget to submit or 
    submit unsuccessfully without following up, everyone will be unhappy. 
@@ -225,10 +222,10 @@ Your submission (in your own personal github repo) will be graded based on the f
 | all Token methods work correctly                  | 3      |
 | all Bag methods work correctly                    | 3      |
 | submitted correctly                               | 2      |
-| [Style and formatting*](https://github.com/pomonacs622019fa/Handouts/blob/master/style_guide.md)                               | 1      |
+| [Style and formatting*](https://github.com/pomonacs622020sp/Handouts/blob/master/style_guide.md)                               | 1      |
 | **Total**                                         | **10** |
 
-\* Code Style and Formatting refers to the correct use of Java constructs including booleans, loop constructs, etc. Think of it as good writing style for programs.
+Style and Formatting refers to the correct use of Java constructs including booleans, loop constructs, etc. Think of it as good writing style for programs.
 
 NOTE: Code that does not compile will not be accepted! Make sure that your code compiles and runs before submitting it.
 

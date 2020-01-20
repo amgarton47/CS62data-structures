@@ -1,21 +1,21 @@
 package introduction;
 
 /**
- * a Bag is a collection of Tokens (chips) that supports
+ * A Bag is a collection of Tokens (chips) that supports
  * functions that work by enumerating the contents.
  *
- * @author: Mark Kampe
+ * @author: cs062 staff
  */
 public class Bag {
 
-	private static final int DEFAULT_TOKENS = 10;	// test bag size
+	private static final int DEFAULT_TOKENS = 10;	// default number of Tokens in bag
 
 	Token[] contents;	// the Tokens contained in this bag
 
 	/**
-	 * create a new bag, populated with tokens
+	 * Creates a new bag populated with the given number of Tokens
 	 *
-	 * @param: numTokens ... number of desired tokens
+	 * @param numTokens number of desired Tokens
 	 */
 	public Bag(int numTokens){
 		contents = new Token[numTokens];
@@ -25,30 +25,27 @@ public class Bag {
 	}
 
 	/**
-	 * firstChip
-	 *		print out the first chip in the bag
+	 * Prints out the first Token in the bag
 	 */
-	public void firstChip() {
+	public void firstToken() {
 		System.out.println(contents[0]);
 	}
 	
 	/**
-	 * allChips
-	 *		print out each chip in the bag
-	 *		using a for loop to enumerate the contents
+	 *	Prints out each Token in the bag
+	 *	use a for loop to enumerate the contents
 	 */
-	public void allChips() {
+	public void allTokens() {
 		for(int i = 0; i < contents.length; i++) {
 			System.out.println(contents[i]);
 		}
 	}
 	
 	/**
-	 * allChipsWhile
-	 *		print out each chip in the bag
-	 *		using a while loop to enumerate the contents
+	 *	Prints out each Token in the bag
+	 *	using a while loop to enumerate the contents
 	 */
-	public void allChipsWhile() {
+	public void allTokensWhile() {
 		int i = 0;
 		while(i < contents.length) {
 			System.out.println(contents[i++]);
@@ -56,11 +53,11 @@ public class Bag {
 	}
 	
 	/**
-	 * addChips
+	 * Sums up the values of all Tokens in bag
 	 *
-	 * @return sum of values of all chips in bag
+	 * @return sum of values of all Tokens in bag
 	 */
-	public int addChips() {
+	public int addTokens() {
 		int sum = 0;
 		for(int i = 0; i < contents.length; i++)
 			sum += contents[i].getValue();
@@ -68,11 +65,11 @@ public class Bag {
 	}
 	
 	/**
-	 * chipHighValue
+	 * Returns the number of Tokens with a high value
 	 *
-	 * @return number of high value chips
+	 * @return number of high value Tokens
 	 */
-	public int chipHighValue() {
+	public int highValueTokens() {
 		int sum = 0;
 		for(int i = 0; i < contents.length; i++)
 			if (contents[i].isHighValue())
@@ -81,9 +78,9 @@ public class Bag {
 	}
 	
 	/**
-	 * firstGreen
+	 * Returns the index of first green Token, if it exists
 	 *
-	 * @return index of first green chip, or -1
+	 * @return index of first green Token, or -1 if none
 	 */
 	public int firstGreen() {
 		for(int i = 0; i < contents.length; i++)
@@ -100,25 +97,25 @@ public class Bag {
 		// create a bag full of random cips
 		Bag example = new Bag(DEFAULT_TOKENS);
 
-		// test firstChip ... to print the first
-		example.firstChip();
+		// test firstToken ... to print the first Token
+		example.firstToken();
 		System.out.println();
 
-		// test allChips ... to print them all
-		example.allChips();
+		// test allTokens ... to print all Tokens
+		example.allTokens();
 		System.out.println();
 
-		// test allChipsWhile ... to print them all
-		example.allChipsWhile();
+		// test allTokensWhile ... to print all Tokens using a while loop
+		example.allTokensWhile();
 		System.out.println();
 
-		// test addChips ... to print the sum of values
-		System.out.println(example.addChips());
+		// test addTokens ... to print the sum of values of all Tokens
+		System.out.println(example.addTokens());
 
-		// test chipHighValue ... to count the high value chips
-		System.out.println(example.chipHighValue());
+		// test highValueTokens ... to count the high value Tokens
+		System.out.println(example.highValueTokens());
 
-		// test firstGree ... to find the first green chip
+		// test firstGree ... to find the first green Token
 		System.out.println(example.firstGreen());
 	}
 }
