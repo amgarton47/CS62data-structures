@@ -46,14 +46,13 @@ A `Token` is a virtual chip with a (randomly chosen) `color` and `value`.
 A `Bag` is a set of `Token`s, with several methods (all of whose implementations
 require the enumeration of the `Token`s in the set).  It supports several
 methods:
-   - `firstChip` ... print out the first `Token` in the `Bag`.
-   - `allChips` ... print out all of the `Tokens` in the `Bag`.
-   - `allChipsWhile` ... the same as `allChips`, but to be implemented as a while loop.
-   - `addChips` ... the sum of the values of all `Tokens` in the `Bag`.
-   - `chipHighValue` ... the number of high-value `Tokens` in the `Bag`.
+   - `firstToken` ... prints out the first `Token` in the `Bag`.
+   - `allTokens` ... prints out all of the `Token`s in the `Bag`.
+   - `allTokensWhile` ... the same as `allTokens`, but to be implemented as a while loop.
+   - `addTokens` ... the sum of the values of all `Token`s in the `Bag`.
+   - `highValueTokens` ... the number of high-value `Token`s in the `Bag`.
    - `firstGreen` ... the index of the first `green` `Token` in the `Bag`.
-   - This class also has a `main` method that can be used to exercise
-     the functionality of the other methods.
+   - This class also has a `main` method that can be used to test the functionality of the other methods.
 
 As provided, several of these methods are incomplete (and have **// TODO** comments explaining
 what needs to be done). You are to fill in the missing code (mostly a few simple
