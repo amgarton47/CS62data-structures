@@ -10,7 +10,7 @@ public class Bag {
 
 	private static final int DEFAULT_TOKENS = 10;	// default number of Tokens in bag
 
-	Token[] contents;	// the Tokens contained in this bag
+	private Token[] contents;	// the Tokens contained in this bag
 
 	/**
 	 * Creates a new bag populated with the given number of Tokens
