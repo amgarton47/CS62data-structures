@@ -140,7 +140,7 @@ mkdir workspace
 
 9. You should now be able to see your newly-cloned starter code. 
 
-10. Edit the `Token.java` and `Bag.java` files to add the missing code (which is indicated by **// TODO** comments).  If you are not yet sure how to codea particular type of statement (e.g., a Java `for` loop), Google for examples or ask the instructor and the TAs for assistance.
+10. Edit the `Token.java` and `Bag.java` files to add the missing code (which is indicated by **// TODO** comments).  If you are not yet sure how to code a particular type of statement (e.g., a Java `for` loop), Google for examples or ask the instructor and the TAs for assistance.
 
 If your program contains any obvious syntax errors, Eclipse will give you red warning indications on the affected lines of code.  If the errors are distributed over multiple modules you can see all of them by selecting the `Problems` tab in the bottom part of the Eclipse window.
    
