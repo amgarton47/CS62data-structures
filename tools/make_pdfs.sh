@@ -81,7 +81,7 @@ do
 			list="$list $file"
 		elif [ "$file" == "REPORT" ]
 		then
-			found=`echo _output/*.txt | grep $1`
+			found=`ls _output/*.txt | grep $1`
 			if [ -n "$found" -a -s "$found" ]
 			then
 				file=`basename $found`
