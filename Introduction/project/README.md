@@ -26,7 +26,7 @@ The goals of this assignment are to:
    2. bring up Eclipse as an Integrated Development Environment.
    3. establish (if you do not already have one) a free personal
       [github account](https://help.github.com/en/articles/signing-up-for-a-new-github-account).
-   4. import a cloned of the master-copy for this project into Eclipse.
+   4. import a clone of the master-copy for this project into Eclipse.
    5. fill in the missing code in a simple Java program.
    6. submit your work by committing and pushing it back to github.
 
