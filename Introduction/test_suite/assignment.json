@@ -10,32 +10,32 @@
 	"tests": [
 	  {
 		"name": "getValue_returns_as_constructed(introduction.Autograder)",
-		"descr": "Token(,1) -> 1, Token(,10) -> 10",
+		"descr": "getValue returns the correct value of the Token upon construction. For example, Token(,1) -> 1, Token(,10) -> 10",
 		"score": 0.5
 	  },
 	  {
 		"name": "setValue_changes_value(introduction.Autograder)",
-		"descr": "Token(,1).setValue(6), getValue -> 6",
+		"descr": "setValue correctly updates the value of the Token to the given value. For example, Token(,1).setValue(6), getValue -> 6",
 		"score": 0.5
 	  },
 	  {
 		"name": "setColor_changes_color(introduction.Autograder)",
-		"descr": "Token(vermilion,).setColor(Chartreuse), getColor -> Chartreuse",
+		"descr": "setColor correctly updates the color of the Token to the given value. For example, Token(vermilion,).setColor(Chartreuse), getColor -> Chartreuse",
 		"score": 0.5
 	  },
 	  {
 		"name": "highValue_for_half_max(introduction.Autograder)",
-		"descr": "Token(,5).highValue() -> False",
+		"descr": "isHighValue correctly returns False for half of the maximum value. For example,Token(,5).isHighValue() -> False",
 		"score": 0.25
 	  },
 	  {
 		"name": "highValue_for_half_plus_1(introduction.Autograder)",
-		"descr": "Token(,6).highValue() -> True",
+		"descr": "isHighValue correctly returns True for half of the maximum value +1. For example,Token(,6).isHighValue() -> True",
 		"score": 0.25
 	  },
 	  {
 		"name": "toString_as_expected(introduction.Autograder)",
-		"descr": "Token(Green,5) -> Token's color is Green and has value 5",
+		"descr": "toString returns Token string representation as expected. For example, Token(Green,5) -> Token's color is Green and has value 5",
 		"score": 1.0
 	  },
   
