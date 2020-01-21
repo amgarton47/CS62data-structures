@@ -23,9 +23,9 @@ public class Token {
 	 *	@param	color of the desired Token
 	 *	@param	numerical value of desired Token
 	 */
-	public Token(String color, int value) {
-		this.color = color;
-		this.value = value;
+	public Token(String newColor, int newValue) {
+		color = newColor;
+		value = newValue;
 	}
 
 	/**
