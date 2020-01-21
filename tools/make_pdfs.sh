@@ -6,6 +6,17 @@
 #
 HEADDIR=`pwd`
 
+# confirm we have the required programs
+for needed in enscript ps2pdf
+do
+	which $needed > /dev/null
+	if [ $? -ne 0 ]
+	then
+		echo "ERROR - required program $needed not in search PATH"
+		exit 1
+	fi
+done
+
 verbose=0
 if [ "$1" == "--verbose" -o "$1" == '-v' ]
 then
