@@ -79,6 +79,17 @@ do
 		then
 			sources="$sources $found"
 			list="$list $file"
+		elif [ "$file" == "REPORT" ]
+		then
+			found=`echo _output/*.txt | grep $1`
+			if [ -n "$found" -a -s "$found" ]
+			then
+				file=`basename $found`
+				sources="$sources $found"
+				list="$list $file"
+			else
+				echo "ERROR: unable to find report for $1 in _output"
+			fi
 		else
 			echo "WARNING: unable to find $file under $1"
 		fi
