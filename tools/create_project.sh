@@ -42,13 +42,31 @@ else
 	exit -1
 fi
 
+# save current working dir
+CWD=$(pwd)
+
 # create a new (temp) copy of the contents
 REPO_DIR=/tmp/repo_temp.$$
-cp -r $PROJ_DIR $REPO_DIR
+#cp -r $PROJ_DIR $REPO_DIR
 
 # turn it into a repo
+mkdir ${REPO_DIR}
 cd $REPO_DIR
 git init
+
+# set the origin (either ssh or http)
+#git remote add origin git@github.com:$REPO_NAME.git
+git remote add origin https://github.com/$REPO_NAME.git
+
+git pull origin master
+
+# back to CWD
+cd ${CWD}
+# copy contents
+rsync -vr ${PROJ_DIR}/ ${REPO_DIR}
+# back to repo
+cd ${REPO_DIR}
+
 git add * 
 if [ -f .gitignore ]
 then
@@ -56,17 +74,4 @@ then
 fi
 git commit -m "Created from $1"
 
-# set the origin (either ssh or http)
-#git remote add origin git@github.com:$REPO_NAME.git
-git remote add origin https://github.com/$REPO_NAME.git
-
-# make sure we are OK
-echo
-git status
-git remote -v
-
-echo
-echo "To complete project repo creation:"
-echo "   1. create the repo $REPO_NAME on github"
-echo "   2. cd $REPO_DIR"
-echo "   3. git push --set-upstream origin master"
+git push origin master
