@@ -63,11 +63,11 @@ git pull origin master
 # back to CWD
 cd ${CWD}
 # copy contents
-rsync -vr ${PROJ_DIR}/ ${REPO_DIR}
+rsync -rv --delete --exclude=.git ${PROJ_DIR}/ ${REPO_DIR}
 # back to repo
 cd ${REPO_DIR}
 
-git add * 
+git add -A
 if [ -f .gitignore ]
 then
 	git add .gitignore
