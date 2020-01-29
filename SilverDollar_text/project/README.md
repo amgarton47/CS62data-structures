@@ -1,21 +1,20 @@
-# Lab 01 - Eclipse and Silver Dollar Games
+# Lab 1 - The Silver Dollar Game
 
 ## Learning Goals
 
-* Refresh your memory of the Java programming language.
-* Gain practice using the `ArrayList` class.
+* Practice some of your new Java programming skills.
+* Play with using the `ArrayList` class.
 * Gain experience testing for errors and writing code that handles edge cases.
 
 ## Key Terms and Concepts
-* `ArrayList` - An ArrayList is a resizable array-like data structure, where items can be added and removed regardless of the initialized size (See 1.3 pg. 136 in the textbook and the lecture slides). In this lab we will use the default java.util.ArrayList class. Please look into its [documentation](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html) for more details about its methods.
+* `ArrayList` - An ArrayList is a resizable array-like data structure, where items can be added and removed regardless of the initialized size (See 1.3 pg. 136 in the textbook and the lecture notes). In this lab we will use the default java.util.ArrayList class. Please look into its [documentation](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html) for more details about its methods.
 * Edge cases - A possible scenario of user input which requires a specific or non-standard response from the code, such as a user clicking out of bounds or attempting an illegal move.
 
 
 ## Silver Dollar Game
 
 Clone and import this project as you did with the introductory assignment. Your program for lab today is to write a text-based version of the Silver Dollar Game. See **Appendix A - Rules** for more information on the specifics of the game. Make sure you understand how the game is played
-before coding it up! Think about the methods described there and choose an appropriate data structure
-to model the game. This is a time for discussion in the lab; do not hesitate to ask questions or share
+before coding it up! This is a time for discussion in the lab; do not hesitate to ask questions or share
 your thoughts.
 
 The behavior, in the console, will look like this:
@@ -30,8 +29,7 @@ o_o____o_oo_ Next move?
 ooooo_______ You win!!
 ```
 The pair of numbers after `Next move?` signifies the location of a coin and the number of squares
-that the coin is to move to the left. Remember that in languages like Java/C/C++ we start counting
-at 0 not 1, so the leftmost square is location 0, not 1.
+that the coin is to move to the left. To be consistent with how we do indexing in Java the leftmost square is location 0, not 1.
 
 For this first exercise, we have given you a start on the code for the class `TextCoinStrip`. Take some time to understand the code (I promise you’ll be much better off spending 5-10 minutes
 looking at the code before doing any coding yourself), then fill in the four missing methods.
@@ -44,7 +42,10 @@ looking at the code before doing any coding yourself), then fill in the four mis
 Note that the program will not execute at all until `gameIsOver` compiles successfully.
 We suggest that you change it to return `false` until you get the other functions working.
 
-There are actually more constraints on whether or not a move (starting point and distance) is
+## Hints/Advice
+* Develop incrementally.  Write one method and test that it works by writing static test methods (either in the class or in a separate class).  Make sure that method is working as you expect before moving on to the next method.  To get in good habits, you should also be pushing your changes to github once you have one method working.
+* Think about all of the possible ways that your methods could be called and make sure that you are handling all of the cases appropriately.  One of the goals of this class is to get used to testing your own code in more realistic settings, i.e., where the inputs might not always be "proper" inputs.
+* There are many constraints on whether or not a move (starting point and distance) is
 legal.  You should think about these and enumerate them (in the pre-method comment) before
 trying to write the code for the `isLegalMove` method.
 
@@ -90,18 +91,11 @@ following up, everyone will be unhappy. Make sure you commit and push regularly 
 **Important:** The last commit you push by the due date is the one we will look at and grade.
 
 ## Grading
-Your submission (in your own personal github repo) will be graded based on the following criteria:
 
-| Criterion                                         | Points |
-| :------------------------------------------------ | :----- |
-| programs compile with no errors/warnings          | 1      |
-| all methods work correctly                        | 5      |
-| language feature use and efficiency               | 2      |
-| comments (for added methods/code)                 | 1      |
-| [Style and formatting](https://github.com/pomonacs622019fa/Handouts/blob/master/style_guide.md)                               | 1      |
-| **Total**                                         | **10** |
+This lab will directly lead into the assignment, so I'd strongly encourage you to complete the lab.  For grading purposes, you need to:
 
-NOTE: Code that does not compile will not be accepted! Make sure that your code compiles and runs before submitting it.
+1. Participate in lab discussions.
+2. Push some code by the end of lab that compiles and shows some progress.
 
 ### Appendix A - Rules
 
