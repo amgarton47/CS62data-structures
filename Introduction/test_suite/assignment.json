@@ -54,18 +54,17 @@
 		"descr": "firstGreen finds first Green Token",
 		"score": 1.0
 	  },
-  
 	  {
-		"name": "builds with no errors",
+		"name": "submitted correctly",
+		"score": 1.0
+	  },
+	  {
+		"name": "builds correctly",
 		"score": 1.0
 	  },
 	  {
 		"name": "style and formatting",
 		"score": 1.0
-	  },
-	  {
-		"name": "submitted correctly",
-		"score": 2.0
 	  },
 	  {
 		"name": "submitted on time (negative if late)",
