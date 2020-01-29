@@ -8,7 +8,7 @@ more assignment.json
 PATHTO/CS62_projects/tools/compile_and_run.sh
 
 # run junits
-PATHTO/CS62_projects/tools/run_junit.sh
+PATHTO/CS62_projects/tools/run_junit.sh | tee all_submissions.txt
 
 # merge main output plus junits
 python PATHTO/CS62_projects/tools/merge_scores.py -v _output/*.autos
