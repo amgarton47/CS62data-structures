@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+# PPTX
+*.pptx
+
 # Log file
 *.log
 
