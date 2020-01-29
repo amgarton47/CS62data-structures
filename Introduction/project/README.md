@@ -215,7 +215,8 @@ Your submission (in your own personal github repo) will be graded based on the f
 | programs compile with no errors                                                                  | 1      |
 | all Token methods work correctly                                                                 | 3      |
 | all Bag methods work correctly                                                                   | 3      |
-| submitted correctly                                                                              | 2      |
+| submitted correctly                                                                              | 1      |
+| builds with no error                                                                             | 1      |
 | [Style and formatting*](https://github.com/pomonacs622020sp/Handouts/blob/master/style_guide.md) | 1      |
 | **Total**                                                                                        | **10** |
 

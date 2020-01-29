@@ -1,0 +1,29 @@
+cd submissions
+#make sure that classroom.json is on the same level with submissions/
+
+cp -r PATHTO/CS62_projects/ASSIGNMENT/test_suite/* .
+more assignment.json
+
+# run the main method
+PATHTO/CS62_projects/tools/compile_and_run.sh
+
+# run junits
+PATHTO/CS62_projects/tools/run_junit.sh
+
+# merge main output plus junits
+python PATHTO/CS62_projects/tools/merge_scores.py -v _output/*.autos
+
+# create a csv for manual grading 
+python PATHTO/CS62_projects/tools/json2csv.py > assignment.csv 
+open assignment.csv
+
+# merge csv and prexisting output
+cd _output
+python PATHTO/CS62_projects/tools/merge_scores.py -v -t ../assignment.json ../assignment.csv
+cd ..
+python PATHTO/CS62_projects/tools/score_report.py -v _output/*.json
+
+# create pdfs that contain all this info
+PATHTO/CS62_projects/tools/make_pdfs.sh OUTPUT REPORT file1.java file2.java file3.java
+
+
