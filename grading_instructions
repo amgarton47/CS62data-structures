@@ -3,27 +3,28 @@
 cd submissions/assignmentX
 #make sure that classroom.json is within submissions/
 
-cp -r /common/cs/cs062/CS62_projects/assignmentX/test_suite/* .
+cp -r /common/cs/cs062/admin/CS62_projects/assignmentX/test_suite/* .
 more assignment.json
 
 # run the main method
-/common/cs/cs062/CS62_projects/tools/compile_and_run.sh
+/common/cs/cs062/admin/CS62_projects/tools/compile_and_run.sh
 
 # run junits
-/common/cs/cs062/CS62_projects/tools/run_junit.sh | tee all_submissions.txt
+/common/cs/cs062/admin/CS62_projects/tools/run_junit.sh | tee all_submissions.txt
 
 # merge main output plus junits
-python /common/cs/cs062/CS62_projects/tools/merge_scores.py -v _output/*.autos
+python /common/cs/cs062/admin/CS62_projects/tools/merge_scores.py -v _output/*.autos
   
-# create a csv for manual grading 
-python /common/cs/cs062/CS62_projects/tools/json2csv.py > assignment.csv 
+# create a csv for manual grading of all assignments. Skip step and edit output directly 
+# if you want to edit them individually
+python /common/cs/cs062/admin/CS62_projects/tools/json2csv.py > assignment.csv 
 open assignment.csv
 
 # merge csv and prexisting output
 cd _output
-python /common/cs/cs062/CS62_projects/tools/merge_scores.py -v -t ../assignment.json ../assignment.csv
+python /common/cs/cs062/admin/CS62_projects/tools/merge_scores.py -v -t ../assignment.json ../assignment.csv
 cd ..
-python /common/cs/cs062/CS62_projects/tools/score_report.py -v _output/*.json
+python /common/cs/cs062/admin/CS62_projects/tools/score_report.py -v _output/*.json
 
 # create pdfs that contain all this info
-common/cs/cs062/CS62_projects/tools/make_pdfs.sh OUTPUT REPORT file1.java file2.java file3.java
+common/cs/cs062/admin/CS62_projects/tools/make_pdfs.sh OUTPUT REPORT file1.java file2.java file3.java
