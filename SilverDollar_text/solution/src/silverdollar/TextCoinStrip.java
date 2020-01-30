@@ -115,17 +115,19 @@ public class TextCoinStrip {
 	 * @return true if there are no more moves 
 	 */ 
 	public boolean gameIsOver() {
-		Boolean space_seen = false;
+		boolean foundEmpty = false;
 		
-		Iterator<Boolean> iter = theStrip.iterator();
-		while(iter.hasNext()) {
-			Boolean current = iter.next();
-			if (current && space_seen)
-				return false;
-			if (!current)
-				space_seen = true;
+		for( int i = 0; i < theStrip.size(); i++ ) {
+			if( theStrip.get(i) ) {
+				// we found a coin, but we'd already found an empty
+				if( foundEmpty ) {
+					return false;
+				}
+			}else {
+				foundEmpty = true;
+			}
 		}
-
+		
 		return true;
 	} 
 
