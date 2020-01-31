@@ -25,7 +25,7 @@ public class CoinSquare extends Rectangle2D.Double {
     private int dimen;     // the size of one side of the square    
     
     /**
-     * @post creates a Square
+     * creates a Square
      * @param i the index in the strip of squares
      * @param s the size of a side of the square
      * 
@@ -45,23 +45,19 @@ public class CoinSquare extends Rectangle2D.Double {
     }
 
     /**
-     * @pre there is no coin in the square
-     * @post the coin is in the square
+     * Add a coin to this squares 
      * @param coin the coin
      */
     public void setCoin(Coin coin) {
-        assert occupant == null;
         occupant = coin;
         coin.moveTo(index * dimen + dimen / 2, dimen / 2);
     }
 
     /**
-     * @pre there is a coin in the square
-     * @post removes a coin 
+     * Remove and return the coin occupying this square 
      * @return the coin that was removed
      */
     public Coin release() {
-        assert occupant != null;
         Coin coin = occupant;
         occupant = null;
         return coin;

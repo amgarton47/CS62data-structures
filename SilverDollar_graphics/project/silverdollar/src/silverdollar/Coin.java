@@ -67,7 +67,7 @@ public class Coin extends Ellipse2D.Double {
      * 
      */
     public void moveTo(int xCoord, int yCoord) {
-        super.setFrame(xCoord - diameter / 2,
+        setFrame(xCoord - diameter / 2,
                        yCoord - diameter / 2, 
                        diameter, diameter);
         frame.repaint();

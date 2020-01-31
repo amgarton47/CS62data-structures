@@ -12,6 +12,8 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+
 import javax.swing.JFrame;
 import java.util.Random;
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class GraphicsCoinStrip extends JFrame {
 	private static final Color BACKGROUND_COLOR = Color.LIGHT_GRAY;
 	private static final Color BOUNDARY_COLOR = Color.BLACK;
 	private static final Color COIN_COLOR = Color.RED;
+	private static final int DISPLAY_WIDTH = SQUARE_SIZE * 12;
 
 	private BufferedImage bf = new BufferedImage(DISPLAY_WIDTH, SQUARE_SIZE, 
 												BufferedImage.TYPE_INT_RGB);
@@ -49,17 +52,25 @@ public class GraphicsCoinStrip extends JFrame {
 	 */
 	public static void main(String[] args) {
 		GraphicsCoinStrip f = new GraphicsCoinStrip (12, 5);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(f.strip.size() * SQUARE_SIZE, SQUARE_SIZE);
-		f.setVisible(true);
-		CoinMouseListener listener = f.new CoinMouseListener(f);
-		f.addMouseListener(listener);
-		f.addMouseMotionListener(listener);
 	}
 	
-	// TODO: add some comments here
-	public GraphicsCoinStrip(int squares, int coins){		
+	/**
+	 * Create a new coin strip with randomly placed coins
+	 * 
+	 * @param squares the number of squares in the strip
+	 * @param coins the number of coins to place
+	 */
+	public GraphicsCoinStrip(int squares, int coins) {		
 		//TODO: add some code here!
+		
+		// --- only add code above here in this method ---
+		CoinMouseListener listener = new CoinMouseListener();
+		addMouseListener(listener);
+		addMouseMotionListener(listener);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(strip.size() * SQUARE_SIZE, SQUARE_SIZE);
+		setVisible(true);  // this should always be at the end of the constructor
 	}
 	
 	/**
@@ -75,42 +86,52 @@ public class GraphicsCoinStrip extends JFrame {
 	 *        the (unknown to us) caller
 	 */
 	public void paint(Graphics g) {
-		Graphics g1 = bf.getGraphics();
-		Graphics2D g2 = (Graphics2D) g1;
+		Graphics2D g2 = (Graphics2D) bf.getGraphics();;
 
 		g2.setPaint(BACKGROUND_COLOR);
 		
-		for (int i = 0; i < strip.size(); i++){
+		for (int i = 0; i < strip.size(); i++) {
 			g2.fill(strip.get(i));
 		}
 
 		g2.setPaint(BOUNDARY_COLOR);
 		
-		for (int i = 0; i < strip.size(); i++){
+		for (int i = 0; i < strip.size(); i++) {
 			g2.draw(strip.get(i));
 		}
 
 		g2.setPaint(COIN_COLOR);
-		for (int i = 0; i < strip.size(); i++){
-			if (strip.get(i).isOccupied()){
+		for (int i = 0; i < strip.size(); i++) {
+			if (strip.get(i).isOccupied()) {
 				g2.fill(strip.get(i).getCoin());
 			}
 		}
 
-		if (movingCoin != null){
+		if (movingCoin != null) {
 			g2.fill(movingCoin);
 		}	
 		
 		g.drawImage(bf,0,0,null);	
 	}
+	
+	/**
+	 * Given an x, y location, return the index of the CoinSquare within "strip"
+	 * that the location occurs.  Return -1 if the x, y location does not occur
+	 * in any CoinSquare within "strip"
+	 *
+	 * @param x
+	 * @param y
+	 * @return the index within the strip
+	 */
+	private int getCoinSquareIndex(int x, int y) {
+		// TODO: fill in code here
+	}
 		
 	/**
 	 * An inner class to respond to mouse events.
 	 */
-	private class CoinMouseListener implements MouseListener,
-								MouseMotionListener {
-		private int origin;  // the index of the square from
-		// which the wanderer coin came
+	private class CoinMouseListener implements MouseListener, MouseMotionListener {
+		private int origin;	// the index of the square when a coin is picked up
 		
 		/**
 		 * Method mousePressed is called when the mouse is
@@ -124,18 +145,27 @@ public class GraphicsCoinStrip extends JFrame {
 			int newX = event.getX();
 			int newY = event.getY();
 			
-			// if the cursor is in a square, and
-			// there is a coin in that square, and
-			// the cursor is actually within the
-			// boundaries of the coin
-			if (..) {
+			if (clickedOnCoin(newX, newY)) {
+				int squareIndex = getCoinSquareIndex(newX, newY);
 				movingCoin = strip.get(squareIndex).release();
 				movingCoin.moveTo(newX, newY);
 				origin = squareIndex;
 				
-			}else{
+			} else {
 				movingCoin = null;
 			}
+		}
+		
+		/**
+		 * Determines if an x, y location contains a coin.
+		 * 
+		 * @param x
+		 * @param y
+		 * @return true if a coin is at location x, y, false otherwise
+		 */
+		private boolean clickedOnCoin(int x, int y) {
+			// TODO: add code here
+			// NOTE: The only way to access coins is through a CoinSquare
 		}
 		
 		/**
@@ -151,14 +181,11 @@ public class GraphicsCoinStrip extends JFrame {
 		public void mouseReleased(MouseEvent event) {
 			int newX = event.getX();
 			int newY = event.getY();
-			
-			// if a coin is being dragged and
-			// the cursor is within a square and
-			// that square is the destination of 
-			// a legal move
-			if (...){
+						
+			if (isValidCoinDrop(newX, newY)) {
+				int squareIndex = getCoinSquareIndex(newX, newY);
 				strip.get(squareIndex).setCoin(movingCoin);
-			}else{
+			} else {
 				if( movingCoin != null ){
 					strip.get(origin).setCoin(movingCoin);
 				}
@@ -169,6 +196,20 @@ public class GraphicsCoinStrip extends JFrame {
 			// some square.
 			movingCoin = null;
 		}
+		
+		/**
+		 * Returns true if we are currently moving a coin and
+		 * the x, y location represents a valid location on the coin
+		 * strip to drop that coin based on the contents of the strip
+		 * and the rules of the game.
+		 * 
+		 * @param x
+		 * @param y
+		 * @return true if we are moving a coin and this is a valid location to drop it
+		 */
+		private boolean isValidCoinDrop(int x, int y) {
+			// TODO: add code here
+		}
 
 
 		/**
@@ -176,10 +217,11 @@ public class GraphicsCoinStrip extends JFrame {
 		 * @post the selected coin, if there is one, is moved
 		 */
 		public void mouseDragged(MouseEvent event) {
-			if (movingCoin != null)
+			if (movingCoin != null){
 				movingCoin.moveTo(event.getX(), event.getY());
+			}
+			
 			repaint();
-
 		}
 
 		/*

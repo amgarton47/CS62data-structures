@@ -2,9 +2,8 @@
 
 ## Learning Goals
 
-* Refresh your memory of the Java programming language.
-* Gain practice using the `ArrayList` class. 
-* Gain exposure to inner classes, Java graphics, and Java event handling.
+* Gain more practice using the `ArrayList` class. 
+* Gain exposure to Java graphics, and Java event handling.
 * Gain experience testing for errors and writing code that handles edge cases.
 
 ## Key Terms and Concepts
@@ -19,7 +18,7 @@ The goal of this assignment is to create a graphical version of the Silver Dolla
 
 Be sure to read over the entirety of this document and the code, including the classes already implemented for you, before beginning work on the code. This will help you better understand the tools provided and the parameters required for this project.
 
-`Coin` and `CoinSquare` have already been implemented for you. You are responsible for `GraphicsCoinStrip`, which has been partially implemented. 
+`Coin` and `CoinSquare` have already been implemented for you. You are responsible for `GraphicsCoinStrip`, which has been partially implemented. We've added TODO statements where you need to edit the code (there are four places).
 
 The correctness of the assignments in this class will be automatically verified. For this reason, you must follow all naming conventions specified in this assignment.
 
@@ -33,27 +32,30 @@ The `Coin` class represents a single coin. This class is already implemented for
 Note that the `Coin` constructor requires a `JFrame` (a drawable panel
 on the screen) as a parameter.  The primary (`GraphicsCoinStrip`) class 
 in this project extends the `JFrame`, and so (`this`) can be passed
-as the required `JFrame` when the new coins are constructed.
+as the required `JFrame` when the new coins are constructed if you are within the `GraphicsCointStrip` class.
 
 ### `CoinSquare`
 The `CoinSquare` class represents a square. This class is already implemented for you and contains methods to interact with and gain information about the coin contained in a square. Again, these methods are useful for the assignment and it will be very helpful to understand them before beginning the assignment.
 
 ### `GraphicsCoinStrip`
-The `GraphicsCoinStrip` class uses the `Coin` and `CoinSquare` classes to implement the Silver Dollar Game. This class is partially implemented. There are comments suggesting what you need to add. The `contains` methods that `Coin` and `CoinSquare` inherit from `Eclipse2D` and `Rectangle2D` may be helpful.
-Notice that there are no `play` or `move` methods in the `GraphicsCoinStrip` class because the mouse is in control of the game. Much of what drives the game is the mouse event handling which can be found in the inner class `CoinMouseListener` inside the `GraphicsCoinStrip` class. The purpose of the inner class `CoinMouseListener` is to encapsulate all of the methods that deal with the mouse.
+The `GraphicsCoinStrip` class uses the `Coin` and `CoinSquare` classes to implement the Silver Dollar Game. This class is partially implemented. There are TODO comments where you need to add code. The `contains` methods that `Coin` and `CoinSquare` inherit from `Eclipse2D` and `Rectangle2D` will be helpful.
+
+Notice that there are no `play` or `move` methods in the `GraphicsCoinStrip` class because the mouse is in control of the game. Much of what drives the game is the mouse event handling which can be found in the inner class `CoinMouseListener` inside the `GraphicsCoinStrip` class. The purpose of the inner class `CoinMouseListener` is to encapsulate all of the methods that deal with the mouse movement.
 
 You can add whatever methods you think would be useful to the `GraphicsCoinStrip` or `CoinMouseListener` classes, but do not change the names of any of the existing methods or variables.
+
 After you have a working copy of the game, write a method in this class that checks to see if the game is over and, if so, signal this to the user in some fashion. Possible examples are to print out a message to the console, or better, change the color of all of the coins. You can also make sure that the coins no longer move once the game is completed (although this is not required). Test this program rigorously to make sure that it works consistently, even when the user attempts unusual or unexpected actions.
 
 ## Getting Started
-1. Read through the [CS 062 style guide](https://github.com/pomonacs622019fa/Handouts/blob/master/style_guide.md "Style guide"). You must follow these guidelines for all of your assignments. In short, write clean and readable code, thorough comments, and understandable variable and method names.
+1. Read through the [CS 062 style guide](https://github.com/pomonacs622020sp/Handouts/blob/master/style_guide.md "Style guide"). You must follow these guidelines for all of your assignments. In short, write clean and readable code, thorough comments, and understandable variable and method names.
 2. As with the first lab/assignment, we will provide you with a URL that will consist your invitation to the assignment. Follow the same steps, changing the URL where appropriate so that you clone Assignment01.
 3. Look closely at the classes and methods that have been provided already. In this case, these are the `Coin` and `CoinSquare` classes. Figure out what they do, what methods they have available, and how these methods might be useful to your code.
-4. You are now ready to get started! This assignment asks you to fill in the constructor and add the appropriate methods in the `GraphicsCoinStrip` class to play the game. As much as possible, try and develop incrementally. That is, get one small piece working and then move on to another piece. Don't forget to push your code to Github as you go.
+4. You are now ready to get started! This assignment asks you to fill in the constructor and fill in other methods in the `GraphicsCoinStrip` class and inner class to play the game. As much as possible, try and develop incrementally. That is, get one small piece working and then move on to another piece. Don't forget to push your code to Github as you go.
 5. Make sure to edit your assignment.json with your name.
 
 ## Helpful Considerations
 * Breaking the rules - What happens when the user attempts to make an illegal move? Keep in mind that the user has much more power over your program than in the text iteration, as they have full control of the mouse to click or drag coins anywhere. Make sure that the user cannot break the rules of the game, or, even worse, break your program entirely.
+* Make sure you understand what all of the instance variables are used for in both the `GraphicsCoinStrip` class as well as the CoinMouseListener class.
 * Testing - Considering the more open-ended nature of this program, how can we predict the possible actions that could break our code? What would these be? How can we test for them?
 * Saving your work - Make sure to commit and push your work to GitHub MULTIPLE TIMES throughout the process! Not only does this help us see your unique progress, but it ensures that you have frequent backups of your work.
 
@@ -71,7 +73,7 @@ You will be graded based on the following criteria:
 | General Correctness                               | 2      |
 | Code Quality*                                     | 3      |
 | Appropriate comments including JavaDoc            | 2      |
-| [Style and formatting](https://github.com/pomonacs622019fa/Handouts/blob/master/style_guide.md)                               | 2      |
+| [Style and formatting](https://github.com/pomonacs622020sp/Handouts/blob/master/style_guide.md)                               | 2      |
 | Submitted correctly                               | 1      |
 | **Total**                                         | **20** |
 
