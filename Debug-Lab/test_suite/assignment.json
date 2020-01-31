@@ -1,6 +1,6 @@
 {
-    "title": "Eclipse Debugging",
-    "assignment": "lab02",
+    "title": "Eclipse Debugging Lab",
+    "assignment": "lab2",
     "runner": {
         "type": "manual"
     },

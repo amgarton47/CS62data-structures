@@ -1,5 +1,6 @@
 {
-  "assignment": "assign07",
+  "title": "Hex-a-Pawn Assignment",
+  "assignment": "assignment7",
   "info": "There are no autos for this assignment :(. You should run their code and see if it works, then try the different versions. In all categories, give partial credit where due (even if the front-end is broken, if their code seems mostly correct they probably deserve at least 25-50% credit). A lot of the points are for their report; read it and see if it makes sense. Of the 8 points for the report, take off at most 3 for style/grammar/spelling/clarity issues, with the remaining points going to substance (i.e., was their analysis correct).",
   "runner": {
     "mainclass": "PopulationQuery",

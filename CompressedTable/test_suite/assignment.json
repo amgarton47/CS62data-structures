@@ -1,6 +1,7 @@
 {
-    "assignment": "assign04",
-    "info": "Grading of compressed table must be completed manually. Protip: use the green run button to launch the students GUI.",
+  "title": "Compressed Table Assignment",
+  "assignment": "assignment4",
+  "info": "Grading of compressed table must be completed manually. Protip: use the green run button to launch the students GUI.",
     "runner": {
         "mainclass": "GridTest",
         "package": "compression",

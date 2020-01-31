@@ -1,5 +1,6 @@
 {
-    "assignment": "assign05",
+    "title": "Calculator Assignment",
+    "assignment": "assignment3",
     "info": "If students did extra credit, the unnittests will likely fail!",
     "runner": {
         "mainclass": "Calculator",

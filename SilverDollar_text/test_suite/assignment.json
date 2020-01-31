@@ -1,6 +1,6 @@
 {
-  "title": "ArrayList Lab",
-  "assignment": "lab01",
+  "title": "Silver Dollar Lab",
+  "assignment": "lab1",
   "runner": {
     "type": "java_single_package_runner",
     "package": "silverdollar",

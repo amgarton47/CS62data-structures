@@ -1,7 +1,6 @@
 {
-  "title": "Linked Lists",
-  "assignment": "lab06",
-  "writeup": "https://PUT-IN-A-REASONABLEW-ASSIGNMENT-URL",
+  "title": "Linked Lists Lab",
+  "assignment": "lab5",
   "runner": {
         "mainclass": "AutoCompleteMain",
         "package": null,

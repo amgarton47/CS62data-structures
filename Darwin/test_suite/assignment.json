@@ -1,6 +1,6 @@
 {
-    "assignment": "assign06",
-    "info": "Please check Piazza for a list of students that were granted extensions for the assignment.",
+    "title": "Darwin Assignment",
+    "assignment": "assignment2",
     "runner": {
         "mainclass": "Darwin",
         "package": "darwin",

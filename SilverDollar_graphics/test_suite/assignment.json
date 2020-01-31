@@ -1,6 +1,6 @@
 {
-  "title": "Silvar Dollar Assignments",
-  "assignment": "assign01",
+  "title": "Silvar Dollar Assignment",
+  "assignment": "assignment1",
   "runner": {
     "type": "java_single_package_runner",
     "package": "silverdollar",

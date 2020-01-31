@@ -1,5 +1,6 @@
 {
-    "assignment": "assign03",
+    "title": "On-Disk Sort Assignment",
+    "assignment": "assignment5",
     "info": "In this assignment, please verify (by hand) that students did not sort any more data than maxSize in memory. Also, if a student fails a test, investigate the cause and leave a helpful comment on the final PDF. To manually check student output, modify their main to output the data.sorted file to a permanent location. The default runner deletes all files after execution.",
     "runner": {
         "mainclass": "OnDiskSort",

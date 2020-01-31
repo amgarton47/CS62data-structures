@@ -1,7 +1,6 @@
 {
-  "title": "Profilng",
+  "title": "Profilng Lab",
   "assignment": "lab10",
-  "writeup": "https://PUT-IN-A-REASONABLEW-ASSIGNMENT-URL",
   "runner": {
         "type": "manual"
   },

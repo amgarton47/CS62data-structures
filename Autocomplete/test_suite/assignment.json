@@ -1,5 +1,6 @@
 {
-    "assignment": "assign09",
+    "title": "Autocomplete Assignment",
+    "assignment": "assignment6",
     "info": "You (auto)complete me!",
     "runner": {
         "mainclass": "AutoCompleteMain",

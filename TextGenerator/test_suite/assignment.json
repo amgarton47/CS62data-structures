@@ -1,6 +1,7 @@
 {
-    "assignment": "assign02",
-    "info": "Remember to look at the labs!",
+  "title": "Text Generator Assignment",
+  "assignment": "assignment8",
+  "info": "Remember to look at the labs!",
     "runner": {
         "mainclass": "TextGenerator",
         "package": "wordsGeneric",

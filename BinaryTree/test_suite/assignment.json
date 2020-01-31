@@ -1,6 +1,6 @@
 {
-    "title": "Binary Search Trees",
-    "assignment": "lab08",
+    "title": "Binary Search Trees Lab",
+    "assignment": "lab8",
     "info": "new test suite, only used once by MK",
     "runner": {
         "mainclass": "BSTExercise",

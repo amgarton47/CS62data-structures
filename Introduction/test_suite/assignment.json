@@ -1,7 +1,6 @@
 {
-	"title": "Introduction",
-	"assignment": "assign00",
-	"writeup": "https://PUT-IN-A-REASONABLEW-ASSIGNMENT-URL",
+	"title": "Introductory Assignment/Lab",
+	"assignment": "lab0",
 	"runner": {
 	  "type": null,
 	  "package": null,

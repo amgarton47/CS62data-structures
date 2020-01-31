@@ -1,8 +1,7 @@
 {
-    "assignment": "assign11",
-    "title": "Driving Directions",
-    "info": "Autos are impossible because of poor assignment design (sorry!) but there's a test script that you can run to see output from a couple of sample problems. That output should tell you most of what you need to know. Note: for the 'properly builds graph' item you can just give them full points if the tests mostly run.",
-    "writeup": "http://www.cs.pomona.edu/classes/cs062/assignments/asg11.html",
+    "title": "Maps Assignment",
+    "assignment": "assignment9",
+      "info": "Autos are impossible because of poor assignment design (sorry!) but there's a test script that you can run to see output from a couple of sample problems. That output should tell you most of what you need to know. Note: for the 'properly builds graph' item you can just give them full points if the tests mostly run.",
     "runner": {
         "mainclass": null,
         "package": null,
