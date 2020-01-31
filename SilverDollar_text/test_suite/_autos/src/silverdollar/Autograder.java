@@ -46,7 +46,7 @@ public class Autograder {
 	}
 
 	/**
-	 * Determine toString returns the initialized falue
+	 * Determine toString returns the initialized value
 	 */
 	@Test
 	public void toString_correct_after_init() {

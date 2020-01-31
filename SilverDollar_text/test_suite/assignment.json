@@ -13,7 +13,7 @@
     },
 
     { "name": "toString_correct_after_init(silverdollar.Autograder)",
-      "descr": "toString of new game",
+      "descr": "toString of new game correctly returns game state of coin strip",
       "score": 1.0
     },
     { "name": "legalMove_1(silverdollar.Autograder)",
@@ -49,7 +49,7 @@
       "score": 2.0
     },
 
-    { "name": "use of ArrayLists ",
+    { "name": "use of ArrayLists",
       "score": 2.0
     },
     { "name": "comments in added code",
