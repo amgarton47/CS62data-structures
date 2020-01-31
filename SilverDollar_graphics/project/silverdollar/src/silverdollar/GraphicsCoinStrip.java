@@ -33,7 +33,7 @@ public class GraphicsCoinStrip extends JFrame {
 	private static final Color BACKGROUND_COLOR = Color.LIGHT_GRAY;
 	private static final Color BOUNDARY_COLOR = Color.BLACK;
 	private static final Color COIN_COLOR = Color.RED;
-	private static final DISPLAY_WIDTH = SQUARE_SIZE * 12;
+	private static final int DISPLAY_WIDTH = SQUARE_SIZE * 12;
 
 	private BufferedImage bf = new BufferedImage(DISPLAY_WIDTH, SQUARE_SIZE, 
 												BufferedImage.TYPE_INT_RGB);
