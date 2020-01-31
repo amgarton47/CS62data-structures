@@ -24,6 +24,23 @@ then
 	shift
 fi
 
+out=""
+if [ "$1" == "-lab" ]
+then
+	echo "hello"
+	shift
+	out="lab${1}"
+	shift
+fi
+
+if [ "$1" == '-assignment' ]
+then
+	shift
+	out="assignment${1}"
+	shift
+fi
+
+
 # make sure we have an output directory
 if [ ! -d "_output" ]
 then
@@ -99,8 +116,8 @@ do
 	name=$1
 	if [ -n "$sources" ]
 	then
-		echo "... _output/$name.pdf	<-$list"
-		enscript -B -r -o - $sources 2>/dev/null | ps2pdf - "_output/$name.pdf"
+		echo "... _output/${name}_${out}.pdf	<-$list"
+		enscript -B -r -o - $sources 2>/dev/null | ps2pdf - "_output/${name}_${out}.pdf"
 	else
 		echo "... no printable files in submission $1"
 	fi

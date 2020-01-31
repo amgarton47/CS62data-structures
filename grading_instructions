@@ -1,10 +1,12 @@
 # Use classroom assistant to download student repos. If possible clean unnecessary files before you upload them to little /common/cs/cs062/admin/submissions/assignmentX
 
+# always git pull CS62_projects on little before you start grading
+
 cd submissions/assignmentX
 #make sure that classroom.json is within submissions/
 
 cp -r /common/cs/cs062/admin/CS62_projects/assignmentX/test_suite/* .
-more assignment.json
+#e.g., cp -r /common/cs/cs062/admin/CS62_projects/Introduction/test_suite/* .
 
 # run the main method
 /common/cs/cs062/admin/CS62_projects/tools/compile_and_run.sh
@@ -19,12 +21,14 @@ python /common/cs/cs062/admin/CS62_projects/tools/merge_scores.py -v _output/*.a
 # if you want to edit them individually
 python /common/cs/cs062/admin/CS62_projects/tools/json2csv.py > assignment.csv 
 open assignment.csv
-
 # merge csv and prexisting output
 cd _output
 python /common/cs/cs062/admin/CS62_projects/tools/merge_scores.py -v -t ../assignment.json ../assignment.csv
 cd ..
+
+# edit the report files in _output/
 python /common/cs/cs062/admin/CS62_projects/tools/score_report.py -v _output/*.json
 
-# create pdfs that contain all this info
-/common/cs/cs062/admin/CS62_projects/tools/make_pdfs.sh OUTPUT REPORT file1.java file2.java file3.java
+# create pdfs that contain main method output + report + source files
+/common/cs/cs062/admin/CS62_projects/tools/make_pdfs.sh -lab/assignment number OUTPUT REPORT file1.java file2.java file3.java
+# e.g., /common/cs/cs062/admin/CS62_projects/tools/make_pdfs.sh -lab 0 OUTPUT REPORT Token.java Bag.java
