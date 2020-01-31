@@ -1,3 +1,7 @@
+/**
+ * CS062: silverdollar.Coin
+ *	a simple coin-moving game implemented with ArrayLists
+ */
 package silverdollar;
 
 import java.awt.geom.Ellipse2D;
@@ -20,11 +24,8 @@ import javax.swing.JFrame;
  * as opposed to the Java Ellipse2D in which the 
  * reference point is at the upper left corner of
  * the containing rectangle.
- * 
- * @author Rett Bull
- * @date January 27, 2008
- * 
  */
+ 
 public class Coin extends Ellipse2D.Double {
     private JFrame frame;  // the container in which the coins appear
     private int diameter;   // the diameter of a coin
@@ -66,7 +67,7 @@ public class Coin extends Ellipse2D.Double {
      * 
      */
     public void moveTo(int xCoord, int yCoord) {
-        super.setFrame(xCoord - diameter / 2,
+        setFrame(xCoord - diameter / 2,
                        yCoord - diameter / 2, 
                        diameter, diameter);
         frame.repaint();
