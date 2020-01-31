@@ -178,7 +178,7 @@ public class GraphicsCoinStrip extends JFrame {
 			int newY = event.getY();
 						
 			if (isValidCoinDrop(newX, newY)) {
-				int squareIndex = getIndex(newX, newY);
+				int squareIndex = getCoinSquareIndex(newX, newY);
 				strip.get(squareIndex).setCoin(movingCoin);
 			} else {
 				if( movingCoin != null ){
