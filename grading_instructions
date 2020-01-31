@@ -27,4 +27,4 @@ cd ..
 python /common/cs/cs062/admin/CS62_projects/tools/score_report.py -v _output/*.json
 
 # create pdfs that contain all this info
-common/cs/cs062/admin/CS62_projects/tools/make_pdfs.sh OUTPUT REPORT file1.java file2.java file3.java
+/common/cs/cs062/admin/CS62_projects/tools/make_pdfs.sh OUTPUT REPORT file1.java file2.java file3.java
