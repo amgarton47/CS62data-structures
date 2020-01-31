@@ -54,7 +54,12 @@ public class GraphicsCoinStrip extends JFrame {
 		GraphicsCoinStrip f = new GraphicsCoinStrip (12, 5);
 	}
 	
-	// TODO: add some comments here
+	/**
+	 * Create a new coin strip with randomly placed coins
+	 * 
+	 * @param squares the number of squares in the strip
+	 * @param coins the number of coins to place
+	 */
 	public GraphicsCoinStrip(int squares, int coins) {		
 		//TODO: add some code here!
 		
