@@ -7,97 +7,84 @@
     "mainclass": "GraphicsCoinStrip"
   },
   "info": "For this assignment please pay special attention to things.",
-  "writeup": "http://rosswollman.com",
   "max_score": 20,
   "tests": [
-    {
-      "name": "game_GameOverIndicated_ShouldPass(silverdollar.Autograder)",
-      "score": 2.0
-    },
-
-    {
-      "name": "dropCoin_SameLocationCentered_ShouldBeCentered(silverdollar.Autograder)",
-      "score": 0.25
-    },
-
-    {
-      "name": "makeMove_IllegalRightPastLeft_ShouldNotMove(silverdollar.Autograder)",
-      "score": 0.5
-    },
-
-    {
-      "name": "makeMove_IllegalLeftOnTopRight_ShouldNotMove(silverdollar.Autograder)",
-      "score": 0.5
-    },
-
-    {
-      "name": "dropCoin_SubsequentDrop_ShouldMoveBackToPlace(silverdollar.Autograder)",
-      "score": 0.25
-    },
-
-    {
-      "name": "makeMove_IllegalLeftToRightEmpty_ShouldNotMove(silverdollar.Autograder)",
-      "score": 0.5
-    },
-
-    {
-      "name": "dragCoin_InitialCoinDrag_ShouldMoveWithMouse(silverdollar.Autograder)",
-      "score": 1.0
-    },
-
-    {
-      "name": "makeMove_LeftToLeftMultipleSquares_ShouldMove(silverdollar.Autograder)",
-      "score": 0.5
-    },
-
-    {
-      "name": "makeMove_IllegalLeftPastRight_ShouldNotMove(silverdollar.Autograder)",
-      "score": 0.5
-    },
-
-    {
-      "name": "dropCoin_LegalNewSpaceCentered_ShouldBeCentered(silverdollar.Autograder)",
-      "score": 0.25
-    },
-
-    {
-      "name": "dragCoin_SubsequentMove_ShouldMoveWithMouse(silverdollar.Autograder)",
-      "score": 1.0
-    },
-
-    {
-      "name": "dropCoin_InitialCoinDrop_ShouldMoveBackToPlace(silverdollar.Autograder)",
-      "score": 0.25
-    },
-
-    {
-      "name": "makeMove_RightToLeftMultipleSquares_ShouldMove(silverdollar.Autograder)",
-      "score": 0.5
-    },
-
-    {
-      "name": "makeMove_IllegalRightOnTopLeft_ShouldNotMove(silverdollar.Autograder)",
-      "score": 0.5
-    },
-
-    {
-      "name": "makeMove_IllegalRightToRightEmpty_ShouldNotMove(silverdollar.Autograder)",
-      "score": 0.5
-    },
     {
       "name": "game starts with random coin positions",
       "score": 1.0
     },
     {
+      "name": "dragCoin_SubsequentMove_ShouldMoveWithMouse(silverdollar.Autograder)",
+      "score": 1.0
+    },
+    {
+      "name": "dragCoin_InitialCoinDrag_ShouldMoveWithMouse(silverdollar.Autograder)",
+      "score": 1.0
+    },
+    {
+      "name": "makeMove_RightToLeftMultipleSquares_ShouldMove(silverdollar.Autograder)",
+      "score": 0.5
+    },
+    {
+      "name": "makeMove_LeftToLeftMultipleSquares_ShouldMove(silverdollar.Autograder)",
+      "score": 0.5
+    },
+    {
+      "name": "dropCoin_SubsequentDrop_ShouldMoveBackToPlace(silverdollar.Autograder)",
+      "score": 0.25
+    },
+    {
+      "name": "dropCoin_LegalNewSpaceCentered_ShouldBeCentered(silverdollar.Autograder)",
+      "score": 0.25
+    },
+    {
+      "name": "dropCoin_SameLocationCentered_ShouldBeCentered(silverdollar.Autograder)",
+      "score": 0.25
+    },
+    {
+      "name": "dropCoin_InitialCoinDrop_ShouldMoveBackToPlace(silverdollar.Autograder)",
+      "score": 0.25
+    },
+    {
+      "name": "makeMove_IllegalRightPastLeft_ShouldNotMove(silverdollar.Autograder)",
+      "score": 0.5
+    },
+    {
+      "name": "makeMove_IllegalLeftOnTopRight_ShouldNotMove(silverdollar.Autograder)",
+      "score": 0.5
+    },
+    {
+      "name": "makeMove_IllegalLeftToRightEmpty_ShouldNotMove(silverdollar.Autograder)",
+      "score": 0.5
+    },
+    {
+      "name": "makeMove_IllegalLeftPastRight_ShouldNotMove(silverdollar.Autograder)",
+      "score": 0.5
+    },
+    {
+      "name": "makeMove_IllegalRightOnTopLeft_ShouldNotMove(silverdollar.Autograder)",
+      "score": 0.5
+    },
+    {
+      "name": "makeMove_IllegalRightToRightEmpty_ShouldNotMove(silverdollar.Autograder)",
+      "score": 0.5
+    },
+    {
+      "name": "game_GameOverIndicated_ShouldPass(silverdollar.Autograder)",
+      "score": 2.0
+    },
+    {
       "name": "general correctness ",
       "score": 2.0
     },
-
+    {
+      "name": "code quality",
+      "score": 3.0
+    },
     {
       "name": "appropriate comments (including JavaDoc) ",
       "score": 2.0
     },
-
     {
       "name": "style and formatting",
       "score": 2.0
@@ -106,10 +93,6 @@
     {
       "name": "submitted correctly",
       "score": 1.0
-    },
-    {
-      "name": "code quality",
-      "score": 3.0
     },
     {
       "name": "submitted on time (negative if late)",
