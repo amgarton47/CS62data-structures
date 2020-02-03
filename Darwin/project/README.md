@@ -66,7 +66,7 @@ You should also create your own creature by creating a data file in the format d
 
 ## Classes
 
-Your mission is to write the Darwin simulator and get it running. The program is large enough that it is
+Your goal is to write the Darwin simulator and get it running. The program is large enough that it is
 broken down into a number of separate classes that work together to solve the complete problem.
 
 You are responsible for implementing the `Darwin`, `Species`, `Creature`, and `World` classes. Skeletons of these
