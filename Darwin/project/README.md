@@ -297,6 +297,7 @@ of each instruction line. For example, the program file for the Flytrap creature
     go 1
     infect
     go 1
+    
     The flytrap sits in one place and spins.
     It infects anything which comes in front.
     Flytraps do well when they clump.
