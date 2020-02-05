@@ -66,8 +66,10 @@ public class MoveableCardDisplay extends JFrame{
 		private MoveableCard getCard(int x, int y) {
 			MoveableCard found = null;  // returns null if we don't find one
 			
-			for( MoveableCard card: cards ) {
-				if( card.contains(x, y) && card != grabbed ) {
+			for( int i = 0; i < cards.size(); i++ ) {
+				MoveableCard card = cards.get(i);
+				
+				if( card.contains(x, y) ) {
 					found = card;
 				}
 			}

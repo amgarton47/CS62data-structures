@@ -30,8 +30,7 @@ public class Card {
 	}
 	
 	public int getNumber(){
-		// TODO: change this to return the actual value
-		return 1;
+		return number;
 	}
 	
 	public void cheat(){

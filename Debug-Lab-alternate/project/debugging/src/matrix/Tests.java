@@ -26,7 +26,7 @@ public class Tests {
 		try {
 			// set the entry
 			for( int i = 0; i < rows; i++ ) {
-				for( int j = 0; j < rows; j++ ) {
+				for( int j = 0; j < cols; j++ ) {
 					if( m.get(i,j) != 1 ) {
 						System.err.println("Found bad entry: (" + i + ", " + j);
 						failed = true;
