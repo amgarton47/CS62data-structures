@@ -1,0 +1,14 @@
+- Talk about Eclipse debugging basics
+-- Java view vs Debug view
+-- setting breakpoints
+-- step into, step over, step out
+-- viewing variable values
+-- expressions
+
+- Run the MoveableCardDisplay class
+-- You should be able to drag a card and if it's not on another card, it snaps back.  If it is on a card it swaps.
+-- It doesn't do this right now
+
+- Debug to find the error.  (The error is in the getCard method in the if statement.  We need to make sure that it's not the card that we're moving.)
+
+- Set them loose on finding the bugs in the three matrix variations
