@@ -7,7 +7,7 @@ import java.io.*;
  * This class controls the simulation. The design is entirely up to you. You
  * should include a main method that takes the array of species file names
  * passed in and populates a world with species of each type. You class should
- * be able to support anywhere between 1 oto 4 creatures
+ * be able to support anywhere between 1 oto 4 species.
  * <p>
  * Be sure to call the WorldMap.pause() method every time through the main
  * simulation loop or else the simulation will be too fast. For example:
@@ -16,12 +16,16 @@ import java.io.*;
  * public void simulate() {
  * 	for (int rounds = 0; rounds &lt; numRounds; rounds++) {
  * 		giveEachCreatureOneTurn();
- * 		WorldMap.pause(100);
+ * 		WorldMap.pause(500);
  * 	}
  * }
  * </pre>
  */
 class Darwin {
+
+	public Darwin( String[] creatureFilenames ) {
+		// TODO: Add some code here
+	}
 
 	/**
 	 * The array passed into main will include the arguments that appeared on
@@ -34,13 +38,18 @@ class Darwin {
 	 * "java Darwin /home/user/Desktop/Assignment02/Creatures/Hop.txt"
 	 * So please keep all your creates in the Creatures in the supplied
 	 * Darwin/Creatures folder.
-	 * 
-	 * When running in eclipse, you should be able to access the files using
-	 * "./Creatures/Hop.txt" as an argument to the file reader. In Run
-	 * Configurations -> Arguments, your arguments should be in the format
-	 * "./Creatures/Hop.txt"
+	 *
+	 * To run your code you can either: supply command line arguments through
+	 * Eclipse ("Run Configurations -> Arguments") or by creating a temporary
+	 * array with the filenames and passing it to the Darwin constructor.  If
+	 * you choose the latter options, make sure to change the code back to:
+	 *   Darwin d = new Dawrin(s);
+	 * before submiting.  If you want to use relative filenames for the creatures
+	 * they should be of the form "./Creatures/Hop.txt".
 	 */
 	public static void main(String s[]) {
+		Darwin d = new Darwin(s);
+		d.simulate();
 	}
 
 	public void simulate() {

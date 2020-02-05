@@ -86,11 +86,11 @@ for you.
 This class represents (x,y) points in the world and constants for compass directions. This class is already implemented for you.
 
 ### `WorldMap`
-This class handles all of the graphics for the simulation. This class is already implemented for you.
+This class handles all of the graphics for the simulation. This class is already implemented for you.  They key method in this class is the `drawSquare` method that your creature will need to call to update the visual status of the game.
 
 ### `Species`
 This class represents a species, and provides operations for reading in a species description from a file and
-for working with the programs that each creature executes. You must fill in some basic methods, as well as a constructor that reads in the instructions from the .txt files in the **Creatures** folder. See **Appendix A - Species Programming** for more on how `Creature`s should behave based on their species.
+for working with the programs that each creature executes. You must fill in some basic methods, as well as a constructor that reads in the instructions from the .txt files in the **Creatures** folder. See **Appendix A - Species Programming** for more on how `Creature`s should behave based on their species.  **Note:** You may assume that the creature file is properly formatted, i.e., that if follows the specification in the appendix and that all of the instructions are valid instructions.
 
 ### `Creature`
 Objects of this class represent individual creatures, along with operations for creating new creatures and for
@@ -121,7 +121,7 @@ the world (and map<row,col> indices into a single 1D array index).
 
 4. Write the `Species` class. The hardest part will be parsing the program file and storing it in the `Species`.
 Note that the first instruction of a program is at address 1, not 0. **Test this class thoroughly before
-proceeding. Write a JUnit test class for that class and verify that all of the methods work.**
+proceeding. Write test cases and verify that all of the methods work.**
 See the hints within the starter file for the `Species` class on how to read lines from the files.
 
 5. Fill in the *basic* details of `Creature` class. Implement only enough to create creatures and have them
@@ -180,6 +180,10 @@ You will be graded based on the following criteria:
 
 
 NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
+
+## Two part assignment
+
+This assignment spans two weeks.  However, we will still be grading some of the assignment next week.  Specifically, you must complete and push the `World` and `Species` classes by next Tuesday.  **The assignment grade portion for these two classes will be based on their status at the end of the day on Tuesday**.  You may include other files/changes in your repository.  We will not grade these, but make sure that they compile.  You may change the `World` and `Species` files after Tuesday, e.g., if you find a bug that affects the other classes, but we will not grade these changes.  The entire program must be submitted by the final deadline.
 
 ## Submitting your work
 

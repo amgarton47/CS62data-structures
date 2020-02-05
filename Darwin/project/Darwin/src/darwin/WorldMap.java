@@ -10,7 +10,7 @@ import java.awt.event.*;
  * the first line of your main:
  * 
  * <pre>
- *  createWorldMap(x, y); </pre>
+ *  WorldMap.createWorldMap(x, y); </pre>
  * 
  * 
  * Only the Creature code should need to call the displaySquare method.

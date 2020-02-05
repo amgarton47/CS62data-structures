@@ -12,15 +12,6 @@ import java.util.ArrayList;
  * reference as part of its internal data structure.
  * <p>
  * 
- * To encapsulate all of the operations operating on a species within this
- * abstraction, this class provides a constructor that will read a file containing
- * the name of the creature and its program, as described in the earlier part
- * of this assignment. To make the folder structure more manageable, the
- * species files for each creature are stored in a subfolder named Creatures.
- * Thus, creating the Species for the file Hop.txt will cause the program to
- * read in "Creatures/Hop.txt".
- * <p>
- * 
  * Note: The instruction addresses start at one, not zero.
  */
 public class Species {

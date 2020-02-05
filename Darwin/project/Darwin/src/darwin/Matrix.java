@@ -19,9 +19,12 @@ public class Matrix<E> {
 	public Matrix(int numRows, int numCols) {
 		this.numRows = numRows;
 		this.numCols = numCols;
+		
 		rep = new ArrayList<ArrayList<E>>(numRows);
+		
 		for (int row = 0; row < numRows; row++) {
 			rep.add(new ArrayList<E>(numCols));
+			
 			for (int col = 0; col < numCols; col++) {
 				rep.get(row).add(null);
 			}
@@ -30,24 +33,24 @@ public class Matrix<E> {
 
 	// Set the entry at (row,col) to newValue.
 	public void set(int row, int col, E newValue) {
-		if (row < 0 || row > numRows) {
-			throw new IllegalArgumentException("Row out of bounds");
-		}
-		if (col < 0 || col > numCols) {
-			throw new IllegalArgumentException("Col out of bounds");
-		}		
+		checkRowCol(row, col);
 		rep.get(row).set(col, newValue);
 	}
 
 	// Return the entry at (row,col)
 	public E get(int row, int col) {
-		if (row < 0 || row > numRows) {
+		checkRowCol(row, col);
+		return rep.get(row).get(col);
+	}
+	
+	private void checkRowCol(int row, int col) {
+		if (row < 0 || row >= numRows) {
 			throw new IllegalArgumentException("Row out of bounds");
 		}
-		if (col < 0 || col > numCols) {
+		
+		if (col < 0 || col >= numCols) {
 			throw new IllegalArgumentException("Col out of bounds");
 		}
-		return rep.get(row).get(col);
 	}
 
 	// Return the number of rows in the matrix
