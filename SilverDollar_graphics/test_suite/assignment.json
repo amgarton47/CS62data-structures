@@ -6,97 +6,82 @@
     "package": "silverdollar",
     "mainclass": "GraphicsCoinStrip"
   },
-  "info": "For this assignment please pay special attention to things.",
+  "info": "For this assignment please grade the following criteria manually.",
   "max_score": 20,
   "tests": [
     {
-      "name": "game starts with random coin positions",
+      "name": "Game starts with random coin positions",
+      "decr": "Game has been restarted multiple times and coins are randomly allocated every single time.",
       "score": 1.0
     },
     {
-      "name": "dragCoin_SubsequentMove_ShouldMoveWithMouse(silverdollar.Autograder)",
+      "name": "Coins can be dragged",
+      "descr": "Coins can be dragged (not testing if can be dropped) left for one square.",
       "score": 1.0
     },
     {
-      "name": "dragCoin_InitialCoinDrag_ShouldMoveWithMouse(silverdollar.Autograder)",
+      "name": "Coins can be dragged",
+      "descr": "Coins can be dragged (not testing if can be dropped) right for one square.",
       "score": 1.0
     },
     {
-      "name": "makeMove_RightToLeftMultipleSquares_ShouldMove(silverdollar.Autograder)",
+      "name": "Coins can be dragged multiple squares",
+      "descr": "Coins can be dragged (not testing if can be dropped) left or right for multiple squares.",
+      "score": 1.0
+    },
+    {
+      "name": "Dropped coins end up centered in correct location",
+      "descr": "Legal moves end up with coins dropped in the center of final square.",
+      "score": 1.0
+    },
+    {
+      "name": "Illegal moves are not allowed",
+      "descr": "Cannot move a left coin one/multiple square(s) to the right in an empty square.",
       "score": 0.5
     },
     {
-      "name": "makeMove_LeftToLeftMultipleSquares_ShouldMove(silverdollar.Autograder)",
+      "name": "Illegal moves are not allowed",
+      "descr": "Cannot move a left coin on top of a right coin.",
       "score": 0.5
     },
     {
-      "name": "dropCoin_SubsequentDrop_ShouldMoveBackToPlace(silverdollar.Autograder)",
-      "score": 0.25
-    },
-    {
-      "name": "dropCoin_LegalNewSpaceCentered_ShouldBeCentered(silverdollar.Autograder)",
-      "score": 0.25
-    },
-    {
-      "name": "dropCoin_SameLocationCentered_ShouldBeCentered(silverdollar.Autograder)",
-      "score": 0.25
-    },
-    {
-      "name": "dropCoin_InitialCoinDrop_ShouldMoveBackToPlace(silverdollar.Autograder)",
-      "score": 0.25
-    },
-    {
-      "name": "makeMove_IllegalRightPastLeft_ShouldNotMove(silverdollar.Autograder)",
+      "name": "Illegal moves are not allowed",
+      "descr": "Cannot move a left coin past a right coin.",
       "score": 0.5
     },
     {
-      "name": "makeMove_IllegalLeftOnTopRight_ShouldNotMove(silverdollar.Autograder)",
+      "name": "Illegal moves are not allowed",
+      "descr": "Cannot move a right coin on top of a left coin.",
       "score": 0.5
     },
     {
-      "name": "makeMove_IllegalLeftToRightEmpty_ShouldNotMove(silverdollar.Autograder)",
-      "score": 0.5
+      "name": "Illegal moves are not allowed",
+      "descr": "Cannot move a right coin past a left coin",
+      "score": 1.0
     },
     {
-      "name": "makeMove_IllegalLeftPastRight_ShouldNotMove(silverdollar.Autograder)",
-      "score": 0.5
-    },
-    {
-      "name": "makeMove_IllegalRightOnTopLeft_ShouldNotMove(silverdollar.Autograder)",
-      "score": 0.5
-    },
-    {
-      "name": "makeMove_IllegalRightToRightEmpty_ShouldNotMove(silverdollar.Autograder)",
-      "score": 0.5
-    },
-    {
-      "name": "game_GameOverIndicated_ShouldPass(silverdollar.Autograder)",
+      "name": "Game over is indicated correctly",
       "score": 2.0
     },
     {
-      "name": "general correctness ",
+      "name": "General Correctness ",
       "score": 2.0
     },
     {
-      "name": "code quality",
+      "name": "Code Quality",
       "score": 3.0
     },
     {
-      "name": "appropriate comments (including JavaDoc) ",
+      "name": "Appropriate comments (including JavaDoc)",
       "score": 2.0
     },
     {
-      "name": "style and formatting",
+      "name": "Style and formatting",
       "score": 2.0
     },
-      
     {
-      "name": "submitted correctly",
+      "name": "Submitted correctly",
       "score": 1.0
-    },
-    {
-      "name": "submitted on time (negative if late)",
-      "score": 0.0
     }
   ]
 }

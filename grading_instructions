@@ -17,8 +17,7 @@ cp -r /common/cs/cs062/admin/CS62_projects/assignmentX/test_suite/* .
 # merge main output plus junits
 python /common/cs/cs062/admin/CS62_projects/tools/merge_scores.py -v _output/*.autos
   
-# create a csv for manual grading of all assignments. Skip step and edit output directly 
-# if you want to edit them individually
+# create a csv for manual grading of all assignments. Skip step and edit output directly if you want to edit them individually
 python /common/cs/cs062/admin/CS62_projects/tools/json2csv.py > assignment.csv 
 open assignment.csv
 # merge csv and prexisting output

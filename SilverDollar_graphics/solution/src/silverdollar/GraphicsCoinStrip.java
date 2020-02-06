@@ -146,15 +146,12 @@ public class GraphicsCoinStrip extends JFrame {
 	 * @return the index within the strip
 	 */
 	private int getCoinSquareIndex(int x, int y) {
-		int foundIndex = -1;
-
-		for( int i = 0; i < strip.size() && foundIndex == -1; i++ ){
+		for( int i = 0; i < strip.size(); i++ ){
 			if( strip.get(i).contains(x, y) ){
-				foundIndex = i;
+				return i;
 			}
 		}
-
-		return foundIndex;
+		return -1;
 	}
 
 	/**
