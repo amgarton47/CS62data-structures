@@ -28,17 +28,18 @@ import java.util.ArrayList;
  * is a specialization of JFrame.
  */
 public class GraphicsCoinStrip extends JFrame {
-	private static final int   SQUARE_SIZE = 120;
-	private static final int   COIN_DIAMETER = SQUARE_SIZE / 2;
-	private static final Color BACKGROUND_COLOR = Color.LIGHT_GRAY;
-	private static final Color BOUNDARY_COLOR = Color.BLACK;
-	private static final Color COIN_COLOR = Color.RED;
-	private static final int DISPLAY_WIDTH = SQUARE_SIZE * 12;
+	protected static final int   SQUARE_SIZE = 120;
+	protected static final int   COIN_DIAMETER = SQUARE_SIZE / 2;
+	protected static final Color BACKGROUND_COLOR = Color.LIGHT_GRAY;
+	protected static final Color BOUNDARY_COLOR = Color.BLACK;
+	protected static final Color COIN_COLOR = Color.RED;
+	protected static final int DISPLAY_WIDTH = SQUARE_SIZE * 12;
 
-	private BufferedImage bf = new BufferedImage(DISPLAY_WIDTH, SQUARE_SIZE, 
+	protected BufferedImage bf = new BufferedImage(DISPLAY_WIDTH, SQUARE_SIZE, 
 			BufferedImage.TYPE_INT_RGB);
-	private ArrayList<CoinSquare> strip;  // the arraylist of squares for the game
-	private Coin movingCoin;          // the coin that is currently being dragged by the mouse
+	protected ArrayList<CoinSquare> strip;  // the arraylist of squares for the game
+	protected Coin movingCoin;          // the coin that is currently being dragged by the mouse
+	protected int coins; // number of coins
 
 	/**
 	 * The main method simply creates GraphicsCoinStrip,
@@ -68,11 +69,13 @@ public class GraphicsCoinStrip extends JFrame {
 											   +"and less than # squares: "+squares);
 		}
 		
-		strip = new ArrayList<CoinSquare>(); 
+		strip = new ArrayList<CoinSquare>(squares); 
 		//populate all squares with false values
 		for (int i = 0; i < squares; i++){ 
 			strip.add(new CoinSquare(i, SQUARE_SIZE)); 
 		} 
+		
+		this.coins = coins;
 
 		//place #coins randomly on the strip
 		Random rand = new Random ();
@@ -84,7 +87,6 @@ public class GraphicsCoinStrip extends JFrame {
 				coins--; 
 			} 
 		}
-		
 		// --- only add code above here in this method ---
 		CoinMouseListener listener = new CoinMouseListener();
 		addMouseListener(listener);
@@ -93,6 +95,21 @@ public class GraphicsCoinStrip extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(strip.size() * SQUARE_SIZE, SQUARE_SIZE);
 		setVisible(true);  // this should always be at the end of the constructor
+	}
+	
+	/** 
+	 * gameIsOver determines if a game is completed.
+	 * 
+	 * @return true if there are no more moves 
+	 */ 
+	public boolean gameIsOver() {
+		//check if all the coins are in the first few squares
+		for (int i = 0; i < coins; i++) {
+			if (!this.strip.get(i).isOccupied()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -122,7 +139,14 @@ public class GraphicsCoinStrip extends JFrame {
 			g2.draw(strip.get(i));
 		}
 
-		g2.setPaint(COIN_COLOR);
+		if (gameIsOver()) {
+			//winning: coin color change
+			g2.setPaint(Color.GREEN);
+			System.out.println("Game over");
+		}else {
+			g2.setPaint(COIN_COLOR);
+		}
+		
 		for (int i = 0; i < strip.size(); i++) {
 			if (strip.get(i).isOccupied()) {
 				g2.fill(strip.get(i).getCoin());
@@ -146,6 +170,7 @@ public class GraphicsCoinStrip extends JFrame {
 	 * @return the index within the strip
 	 */
 	private int getCoinSquareIndex(int x, int y) {
+
 		for( int i = 0; i < strip.size(); i++ ){
 			if( strip.get(i).contains(x, y) ){
 				return i;
@@ -157,7 +182,7 @@ public class GraphicsCoinStrip extends JFrame {
 	/**
 	 * An inner class to respond to mouse events.
 	 */
-	private class CoinMouseListener implements MouseListener, MouseMotionListener {
+	public class CoinMouseListener implements MouseListener, MouseMotionListener {
 		private int origin;	// the index of the square when a coin is picked up
 
 		/**

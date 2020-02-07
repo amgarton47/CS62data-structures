@@ -1,6 +1,6 @@
 /**
  * CS062: silverdollar.GraphicsCoinStrip
- *	a simple coin-moving game implemented with ArrayLists
+ * A simple coin-moving game implemented with ArrayLists
  *
  * @author YOUR-NAME-HERE
  */
@@ -28,17 +28,17 @@ import java.util.ArrayList;
  * is a specialization of JFrame.
  */
 public class GraphicsCoinStrip extends JFrame {
-	private static final int   SQUARE_SIZE = 120;
-	private static final int   COIN_DIAMETER = SQUARE_SIZE / 2;
-	private static final Color BACKGROUND_COLOR = Color.LIGHT_GRAY;
-	private static final Color BOUNDARY_COLOR = Color.BLACK;
-	private static final Color COIN_COLOR = Color.RED;
-	private static final int DISPLAY_WIDTH = SQUARE_SIZE * 12;
+	protected static final int   SQUARE_SIZE = 120;
+	protected static final int   COIN_DIAMETER = SQUARE_SIZE / 2;
+	protected static final Color BACKGROUND_COLOR = Color.LIGHT_GRAY;
+	protected static final Color BOUNDARY_COLOR = Color.BLACK;
+	protected static final Color COIN_COLOR = Color.RED;
+	protected static final int DISPLAY_WIDTH = SQUARE_SIZE * 12;
 
-	private BufferedImage bf = new BufferedImage(DISPLAY_WIDTH, SQUARE_SIZE, 
+	protected BufferedImage bf = new BufferedImage(DISPLAY_WIDTH, SQUARE_SIZE, 
 												BufferedImage.TYPE_INT_RGB);
-	private ArrayList<CoinSquare> strip;  // the arraylist of squares for the game
-	private Coin movingCoin;          // the coin that is currently being dragged by the mouse
+	protected ArrayList<CoinSquare> strip;  // the arraylist of squares for the game
+	protected Coin movingCoin;          // the coin that is currently being dragged by the mouse
 	
 	/**
 	 * The main method simply creates GraphicsCoinStrip,
@@ -71,6 +71,16 @@ public class GraphicsCoinStrip extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(strip.size() * SQUARE_SIZE, SQUARE_SIZE);
 		setVisible(true);  // this should always be at the end of the constructor
+	}
+
+	/** 
+	 * gameIsOver determines if a game is completed.
+	 * 
+	 * @return true if there are no more moves 
+	 */ 
+	public boolean gameIsOver() {
+		//TODO: check whether the game is over
+		return false;
 	}
 	
 	/**

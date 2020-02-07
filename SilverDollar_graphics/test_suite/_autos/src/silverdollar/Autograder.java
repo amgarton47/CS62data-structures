@@ -15,16 +15,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
 
-import silverdollar.GraphicsCoinStrip.CoinMouseListener;
-
 /**
  * <p>
  * Auto-grader unit tests for <strong>Graphics Silver Dollar Game</strong>.
  * </p>
  *
  *
- * @author Sean Zhu (original tests and utility methods)
- * @author Ross A. Wollman (JUnit Implementation)
+ * @author CS62 team
  */
 public class Autograder {
 
@@ -67,12 +64,7 @@ public class Autograder {
 					coins.clear();
 					initCoinStrip(SQUARE_NUM, COIN_NUM);
 				}
-
-				// add listener
-				CoinMouseListener listener = game.new CoinMouseListener(game);
-				game.addMouseListener(listener);
-				game.addMouseMotionListener(listener);
-
+				
 				// init robot
 				robo = new Robot();
 				game.setAlwaysOnTop(true);
@@ -86,8 +78,6 @@ public class Autograder {
 			}
 
 			updateCenters();
-
-
 	}
 
 	/**
@@ -254,7 +244,7 @@ public class Autograder {
 	}
 
 	/**
-	 * Ensure that the left coin cannot move past the right coin.
+	 * Check that the left coin cannot move past the right coin.
 	 */
 	@Test
 	public void makeMove_IllegalLeftPastRight_ShouldNotMove() {
@@ -267,7 +257,7 @@ public class Autograder {
 	}
 
 	/**
-	 * Ensure that a right coin cannot move to the right one square.
+	 * Check that a right coin cannot move to the right one square.
 	 */
 	@Test
 	public void makeMove_IllegalRightToRightEmpty_ShouldNotMove() {
@@ -278,7 +268,7 @@ public class Autograder {
 	}
 
 	/**
-	 * Ensure that the right coin cannot go on top of the left coin.
+	 * Check that the right coin cannot go on top of the left coin.
 	 */
 	@Test
 	public void makeMove_IllegalRightOnTopLeft_ShouldNotMove() {
@@ -291,7 +281,7 @@ public class Autograder {
 	}
 
 	/**
-	 * Right coin should not be able to move past left coin.
+	 * Check that the right coin should not be able to move past left coin.
 	 */
 	@Test
 	public void makeMove_IllegalRightPastLeft_ShouldNotMove() {
@@ -304,10 +294,10 @@ public class Autograder {
 	}
 
 	/**
-	 * Left coin should be able to be moved multiple squares.
+	 * Left coin should be able to be moved multiple squares to the left.
 	 */
 	@Test
-	public void makeMove_LeftToLeftMultipleSquares_ShouldMove() {
+	public void dragCoin_LeftToLeftMultipleSquares_ShouldMove() {
 		dragAndRelease(leftCoin, LEFT_MOST_X);
 
 		assertEquals("Left coin should be moved multiple spaces to the left.", LEFT_MOST_X, leftCoin.getCenterX(), 0);
@@ -317,7 +307,7 @@ public class Autograder {
 	 * Right coin should be move-able to the left multiple squares.
 	 */
 	@Test
-	public void makeMove_RightToLeftMultipleSquares_ShouldMove() {
+	public void dragCoin_RightToLeftMultipleSquares_ShouldMove() {
 		dragAndRelease(leftCoin, LEFT_MOST_X);
 
 		// move right coin
