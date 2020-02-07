@@ -41,7 +41,7 @@ public class AutograderCompTest
   // these must agree with the data in Hop.txt
   private static final String CREATURE_NAME ="Hop";
   private static final String CREATURE_COLOR ="blue";
-  private static final int CREATURE_PGM_SIZE = 2+1;
+  private static final int CREATURE_PGM_SIZE = 2;
   private static final int CREATURE_FIRST_INST = Instruction.HOP;
   private static final int CREATURE_DIR = Position.EAST;
   
