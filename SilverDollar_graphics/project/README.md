@@ -46,6 +46,8 @@ You can add whatever methods you think would be useful to the `GraphicsCoinStrip
 
 After you have a working copy of the game, fill in the `gameIsOver` method in this class that checks to see if the game is over and, if so, use this method to signal this to the user in some fashion. Possible examples are to print out a message to the console, or better, change the color of all of the coins. You can also make sure that the coins no longer move once the game is completed (although this is not required). Test this program rigorously to make sure that it works consistently, even when the user attempts unusual or unexpected actions.
 
+**Note**: Make sure that you do not "hard-code" your solution to the specific number of coins and strip positions we have given you. Your code should work for any strip size and any number of coins.
+
 ## Getting Started
 1. Read through the [CS 062 style guide](https://github.com/pomonacs622020sp/Handouts/blob/master/style_guide.md "Style guide"). You must follow these guidelines for all of your assignments. In short, write clean and readable code, thorough comments, and understandable variable and method names.
 2. As with the first lab/assignment, we will provide you with a URL that will consist your invitation to the assignment. Follow the same steps, changing the URL where appropriate so that you clone Assignment01.
