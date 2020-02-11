@@ -10,7 +10,7 @@ We encourage you to work in pairs on this lab as it is useful to learn from othe
 
 ## Key Terms and Concepts
 
-* `ArrayList` - An ArrayList is a resizable array-like data structure, where items can be added and removed regardless of the initialized size (See 1.3 pg. 136 in the textbook and the lecture slides for more).
+* `ArrayList` - An ArrayList is a resizable array-like data structure, where items can be added and removed regardless of the initialized size (See 1.3 pg. 136 in the textbook and the lecture notes for more information).
 
 
 ## `ArrayList` Class
@@ -45,8 +45,7 @@ Your `trial` method will compare the results from `run` for a specific number of
 
 - `public static void main(String[] args)`
 
-Your `main` method will run several trials and print the results to the console. Try starting with increments of 1, 10, and 0 (default: doubling); and size of 1000, 2000, 40000, 8000, etc. You may want to adjust the sizes and increments after you see your results. 
-
+Your `main` method will run several trials and print the results to the console. Try starting with increments of 1, 10, and 0 (default: doubling); and size of 1000, 2000, 40000, 8000, etc. You may want to adjust the sizes and increments after you see your results.
 *Don't forget that Java uses just-in-time compilation so you will need to first run several trials and discard the results.*
 
 Static methods and static variables can be used when there is no need for the class to create more than one object. Simply add `static` to the declaration of your variables and methods and then you can call them directly from `main` without having to call a constructor first.
