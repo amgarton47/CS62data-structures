@@ -13,21 +13,19 @@ We encourage you to work in pairs on this lab as it is useful to learn from othe
 * `ArrayList` - An ArrayList is a resizable array-like data structure, where items can be added and removed regardless of the initialized size (See 1.3 pg. 136 in the textbook and the lecture notes for more information).
 
 
-## `ArrayList` Class
+## `CapacityArrayList` Class
 
-In this laboratory, we will use a `Stopwatch` class to measure the efficiency of the `ArrayList` class. 
+In this laboratory, we will use a `Stopwatch` class to measure the efficiency of the ArrayLists.  The Java version of arraylists (`java.util.ArrayList`) always doubles the size of the underlying array when add is called and the array is full.  To be able to play a bit with other options, we've included a basic arraylist class that also allows us to grow the arraylist by a constant amount when it is full and we need to increase the capacity. 
 
-**IMPORTANT**: Please take a look at the source code of the attached `ArrayLists` class before you proceed. You will notice that we have added one more overloaded constructor that takes an additional argument `capacityIncrement`. This argument corresponds to the rate of growth of the ArrayList. If it is equal to 0, the ArrayList should double in size when full. Otherwise, it will just grow by the specified increment. Please note that for the purposes of this lab we have only altered the behavior of the `add` methods, leaving the two `remove` methods intact.
+Take a look at the source code of the attached `CapacityArrayList` class. You will notice that we have added one more constructor that takes an additional argument `capacityIncrement`. This argument corresponds to the rate of growth of the ArrayList. If it is equal to 0, the ArrayList should double in size when full. Otherwise, it will just grow by the specified increment.
 
-Our goal is to see how execution speed is affected when creating `ArrayList` objects with different values for the 
+Our goal is to see how execution speed is affected when creating arraylist objects with different values for the 
 `capacityIncrement` field.  
 
 
 ## `Stopwatch` Class
 
-You will be using a `Stopwatch` class provided in the textbook (and slightly altered by the CS062 instructors) that represents a stopwatch and collects the running time for programs you write today. Feel free to use it in the future, too. 
-
-Take a look at it; it has a parameterless constructor that starts the stopwatch and `elapsedTime()` that returns the elapsed time.
+You will be using a `Stopwatch` class that represents a stopwatch and collects the running time for programs you write today. Feel free to use it in the future, too. Take a look at it; it has `start` method that starts the stopwatch and and `elapsedTime()` that returns the elapsed time.
 
 ## Your Program
 
@@ -37,16 +35,16 @@ Once you have everything setup, create a new class `ArrayListTimer` and specify 
 
 - `public static double run(int maxSize, int capacityIncrement)`
 
-This `run` method will create a new empty arrayList of type `ArrayList<String>` with the specified rate of growth. Set its initial capacity to 2. It should return the time that it takes to add `maxSize` strings to the `ArrayList`. Use the `ArrayList` method `add`, and always add the same constant string of your choice, for example, your name. To attempt to minimize the impact from garbage collection add the line: `System.gc();` in your run method right before you instantiate the stopwatch. 
+This `run` method will create a new empty arrayList of type `CapacityArrayList<String>` with the specified rate of growth. Set its initial capacity to 2. It should return the time that it takes to add `maxSize` strings to the `CapacityArrayList`. Use the `add` method, and always add the same constant string of your choice, for example, your name. To attempt to minimize the impact from garbage collection add the line: `System.gc();` in your run method right before you start the stopwatch. 
 
-- `public static ArrayList<Double> trial(int maxSize, ArrayList<Integer> capacityIncrements)`
+- `public static ArrayList<Double> trial(int maxSize, CapacityArrayList<Integer> capacityIncrements)`
 
-Your `trial` method will compare the results from `run` for a specific number of strings to be added to the arrayList while varying its increments when it's full. It should make one call to `run` for each entry in the `capacityIncrements` ArrayList. The results of these trials should be returned in a `ArrayList` whose size is the same as that of `capacityIncrements` and the entry at position `i` in the returned arrayList should correspond to the trial with increment set to the entry at position `i` in `capacityIncrements`.
+Your `trial` method will compare the results from `run` for a specific number of strings to be added to the arrayList while varying its increments when it's full. It should make one call to `run` for each entry in the `capacityIncrements` ArrayList. The results of these trials should be returned in a `CapacityArrayList` whose size is the same as that of `capacityIncrements` and the entry at position `i` in the returned arrayList should correspond to the trial with increment set to the entry at position `i` in `capacityIncrements`.
 
 - `public static void main(String[] args)`
 
 Your `main` method will run several trials and print the results to the console. Try starting with increments of 1, 10, and 0 (default: doubling); and size of 1000, 2000, 40000, 8000, etc. You may want to adjust the sizes and increments after you see your results.
-*Don't forget that Java uses just-in-time compilation so you will need to first run several trials and discard the results.*
+*Java uses just-in-time compilation so you will need to first run several trials and discard the results.*
 
 Static methods and static variables can be used when there is no need for the class to create more than one object. Simply add `static` to the declaration of your variables and methods and then you can call them directly from `main` without having to call a constructor first.
 
@@ -96,41 +94,15 @@ The letters after the percent sign, `d` and `s` in the example, indicate the kin
 
 ## Understanding the Results
 
-Be sure to close all other application on your computers before running your program. These can affect the timing of your program.
-
-When you have your results, please find space on the side wall of the room and post your results there.
-
 - Look at the results of your program. Do the times increase monotonically as the size increases? If not, why do you think that is?
 - What happens as the size of the input doubles in each of the three columns? Think of the doubling ratio hypothesis
 - What is the running time (i.e. Big-Oh running time) of increment vs. double? Does your data reflect this?
 
-We will discuss the significance of your results, and those of your classmates, as they appear.
-
-Write up a brief summary of your analysis in a new file called `analysis.txt` in which you describe
-and suggest explanations for the  quantititive relationships between:
-* the linear(1) and linear(10) times.
-* the linear and (default) doubling times.
-* the time per operation (in any given column) vs the size (number of adds).
-
+We will discuss the results when most people have their timings working.
 
 ## Submission Instructions
 
 Please fill out the `assignment.json` file. Include your Github name in the collaborators list and your partner's username as well if you worked with someone. If you have anything you want to say to the graders, put it in the notes field. Don't forget to put your name(s) in a comment at the top of the `ArrayListTimer` class.
-
-## Grading
-
-Your submission will be graded based on the following criteria:
-
-
-| Criterion                                | Points |
-| :--------------------------------------- | :----- |
-| clean compilation w/no warnings          | 1      |
-| correctly implements specified methods   | 3      |
-| correct output format                    | 1      |
-| plausible results (and analysis)         | 2      |
-| comments (for added methods/code)        | 2      |
-| style and formatting                     | 1      |
-
 
 ## More Fun!
 
