@@ -29,7 +29,7 @@ You will be using a `Stopwatch` class that represents a stopwatch and collects t
 
 ## Your Program
 
-Once you have everything setup, create a new class `ArrayListTimer` and specify its package to be `ArrayList`. 
+Once you have everything setup, create a new class `ArrayListTimer` and specify its package to be `arraylist`. 
 
 `ArrayListTimer` will simply contain the `main` method and a few other static methods:
 
