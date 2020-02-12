@@ -117,7 +117,7 @@ running.
 3. Write the `World` class. This should be straight-forward if you use the provided Matrix class. An alternative implementation could use an one-dimensional ArrayList to represent
 the world (and map<row,col> indices into a single 1D array index).
 
-4. Test this class thoroughly before proceeding. Use the provided AutograderCompTest (and any additional tests that you think would be helpful) in order to verify and convince yourself that all of the methods work.  To 
+4. Test this class thoroughly before proceeding. Use the provided AutograderCompTest (and any additional tests that you think would be helpful) in order to verify and convince yourself that all of the methods work. 
 
 4. Write the `Species` class. The hardest part will be parsing the program file and storing it in the `Species`.
 Note that the first instruction of a program is at address 1, not 0. **Test this class thoroughly before
@@ -166,17 +166,17 @@ correctly. Test `ifenemy`, `infect`, etc.
 You will be graded based on the following criteria:
 
 
-| Criterion                                | Points |
-| :--------------------------------------- | :----- |
-| `JUnit` tests for each method in `Species` | 2      |
-| `World`  passes `World` unit tests | 2     |
-| `Species`  passes `Species` unit tests | 4     |
-| `Creature` correctly implements one turn   | 3     |
-| `Darwin` correctly runs the game               | 3      |
-| General Correctness                           | 3      |
-| Appropriate comments + JavaDoc           | 3      |
-| [Style and formatting](https://github.com/pomonacs622019fa/Handouts/blob/master/style_guide.md)                    | 3      |
-| Extra Credit                             | 2      |
+| Criterion                                                                                       | Points |
+| :---------------------------------------------------------------------------------------------- | :----- |
+| `JUnit` tests for each method in `Species`                                                      | 2      |
+| `World`  passes `World` unit tests                                                              | 2      |
+| `Species`  passes `Species` unit tests                                                          | 4      |
+| `Creature` correctly implements one turn                                                        | 3      |
+| `Darwin` correctly runs the game                                                                | 3      |
+| General Correctness                                                                             | 3      |
+| Appropriate comments + JavaDoc                                                                  | 3      |
+| [Style and formatting](https://github.com/pomonacs622019fa/Handouts/blob/master/style_guide.md) | 3      |
+| Extra Credit                                                                                    | 2      |
 
 
 NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
@@ -233,13 +233,13 @@ better and better at surviving in the Darwin world.
 In order to know what to do on any particular turn, a creature executes some number of instructions in an
 internal program specific to its species. For example, the program for the Flytrap species is shown below:
 
-| step | instruction | comment |
-| :-------------- | :----- |:----- |
-| 1 | `ifenemy 4` | If there is an enemy ahead, go to step 4 |
-| 2 | `left` | Turn left |
-| 3 | `go 1` | Go back to step 1 |
-| 4 | `infect` | Infect the adjacent creature |
-| 5 | `go 1` | Go back to step 1 |
+| step | instruction | comment                                  |
+| :--- | :---------- | :--------------------------------------- |
+| 1    | `ifenemy 4` | If there is an enemy ahead, go to step 4 |
+| 2    | `left`      | Turn left                                |
+| 3    | `go 1`      | Go back to step 1                        |
+| 4    | `infect`    | Infect the adjacent creature             |
+| 5    | `go 1`      | Go back to step 1                        |
 
 The step numbers are not part of the actual program, but are included here to make it easier to understand
 the program. On its turn, a Flytrap first checks to see if it is facing an enemy creature in the adjacent square.

@@ -40,11 +40,11 @@ public class World<E> {
 	}
 
 	/**
-	 * Set a position on the board to contain c.
+	 * Set a position on the board to contain e.
 	 * 
 	 * @pre pos is in range - throws IllegalArgumentException otherwise
 	 */
-	public void set(Position pos, E c) {
+	public void set(Position pos, E e) {
 		// FIX
 	}
 
