@@ -11,13 +11,14 @@ public class CapacityArrayList<E> implements BasicList<E>{
 	private int size; // number of items in arraylist
 	private int capacityIncrement = 0;
 	
-	@SuppressWarnings("unchecked")
 	public CapacityArrayList() {
 		data = (E[]) new Object[START_SIZE];
 		size = 0;
 	}
-
-	@SuppressWarnings("unchecked")
+	
+	/**
+	 * Constructs an ArrayList with the specified capacity and default to doubleing when resizing.
+	 */
 	public CapacityArrayList(int capacity) {
 		data = (E[]) new Object[capacity];
 		size = 0;
@@ -26,11 +27,10 @@ public class CapacityArrayList<E> implements BasicList<E>{
 	/**
 	 * Constructs an ArrayList with the specified capacity and extends capacity by capacity increments or doubles if argument is 0.
 	 */
-	@SuppressWarnings("unchecked")
 	public CapacityArrayList(int capacity, int capacityIncrement) {
 		data = (E[]) new Object[capacity];
 		size = 0;
-        this.capacityIncrement = capacityIncrement;
+		this.capacityIncrement = capacityIncrement;
 	}
 	
 	public E get(int index) {
@@ -45,7 +45,7 @@ public class CapacityArrayList<E> implements BasicList<E>{
 	}
 	
 	private void rangeCheck(int index) {
-		if (index < 0 || index > size) {
+		if (index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException("Index " + index + " out of bounds");
 		}
 	}
@@ -66,7 +66,6 @@ public class CapacityArrayList<E> implements BasicList<E>{
 		return size;
 	}	
 	
-	@SuppressWarnings("unchecked")
 	private void resize(int capacity) {
 		E[] temp = (E[]) new Object[capacity];
 		
