@@ -1,89 +1,13 @@
 {
-    "title": "Darwin Assignment",
+    "title": "Darwin Assignment - Part A",
     "assignment": "assignment2",
     "runner": {
         "mainclass": "Darwin",
         "package": "darwin",
         "type": "java_single_package_runner"
     },
-    "max_score": 23,
+    "max_score": 6,
     "tests": [
-        {
-            "name": "testHop(darwin.CreatureAutograder)",
-            "score": 0.30
-        },
-        {
-            "name": "testIfSame(darwin.CreatureAutograder)",
-            "score": 0.25
-        },
-        {
-            "name": "testIfWall(darwin.CreatureAutograder)",
-            "score": 0.25
-        },
-
-        {
-            "name": "testInfect(darwin.CreatureAutograder)",
-            "score": 0.30
-        },
-
-        {
-            "name": "testRotate(darwin.CreatureAutograder)",
-            "score": 0.25
-        },
-        {
-            "name": "left implemeneted correctly (Creature)",
-            "score": 0.25
-        },
-        {
-            "name": "right implemeneted correctly (Creature)",
-            "score": 0.25
-        },
-        {
-            "name": "ifempty implemeneted correctly (Creature)",
-            "score": 0.25
-        },
-
-        {
-            "name": "ifenemy implemeneted correctly (Creature)",
-            "score": 0.30
-        },
-        {
-            "name": "ifrandom implemeneted correctly (Creature)",
-            "score": 0.30
-        },
-        {
-            "name": "go implemeneted correctly (Creature)",
-            "score": 0.30
-        },
-        {
-            "name": "testGetColor(darwin.SpeciesAutograder)",
-            "score": 0.5
-        },
-
-        {
-            "name": "testGetName(darwin.SpeciesAutograder)",
-            "score": 0.75
-        },
-
-        {
-            "name": "testProgramToString(darwin.SpeciesAutograder)",
-            "score": 0.75
-        },
-
-        {
-            "name": "testProgramSize(darwin.SpeciesAutograder)",
-            "score": 0.75
-        },
-
-        {
-            "name": "testProgramStep(darwin.SpeciesAutograder)",
-            "score": 0.75
-        },
-
-        {
-            "name": "testGetSpeciesChar(darwin.SpeciesAutograder)",
-            "score": 0.5
-        },
         {
             "name": "testResetAndGet(darwin.WorldAutograder)",
             "score": 0.25
@@ -121,46 +45,33 @@
             "score": 0.25
         },
         {
-            "name": "Student JUnit Test Classes for World and Species",
-            "score": 2.0
-        },
-        {
-            "name": "Darwin class correctly runs the game of Darwin",
-            "score": 1.5
-        },
-        {
-            "name": "Darwin class correctly handles bad files",
+            "name": "testGetColor(darwin.SpeciesAutograder)",
             "score": 0.5
         },
+
         {
-            "name": "Darwin class correctly handles variable number of files",
-            "score": 1.0
+            "name": "testGetName(darwin.SpeciesAutograder)",
+            "score": 0.75
         },
+
         {
-            "name": "General Correctness",
-            "score": 3.0
+            "name": "testProgramToString(darwin.SpeciesAutograder)",
+            "score": 0.75
         },
+
         {
-            "name": "appropriate comments (including JavaDoc)",
-            "score": 3.0
+            "name": "testProgramSize(darwin.SpeciesAutograder)",
+            "score": 0.75
         },
+
         {
-            "name": "extra credit (two points max)",
-            "score": 0.0
+            "name": "testProgramStep(darwin.SpeciesAutograder)",
+            "score": 0.75
         },
+
         {
-            "name": "style and formatting",
-            "score": 3.0
-        },
-        {
-            "name": "submitted correctly (negative if incorrect)",
-            "score": 0.0
-        },
-        {
-            "name": "submitted on time (negative if late)",
-            "score": 0.0
+            "name": "testGetSpeciesChar(darwin.SpeciesAutograder)",
+            "score": 0.5
         }
-    ],
-    "title": "Darwin Assignment",
-    "writeup": "http://www.michaeljbannister.com/teaching/62-s16/Assignment06/Assignment06.pdf"
+    ]
 }
