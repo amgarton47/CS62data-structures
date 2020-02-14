@@ -84,16 +84,16 @@ In the `main` method of the `SearchEngine` class there is a local variable calle
 For example, here is the output from an example run on `simple.txt`:
 
 > Enter a query (blank to exit): a  
-> ------------------------------  
+>    
 > a b c d  
 >   --alphabet guy  
-> ------------------------------  
+>    
 > a b d  
 >   --elmo  
 >   
 >   
 > Enter a query (blank to exit): a b c d  
-> ------------------------------  
+>   
 > a b c d  
 >   --alphabet guy  
 >  
@@ -107,22 +107,22 @@ For example, here is the output from an example run on `simple.txt`:
 >  
 >  
 > Enter a query (blank to exit): a b c  
-> ------------------------------  
+>   
 > a b c d  
 >   --alphabet guy  
 >  
 >  Enter a query (blank to exit): a b d  
-> ------------------------------  
+>    
 > a b c d  
 >   --alphabet guy  
-> ------------------------------  
+>    
 > a b d  
 >   --elmo  
 
 and here is an example query from the quotes data set:
 
 > Enter a query (blank to exit): computer science  
-> --------------------------------------------------  
+>  
 > My background was computer science and business school  
 > so eventually I worked my way up where I was running  
 > product groups - development testing marketing user  
