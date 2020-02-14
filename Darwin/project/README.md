@@ -86,7 +86,7 @@ for you.
 This class represents (x,y) points in the world and constants for compass directions. This class is already implemented for you.
 
 ### `WorldMap`
-This class handles all of the graphics for the simulation. This class is already implemented for you.  They key method in this class is the `drawSquare` method that your creature will need to call to update the visual status of the game.
+This class handles all of the graphics for the simulation. This class is already implemented for you.  They key method in this class is the `displaySquare` method that your creature will need to call to update the visual status of the game.
 
 ### `Species`
 This class represents a species, and provides operations for reading in a species description from a file and
