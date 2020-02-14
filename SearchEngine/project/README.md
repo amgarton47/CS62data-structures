@@ -18,12 +18,12 @@ The key data structure that allows search engines (like google) to identify page
 
 For simplicity I'm using letters for word, so the first document has four words in it, 'a', 'b', 'c' and 'd'.  The inverted index for this set of documents would be something like:
 
-> a: 0, 1
-> b: 0, 1
-> c: 0
-> d: 0, 1, 2
-> f: 2
-> g: 2
+> a: 0, 1  
+> b: 0, 1  
+> c: 0  
+> d: 0, 1, 2  
+> f: 2  
+> g: 2  
 
 Notice that now, if we did a search for the word 'd', we can very quickly go to the entry for 'd', get the postings list, which gives us the documents that 'd' occurs in (in this case 0 and 2).
 
@@ -83,77 +83,68 @@ In the `main` method of the `SearchEngine` class there is a local variable calle
 
 For example, here is the output from an example run on `simple.txt`:
 
-Enter a query (blank to exit): a\
-------------------------------\
-a b c d \
-  --alphabet guy\
-------------------------------\
-a b d \
-  --elmo\
-
-
-Enter a query (blank to exit): a b c d\
-------------------------------\
-a b c d \
-  --alphabet guy
-
-
-Enter a query (blank to exit): a b c d e
-No documents had all those words
-
-
-Enter a query (blank to exit): e
-No documents had all those words
-
-
-Enter a query (blank to exit): a b c
-------------------------------
-a b c d 
-  --alphabet guy
-
-
-Enter a query (blank to exit): a b d
-------------------------------
-a b c d 
-  --alphabet guy
-------------------------------
-a b d 
-  --elmo
-\end{verbatim}
+> Enter a query (blank to exit): a  
+> ------------------------------  
+> a b c d  
+>   --alphabet guy  
+> ------------------------------  
+> a b d  
+>   --elmo  
+>   
+>   
+> Enter a query (blank to exit): a b c d  
+> ------------------------------  
+> a b c d  
+>   --alphabet guy  
+>  
+>  
+> Enter a query (blank to exit): a b c d e  
+> No documents had all those words  
+>  
+>  
+> Enter a query (blank to exit): e  
+> No documents had all those words  
+>  
+>  
+> Enter a query (blank to exit): a b c  
+> ------------------------------  
+> a b c d  
+>   --alphabet guy  
+>  
+>  Enter a query (blank to exit): a b d  
+> ------------------------------  
+> a b c d  
+>   --alphabet guy  
+> ------------------------------  
+> a b d  
+>   --elmo  
 
 and here is an example query from the quotes data set:
 
-\begin{verbatim}
-Enter a query (blank to exit): computer science
---------------------------------------------------
-My background was computer science and business school
-so eventually I worked my way up where I was running
-product groups - development testing marketing user
-education. 
-  --Melinda Gates
-\end{verbatim}
+> Enter a query (blank to exit): computer science  
+> --------------------------------------------------  
+> My background was computer science and business school  
+> so eventually I worked my way up where I was running  
+> product groups - development testing marketing user  
+> education.  
+>   --Melinda Gates  
 
 Note that it will take a little while for the index to load (30 second or so) for this full data set, but the queries themselves should execute almost instantaneously.  As the index is loading it will count off the number of documents loaded in increments of 1000.
 
-\section*{One path to implementation}
+## One path to implementation
 
 There are many ways to go about coding this all up.  As always, I strongly, strongly suggest an incremental approach, where you work on a single method and then test to make sure it works.  If you try and code all of it up and then debug that way, you will have a very, very hard time tracking down all your issues.
 
 Here's one way to go:
 
-\begin{enumerate}
+* Write your "node" class and test the basic functionality.
 
-\item Write your ``node'' class and test the basic functionality.
+* Write the `addDoc`, `size` and `getIDs` methods.  Test these methods!  I've provided you with some tests in the `PostingsListTest`.  The first four of these tests should pass.  You should also consider writing a few other tests of your own since these tests may not consider all corner cases.
 
-\item Write the \texttt{addDoc}, \texttt{size} and \texttt{getIDs} methods.  Test these methods!  I've provided you with some \texttt{JUnit} tests in the \texttt{PostingsListTest}.  The first four of these tests should pass.  You should also consider writing a few other tests of your own since these tests may not consider all corner cases.
+* Write the `andMerge` method and test with the associated tests (and your own tests).
 
-\item Write the \texttt{andMerge} method and test with the associated \texttt{JUnit} tests (and your own tests).
+* Write the `orMerge` method and test with the associated tests (and your own tests).  The `orMerge` should feel fairly similar to the `andMerge` except you have to do a bit more work.
 
-\item Write the \texttt{orMerge} method and test with the associated \texttt{JUnit} tests (and your own tests).  The \texttt{orMerge} should feel fairly similar to the \texttt{andMerge} except you have to do a bit more work.
+* Implement the `Index` class methods.  Make sure that you understand exactly how you're going to be representing/storing the inverted index and what methods are available for the `ArrayList` class.  A few minutes of research and thinking about this class can save you *a lot* of headache.  I haven't provided any test cases, but I'd encourage you to write a couple of your own.
 
-\item Implement the \texttt{Index} class methods.  Make sure that you understand exactly how you're going to be representing/storing the inverted index and what methods are available for the \texttt{ArrayList} class.  A few minutes of research and thinking about this class can save you \emph{a lot} of headache.  I haven't provided any test cases, but I'd encourage you to write a couple of your own.
-
-\item If everything is working properly, you should now be able to run the \texttt{SearchEngine} code.  First try out the simple example.  Test a bunch of different cases to make sure it works correctly and that you don't get any errors.  If that works, move on to the bigger file and try it out.
-
-\end{enumerate}
-
+* If everything is working properly, you should now be able to run the `SearchEngine` code.  First try out the simple example.  Test a bunch of different cases to make sure it works correctly and that you don't get any errors.  If that works, move on to the bigger file and try it out.
