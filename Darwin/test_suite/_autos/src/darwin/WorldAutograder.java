@@ -10,7 +10,10 @@ import org.junit.Test;
  */
 public class WorldAutograder {
 	World<String> world;
-	private static final int H = 3;
+
+	// Alexandra changed on Feb 12 2020 TEMPORARILY the autograder to check for a square. We should revisit this in the future.
+	// private static final int H = 3;
+	private static final int H = 2;
 	private static final int W = 2;
 
 	/**
@@ -19,17 +22,9 @@ public class WorldAutograder {
 	@Before
 	public void setUp() throws Exception {
 		// a 3 row, 2 column world
+		// a 2 row, 2 column world
 		world = new World<String>(H, W);
 	}
-
-	// TO-DO: test for world with negative height and width
-	// /**
-	// * Test method for {@link darwin.World#World(int, int)}.
-	// */
-	// @Test
-	// public final void testWorld() {
-	//
-	// }
 
 	/**
 	 * Test method for {@link darwin.World#height()}.
@@ -37,7 +32,8 @@ public class WorldAutograder {
 	@Test
 	public final void testHeight() {
 		assertEquals(
-				"Initiated a 3 row, 2 column world. Height should be 3.",
+				// "Initiated a 3 row, 2 column world. Height should be 3.",
+				"Initiated a 2 row, 2 column world. Height should be 2.",
 				H, world.height());
 	}
 
@@ -47,7 +43,8 @@ public class WorldAutograder {
 	@Test
 	public final void testWidth() {
 		assertEquals(
-				"Initiated a 3 row, 2 column world. Width should be 2.", W,
+				// "Initiated a 3 row, 2 column world. Width should be 2.", W,
+				"Initiated a 2 row, 2 column world. Width should be 2.", W,
 				world.width());
 
 	}
@@ -60,28 +57,32 @@ public class WorldAutograder {
 
 		// row 0, colum 0
 		Position p0 = new Position(0, 0);
-		assertTrue("h=3, w=2, Pos(0,0) should be in range.",
+		// assertTrue("h=3, w=2, Pos(0,0) should be in range.",
+		assertTrue("h=2, w=2, Pos(0,0) should be in range.",
 				world.inRange(p0));
 
 		// row 1, colum 1
 		Position p1 = new Position(1, 1);
-		assertTrue("h=3, w=2, Pos(1,1) should be in range.",
+		// assertTrue("h=3, w=2, Pos(1,1) should be in range.",
+		assertTrue("h=2, w=2, Pos(1,1) should be in range.",
 				world.inRange(p1));
 
 		// row 2, colum 1
 		Position p2 = new Position(2, 1);
-		assertFalse("h=3, w=2, Pos(2,1) should not be in range.",
+		// assertFalse("h=3, w=2, Pos(2,1) should not be in range.",
+		assertFalse("h=2, w=2, Pos(2,1) should not be in range.",
 				world.inRange(p2));
 
 		// row 2, colum 0
 		Position p3 = new Position(2, 2);
-		assertFalse("h=3, w=2, Pos(2,2) should not be in range.",
+		// assertFalse("h=3, w=2, Pos(2,2) should not be in range.",
+		assertFalse("h=2, w=2, Pos(2,2) should not be in range.",
 				world.inRange(p3));
 
-		// row 3, colum 1
-		Position p4 = new Position(1, 2);
-		assertTrue("h=3, w=2, Pos(1,2) should be in range.",
-				world.inRange(p4));
+		// // row 3, colum 1
+		// Position p4 = new Position(1, 2);
+		// assertTrue("h=3, w=2, Pos(1,2) should be in range.",
+		// 		world.inRange(p4));
 
 	}
 
@@ -93,7 +94,8 @@ public class WorldAutograder {
 
 		// row -1, colum -1
 		Position p5 = new Position(-1, -1);
-		assertFalse("h=3, w=2, Pos(-1,-1) should not be in range.",
+		// assertFalse("h=3, w=2, Pos(-1,-1) should not be in range.",
+		assertFalse("h=2, w=2, Pos(-1,-1) should not be in range.",
 				world.inRange(p5));
 
 	}
