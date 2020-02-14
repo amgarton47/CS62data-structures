@@ -12,9 +12,9 @@
 
 The key data structure that allows search engines (like google) to identify pages that match a query quickly is called an inverted index.  An inverted index is a mapping from words to the documents that contain those words, which is called a "postings list".  For example, take the following three documents:
 
-Document 0: a b c d\
-Document 1: a b d\
-Document 2: d f g\
+> Document 0: a b c d\
+> Document 1: a b d\
+> Document 2: d f g\
 
 For simplicity I'm using letters for word, so the first document has four words in it, 'a', 'b', 'c' and 'd'.  The inverted index for this set of documents would be something like:
 
@@ -70,3 +70,90 @@ The `Index` class will store the inverted index, i.e. a mapping from words (`Str
 There are many ways that we can store the inverted index.  Given what we've talked about so far, my advice is to store it as two `ArrayList`s.  In the first `ArrayList` store all of the words and in the second, the associated postings list for that word.  For example, if you use this setup, to get the postings list for a given word you first figure out what index the word occurs at in your first `ArrayList`.  You then return the postings list that occurs at that index in the second `ArrayList`.
 
 To write these methods, make sure that you look at the documentation for `ArrayList`.  Most of the things you want to do will be already implemented and the class should not require a lot of code.
+
+## Build Your Own Search Engine
+
+If you've done all of this correctly, then you should be able to run the `SearchEngine` code to interact with your own search engine!  In the starter code I've included two test dataset you can use to try out your search engine:
+
+* `simple.txt`: This file contains the same three "documents" used in the examples above.
+
+* `quotes.50k.txt`: This file contains 50K quotes from various well-known people.
+
+In the `main` method of the `SearchEngine` class there is a local variable called `quotesFile`.  Set this to be the name and location of the file you would like to index (either "./data/simple.txt" or "./data/quotes.50k.txt").  Once you've done this, you should be able to run the main method and it will load the specified file into the inverted index and the prompt you for queries.
+
+For example, here is the output from an example run on `simple.txt`:
+
+Enter a query (blank to exit): a\
+------------------------------\
+a b c d \
+  --alphabet guy\
+------------------------------\
+a b d \
+  --elmo\
+
+
+Enter a query (blank to exit): a b c d\
+------------------------------\
+a b c d \
+  --alphabet guy
+
+
+Enter a query (blank to exit): a b c d e
+No documents had all those words
+
+
+Enter a query (blank to exit): e
+No documents had all those words
+
+
+Enter a query (blank to exit): a b c
+------------------------------
+a b c d 
+  --alphabet guy
+
+
+Enter a query (blank to exit): a b d
+------------------------------
+a b c d 
+  --alphabet guy
+------------------------------
+a b d 
+  --elmo
+\end{verbatim}
+
+and here is an example query from the quotes data set:
+
+\begin{verbatim}
+Enter a query (blank to exit): computer science
+--------------------------------------------------
+My background was computer science and business school
+so eventually I worked my way up where I was running
+product groups - development testing marketing user
+education. 
+  --Melinda Gates
+\end{verbatim}
+
+Note that it will take a little while for the index to load (30 second or so) for this full data set, but the queries themselves should execute almost instantaneously.  As the index is loading it will count off the number of documents loaded in increments of 1000.
+
+\section*{One path to implementation}
+
+There are many ways to go about coding this all up.  As always, I strongly, strongly suggest an incremental approach, where you work on a single method and then test to make sure it works.  If you try and code all of it up and then debug that way, you will have a very, very hard time tracking down all your issues.
+
+Here's one way to go:
+
+\begin{enumerate}
+
+\item Write your ``node'' class and test the basic functionality.
+
+\item Write the \texttt{addDoc}, \texttt{size} and \texttt{getIDs} methods.  Test these methods!  I've provided you with some \texttt{JUnit} tests in the \texttt{PostingsListTest}.  The first four of these tests should pass.  You should also consider writing a few other tests of your own since these tests may not consider all corner cases.
+
+\item Write the \texttt{andMerge} method and test with the associated \texttt{JUnit} tests (and your own tests).
+
+\item Write the \texttt{orMerge} method and test with the associated \texttt{JUnit} tests (and your own tests).  The \texttt{orMerge} should feel fairly similar to the \texttt{andMerge} except you have to do a bit more work.
+
+\item Implement the \texttt{Index} class methods.  Make sure that you understand exactly how you're going to be representing/storing the inverted index and what methods are available for the \texttt{ArrayList} class.  A few minutes of research and thinking about this class can save you \emph{a lot} of headache.  I haven't provided any test cases, but I'd encourage you to write a couple of your own.
+
+\item If everything is working properly, you should now be able to run the \texttt{SearchEngine} code.  First try out the simple example.  Test a bunch of different cases to make sure it works correctly and that you don't get any errors.  If that works, move on to the bigger file and try it out.
+
+\end{enumerate}
+
