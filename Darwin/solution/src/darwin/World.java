@@ -1,18 +1,13 @@
+package darwin;
 
 /**
- * This module includes the functions necessary to keep track of the creatures
- * in a two-dimensional world. In order for the design to be general, the
- * interface adopts the following design:
- * <p>1. The contents are represented by type variable E.
- * <p>2. The dimensions of the world array are specified by the client.
- * <p>
- * There are many ways to implement this structure. HINT: look at the
- * structure.Matrix class. You should need to add no more than about ten lines
- * of code to this file.
+ * This class includes the functions necessary to keep track of the creatures in
+ * a two-dimensional world. 
  */
 
-public class World {
-	Matrix<Creature> board;
+
+public class World<E> {
+	Matrix<E> board;
 
 	/**
 	 * This function creates a new world consisting of width columns and height
@@ -20,7 +15,7 @@ public class World {
 	 * contains no objects.
 	 */
 	public World(int w, int h) {
-		board = new Matrix<Creature>(h, w);
+		board = new Matrix<E>(h, w);
 	}
 
 	/**
@@ -51,20 +46,25 @@ public class World {
 	}
 
 	/**
-	 * Set a position on the board to contain c. 
-	 * @pre pos is a non-null position
-	 * on the board.
+	 * Set a position on the board to contain e. 
+	 * @pre pos is in range - throws IllegalArgumentException otherwise
 	 */
-	public void set(Position pos, Creature c) {
-		board.set(pos.getY(), pos.getX(), c);
+	public void set(Position pos, E e) {
+		if(inRange(pos))	
+			board.set(pos.getY(), pos.getX(), e);
+		else
+			throw new IllegalArgumentException("Illegal pos position");
 	}
 
 	/**
 	 * Return the contents of a position on the board. 
-	 * @pre pos is a non-null position on the board.
+	 * @pre pos is a in range - throws IllegalArgumentException otherwise
 	 */
-	public Creature get(Position pos) {
-		return board.get(pos.getY(), pos.getX());
+	public E get(Position pos) {
+		if(inRange(pos))
+			return board.get(pos.getY(), pos.getX());
+		else
+			throw new IllegalArgumentException("Illegal pos position");
 	}
 
 }

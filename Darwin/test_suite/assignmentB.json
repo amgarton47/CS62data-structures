@@ -1,0 +1,88 @@
+{
+    "title": "Darwin Assignment - Part B",
+    "assignment": "assignment2",
+    "runner": {
+        "mainclass": "Darwin",
+        "package": "darwin",
+        "type": "java_single_package_runner"
+    },
+    "max_score": 17,
+    "tests": [
+        {
+            "name": "Creature passes tests: testHop(darwin.CreatureAutograder)",
+            "score": 0.30
+        },
+        {
+            "name": "Creature passes tests: testIfSame(darwin.CreatureAutograder)",
+            "score": 0.25
+        },
+        {
+            "name": "Creature passes tests: testIfWall(darwin.CreatureAutograder)",
+            "score": 0.25
+        },
+        {
+            "name": "Creature passes tests: testInfect(darwin.CreatureAutograder)",
+            "score": 0.30
+        },
+        {
+            "name": "Creature passes tests: testRotate(darwin.CreatureAutograder)",
+            "score": 0.25
+        },
+        {
+            "name": "Creature passes tests: left implemented correctly (Creature)",
+            "score": 0.25
+        },
+        {
+            "name": "Creature passes tests: right implemented correctly (Creature)",
+            "score": 0.25
+        },
+        {
+            "name": "Creature passes tests: ifempty implemented correctly (Creature)",
+            "score": 0.25
+        },
+        {
+            "name": "Creature passes tests: ifenemy implemented correctly (Creature)",
+            "score": 0.30
+        },
+        {
+            "name": "Creature passes tests: ifrandom implemented correctly (Creature)",
+            "score": 0.30
+        },
+        {
+            "name": "Creature passes tests: go implemented correctly (Creature)",
+            "score": 0.30
+        },
+        {
+            "name": "Darwin correctly runs the game: Darwin class correctly runs the game of Darwin",
+            "score": 1.5
+        },
+        {
+            "name": "Darwin correctly runs the game: Darwin class correctly handles bad files",
+            "score": 0.5
+        },
+        {
+            "name": "Darwin correctly runs the game: Darwin class correctly handles variable number of files",
+            "score": 1.0
+        },
+        {
+            "name": "General Correctness",
+            "score": 3.0
+        },
+        {
+            "name": "Appropriate comments (including JavaDoc)",
+            "score": 3.0
+        },
+        {
+            "name": "Style and formatting",
+            "score": 3.0
+        },
+        {
+            "name": "Student(s) submitted creature file",
+            "score": 2.0
+        },
+        {
+            "name": "Extra credit (two points max)",
+            "score": 0.0
+        }
+    ]
+}

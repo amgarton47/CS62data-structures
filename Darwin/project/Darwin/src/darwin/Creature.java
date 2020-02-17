@@ -5,14 +5,11 @@ import java.util.*;
 /**
  * This class represents one creature on the board. Each creature must remember
  * its species, position, direction, and the world in which it is living.
- * <p>
  * In addition, the Creature must remember the next instruction out of its
  * program to execute.
- * <p>
- * The creature is also repsonsible for making itself appear in the WorldMap. In
+ * The creature is also responsible for making itself appear in the WorldMap. In
  * fact, you should only update the WorldMap from inside the Creature class.
  */
-
 public class Creature {
 
 	/**

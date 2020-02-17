@@ -9,12 +9,10 @@
 * Learn the importance of modular decomposition and information hiding. (The entire program is
 broken down into a series of classes that can be developed and tested independently, without revealing
 representational details.)
-* Gain practice with `Junit`.
 * Have fun with a problem that is algorithmically interesting in its own right!
 
 ## Key Terms and Concepts
 
-* `JUnit` - A unit testing framework where tests are written for each method in a class, each with their own assertions about what the result should be in order to test cases (See [documentation](https://junit.org/junit5/) for more, and [here](https://www.qualitestgroup.com/resources/knowledge-center/how-to-guide/set-junit-eclipse/) for information about JUnit and eclipse).
 * `ArrayList` - An ArrayList is a resizable array-like data structure, where items can be added and removed regardless of the initialized size (See 1.3 pg. 136 in the textbook and the lecture slides for more).
 * `Matrix` - A grid made of rows and columns, in this case implemented with ArrayLists of ArrayLists.
 * Modular decomposition - In this case, the concept of breaking a complex coding problem into individual parts which each serve their own purposes and interlock with each other.
@@ -29,40 +27,47 @@ number of creatures. Each of the creatures lives in one of the squares, faces in
 directions (North, East, South, or West), and belongs to a particular species, which determines how that
 creature behaves. For example, one possible world is shown below:
 
-![World](darwin.png "Example World")
+![World](darwin.png "Example Darwin World")
 
 The sample world in the picture above is populated with twenty creatures, ten of a species called Flytrap
 and ten of a species called Rover. In each case, the creature is identified in the graphics world with the
-first letter in its name. The orientation is indicated by the figure surrounding the identifying letter; the
-creature points in the direction of the arrow. The behavior of each creature–which you can think of as a
+first letter in its name, e.g., F for Flytrap. The orientation is indicated by the figure surrounding the identifying letter; 
+the creature points in the direction of the arrow. The behavior of each creature–which you can think of as a
 small robot–is controlled by a program that is particular to each species. Thus, all of the Rovers behave in
 the same way, as do all of the Flytraps, but the behavior of each species is different from the other.
 
 As the simulation proceeds, every creature gets a turn. On its turn, a creature executes a short piece of its
-program in which it may look in front of itself to see what’s there and then take some action. The possible
+program in which it may look in front of itself to see what's there and then take some action. The possible
 actions are moving forward, turning left or right, or infecting some other creature standing immediately
 in front, which transforms that creature into a member of the infecting species. As soon as one of these
 actions is completed, the turn for that creature ends, and some other creature gets its turn. When every
 creature has had a turn, the process begins all over again with each creature taking a second turn, and so on.
 The goal of the game is to infect as many creatures as possible to increase the population of your own species.
 
-See **Appendix A - Species Programming** for more on how `Instruction` lists inform creature behavior. Make sure you read through and undestand this before coding the `Species` class.
+Please note that we do not dictate exactly the order that creatures take a turn, only that all creatures must take
+one turn before the next round begins. From a simulation perspective, the order that creatures take turns could affect the
+outcome of the simulation, but pedagogically we are more interested in the high-level interaction, so feel free to choose whatever
+is easiest for your implementation.
+
+See **Appendix A - Species Programming** for more on how `Instruction` lists inform creature behavior. 
+Make sure you read through and undestand this before coding the `Species` class.
 
 There are several presupplied creature files:
 
 `Food`: This creature spins in a square but never infects anything. Its only purpose is to serve as food for
 other creatures. As Nick Parlante explains, "the life of the Food creature is so boring that its only hope
-in life is to be eaten by something else so that it gets reincarnated as something more interesting."
+in life is to be eaten by something else so that it gets reincarnated as something more interesting." Pacificts will disagree.
 
 `Hop`: This creature just keeps hopping forward until it reaches a wall. Not very interesting, but it is useful
 to see if your program is working.
 
-`Flytrap`: This creature spins in one square, infecting any enemy creature it sees.
+`Flytrap`: This creature spins in one square, infecting any enemy creature it sees. It can be surprisingly effective.
 
 `Rover`: This creature walks in straight lines until it is blocked, infecting any enemy creature it sees. If it
-can’t move forward, it turns.
+cannot move forward, it turns.
 
-You should also create your own creature by creating a data file in the format described in **Appendix A**.
+You should also create your own creature by creating a data file in the format described in **Appendix A**. We will use this creature
+in a survival game across all creatures of your classmates.
 
 ## Classes
 
@@ -70,7 +75,7 @@ Your goal is to write the Darwin simulator and get it running. The program is la
 broken down into a number of separate classes that work together to solve the complete problem.
 
 You are responsible for implementing the `Darwin`, `Species`, `Creature`, and `World` classes. Skeletons of these
-classes are provided in the starter folder. In addition, we provide you with three helper classes that you
+classes are provided in the starter folder we provide. In addition, we provide you with three helper classes that you
 should use without modification: `Instruction`, `Position`, and `WorldMap`. Make sure you understand the purpose and methods of the pre-supplied classes before continuing.
 
 ![Visualization](darwinmockup.png)
@@ -79,14 +84,17 @@ should use without modification: `Instruction`, `Position`, and `WorldMap`. Make
 
 
 ### `Instruction`
-This simple class represents one instruction out of the `Species`’s instruction set. This class is already implemented
+This simple class represents one instruction out of the `Species`'s instruction set. This class is already implemented
 for you.
 
 ### `Position`
 This class represents (x,y) points in the world and constants for compass directions. This class is already implemented for you.
 
 ### `WorldMap`
-This class handles all of the graphics for the simulation. This class is already implemented for you.  They key method in this class is the `drawSquare` method that your creature will need to call to update the visual status of the game.
+This class handles all of the graphics for the simulation. They key method in this class is the `displaySquare` method that your creature will need to call to update the visual status of the game. This class is already implemented for you. 
+
+### `Matrix`
+This class represents a two-dimensional square matrix that consists of a specified number of rows and columns. This class is already implemented for you.
 
 ### `Species`
 This class represents a species, and provides operations for reading in a species description from a file and
@@ -114,12 +122,11 @@ how the program is supposed to behave. It should prompt you to open creature fil
 two different creature types. When you are done, click on cancel and the program should commence
 running.
 
-3. Write the `World` class. This should be straight-forward if you use the provided Matrix class. An alternative implementation could use an one-dimensional ArrayList to represent
-the world (and map<row,col> indices into a single 1D array index).
+1. Write the `World` class. This should be straight-forward if you use the provided `Matrix` class. When constructing a world with a speficied width and height, be careful to match the width to the number of columns and height to the number of rows in your `Matrix` object.
 
-4. Test this class thoroughly before proceeding. Use the provided AutograderCompTest (and any additional tests that you think would be helpful) in order to verify and convince yourself that all of the methods work. 
+2. Test this class thoroughly before proceeding. Use the provided `AutograderCompTest` class (and any additional tests that you think would be helpful) in order to verify and convince yourself that all of the methods work. 
 
-4. Write the `Species` class. The hardest part will be parsing the program file and storing it in the `Species`.
+3. Write the `Species` class. The hardest part will be parsing the program file and storing it in the `Species`.
 Note that the first instruction of a program is at address 1, not 0. **Test this class thoroughly before
 proceeding. Write test cases and verify that all of the methods work.**
 See the hints within the starter file for the `Species` class on how to read lines from the files.
@@ -146,12 +153,18 @@ the autograder will be passing in command line arguments to run Darwin.
 **Please do not change the folder structure! You should keep all creature files in the `Creature`
 folder.**
 
-9. Finish testing the implementation by making sure that the creatures interact with each other
+If you want to add command-line arguments in Eclipse, do the following:
+- Next to the run button, you can open the run dropdown menu.
+- Select "Run Configurations...".
+- Under the "Arguments" tab there is a "Program arguments" field where you can enter command-line arguments.
+- Enter the names of the files (without quotes) and separated by spaces in this field.
+
+1. Finish testing the implementation by making sure that the creatures interact with each other
 correctly. Test `ifenemy`, `infect`, etc.
 
 10. Design and test your own creature for the competition! Think about what it could do to set itself apart and succeed over other creatures.
 
-11. Make sure you fill out the assignment.json file with **your name**, the name of your **collaborator**, and a description of **extra credit**.
+11. Make sure you fill out the `assignment.json` file with **your name**, the name of your **collaborator**, and a description of **extra credit**.
 
 ## Helpful Considerations
 
@@ -168,7 +181,6 @@ You will be graded based on the following criteria:
 
 | Criterion                                                                                       | Points |
 | :---------------------------------------------------------------------------------------------- | :----- |
-| `JUnit` tests for each method in `Species`                                                      | 2      |
 | `World`  passes `World` unit tests                                                              | 2      |
 | `Species`  passes `Species` unit tests                                                          | 4      |
 | `Creature` correctly implements one turn                                                        | 3      |
@@ -176,14 +188,14 @@ You will be graded based on the following criteria:
 | General Correctness                                                                             | 3      |
 | Appropriate comments + JavaDoc                                                                  | 3      |
 | [Style and formatting](https://github.com/pomonacs622019fa/Handouts/blob/master/style_guide.md) | 3      |
+| Creature submitted                                                                              | 2      |
 | Extra Credit                                                                                    | 2      |
-
 
 NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
 
 ## Two part assignment
 
-This assignment spans two weeks.  However, we will still be grading some of the assignment next week.  Specifically, you must complete and push the `World` and `Species` classes by next Tuesday.  **The assignment grade portion for these two classes will be based on their status at the end of the day on Tuesday**.  You may include other files/changes in your repository.  We will not grade these, but make sure that they compile.  You may change the `World` and `Species` files after Tuesday, e.g., if you find a bug that affects the other classes, but we will not grade these changes.  The entire program must be submitted by the final deadline.
+This assignment spans two weeks.  However, we will still be grading some of the assignment next week.  Specifically, you must complete and push the `World` and `Species` classes by next Tuesday. **The assignment grade portion for these two classes will be based on their status at the end of the day on Tuesday**.  You may include other files/changes in your repository.  We will not grade these, but make sure that they compile.  You may change the `World` and `Species` files after Tuesday, e.g., if you find a bug that affects the other classes, but we will not grade these changes. The entire program must be submitted by the final deadline.
 
 ## Submitting your work
 
@@ -195,7 +207,7 @@ you can find significant periods of time in which you can work together.
 2. Double-check that your work is indeed pushed in Github! It is your responsibility to ensure that you do so before the deadline. Don't forget to commit and push your changes as you go and to edit the provided `json`. In particular, don't forget to put a description of the extra credit if you did extra credit.
 
 3. You must include in your submission a species of your own design in a file named it `lastNameOfFirstStudent_lastNameOfSecondStudent.txt`.
-It can be as simple or as complex as you like, but must use only the instructions specified above for
+It can be as simple or as complex as you like, but must use **only** the instructions specified above for
 creatures. The color must also be one of those specified in `WorldMap`. We will pit your creatures against
 each other to watch them battle for survival! Prizes will be awarded! Be sure to include your name in
 the comments on your species design.
@@ -226,7 +238,7 @@ infecting creature’s species. This will require creating new Species that are 
 copies of an existing Species. Taken to its extreme, you can make species evolve over time to become
 better and better at surviving in the Darwin world.
 
-5. Implement any other extension you find interesting.
+5. Implement any other extension you find interesting. The creatures that you will submit to the competition cannot have the extra credit behavior for fairness reasons.
 
 ### Appendix A - Species Programming
 

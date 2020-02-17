@@ -1,3 +1,4 @@
+package darwin;
 
 /**
  * This class represents one Darwin instruction. Instructions contain two

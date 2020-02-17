@@ -49,15 +49,6 @@ public class Instruction {
 	 * Creates a new instruction. address is the target of the operation, if one
 	 * is needed. Otherwise it is not used. @pre 0 < opcode <= GO.
 	 */
-	public Instruction(int opcode) {
-		this.opcode = opcode;
-		this.address = -1; // indicates no address
-	}
-	
-	/**
-	 * Creates a new instruction. address is the target of the operation, if one
-	 * is needed. Otherwise it is not used. @pre 0 < opcode <= GO.
-	 */
 	public Instruction(int opcode, int address) {
 		this.opcode = opcode;
 		this.address = address;
@@ -71,7 +62,7 @@ public class Instruction {
 	}
 
 	/**
-	 * Returns the addrss @post returns the address
+	 * @returns the address 
 	 */
 	public int getAddress() {
 		return address;

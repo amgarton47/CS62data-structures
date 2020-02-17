@@ -8,11 +8,11 @@ package darwin;
 public class World<E> {
 
 	/**
-	 * This function creates a new world consisting of height rows and width
-	 * columns, each of which is numbered beginning at 0. A newly created world
+	 * This function creates a new world consisting of width columns and height
+	 * rows, each of which is numbered beginning at 0. A newly created world
 	 * contains no objects.
 	 */
-	public World(int h, int w) {
+	public World(int w, int h) {
 	}
 
 	/**

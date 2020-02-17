@@ -9,6 +9,7 @@ import java.io.File;
 
 import org.junit.Before;
 import org.junit.Test;
+
 /**
  * JUnit tests for creatures
  * @author Peter Cowal

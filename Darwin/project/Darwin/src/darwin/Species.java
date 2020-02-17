@@ -10,7 +10,6 @@ import java.util.ArrayList;
  * each creature, this data can be recorded once as part of the description for
  * a species and then each creature can simply include the appropriate species
  * reference as part of its internal data structure.
- * <p>
  * 
  * Note: The instruction addresses start at one, not zero.
  */
@@ -22,21 +21,21 @@ public class Species {
 	protected ArrayList<Instruction> program;
 
 	/**
-	 * Create a species for the given file. 
-	 * @pre fileName exists in the Creature subdirectory.
+	 * Create a species for the given fileReader. 
 	 */
 	public Species(BufferedReader fileReader) {
-/*		try {
-			
-			// insert code to read from Creatures file here (use readLine() )
-		} catch (IOException e) {
-			System.out.println(
-				"Could not read file '"
-					+ fileReader
-					+ "'");
-			System.exit(1);
-		}
-*/	}
+	/*		try {
+				
+				// insert code to read from Creatures file here (use readLine() )
+			} catch (IOException e) {
+				System.out.println(
+					"Could not read file '"
+						+ fileReader
+						+ "'");
+				System.exit(1);
+			}
+	*/	
+	}
 
 
 	/**

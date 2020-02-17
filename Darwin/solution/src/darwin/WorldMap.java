@@ -1,3 +1,5 @@
+package darwin;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -5,11 +7,7 @@ import java.awt.event.*;
 /**
  * This class exports the methods necessary to display the creatures on the
  * screen. You should not change this class. You should have the following as
- * the first line of your main:
- * 
- * <pre>
- *  createWorldMap(x, y); </pre>
- * 
+ * the first line of your main: createWorldMap(x, y); 
  * 
  * Only the Creature code should need to call the displaySquare method.
  */
@@ -37,14 +35,11 @@ public class WorldMap {
 	 * Update the contents of the square indicated by pos. If c is ' ', then the
 	 * square is cleared, and dir and color are ignored.
 	 * 
-	 * @pre pos is a valid position @pre
-	 * <p>
-	 * c is the character to be put into the square @pre
-	 * <p>
-	 * dir is Position.NORTH,Position.SOUTH,Position.EAST,or Position.WEST (dir
-	 * is ignore if c is ' ') @pre
-	 * <p>
-	 * color is "black", "red", "gray", "dark gray", "pink", "orange", "yellow",
+	 * @pre pos is a valid position 
+	 * @pre c is the character to be put into the square 
+	 * @pre dir is Position.NORTH,Position.SOUTH,Position.EAST,or Position.WEST (dir
+	 * is ignore if c is ' ') 
+	 * @pre color is "black", "red", "gray", "dark gray", "pink", "orange", "yellow",
 	 * "green", "magenta", "cyan", "blue" (color is ignore if c is ' ').
 	 */
 	static public void displaySquare(

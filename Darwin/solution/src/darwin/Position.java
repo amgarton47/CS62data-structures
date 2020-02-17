@@ -1,3 +1,4 @@
+package darwin;
 
 /**
  * A Position is an (x,y) coordinate in the World, much like the Positions for
@@ -60,8 +61,6 @@ public class Position {
 				return new Position(x + 1, y);
 			case WEST :
 				return new Position(x - 1, y);
-			default :
-//				Assert.fail("bad direction");
 		}
 		return null;
 	}

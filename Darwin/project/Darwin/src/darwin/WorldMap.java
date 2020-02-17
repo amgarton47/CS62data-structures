@@ -7,11 +7,7 @@ import java.awt.event.*;
 /**
  * This class exports the methods necessary to display the creatures on the
  * screen. You should not change this class. You should have the following as
- * the first line of your main:
- * 
- * <pre>
- *  WorldMap.createWorldMap(x, y); </pre>
- * 
+ * the first line of your main: createWorldMap(x, y); 
  * 
  * Only the Creature code should need to call the displaySquare method.
  */
@@ -21,7 +17,7 @@ public class WorldMap {
 	 * Uses the inst pattern. This is the map to be operated on by the rest of
 	 * the program.
 	 */
-	protected static WorldMapImpl map = null;
+	static protected WorldMapImpl map = null;
 
 	/**
 	 * Initialize the world map to have size (x,y) and create the Window for it.
@@ -39,14 +35,11 @@ public class WorldMap {
 	 * Update the contents of the square indicated by pos. If c is ' ', then the
 	 * square is cleared, and dir and color are ignored.
 	 * 
-	 * @pre pos is a valid position @pre
-	 * <p>
-	 * c is the character to be put into the square @pre
-	 * <p>
-	 * dir is Position.NORTH,Position.SOUTH,Position.EAST,or Position.WEST (dir
-	 * is ignore if c is ' ') @pre
-	 * <p>
-	 * color is "black", "red", "gray", "dark gray", "pink", "orange", "yellow",
+	 * @pre pos is a valid position 
+	 * @pre c is the character to be put into the square 
+	 * @pre dir is Position.NORTH,Position.SOUTH,Position.EAST,or Position.WEST (dir
+	 * is ignore if c is ' ') 
+	 * @pre color is "black", "red", "gray", "dark gray", "pink", "orange", "yellow",
 	 * "green", "magenta", "cyan", "blue" (color is ignore if c is ' ').
 	 */
 	static public void displaySquare(
@@ -91,8 +84,6 @@ public class WorldMap {
 		protected Cell board[][]; // the board
 
 		protected static final Font font = new Font("Roman", 0, 10);
-		
-		private static final long serialVersionUID = -1;	// stupid warning
 
 		/*
 		 * class to store info about one cell on the board
@@ -159,7 +150,7 @@ public class WorldMap {
 
 			// to make sure all updates are seen in a timely fashion, we
 			// wait on sem here. sem is notified after the refresh has
-			// occured.
+			// occurred.
 			synchronized (sem) {
 				// dont't repaint over grid lines
 				repaint(

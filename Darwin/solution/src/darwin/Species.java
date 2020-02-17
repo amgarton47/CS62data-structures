@@ -1,3 +1,5 @@
+package darwin;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -10,54 +12,42 @@ import java.util.ArrayList;
  * reference as part of its internal data structure.
  * <p>
  * 
- * To encapsulate all of the operations operating on a species within this
- * abstraction, this class provides a constructor that will read a file containing
- * the name of the creature and its program, as described in the earlier part
- * of this assignment. To make the folder structure more manageable, the
- * species files for each creature are stored in a subfolder named Creatures.
- * This, creating the Species for the file Hop.txt will causes the program to
- * read in "Creatures/Hop.txt".
- * 
- * <p>
- * 
  * Note: The instruction addresses start at one, not zero.
  */
 public class Species {
 
 	protected String name;
 	protected String color;
+	protected char speciesChar; // the first character of Species name
 	protected ArrayList<Instruction> program;
 
 	/**
-	 * Create a species for the given file. @pre fileName exists in the Creature
-	 * subdirectory.
+	 * Create a species for the given fileReader. 
 	 */
-	public Species(String fileName) {
-		try {
-			BufferedReader r =
-				new BufferedReader(
-					new FileReader(
-						"Creatures" + java.io.File.separator + fileName));
-			name = r.readLine();
-			color = r.readLine();
+	public Species(BufferedReader fileReader) {
+		try {		
+			name = fileReader.readLine();
+			speciesChar = name.charAt(0);
+			color = fileReader.readLine();
 			program = new ArrayList<Instruction>();
-			readProgramFromStream(r);
-		} catch (IOException e) {
+			readProgramFromStream(fileReader);
+  		} catch (IOException e) {
 			System.out.println(
 				"Could not read file '"
-					+ "Creatures"
-					+ java.io.File.separator
-					+ fileName
+					+ fileReader
 					+ "'");
 			System.exit(1);
 		}
 	}
 
-	protected void readProgramFromStream(BufferedReader r) {
+	/**
+	 * Helper method for reading species
+	 */
+	protected void readProgramFromStream(BufferedReader fileReader) {
 		while (true) {
 			String line;
 			try {
-				line = r.readLine();
+				line = fileReader.readLine();
 			} catch(IOException exp){
 				System.out.println("readLine failed");
 				break;
@@ -94,7 +84,7 @@ public class Species {
 						int end = line.indexOf(" ", space + 1);
 						if (end == -1)
 							end = line.length();
-
+	
 						// convert
 						try {
 							address =
@@ -113,11 +103,12 @@ public class Species {
 			program.add(new Instruction(opCode, address));
 		}
 	}
-
+	
 	/**
-	 * Convert a string into the opcode number. This method will fail if s is
-	 * not a valid opcode name. @pre s is the name of an opcode. @post returns
-	 * the opcode for the string.
+	 * Convert a string into the opcode number. This method will fail if code is
+	 * not a valid opcode name. 
+	 * @pre code is the name of an opcode. 
+	 * @post returns the opcode for the string.
 	 */
 	protected int stringToOpcode(String code) {
 		String lowerCode = code.toLowerCase();
@@ -145,6 +136,13 @@ public class Species {
 		System.exit(1);
 		return -1;
 	}
+	
+	/**
+	* Return the char for the species
+	*/
+	public char getSpeciesChar() {
+		return speciesChar;
+	}
 
 	/**
 	 * Return the name of the species.
@@ -168,20 +166,18 @@ public class Species {
 	}
 
 	/**
-	 * Return an instruction from the program. @pre 1 <= i <= programSize().
+	 * Return an instruction from the program.
+	 * @pre 1 <= i <= programSize().
 	 * @post returns instruction i of the program.
 	 */
 	public Instruction programStep(int i) {
-//		Assert.pre(i >= 1 && i <= programSize(), "Bad address " + i);
-		return program.get(i - 1);
-	}
-
-	public String toString() {
-		return name;
+		return program.get(i-1);	
 	}
 
 	/**
 	 * Return a String representation of the program.
+	 * 
+	 * do not change
 	 */
 	public String programToString() {
 		String s = "";
@@ -190,14 +186,4 @@ public class Species {
 		}
 		return s;
 	}
-
-	public static void main(String s[]) {
-		Species sp = new Species("Hop.txt");
-		System.out.println(sp.getName());
-		System.out.println(sp.getColor());
-		System.out.println(sp.programToString());
-		System.out.println("first step should be hop: " + sp.programStep(1));
-		System.out.println("second step should be go 1: " + sp.programStep(2));
-	}
-
 }
