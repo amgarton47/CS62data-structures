@@ -91,7 +91,8 @@ for you.
 This class represents (x,y) points in the world and constants for compass directions. This class is already implemented for you.
 
 ### `WorldMap`
-This class handles all of the graphics for the simulation. They key method in this class is the `displaySquare` method that your creature will need to call to update the visual status of the game. This class is already implemented for you. 
+This class handles all of the graphics for the simulation. This class is already implemented for you.  They key method in this class is the `displaySquare` method that your creature will need to call to update the visual status of the game.
+
 
 ### `Matrix`
 This class represents a two-dimensional square matrix that consists of a specified number of rows and columns. This class is already implemented for you.
@@ -183,7 +184,7 @@ You will be graded based on the following criteria:
 | :---------------------------------------------------------------------------------------------- | :----- |
 | `World`  passes `World` unit tests                                                              | 2      |
 | `Species`  passes `Species` unit tests                                                          | 4      |
-| `Creature` correctly implements one turn                                                        | 3      |
+| `Creature` passes tests                                                                         | 3      |
 | `Darwin` correctly runs the game                                                                | 3      |
 | General Correctness                                                                             | 3      |
 | Appropriate comments + JavaDoc                                                                  | 3      |
