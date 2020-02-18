@@ -1,0 +1,26 @@
+{
+    "total_count": 15,
+    "passed_count": 15,
+    "failed_count": 0,
+    "time": 44799,
+    "serializer": "PomonaRunner",
+    "version": "0.0.1",
+    "failures": [],
+    "passes": [
+        "game_GameOverIndicated_ShouldPass(silverdollar.Autograder)",
+        "dragCoin_LeftToLeftMultipleSquares_ShouldMove(silverdollar.Autograder)",
+        "dropCoin_SameLocationCentered_ShouldBeCentered(silverdollar.Autograder)",
+        "dragCoin_RightToLeftMultipleSquares_ShouldMove(silverdollar.Autograder)",
+        "makeMove_IllegalRightPastLeft_ShouldNotMove(silverdollar.Autograder)",
+        "makeMove_IllegalLeftOnTopRight_ShouldNotMove(silverdollar.Autograder)",
+        "dropCoin_SubsequentDrop_ShouldMoveBackToPlace(silverdollar.Autograder)",
+        "makeMove_IllegalLeftToRightEmpty_ShouldNotMove(silverdollar.Autograder)",
+        "dragCoin_InitialCoinDrag_ShouldMoveWithMouse(silverdollar.Autograder)",
+        "makeMove_IllegalLeftPastRight_ShouldNotMove(silverdollar.Autograder)",
+        "dropCoin_LegalNewSpaceCentered_ShouldBeCentered(silverdollar.Autograder)",
+        "dragCoin_SubsequentMove_ShouldMoveWithMouse(silverdollar.Autograder)",
+        "dropCoin_InitialCoinDrop_ShouldMoveBackToPlace(silverdollar.Autograder)",
+        "makeMove_IllegalRightOnTopLeft_ShouldNotMove(silverdollar.Autograder)",
+        "makeMove_IllegalRightToRightEmpty_ShouldNotMove(silverdollar.Autograder)"
+    ]
+}

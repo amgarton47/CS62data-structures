@@ -1,25 +1,26 @@
 package introduction;
 
 /**
- * A Bag is a collection of Tokens (chips) that supports
- * functions that work by enumerating the contents.
+ * A Bag is a collection of Tokens (chips) that supports functions that work by
+ * enumerating the contents.
  *
- * @author: cs062 staff
+ * @author: cs062
  */
 public class Bag {
 
-	private static final int DEFAULT_TOKENS = 10;	// default number of Tokens in bag
+	private static final int DEFAULT_TOKENS = 10; // default number of Tokens in bag
 
-	private Token[] contents;	// the Tokens contained in this bag
+	Token[] contents; // the Tokens contained in this bag
 
 	/**
 	 * Creates a new bag populated with the given number of Tokens
 	 *
-	 * @param numTokens number of desired Tokens
+	 * @param numTokens
+	 *            number of desired Tokens
 	 */
-	public Bag(int numTokens){
+	public Bag(int numTokens) {
 		contents = new Token[numTokens];
-		for(int i = 0; i < numTokens; i++) {
+		for (int i = 0; i < numTokens; i++) {
 			contents[i] = new Token();
 		}
 	}
@@ -30,17 +31,16 @@ public class Bag {
 	public void firstToken() {
 		System.out.println(contents[0]);
 	}
-	
+
 	/**
-	 *	Prints out each Token in the bag
-	 *	use a for loop to enumerate the contents
+	 * Prints out each Token in the bag use a for loop to enumerate the contents
 	 */
 	public void allTokens() {
-		for(int i = 0; i < contents.length; i++) {
+		for (int i = 0; i < contents.length; i++) {
 			System.out.println(contents[i]);
 		}
 	}
-	
+
 	/**
 	 *	Prints out each Token in the bag
 	 *	using a while loop to enumerate the contents
@@ -48,52 +48,56 @@ public class Bag {
 	public void allTokensWhile() {
 		int i = 0;
 		while(i < contents.length) {
-			System.out.println(contents[i++]);
+			System.out.println(contents[i]);
+			i++;
 		}
 	}
-	
+
 	/**
 	 * Sums up the values of all Tokens in bag
 	 *
 	 * @return sum of values of all Tokens in bag
 	 */
 	public int addTokens() {
+		// TODO write a loop that enumerates the entire bag
+		// and sums the total of all of the Token values
 		int sum = 0;
-		for(int i = 0; i < contents.length; i++)
+		for(int i = 0; i<contents.length; i++) {
 			sum += contents[i].getValue();
+		}
 		return sum;
 	}
-	
+
 	/**
 	 * Returns the number of Tokens with a high value
 	 *
 	 * @return number of high value Tokens
 	 */
 	public int highValueTokens() {
-		int sum = 0;
-		for(int i = 0; i < contents.length; i++)
-			if (contents[i].isHighValue())
-				sum++;
-		return sum;
+		int number=0;
+		for(int i=0; i<contents.length; i++) {
+			if(contents[i].isHighValue())
+				number++;
+		}
+		return number;
 	}
-	
+
 	/**
 	 * Returns the index of first green Token, if it exists
 	 *
 	 * @return index of first green Token, or -1 if none
 	 */
 	public int firstGreen() {
-		for(int i = 0; i < contents.length; i++)
-			if (contents[i].getColor().equals("Green"))
-				return(i);
-
+		for(int i=0; i<contents.length; i++)
+			if(contents[i].getColor() == "Green")
+				return i;
 		return -1;
 	}
 
 	/**
 	 * main ... test program when Bag is run as Application
 	 */
-	 public static void main(String[] args) {
+	public static void main(String[] args) {
 		// create a bag full of random cips
 		Bag example = new Bag(DEFAULT_TOKENS);
 

@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * A Token is a virtual chip with a color and a numeric value
  *
- * @author: cs62 staff
+ * @author: cs062
  */
 public class Token {
 	private static final int MAX_VALUE = 10;	// max legal value the token can take
@@ -23,9 +23,9 @@ public class Token {
 	 *	@param	color of the desired Token
 	 *	@param	numerical value of desired Token
 	 */
-	public Token(String newColor, int newValue) {
-		color = newColor;
-		value = newValue;
+	public Token(String color, int value) {
+		this.color = color;
+		this.value = value;
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class Token {
 	 */
 	public int getValue() {
 		return value;
- 	}
+	}
 
 	/**
 	 * Sets the color of this Token
@@ -67,11 +67,11 @@ public class Token {
 	/**
 	 * Sets the value of this Token
 	 *
-	 * @param newValue desired value
+	 * @param value desired value
 	 */
-	public void setValue(int newValue) {
+	public void setValue(int value) {
 		this.value = value;
- 	}
+	}
 
 	/**
 	 * Returns if this Token has the maximum value
@@ -79,7 +79,7 @@ public class Token {
 	 * @return true if this Token has maximum value
 	 */
 	public boolean isMax() {
-		return value == MAX_VALUE;
+		return(value == MAX_VALUE);
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class Token {
 	 * @return true if this Token has a higher than average value
 	 */
 	public boolean isHighValue() {
-		return value > (MAX_VALUE/2);	
+		return value > (MAX_VALUE/2);
 	}
 
 	/**
