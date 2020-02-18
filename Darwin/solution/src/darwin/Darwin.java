@@ -58,7 +58,6 @@ class Darwin {
 				pos = new Position(rand.nextInt(width), rand.nextInt(height));
 			}
 			Creature c = new Creature(sp, world, pos, rand.nextInt(4));
-			world.set(pos, c);
 			creatures.add(c);
 		}
 	}

@@ -10,7 +10,6 @@ import java.util.*;
  * The creature is also responsible for making itself appear in the WorldMap. In
  * fact, you should only update the WorldMap from inside the Creature class.
  */
-
 public class Creature {
 	Species species;
 	World<Creature> world;
@@ -32,6 +31,7 @@ public class Creature {
 		this.pos = pos;
 		this.dir = dir;
 		pc = 1;
+		world.set(pos, this);
 		updateBoard();
 	}
 	
