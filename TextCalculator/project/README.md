@@ -122,8 +122,8 @@ Your interactive calculator must meet the following requirements:
 
 		* Bad pop: "Error: pop requires one argument"
 
-	
 
+Here is an example showing the errors:
 
 	Enter a number or operator: pop
 	Error: pop requires one argument
