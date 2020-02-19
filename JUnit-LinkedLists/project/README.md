@@ -24,29 +24,30 @@ A unit testing class is like a normal Java class, however, it does not have a co
 Delete the method test that is auto-generated and then copy and paste these two tests:
 
 
-@Test
-void testConstructor() {
-	LinkedList<Integer> l = new LinkedList<Integer>();
-	assertEquals(l.getFirst(), null);
-}
+	@Test
+	void testConstructor() {
+		LinkedList<Integer> l = new LinkedList<Integer>();
+		assertEquals(l.getFirst(), null);
+	}
 
-/**
- * Note this technically is testing both addFirst
- * and getFirst at the same time.
- */
-@Test
-void testAddFirst() {
-	LinkedList<Integer> l = new LinkedList<Integer>();
+	/**
+	 * Note this technically is testing both addFirst
+	 * and getFirst at the same time.
+	 */
+	@Test
+	void testAddFirst() {
+		LinkedList<Integer> l = new LinkedList<Integer>();
 	
-	l.addFirst(1);
-	assertTrue(l.getFirst() == 1);
-	
-	l.addFirst(2);
-	assertTrue(l.getFirst() == 2);
+		l.addFirst(1);
+		assertTrue(l.getFirst() == 1);
+		
+		l.addFirst(2);
+		assertTrue(l.getFirst() == 2);
 
-	l.addFirst(3);
-	assertTrue(l.getFirst() == 3);
-}
+		l.addFirst(3);
+		assertTrue(l.getFirst() == 3);
+	}
+
 
 
 
