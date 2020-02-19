@@ -9,31 +9,31 @@
     "max_score": 17,
     "tests": [
         {
-            "name": "Creature passes tests: testHop(darwin.CreatureAutograder)",
+            "name": "testHop(darwin.CreatureAutograder)",
             "score": 0.30
         },
         {
-            "name": "Creature passes tests: testIfSame(darwin.CreatureAutograder)",
+            "name": "testIfSame(darwin.CreatureAutograder)",
             "score": 0.25
         },
         {
-            "name": "Creature passes tests: testIfWall(darwin.CreatureAutograder)",
+            "name": "testIfWall(darwin.CreatureAutograder)",
             "score": 0.25
         },
         {
-            "name": "Creature passes tests: testInfect(darwin.CreatureAutograder)",
+            "name": "testInfect(darwin.CreatureAutograder)",
             "score": 0.30
         },
         {
-            "name": "Creature passes tests: testRotate(darwin.CreatureAutograder)",
+            "name": "testRotate(darwin.CreatureAutograder)",
             "score": 0.25
         },
         {
-            "name": "Creature passes tests: left implemented correctly (Creature)",
+            "name": "left implemented correctly (Creature)",
             "score": 0.25
         },
         {
-            "name": "Creature passes tests: right implemented correctly (Creature)",
+            "name": "right implemented correctly (Creature)",
             "score": 0.25
         },
         {
