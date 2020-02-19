@@ -39,13 +39,11 @@ Possibilities include a squaring button, factorial, or x^y. You should add the n
 nice, add an appropriate listener (created from `OpButtonListener` if you like), and make sure that the state
 knows how to handle that operation.
 
-![Calculator Mockup](calculatormockup.png "Calculator")
-
 ### `Calculator`
 
 We have provided you with the code for the main `Calculator` class. This class handles the layout of the buttons.
-We have also provided listeners for the `clear`, `pop`, and `enter` buttons. Recall that `listeners` for `JButtons`
-consists of an object from a class that implements `ActionListener`, where `ActionListener` is an interface
+We have also provided listeners for the `clear`, `pop`, and `enter` buttons. `listeners` for `JButtons`
+consist of an object from a class that implements `ActionListener`, where `ActionListener` is an interface
 with only one method, `actionPerformed(ActionEvent evt)`.
 
 ### `OpButtonListener`
