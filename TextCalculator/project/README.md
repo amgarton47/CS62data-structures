@@ -100,6 +100,8 @@ Your program will prompt the user for either a number of an operator and will ei
 
 For this assignment, we're not giving you any starter code.  However, we are giving you a specification for the classes that you need to write, specifically, the public methods.  All of the classes should be inside the `calculator' package.  To create a new Java file in that package, right-click on the `calculator` package and select "New -> class".  Make sure you follow the specifications exactly for each of the classes and public methods.
 
+### High-level requirements
+
 Your interactive calculator must meet the following requirements:
 
 * Follow *exactly* the output show in the example above.
@@ -166,6 +168,8 @@ Here is an example showing the errors:
 	---
 	
 	Enter a number or operator: 
+
+### Per-class requirements
 
 The three classes you need to implement are outlined below:
 
