@@ -42,8 +42,8 @@ knows how to handle that operation.
 ### `Calculator`
 
 We have provided you with the code for the main `Calculator` class. This class handles the layout of the buttons.
-We have also provided listeners for the `clear`, `pop`, and `enter` buttons. Recall that `listeners` for `JButtons`
-consists of an object from a class that implements `ActionListener`, where `ActionListener` is an interface
+We have also provided listeners for the `clear`, `pop`, and `enter` buttons. `listeners` for `JButtons`
+consist of an object from a class that implements `ActionListener`, where `ActionListener` is an interface
 with only one method, `actionPerformed(ActionEvent evt)`.
 
 ### `OpButtonListener`
