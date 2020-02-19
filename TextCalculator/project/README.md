@@ -174,25 +174,15 @@ Here is an example showing the errors:
 The three classes you need to implement are outlined below:
 
 * `Operation`
-
 This class represents a mathematical operation. It should have two methods:
-
 	* `public Operation(char op)`: Creates a new operation based on a character.  Valid operations are +, -, * and /.  If the input is not one of these four operations, it should throw an `IllegalArgumentException`
-
 	* `public int performOperation(int left, int right)`: Perform the math operation on these two operands and return the result.  This method could throw an ArithmeticException *if* we try and divide by zero (Java will do this naturally for you).
-
 * `CalculatorMemory`: The memory of the calculator.  It must have the following methods:
-
 	* `public void push(int number)`:  Add the number to memory.  **Must run in O(1).**
-
 	* `public int pop()`: Return and remove the most recently pushed value.  **Must run in O(1).**
-
 	* `public boolean isEmpty()`
-	
 	* `public int size()`
-	
 	* `public void clear()`: Remove everything from the memory.
-	
 	* `public String toString()`: A String version of the numbers stored.  The String should look like the memory contents output above.
 	
 For example:
