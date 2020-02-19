@@ -102,21 +102,21 @@ For this assignment, we're not giving you any starter code.  However, we are giv
 
 Your interactive calculator must meet the following requirements:
 
-	* Follow *exactly* the output show in the example above.
+* Follow *exactly* the output show in the example above.
 
-	* Keep going until the user enters a blank line.
+* Keep going until the user enters a blank line.
 
-	* Support +, -, * and / as well as two other operators:
+* Support +, -, * and / as well as two other operators:
 
-		* `pop`: the answer shown should be the top element of the Stack and the top item should be removed from the Stack
+	* `pop`: the answer shown should be the top element of the Stack and the top item should be removed from the Stack
 
-		* `clear`: remove all items from the Stack
+	* `clear`: remove all items from the Stack
 
-	* Handle *all* errors.  When an error occurs the Stack should not be changed, only an error message printed out.  The following is the output that should be shown for different errors:
+* Handle *all* errors.  When an error occurs the Stack should not be changed, only an error message printed out.  The following is the output that should be shown for different errors:
 	
-		* Divide by zero: "Error: divide by zero"
+	* Divide by zero: "Error: divide by zero"
 	
-		* Invalid input (not a number of operator): "Error: expected number or operator"
+	* Invalid input (not a number of operator): "Error: expected number or operator"
 
 		* Not enough operators: "Error: operator requires two arguments"
 
