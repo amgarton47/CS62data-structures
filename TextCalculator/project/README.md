@@ -193,7 +193,9 @@ This class represents a mathematical operation. It should have two methods:
 	
 	* `public void clear()`: Remove everything from the memory.
 	
-	* `public String toString()`: A String version of the numbers stored.  The String should look like the memory contents output above, i.e.,
+	* `public String toString()`: A String version of the numbers stored.  The String should look like the memory contents output above.
+	
+For example:
 
 	top number
 	next number
