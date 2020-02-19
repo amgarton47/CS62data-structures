@@ -1,0 +1,16 @@
+Pooh
+orange
+ifenemy 9
+ifenemy 7
+ifwall 7
+ifsame 7
+hop
+go 1
+left
+go 1
+infect
+go 1
+go 1
+
+
+

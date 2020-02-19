@@ -1,0 +1,13 @@
+Swag
+yellow
+ifenemy 3
+go 1
+infect 5
+go 1
+hop
+left
+right
+go 1
+
+Swag does whatever it wants.
+Kelly Ho

@@ -1,0 +1,5 @@
+Animal
+black
+ifenemy 2
+left
+go 1

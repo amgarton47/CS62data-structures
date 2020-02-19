@@ -1,0 +1,11 @@
+JackAndLinnea
+cyan
+ifenemy 6
+ifwall 8
+ifsame 8
+hop
+go 1
+infect
+ifenemy 6
+left
+go 1

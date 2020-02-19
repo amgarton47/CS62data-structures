@@ -1,0 +1,12 @@
+Rabbit
+black
+ifenemy 2
+infect
+right
+go 1
+right
+go 1
+hop
+go 1
+hop
+go 1

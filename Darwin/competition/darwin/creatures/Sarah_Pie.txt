@@ -1,0 +1,17 @@
+Pariah
+purple
+ifenemy 12
+ifwall 4
+ifsame 4
+right
+go 1
+ifenemy 12
+ifrandom 9
+go 1
+right
+ifenemy 12
+right
+ifenemy 13
+infect
+go 1 
+

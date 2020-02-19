@@ -1,0 +1,17 @@
+Owl
+grey
+infect
+ifenemy 1
+left
+ifenemy 1
+left
+ifenemy 1
+left
+ifenemy 1
+left
+ifenemy 1
+go 1
+
+
+Acts very similar to flytrap.
+

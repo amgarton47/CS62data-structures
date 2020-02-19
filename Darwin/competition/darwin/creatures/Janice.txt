@@ -1,0 +1,16 @@
+JANNNNN
+cyan
+ifenemy 11
+ifempty 5
+ifwall 7
+ifsame 9
+hop
+go 1
+left
+go 1
+right
+go 1
+infect
+go 1
+
+crawls over to a wall like a sneaky lil thing

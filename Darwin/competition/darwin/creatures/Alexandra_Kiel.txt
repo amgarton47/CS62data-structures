@@ -1,0 +1,12 @@
+ReflexivityQEDluv
+red
+ifenemy 5
+ifsame 4
+right
+hop 
+infect
+go 1
+ifwall 8
+right
+right
+go 1

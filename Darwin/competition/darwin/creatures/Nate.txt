@@ -1,0 +1,15 @@
+Butterfly
+pink
+ifenemy 10
+ifwall 5
+ifsame 5
+hop
+ifrandom 8
+left
+go 1
+right
+go 1
+infect
+go 1
+
+//Nate Pappalardo
