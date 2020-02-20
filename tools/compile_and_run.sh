@@ -54,6 +54,21 @@ else
 	only_package=""
 fi
 
+# try to assemble a CLASSPATH
+if [ -s CLASSPATH ]
+then
+	cp=`cat CLASSPATH`
+	if [ -d dependencies ]
+	then
+		export CLASSPATH="$cp:$HEADDIR/dependencies/"'*'
+	else
+		export CLASSPATH="$cp"
+	fi
+elif [ -d dependencies ]
+then
+	export	CLASSPATH=$HEADDIR/dependencies/'*'
+fi
+
 # do we have an (assignment specific) autograder script
 if [ -f autograde.sh ]
 then
@@ -181,12 +196,8 @@ do
 	echo "COMPILATION RESULTS" >> "$HEADDIR/$1/OUTPUT"
 	echo "===================" >> "$HEADDIR/$1/OUTPUT"
 	echo $DEPS
-	if [ -d $HEADDIR/dependencies ]
-	then
-		javac -cp $HEADDIR/dependencies/'*' *.java >> "$HEADDIR/$1/OUTPUT" 2>&1
-	else
-		javac *.java >> "$HEADDIR/$1/OUTPUT" 2>&1
-	fi
+
+	javac *.java >> "$HEADDIR/$1/OUTPUT" 2>&1
 	if [ $? -eq 0 ]
 	then
 		if [ -n "$autograder" -o -n "$runnable" ]
