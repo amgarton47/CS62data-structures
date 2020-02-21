@@ -1,0 +1,16 @@
+- Run their calculator
+-- Check that the output looks correct
+
+-- Try a few "good" commands:
+--- 5 3 - (should be 2, not -2)
+--- 52 5 7 + 4 * - 2 / (should be 2 at the end)
+
+-- Check pop and clear
+
+-- Check all of the error conditions. You can follow the error transcript from the project writeup or use your own just make sure you check all 5 error conditions.
+
+-- Check that the program terminates with a blank line
+
+-- Peek at their tests.  They should have two classes, one for CalculatorMemory and one for Operation.  In each of these, they should have at least one JUNit test per method.  As long as they have these, that's sufficient.
+
+-- Check their style and JavaDoc comments
