@@ -223,6 +223,20 @@ There are many ways that you can go about doing this assignment, but I'd strongl
 
 6. Add in all of the error checking.
 
+## Grading
+
+| Criterion                                | Points |
+| :--------------------------------------- | :----- |
+| Calculator output matches specification | 1      |
+| Loops and terminates appropriately | 1      |
+| Arithmetic operations work correctly | 3      |
+| pop and clear work correctly | 1
+| Appropriately handle errors and show message | 3     |
+| Good JUnit tests for each method in OperationTest | 1 |
+| Good JUnit tests for each method in CalculatorMemoryTest | 1 |
+| Appropriate comments + JavaDoc           | 3      |
+| [Style and formatting](https://github.com/pomonacs622018f/Handouts/blob/master/style_guide.md)                       | 2      |
+| Submitted correctly                      | 1      |
 
 ## Submitting your work
 
