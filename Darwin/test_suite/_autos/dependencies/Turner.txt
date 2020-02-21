@@ -1,0 +1,10 @@
+Turner
+red
+ifempty 4
+left
+go 1
+right
+go 1
+
+turn right if is empty
+turn left if not empty 
