@@ -237,7 +237,7 @@ public class CreatureAutograder {
 			if(hasTurnedLeft && hasTurnedRight) {
 				break;
 			}
-			r.dir = Position.NORTH;
+			r.setDir(Position.NORTH);
 		}
 		
 		assertTrue("Rover should randomly turn left and right. Rover never turned left.", hasTurnedLeft);

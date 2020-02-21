@@ -36,6 +36,13 @@ public class Creature {
 	}
 
 	/**
+	 * Sets the current direction of the creature to the given value 
+	 */
+	public void setDirection(int dir){
+		//fix
+	}
+
+	/**
 	 * Return the position of the creature.
 	 */
 	public Position position() {
