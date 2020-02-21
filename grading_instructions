@@ -22,6 +22,8 @@ python /common/cs/cs062/admin/CS62_projects/tools/json2csv.py > assignment.csv
 open assignment.csv
 # merge csv and prexisting output
 cd _output
+
+
 python /common/cs/cs062/admin/CS62_projects/tools/merge_scores.py -v -t ../assignment.json ../assignment.csv
 cd ..
 
