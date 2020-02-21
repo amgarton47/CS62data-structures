@@ -54,20 +54,31 @@ else
 	only_package=""
 fi
 
-# try to assemble a CLASSPATH
+# try to discover location of JUnit libraries
 if [ -s CLASSPATH ]
 then
-	cp=`cat CLASSPATH`
-	if [ -d dependencies ]
-	then
-		export CLASSPATH="$cp:$HEADDIR/dependencies/"'*'
-	else
-		export CLASSPATH="$cp"
-	fi
-elif [ -d dependencies ]
+	CLASSPATH=`cat CLASSPATH`
+elif [ -d $HOME/.p2/pool/plugins ]
 then
-	export	CLASSPATH=$HEADDIR/dependencies/'*'
+	# default place for Eclipse to download libraries
+	CLASSPATH=$HOME/.p2/pool/plugins/'*'
+elif [ -d /Users/csadmin/.p2/pool/plugins ]
+then
+	# default place for pre-loaded lab machines
+	CLASSPATH='/Users/csadmin/.p2/pool/plugins/*'
 fi
+
+# add any other per-project dependencies
+if [ -d $HEADDIR/dependencies ]
+then
+	if [ -n "$CLASSPATH" ]
+	then
+		CLASSPATH=$CLASSPATH:$HEADDIR/dependencies/'*'
+	else
+		CLASSPATH=$HEADDIR/dependencies/'*'
+	fi
+fi
+export CLASSPATH
 
 # do we have an (assignment specific) autograder script
 if [ -f autograde.sh ]
