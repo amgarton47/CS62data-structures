@@ -184,11 +184,16 @@ do
 		continue
 	fi
 
-	# start the autograder report
+	# start with a clean autograder report
 	if [ -s $1/OUTPUT ]
 	then
 		rm $1/OUTPUT
 	fi
+	if [ -s $1/ERRORS ]
+	then
+		rm $1/ERRORS
+	fi
+
 	echo "SUBMISSION $1" > "$HEADDIR/$1/OUTPUT"
 	echo >> "$HEADDIR/$1/OUTPUT"
 
