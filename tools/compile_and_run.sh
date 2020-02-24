@@ -58,11 +58,11 @@ fi
 if [ -s CLASSPATH ]
 then
 	CLASSPATH=`cat CLASSPATH`
-elif [ -d $HOME/.p2/pool/plugins ]
+elif [ -f $HOME/.p2/pool/plugins/org.junit.jupiter.api*.jar ]
 then
 	# default place for Eclipse to download libraries
 	CLASSPATH=$HOME/.p2/pool/plugins/'*'
-elif [ -d /Users/csadmin/.p2/pool/plugins ]
+elif [ -f /Users/csadmin/.p2/pool/plugins/org.junit.jupiter.api*.jar ]
 then
 	# default place for pre-loaded lab machines
 	CLASSPATH='/Users/csadmin/.p2/pool/plugins/*'
@@ -78,6 +78,7 @@ then
 		CLASSPATH=$HEADDIR/dependencies/'*'
 	fi
 fi
+echo Compiling JAVA sources against CLASSPATH=$CLASSPATH
 export CLASSPATH
 
 # do we have an (assignment specific) autograder script
