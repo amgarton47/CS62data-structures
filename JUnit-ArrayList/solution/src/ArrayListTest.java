@@ -1,5 +1,5 @@
-import static org.junit.Assert.*;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * This is a demonstration of a test case in a JUnit test suite
@@ -18,10 +18,10 @@ public class ArrayListTest {
 	public void test_isEmpty() {
 		// create an empty list, expect True
 		ArrayList<String> testList = new ArrayList<>();
-		assertTrue(testList.isEmpty());
+		Assertions.assertTrue(testList.isEmpty());
 		
 		// add something to the list, expect False
 		testList.add("a string");
-		assertFalse(testList.isEmpty());
+		Assertions.assertFalse(testList.isEmpty());
 	}
 }
