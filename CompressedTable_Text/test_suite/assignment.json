@@ -1,0 +1,219 @@
+{
+  "title": "Compressed Table Assignment",
+  "assignment": "assignment4",
+  "info": "Grading of compressed table must be completed manually. Protip: use the green run button to launch the students GUI.",
+    "runner": {
+        "mainclass": "GridTest",
+        "package": "compression",
+        "type": "java_single_package_runner"
+    },
+    "max_score": 20,
+    "tests": [
+      {
+        "name": "testIsOffRight(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testAddFirst_null(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testCurrentValue_EmptyList(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testAddAfterCurrent_null(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testNext_OffRightSide(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testRemoveCurrent_isOff(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testRemoveCurrent_empty(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testFirst_off(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testCurrentValue_isOff(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testRemoveLast(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testRemoveCurrent(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testGetLast(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testAddFirst(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testLast_off(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testBack_OffLeftSide(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testAddAfterCurrent(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testRemoveFirst(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testNext(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testLast(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testNext_EmptyList(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testIsOff(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testFirst(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testClear(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testCurDoublyLinkedList(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testAddAfterCurrent_isOff(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testAddLast_null(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testIsOffLeft(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testAddLast(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testGetFirst(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testCurrentValue(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testBack_EmptyList(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testRemoveLast_afterOffLeft(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testFirst_empty(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testBack(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testGetLast_afterOff(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testAddFirst_afterOff(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testAddLast_off(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testRemoveFirst_afterOffLeft(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testLast_empty(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "testGetFirst_afterOff(compression.Autograder)",
+        "score": 0.1
+      },
+      {
+        "name": "No change if new color is same as current color",
+        "score": 1.0
+      },
+      {
+        "name": "Can change color of position already in list",
+        "score": 2.0
+      },
+      {
+        "name": "Can change color of position not already in list",
+        "score": 2.0
+      },
+      {
+        "name": "Correctly adds another node to list when needed",
+        "score": 2.0
+      },
+      {
+        "name": "Has JUnit tests for all methods in CurDoublyLinkedList",
+        "score": 2.0
+      },
+      {
+        "name": "General correctness",
+        "score": 2.0
+      },
+      {
+        "name": "Appropriate comments (including JavaDoc)",
+        "score": 2.0
+      },
+      {
+        "name": "Style and formatting",
+        "score": 2.0
+      },
+      {
+        "name": "Submitted correctly",
+        "score": 1.0
+      },
+      {
+        "name": "Extra credit (eliminating consecutive items with same value) (2.0 max)",
+        "score": 0.0
+      },
+      {
+        "name": "Submitted on time (negative if late)",
+        "score": 0.0
+      }
+    ],
+    "title": "Compressed Table",
+    "writeup": "http://www.michaeljbannister.com/teaching/62-s16/Assignment04/Assignment04.pdf"
+}
