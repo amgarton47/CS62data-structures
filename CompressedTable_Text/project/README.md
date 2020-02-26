@@ -2,14 +2,14 @@
 
 ## Learning Goals
 
-* Practice inheritance by extending and using a doubly linked list data structure to include a "current" pointer.
+* Practice inheritance by extending and using a doubly linked list data structure to include a "current" reference.
 * Gain experience designing and implementing a non-trivial algorithm.
 * Gain experience debugging complex and troublesome code.
 * Gain even more experience using `JUnit`.
 
 ## Key Terms and Concepts
 
-* `DoublyLinkedList` - A list consisting of nodes that each contain an item and a pointer to the node ahead and behind them. This means the list has minimal structure and instead consists of individual elements strung together. Please *review* the `DoublyLinkedList.java` file we have provided you with as it contains methods that you need to reuse in the `CurDoublyLinkedList` class. Being familiar with this class will ensure that you don't duplicate work in its subclass `CurDoublyLinkedList`.
+* `DoublyLinkedList` - A list consisting of nodes that each contain an item and a reference to the node ahead and behind them. This means the list has minimal structure and instead consists of individual elements strung together. Please *review* the `DoublyLinkedList.java` file we have provided you with as it contains methods that you need to reuse in the `CurDoublyLinkedList` class. Being familiar with this class will ensure that you don't duplicate work in its subclass `CurDoublyLinkedList`.
 * `Association` - A data structure containing a key and a value together. This allows for two pieces of data to be "associated" and referenced together, and can be useful for storing certain information in a dictionary. We have provided an `Association.java` file for your convenience. Please review it.
 * Compression - A very useful technique where large amounts of data is efficiently stored to reduce the space it takes up, through encoding or other methods. (See 5.5 pg. 810 in the textbook and **Appendix A - Compression** for more)
 
@@ -97,11 +97,11 @@ This assignment asks you to apply this technique to a  program, where individual
 
 ## Classes
 
-This assignment has many classes; please read them carefully in the provided order before you start implementing. You are responsible for `CurDoublyLinkedList` and `CompressedTable`. The first of these is the underlying data structure, a doubly linked list that includes a pointer, called `current`, and the second is the class which handles the updating of the table. To make your life easier, we have provided you with a `TestCurDoublyLinkedList` class that contains JUnit tests for the `CurDoublyLinkedList` class. Review them carefully and ensure they all pass before you proceed with `CompressedTable`. All other classes have all been implemented for you.
+This assignment has many classes; please read them carefully in the provided order before you start implementing. You are responsible for `CurDoublyLinkedList` and `CompressedTable`. The first of these is the underlying data structure, a doubly linked list that includes a reference, called `current`, and the second is the class which handles the updating of the table. To make your life easier, we have provided you with a `TestCurDoublyLinkedList` class that contains JUnit tests for the `CurDoublyLinkedList` class. Review them carefully and ensure they all pass before you proceed with `CompressedTable`. All other classes have all been implemented for you.
 
 ### `CurDoublyLinkedList`
 
-`CurDoublyLinkedList` (short for 'extends the `DoublyLinkedList` class to include a `current` pointer to a "current" node).  Think carefully about what it means for one class to extend another (hint, review the lecture on inheritance).
+`CurDoublyLinkedList` (short for 'extends the `DoublyLinkedList` class to include a `current` reference to a "current" node).  Think carefully about what it means for one class to extend another (hint, review the lecture on inheritance).
 
 The `CurDoublyLinkedList` class should support all of the parent methods. In addition, 
 the new class should support the following methods:
