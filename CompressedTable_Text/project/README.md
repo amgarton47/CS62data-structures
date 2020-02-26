@@ -68,7 +68,7 @@ You can imagine that our program can become more complicated. For instance, supp
 
 
 If we imagine tracing through the table from left to right starting with the top row and going through
-successive rows then we notice that we only need to record the following entry:
+successive rows then we notice that we only need to record the following entries:
 
 | | | | | |
 |-|-|-|-|-|
