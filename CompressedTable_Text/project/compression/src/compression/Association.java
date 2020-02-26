@@ -35,8 +35,7 @@ import java.util.Map;
  * @author, 2001 duane a. bailey
  */
 
-public class Association<K,V> implements Map.Entry<K,V>
-{
+public class Association<K,V> implements Map.Entry<K,V>{
     /**
      * The immutable key.  An arbitrary object.
      */
@@ -59,8 +58,7 @@ public class Association<K,V> implements Map.Entry<K,V>
      * @param key A non-null object.
      * @param value A (possibly null) object.
      */
-    public Association(K key, V value)
-    {
+    public Association(K key, V value){
     	if (key == null)
     		throw new IllegalArgumentException("Key must not be null");
         theKey = key;
@@ -74,8 +72,7 @@ public class Association<K,V> implements Map.Entry<K,V>
      * @post constructs a key-value pair; value is null
      * @param key A non-null key value.
      */
-    public Association(K key)
-    {
+    public Association(K key){
         this(key,null);
     }
 
@@ -87,8 +84,7 @@ public class Association<K,V> implements Map.Entry<K,V>
      * @param other Another association.
      * @return true iff the keys are equal.
      */
-    public boolean equals(Object other)
-    {
+    public boolean equals(Object other){
         Association otherAssoc = (Association)other;
         return getKey().equals(otherAssoc.getKey());
     }
@@ -100,8 +96,7 @@ public class Association<K,V> implements Map.Entry<K,V>
      * @return A hash code for association.
      * @see Hashtable
      */
-    public int hashCode()
-    {
+    public int hashCode(){
         return getKey().hashCode();
     }
     
@@ -111,8 +106,7 @@ public class Association<K,V> implements Map.Entry<K,V>
      * @post returns value from association
      * @return The value field of the association.
      */
-    public V getValue()
-    {
+    public V getValue(){
         return theValue;
     }
 
@@ -122,8 +116,7 @@ public class Association<K,V> implements Map.Entry<K,V>
      * @post returns key from association
      * @return Key of the key-value pair.
      */
-    public K getKey()
-    {
+    public K getKey(){
         return theKey;
     }
 
@@ -133,8 +126,7 @@ public class Association<K,V> implements Map.Entry<K,V>
      * @post sets association's value to value
      * @param value The new value.
      */
-    public V setValue(V value)
-    {
+    public V setValue(V value){
         V oldValue = theValue;
         theValue = value;
         return oldValue;
@@ -146,8 +138,7 @@ public class Association<K,V> implements Map.Entry<K,V>
      * @post returns string representation
      * @return String representing key-value pair.
      */
-    public String toString()
-    {
+    public String toString(){
         StringBuffer s = new StringBuffer();
         s.append("<Association: "+getKey()+"="+getValue()+">");
         return s.toString();
