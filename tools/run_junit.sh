@@ -52,6 +52,22 @@ then
 	mkdir "_output"
 fi
 
+# try to discover location of JUnit libraries
+if [ -s CLASSPATH ]
+then
+	CLASSPATH=`cat CLASSPATH`
+elif [ -f $HOME/.p2/pool/plugins/org.junit.jupiter.api*.jar ]
+then
+	# default place for Eclipse to download libraries
+	CLASSPATH=$HOME/.p2/pool/plugins/'*'
+elif [ -f /Users/csadmin/.p2/pool/plugins/org.junit.jupiter.api*.jar ]
+then
+	# default place for pre-loaded lab machines
+	CLASSPATH='/Users/csadmin/.p2/pool/plugins/*'
+fi
+echo Compiling JAVA sources against CLASSPATH=$CLASSPATH
+export CLASSPATH
+
 # if we weren't given directories to process, try everything
 if [ -z "$1" ]
 then
@@ -168,7 +184,7 @@ do
 		echo "... building JUNIT Test suite for package $package"
 	fi
 	cd $TEMPDIR
-	javac $JAVA_OPTS -cp 'dependencies/*' junitmods/*.java $package/*.java
+	javac $JAVA_OPTS -cp 'dependencies/*':$CLASSPATH junitmods/*.java $package/*.java
 
 	if [ $? -eq 0 ]
 	then
@@ -176,7 +192,7 @@ do
 		then
 			echo "... running JUNIT Test suite for package $package"
 		fi
-		java -cp '.:junitmods:dependencies/*' -Dtesting=$TEMPDIR junitmods.PomonaRunner $name.autos
+		java -cp '.:junitmods:dependencies/*':$CLASSPATH -Dtesting=$TEMPDIR junitmods.PomonaRunner $name.autos
 		
 		# pretty-print the output
 		which python3 > /dev/null
