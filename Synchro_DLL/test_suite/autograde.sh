@@ -22,7 +22,7 @@ fi
 
 # run the program to see if race conditions have been eliminated
 echo "... Running Tester.main"
-java linkedlist.Tester --races=ir
+java -cp . linkedlist.Tester --races=ir
 ret=$?
 echo "==================================="
 echo "test suite exit code: $ret"
