@@ -22,9 +22,8 @@ import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 
 public class PomonaRunner {
-	// these two lines change with every project
-	private static final String PACKAGE = "introduction";
-	private static final Class TESTER = introduction.Autograder.class;
+	private static final String PACKAGE = "introduction";	// CHANGE for each project
+	private static final String TESTER = "Autograder";		// almost always the same
 
 	public static void main(String[] args) {
 		if (args.length <= 0) {
@@ -37,7 +36,9 @@ public class PomonaRunner {
 
 			// find find the test cases
 			LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request().
-				selectors( selectPackage(PACKAGE), selectClass(TESTER)).
+				// the test class is almost always <PACKAGE>.Autograder
+				selectors(selectPackage(PACKAGE), selectClass(Class.forName(PACKAGE+"."+TESTER))).
+				// this generates warnings if there are no legacy test cases
 				filters(excludeEngines("junit-vintage")).
 				build();
 
