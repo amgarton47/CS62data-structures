@@ -1,6 +1,4 @@
 The (newly written) compile_and_run script compiled them, ran them, and collected the output.
-    but requires both the DO_NOT_RUN and PACKAGE files to be in the grading directory
-    because there are multiple packages under src and some classes that should not be run
 
 Also requires a slightly modified report.sh to report on whether or not sorting seems
 to have produed correct results.
