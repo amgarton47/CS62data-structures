@@ -11,14 +11,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
-import static org.junit.platform.engine.discovery.ClassNameFilter.includeClassNamePatterns;
 import static org.junit.platform.engine.discovery.DiscoverySelectors.selectClass;
 import static org.junit.platform.engine.discovery.DiscoverySelectors.selectPackage;
+import static org.junit.platform.launcher.EngineFilter.*;
 
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
 import org.junit.platform.launcher.TestExecutionListener;
-import org.junit.platform.launcher.TestPlan;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 
@@ -37,8 +36,10 @@ public class PomonaRunner {
 			Writer writer = new FileWriter(args[0]);
 
 			// find find the test cases
-			LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request().selectors(
-				selectPackage(PACKAGE), selectClass(TESTER)).build();
+			LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request().
+				selectors( selectPackage(PACKAGE), selectClass(TESTER)).
+				filters(excludeEngines("junit-vintage")).
+				build();
 
 			// create a launcher and run the tests
 			Launcher launcher = LauncherFactory.create();
