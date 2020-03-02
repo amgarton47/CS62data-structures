@@ -7,7 +7,8 @@ import java.util.Iterator;
  * been implemented based on Sedgewick and Wayne's Algorithms textbook (4th
  * edition).
  * 
- * @author CS62
+ * @author Aden Siebel
+ * @author Alexandra Papoutsaki
  *
  */
 public class DoublyLinkedList<Item> implements Iterable<Item> {
@@ -74,35 +75,34 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 		}
 		return finger.item;
 	}
-
+	
 	/**
 	 * Returns index of the specified item
 	 * 
-	 * @param item
-	 *            ... the item to be located
+	 * @param item ... the item to be located
 	 * @return index of that item (or -1)
 	 */
 	public int getIndex(Item desired) {
 		int index = 0;
-		for (Node finger = first; finger != null; finger = finger.next) {
+		for(Node finger = first; finger != null; finger = finger.next) {
 			if (finger.item == desired)
 				return index;
 			index++;
 		}
-		return (-1);
+		return(-1);
 	}
 
-	/**
-	 * Add a value to head of list.
-	 *
-	 * @post adds value to beginning of list
-	 * 
-	 * @param value
-	 *            value to be added.
-	 */
-	public void add(Item item) {
-		addFirst(item);
-	}
+	 /**
+     * Add a value to head of list.
+     *
+     * @post adds value to beginning of list
+     * 
+     * @param value value to be added.
+     */
+    public void add(Item item)
+    {
+        this.addFirst(item);
+    }
 
 	/**
 	 * Inserts the specified item at the head of the doubly linked list.
@@ -166,9 +166,9 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 		rangeCheck(index);
 
 		if (index == 0) {
-			addFirst(item);
+			this.addFirst(item);
 		} else if (index == size()) {
-			addLast(item);
+			this.addLast(item);
 		} else {
 
 			Node previous = null;
@@ -244,9 +244,9 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 		rangeCheck(index);
 
 		if (index == 0) {
-			return removeFirst();
+			return this.removeFirst();
 		} else if (index == size() - 1) {
-			return removeLast();
+			return this.removeLast();
 		} else {
 			Node previous = null;
 			Node finger = first;
@@ -267,8 +267,8 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 	}
 
 	/**
-	 * Removes the first node with the specified item and returns it. If list does not have
-	 * the specified item then returns null.
+	 * Removes the first node with the specified item and returns it.
+	 * If node has the specified item then returns null.
 	 * 
 	 * @param item
 	 *            the item value of the first node to be removed
@@ -278,19 +278,21 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 
 		Node finger = first;
 		// search for index-th element or end of list
-		while (finger != null && !finger.item.equals(item)) {
+		while (finger !=null && !finger.item.equals(item)) {
 
 			finger = finger.next;
 		}
-		if (finger != null) {
-			if (finger.prev != null) {
+		if (finger!=null){
+			if(finger.prev !=null){
 				finger.prev.next = finger.next;
-			} else {
+			}
+			else{
 				first = finger.next;
 			}
-			if (finger.next != null) {
+			if(finger.next !=null){
 				finger.next.prev = finger.prev;
-			} else {
+			}
+			else{
 				last = finger.prev;
 			}
 			n--;
@@ -318,7 +320,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 		if (index > n || index < 0)
 			throw new IndexOutOfBoundsException("Index " + index + " out of bounds");
 	}
-
+	
 	/**
 	 * Converts the doubly linked list to a String.
 	 */

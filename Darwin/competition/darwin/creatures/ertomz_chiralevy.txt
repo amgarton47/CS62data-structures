@@ -1,0 +1,20 @@
+HueyBot
+black
+ifenemy 11
+ifsame 6
+ifwall 6
+hop
+go 1
+ifrandom 9
+left
+go 1
+right
+go 1
+infect
+go 1
+
+
+HueyBot is an awesome creature.
+It likes winning the Darwin game.
+In its free time it is a CS62 TA.
+Students love HueyBot.

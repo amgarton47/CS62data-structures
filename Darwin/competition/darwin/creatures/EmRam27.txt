@@ -1,0 +1,8 @@
+Bug
+cyan
+ifenemy 3
+right
+infect
+hop
+ifsame 2
+go 4

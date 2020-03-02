@@ -101,7 +101,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
      */
     public void add(Item item)
     {
-        addFirst(item);
+        this.addFirst(item);
     }
 
 	/**
@@ -166,9 +166,9 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 		rangeCheck(index);
 
 		if (index == 0) {
-			addFirst(item);
+			this.addFirst(item);
 		} else if (index == size()) {
-			addLast(item);
+			this.addLast(item);
 		} else {
 
 			Node previous = null;
@@ -244,9 +244,9 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 		rangeCheck(index);
 
 		if (index == 0) {
-			return removeFirst();
+			return this.removeFirst();
 		} else if (index == size() - 1) {
-			return removeLast();
+			return this.removeLast();
 		} else {
 			Node previous = null;
 			Node finger = first;

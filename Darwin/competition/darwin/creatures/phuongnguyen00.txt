@@ -1,0 +1,9 @@
+Rotate
+cyan
+ifenemy 4
+right
+go 1
+infect
+go 1
+
+Phuong Nguyen. Rotate is a right version of flytrap. 

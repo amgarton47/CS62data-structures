@@ -13,7 +13,7 @@ class CompressedTable<ValueType> implements TwoDTable<ValueType> {
 	// List holding table entries - do not change
 	protected CurDoublyLinkedList<Association<RowOrderedPosn, ValueType>> tableInfo; 
 
-	// more instance variables
+	protected int numRows, numCols; // Number of rows and cols in table
 
 	/**
 	 * Constructor for table of size rows x cols, all of whose values are initially

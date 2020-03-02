@@ -1,0 +1,18 @@
+JackSeanson
+black
+ifenemy 12
+hop
+ifempty 1
+ifwall 7
+ifsame 7
+ifenemy 12
+ifrandom 10
+left
+go 1
+right
+go 1
+infect 12
+go 1
+
+This is the Jack Seanson. He is beauty, he is grace. He will eat...
+your face.

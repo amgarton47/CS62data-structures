@@ -1,0 +1,13 @@
+Poggers
+dark gray
+ifenemy 4
+ifwall 7
+ifsame 7
+hop
+infect
+go 1
+right
+go 1
+
+Poggers plays to win.
+Attempts to maneuver itself whenever it hits a wall and infects anything in its way.

@@ -1,0 +1,12 @@
+Scaredy Cat
+gray
+hop
+ifenemy 3
+left
+go 1
+
+
+Hops forward until it runs 
+into an enemy. Then it will 
+turn left and hop in a different 
+direction.

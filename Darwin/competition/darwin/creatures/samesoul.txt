@@ -1,0 +1,18 @@
+Slider
+cyan
+ifenemy 10
+ifwall 6
+ifsame 6
+hop
+go 1
+left
+left
+hop
+go 1
+infect
+go 1
+
+This program turns 180 degrees when it hits a wall or encounters
+another creature.
+It takes approximately 2 turns to turn 180, which takes time.
+It infects an enemy when it encounters one in front of it.

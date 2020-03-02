@@ -1,0 +1,25 @@
+Zhou
+pink
+ifwall 7
+ifsame 7
+ifenemy 4
+infect
+ifsame 7
+ifenemy 4
+right
+ifsame 7
+ifenemy 4
+hop
+ifsame 7
+ifenemy 4
+hop
+ifsame 7
+ifenemy 4
+right
+ifsame 7
+ifenemy 4
+hop
+ifsame 7
+ifenemy 4
+go 1
+
