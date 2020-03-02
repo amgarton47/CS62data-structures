@@ -1,5 +1,5 @@
-echo "Running SortTimer.main"
-java -cp . sortCompare.SortTimer
+echo "Running BSTExercise.main"
+java -cp . BSTree.BSTExercise
 ret=$?
 echo "==================================="
 echo "test suite exit code: $ret"

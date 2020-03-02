@@ -1,4 +1,4 @@
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -18,10 +18,10 @@ public class ArrayListTest {
 	public void test_isEmpty() {
 		// create an empty list, expect True
 		ArrayList<String> testList = new ArrayList<>();
-		Assertions.assertTrue(testList.isEmpty());
+		assertTrue(testList.isEmpty(), "list starts out empty");
 		
 		// add something to the list, expect False
 		testList.add("a string");
-		Assertions.assertFalse(testList.isEmpty());
+		assertFalse(testList.isEmpty(), "after .add it is no longer empty");
 	}
 }

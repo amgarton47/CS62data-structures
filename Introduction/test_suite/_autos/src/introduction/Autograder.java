@@ -1,9 +1,8 @@
 package introduction;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Auto-grader unit tests for <strong>Bag/Token Set-up project</strong>.
@@ -27,7 +26,7 @@ public class Autograder {
 	/**
 	 * create a big with known contents
 	 */
-	@Before
+	@BeforeEach
 	public void setup() {
 		// create a bag with known values and colors
 		testBag = new Bag(NUM_TOKENS);
@@ -56,8 +55,8 @@ public class Autograder {
 	public void getValue_returns_as_constructed() {
 		Token t1 = new Token("None", 1);
 		Token t10 = new Token("None", 10);
-		assertEquals("Token.getValue returns value set by Token(,1).", 1, t1.getValue());
-		assertEquals("Token.getValue returns value set by Token(,10).", 10, t10.getValue());
+		assertEquals(1, t1.getValue(), "Token.getValue returns value set by Token(,1).");
+		assertEquals(10, t10.getValue(), "Token.getValue returns value set by Token(,10).");
 	}
 
 	/**
@@ -67,7 +66,7 @@ public class Autograder {
 	public void setValue_changes_value() {
 		Token t1 = new Token("None", 1);
 		t1.setValue(6);
-		assertEquals("Token.setValue changes cvalue.", 6, t1.getValue());
+		assertEquals(6, t1.getValue(), "Token.setValue changes cvalue.");
 	}
 
 
@@ -79,7 +78,7 @@ public class Autograder {
 		Token t1 = new Token("vermilion", 1);
 		String newColor = "Chartreuse";
 		t1.setColor(newColor);
-		assertEquals("Token.setColor changes color.", newColor, t1.getColor());
+		assertEquals(newColor, t1.getColor(), "Token.setColor changes color.");
 	}
 
 	/** * Determine if Token.isHighValue works for =half
@@ -87,7 +86,7 @@ public class Autograder {
 	@Test
 	public void highValue_for_half_max() {
 		Token t5 = new Token("None", 5);
-		assertFalse("Token.highValue(5) returns False", t5.isHighValue());
+		assertFalse(t5.isHighValue(), "Token.highValue(5) returns False");
 	}
 
 	/**
@@ -96,7 +95,7 @@ public class Autograder {
 	@Test
 	public void highValue_for_half_plus_1() {
 		Token t6 = new Token("None", 6);
-		assertTrue("Token.highValue(6) returns True", t6.isHighValue());
+		assertTrue(t6.isHighValue(), "Token.highValue(6) returns True");
 	}
 
 	/**
@@ -112,9 +111,9 @@ public class Autograder {
 		String sort_of = "Token's color is Green and has value5";
 
 		if (result.equals(sort_of))
-			assertEquals("toString(Token(\"Green\", 5) works awkwardly.", sort_of, result);
+			assertEquals(sort_of, result, "toString(Token(\"Green\", 5) works awkwardly.");
 		else
-			assertEquals("toString(Token(\"Green\", 5) works.", preferred, result);
+			assertEquals(preferred, result, "toString(Token(\"Green\", 5) works.");
 	}
 
 
@@ -129,8 +128,7 @@ public class Autograder {
 	 */
 	@Test
 	public void addTokens_sums_correctly() {
-		assertEquals("addTokens properly finds sum of " + sum + ".",
-					sum, testBag.addTokens());
+		assertEquals(sum, testBag.addTokens(), "addTokens properly finds sum of " + sum + ".");
 	}
 
 	/**
@@ -138,8 +136,7 @@ public class Autograder {
 	 */
 	@Test
 	public void highValueTokens_counts_correctly() {
-		assertEquals("highValueTokens correctly finds " + num_high + "high value Tokens.", 
-					num_high, testBag.highValueTokens());
+		assertEquals(num_high, testBag.highValueTokens(), "highValueTokens correctly finds " + num_high + "high value Tokens.");
 	}
 
 	/**
@@ -147,6 +144,6 @@ public class Autograder {
 	 */
 	@Test
 	public void firstGreen_finds_correctly() {
-		assertEquals("firstGreen correctly finds first Green Token.", first_green, testBag.firstGreen());
+		assertEquals(first_green, testBag.firstGreen(), "firstGreen correctly finds first Green Token.");
 	}
 }

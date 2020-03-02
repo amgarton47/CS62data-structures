@@ -1,11 +1,7 @@
 package BSTree;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-
-//import org.junit.Rule;
-//import org.junit.Before;
-//import org.junit.rules.Timeout;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * <p>
@@ -59,7 +55,7 @@ public class Autograder {
 	public void buildsAndRuns() {
 
 		BSTExercise<Integer> bt = makeSmallTree();
-		assertTrue(small_string + ".toString", small_string.equals(bt.toString()));
+		assertTrue(small_string.equals(bt.toString()), small_string + ".toString");
 	}
 
 	/**
@@ -69,7 +65,7 @@ public class Autograder {
 	public void size_small() {
 		BSTExercise<Integer> bt = makeSmallTree();
 
-		assertEquals(small_string + ".size()", small_size, bt.size());
+		assertEquals( small_size, bt.size(), small_string + ".size()");
 	}
 
 	/**
@@ -81,7 +77,7 @@ public class Autograder {
 		for (int i = 0; i < large_tree.length; i++)
 			bt.insert(large_tree[i]);
 
-		assertEquals(bt.toString() + ".size()", large_size, bt.size());
+		assertEquals( large_size, bt.size(), bt.toString() + ".size()");
 	}
 
 	/**
@@ -91,7 +87,7 @@ public class Autograder {
 	public void height_small() {
 		BSTExercise<Integer> bt = makeSmallTree();
 
-		assertEquals(small_string + ".height()", small_height, bt.height());
+		assertEquals( small_height, bt.height(), small_string + ".height()");
 	}
 
 	/**
@@ -103,7 +99,7 @@ public class Autograder {
 		for (int i = 0; i < large_tree.length; i++)
 			bt.insert(large_tree[i]);
 
-		assertEquals(bt.toString() + ".height()", large_height, bt.height());
+		assertEquals(large_height, bt.height(), bt.toString() + ".height()");
 	}
 
 	/**
@@ -113,7 +109,7 @@ public class Autograder {
 	public void locate_top() {
 		BSTExercise<Integer> bt = makeSmallTree();
 
-		assertEquals(small_string + ".locate(first_node)", bt.root , bt.locate(small_tree[0]));
+		assertEquals(bt.root, bt.locate(small_tree[0]), small_string + ".locate(first_node)");
 	}
 
 	/**
@@ -123,10 +119,10 @@ public class Autograder {
 	public void locate_shallow() {
 		BSTExercise<Integer> bt = makeSmallTree();
 
-		assertEquals(small_string + ".locate(root.left_child)", 
-					small_first_left, (int) bt.locate(small_first_left).item);
-		assertEquals(small_string + ".locate(root.right_child)", 
-					small_first_right, (int) bt.locate(small_first_right).item);
+		assertEquals(small_first_left, (int) bt.locate(small_first_left).item,
+				small_string + ".locate(root.left_child)");
+		assertEquals(small_first_right, (int) bt.locate(small_first_right).item,
+				small_string + ".locate(root.right_child)");
 	}
 
 	/**
@@ -136,8 +132,8 @@ public class Autograder {
 	public void locate_leaf() {
 		BSTExercise<Integer> bt = makeSmallTree();
 
-		assertEquals(small_string + ".locate(leaf)", 
-					small_leaf, (int) bt.locate(small_leaf).item);
+		assertEquals(small_leaf, (int) bt.locate(small_leaf).item,
+				small_string + ".locate(leaf)");
 	}
 
 	/**
@@ -147,7 +143,7 @@ public class Autograder {
 	public void locate_none() {
 		BSTExercise<Integer> bt = makeSmallTree();
 
-		assertNull(small_string + ".locate(not-there)", bt.locate(small_not_there));
+		assertNull(bt.locate(small_not_there), small_string + ".locate(not-there)");
 	}
 
 	/**
@@ -157,15 +153,15 @@ public class Autograder {
 	public void insert_root() {
 		BSTExercise<Integer> bt = new BSTExercise<Integer>();
 
-		assertNull("newly created B-Tree has no root", bt.root);
-		assertEquals("newly created B-Tree has size 0", 0, bt.size());
+		assertNull(bt.root, "newly created B-Tree has no root");
+		assertEquals(0, bt.size(), "newly created B-Tree has size 0");
 
 		bt.insert(666);
-		assertNotNull("first insert creates root node", bt.root);
-		assertEquals("first inserted item is root node", 666, (int) bt.root.item);
-		assertEquals("after root insertion, size=1", 1, bt.size());
-		assertNull("newly added root has no left child", bt.root.left);
-		assertNull("newly added root has no right child", bt.root.right);
+		assertNotNull(bt.root, "first insert creates root node");
+		assertEquals(666, (int) bt.root.item, "first inserted item is root node");
+		assertEquals(1, bt.size(), "after root insertion, size=1");
+		assertNull(bt.root.left, "newly added root has no left child");
+		assertNull(bt.root.right, "newly added root has no right child");
 	}
 
 	/**
@@ -178,18 +174,18 @@ public class Autograder {
 		bt.insert(666);
 
 		bt.insert(333);
-		assertNotNull("insert to left of root creates node", bt.root.left);
-		assertEquals("insert to left of root adds to tree", 333, (int) bt.root.left.item);
-		assertEquals("after first child insertion, size=2", 2, bt.size());
-		assertNull("newly inserted node has no left child", bt.root.left.left);
-		assertNull("newly inserted node has no right child", bt.root.left.right);
+		assertNotNull(bt.root.left, "insert to left of root creates node");
+		assertEquals(333, (int) bt.root.left.item, "insert to left of root adds to tree");
+		assertEquals(2, bt.size(), "after first child insertion, size=2");
+		assertNull(bt.root.left.left, "newly inserted node has no left child");
+		assertNull(bt.root.left.right, "newly inserted node has no right child");
 
 		bt.insert(999);
-		assertNotNull("insert to right of root creates node", bt.root.right);
-		assertEquals("insert to right of root adds to tree", 999, (int) bt.root.right.item);
-		assertEquals("after second child insertion, size=3", 3, bt.size());
-		assertNull("newly inserted node has no left child", bt.root.right.left);
-		assertNull("newly inserted node has no right child", bt.root.right.right);
+		assertNotNull(bt.root.right, "insert to right of root creates node");
+		assertEquals(999, (int) bt.root.right.item, "insert to right of root adds to tree");
+		assertEquals(3, bt.size(), "after second child insertion, size=3");
+		assertNull(bt.root.right.left, "newly inserted node has no left child");
+		assertNull(bt.root.right.right, "newly inserted node has no right child");
 	}
 
 	/**
@@ -199,12 +195,12 @@ public class Autograder {
 	public void insert_deep_left() {
 		BSTExercise<Integer> bt = makeSmallTree();
 
-		assertEquals(small_string + ".size()", small_size, bt.size());
+		assertEquals(small_size, bt.size(), small_string + ".size()");
 
 		bt.insert(small_add_left);
-		assertEquals("add left leaf increases size by one", small_size+1, bt.size());
-		assertEquals("left leaf node is added to tree", 
-					small_add_left, (int) bt.locate(small_add_left).item);
+		assertEquals(small_size+1, bt.size(), "add left leaf increases size by one");
+		assertEquals(small_add_left, (int) bt.locate(small_add_left).item,
+				"left leaf node is added to tree");
 	}
 
 	/**
@@ -214,12 +210,12 @@ public class Autograder {
 	public void insert_deep_right() {
 		BSTExercise<Integer> bt = makeSmallTree();
 
-		assertEquals(small_string + ".size()", small_size, bt.size());
+		assertEquals(small_size, bt.size(), small_string + ".size()");
 
 		bt.insert(small_add_right);
-		assertEquals("add lright leaf increases size by one", small_size+1, bt.size());
-		assertEquals("right leaf node is added to tree", 
-					small_add_right, (int) bt.locate(small_add_right).item);
+		assertEquals(small_size+1, bt.size(), "add lright leaf increases size by one");
+		assertEquals(small_add_right, (int) bt.locate(small_add_right).item,
+			"right leaf node is added to tree");
 	}
 
 	/**
@@ -229,9 +225,9 @@ public class Autograder {
 	public void insert_same_root() {
 		BSTExercise<Integer> bt = makeSmallTree();
 
-		assertEquals(small_string + ".size()", small_size, bt.size());
+		assertEquals(small_size, bt.size(), small_string + ".size()");
 		bt.insert(small_tree[0]);
-		assertEquals("reinsertion of root does not change size", small_size, bt.size());
+		assertEquals(small_size, bt.size(), "reinsertion of root does not change size");
 	}
 
 	/**
@@ -241,9 +237,9 @@ public class Autograder {
 	public void insert_same_deep() {
 		BSTExercise<Integer> bt = makeSmallTree();
 
-		assertEquals(small_string + ".size()", small_size, bt.size());
+		assertEquals(small_size, bt.size(), small_string + ".size()");
 		bt.insert(small_tree[small_mid]);
-		assertEquals("reinsertion of mid-tree node does not change size", small_size, bt.size());
+		assertEquals(small_size, bt.size(), "reinsertion of mid-tree node does not change size");
 	}
 
 	/**
@@ -253,9 +249,9 @@ public class Autograder {
 	public void insert_same_leaf() {
 		BSTExercise<Integer> bt = makeSmallTree();
 
-		assertEquals(small_string + ".size()", small_size, bt.size());
+		assertEquals(small_size, bt.size(), small_string + ".size()");
 		bt.insert(small_tree[small_leaf]);
-		assertEquals("reinsertion of leaf does not change size", small_size, bt.size());
+		assertEquals(small_size, bt.size(), "reinsertion of leaf does not change size");
 	}
 
 	/**
@@ -269,8 +265,8 @@ public class Autograder {
 
 		BSTExercise<Integer> bt = BSTExercise.constructIntTree(128);
 
-		assertTrue("constructIntTree -> height > " + min_height, bt.height() > min_height);
-		assertTrue("constructIntTree -> height < " + max_height, bt.height() < max_height);
+		assertTrue(bt.height() > min_height, "constructIntTree -> height > " + min_height);
+		assertTrue(bt.height() < max_height, "constructIntTree -> height < " + max_height);
 	}
 
 	/**
@@ -282,7 +278,7 @@ public class Autograder {
 		BSTExercise<Integer> bt = BSTExercise.constructIntTree(target);
 
 		int min_size = 2 * target / 3;
-		assertTrue("constructIntTree -> size > " + min_size, bt.size() > min_size);
-		assertTrue("constructIntTree -> size <= " + target, bt.height() <= target);
+		assertTrue(bt.size() > min_size, "constructIntTree -> size > " + min_size);
+		assertTrue(bt.height() <= target, "constructIntTree -> size <= " + target);
 	}
 }

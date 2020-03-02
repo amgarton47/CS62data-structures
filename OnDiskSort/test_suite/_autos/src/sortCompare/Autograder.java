@@ -1,7 +1,5 @@
 package sortCompare;
 
-import static org.junit.Assert.*;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.nio.file.Paths;
@@ -9,8 +7,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unittest adapted from Sean Zhu for CS062 at Pomona College.
@@ -55,7 +54,7 @@ public class Autograder {
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		System.out.println("setting up.....");
 		testingDir = new File(TESTING_DIR, "_test_run");
@@ -82,7 +81,7 @@ public class Autograder {
 		diskSorter.sort(scanner, outputFile);
 		String expected = fileToString(DREAM_FILE_SORTED);
 		String actual = fileToString(outputFile);
-		assertEquals("The input file should be sorted in the outfile.", expected, actual);
+		assertEquals(expected, actual, "The input file should be sorted in the outfile.");
 	}
 
 	/**
@@ -97,7 +96,7 @@ public class Autograder {
 		String expected = fileToString(DREAM_FILE_SORTED);
 		String actual = fileToString(outputFile);
 
-		assertEquals("Working directory should remove temporary files after sorting.", 1, testingDir.list().length);
+		assertEquals(1, testingDir.list().length, "Working directory should remove temporary files after sorting.");
 	}
 
 	/**
@@ -113,7 +112,7 @@ public class Autograder {
 
 		String actual = fileToString(outputFile);
 		String expected = fileToString(SINGLE_FILE_EXPECTED);
-		assertEquals("mergeFiles with 1 presorted file should yield the presorted file.", expected, actual);
+		assertEquals(expected, actual, "mergeFiles with 1 presorted file should yield the presorted file.");
 	}
 
 	/**
@@ -130,7 +129,7 @@ public class Autograder {
 		String expected = fileToString(MFILES_TWO_INPUT_EXPECTED);
 		String actual = fileToString(outputFile);
 
-		assertEquals("mergeFiles should merge an array of two files into one file.", expected, actual);
+		assertEquals(expected, actual, "mergeFiles should merge an array of two files into one file.");
 	}
 
 	/**
@@ -148,7 +147,7 @@ public class Autograder {
 		String expected = fileToString(MFILES_ODD_INPUT_EXPECTED);
 		String actual = fileToString(outputFile);
 
-		assertEquals("mergeFiles should merge an array of 3 files into one file.", expected, actual);
+		assertEquals(expected, actual, "mergeFiles should merge an array of 3 files into one file.");
 	}
 
 	/**
@@ -162,7 +161,7 @@ public class Autograder {
 		String expected = fileToString(MERGE_AB_INPUT_EXPECTED);
 		String actual = fileToString(outputFile);
 
-		assertEquals("merge should merge an two files such that A finishes before B.", expected, actual);
+		assertEquals(expected, actual, "merge should merge an two files such that A finishes before B.");
 
 	}
 
@@ -177,7 +176,7 @@ public class Autograder {
 		String expected = fileToString(MERGE_BA_INPUT_EXPECTED);
 		String actual = fileToString(outputFile);
 
-		assertEquals("merge should merge an two files such that B finishes before A.", expected, actual);
+		assertEquals(expected, actual, "merge should merge an two files such that B finishes before A.");
 	}
 
 	/**
