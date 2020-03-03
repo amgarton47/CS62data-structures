@@ -65,8 +65,13 @@ then
 	# default place for pre-loaded lab machines
 	CLASSPATH='/Users/csadmin/.p2/pool/plugins/*'
 fi
-echo Compiling JAVA sources against CLASSPATH=$CLASSPATH
-export CLASSPATH
+if [ -n "$CLASSPATH" ]
+then
+	export CLASSPATH
+	echo Compiling JAVA sources against CLASSPATH=$CLASSPATH
+else
+	echo "WARNING: unable to find JUnit5 CLASSPATH, please create CLASSPATH file"
+fi
 
 # if we weren't given directories to process, try everything
 if [ -z "$1" ]
