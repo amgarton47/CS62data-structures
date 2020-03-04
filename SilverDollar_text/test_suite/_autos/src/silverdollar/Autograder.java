@@ -1,13 +1,10 @@
 package silverdollar;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.Timeout;
 
 /**
  * <p>
@@ -23,9 +20,10 @@ public class Autograder {
 	private static final int DEFAULT_SLEEP = 500;
 
 
+	// FIX ... timeout needs to be upgraded to JU5
 	// Set global time out
-	@Rule
-	public Timeout globalTimeout = Timeout.seconds(TIMEOUT_SECONDS);
+	//@Rule
+	// public Timeout globalTimeout = Timeout.seconds(TIMEOUT_SECONDS);
 
 	public TextCoinStrip game;
 
@@ -34,7 +32,7 @@ public class Autograder {
 	private int coins = 0;
 	private int squares = 0;
 
-	@Before
+	@BeforeEach
 	public void setup() {
 		// allocate a strip of the desired size
 		for(int i = 0; i < TEST_STRIP.length(); i++) {
@@ -51,8 +49,8 @@ public class Autograder {
 	@Test
 	public void toString_correct_after_init() {
 		initialize(TEST_STRIP);
-		assertTrue("toString returns expected value: " + testStrip,
-					testStrip.equals(game.toString()));
+		assertTrue(testStrip.equals(game.toString()),
+			"toString returns expected value: " + testStrip);
 	}
 
 	/**
@@ -61,8 +59,8 @@ public class Autograder {
 	@Test
 	public void legalMove_1() {
 		initialize(TEST_STRIP);
-		assertTrue(testStrip + ".legalMove(2,1) -> True",
-					game.isLegalMove(2,1));
+		assertTrue(game.isLegalMove(2,1),
+				testStrip + ".legalMove(2,1) -> True");
 	}
 
 	/**
@@ -71,8 +69,8 @@ public class Autograder {
 	@Test
 	public void legalMove_5() {
 		initialize(TEST_STRIP);
-		assertTrue(testStrip + ".legalMove(12,5) -> True",
-					game.isLegalMove(12,5));
+		assertTrue(game.isLegalMove(12,5),
+				testStrip + ".legalMove(12,5) -> True");
 	}
 
 	/**
@@ -81,8 +79,8 @@ public class Autograder {
 	@Test
 	public void legalMove_1_blocked() {
 		initialize(TEST_STRIP);
-		assertFalse(testStrip + ".legalMove(3,1) -> False",
-					game.isLegalMove(3,1));
+		assertFalse(game.isLegalMove(3,1),
+					testStrip + ".legalMove(3,1) -> False");
 	}
 
 	/**
@@ -91,8 +89,8 @@ public class Autograder {
 	@Test
 	public void legalMove_6_blocked() {
 		initialize(TEST_STRIP);
-		assertFalse(testStrip + ".legalMove(12,6) -> False",
-					game.isLegalMove(12,6));
+		assertFalse(game.isLegalMove(12,6),
+					testStrip + ".legalMove(12,6) -> False");
 	}
 
 	/**
@@ -101,8 +99,8 @@ public class Autograder {
 	@Test
 	public void legalMove_no_coin() {
 		initialize(TEST_STRIP);
-		assertFalse(testStrip + ".legalMove(4,1) -> False",
-					game.isLegalMove(4,1));
+		assertFalse(game.isLegalMove(4,1),
+					testStrip + ".legalMove(4,1) -> False");
 	}
 
 	/**
@@ -111,8 +109,8 @@ public class Autograder {
 	@Test
 	public void legalMove_too_far() {
 		initialize(TEST_STRIP);
-		assertFalse(testStrip + ".legalMove(0,1) -> False",
-					game.isLegalMove(0,1));
+		assertFalse(game.isLegalMove(0,1),
+					testStrip + ".legalMove(0,1) -> False");
 	}
 
 	/**
@@ -121,8 +119,8 @@ public class Autograder {
 	@Test
 	public void legalMove_off_right() {
 		initialize(TEST_STRIP);
-		assertFalse(testStrip + ".legalMove(13,1) -> False",
-					game.isLegalMove(13,1));
+		assertFalse(game.isLegalMove(13,1),
+					testStrip + ".legalMove(13,1) -> False");
 	}
 
 	/**
@@ -188,10 +186,10 @@ public class Autograder {
 			}
 			if (nextCoin >= 0) {	// game is not over
 				if (game.gameIsOver())
-					assertFalse(testStrip + ".gameIsOver() -> False", true);
+					assertFalse(true, testStrip + ".gameIsOver() -> False");
 			} else {				// game is over
 				if (!game.gameIsOver())	
-					assertTrue(testStrip + ".gameIsOver() -> True", false);
+					assertTrue(false, testStrip + ".gameIsOver() -> True");
 				break;
 			}
 
@@ -204,12 +202,12 @@ public class Autograder {
 			removeCoin(nextCoin);
 			addCoin(firstSpace);
 			if (!testStrip.equals(game.toString()))
-				assertTrue(previous + "(" + nextCoin + "," + dist + ") -> " + testStrip, false);
+				assertTrue(false, previous + "(" + nextCoin + "," + dist + ") -> " + testStrip);
 
 			// and move on to the next round
 		}
 
 		// if we made it to here, all of the makeMove, gameIsOver and toString calls worked
-		assertTrue("all makeMove and gameIsOver calls work during a complete game.", true);
+		assertTrue(true, "all makeMove and gameIsOver calls work during a complete game.");
 	}
 }
