@@ -1,22 +1,18 @@
 package autocomplete;
 
-import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
 
-import org.junit.runner.JUnitCore;
-import org.junit.runner.Result;
-import org.junit.runner.notification.Failure;
-import org.junit.runner.notification.RunListener;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class Autograder {
 	Term term1, term2, term3, term4, term5;
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		term1 = new Term("hello", 7);
 		term2 = new Term("goodbye", 99);
