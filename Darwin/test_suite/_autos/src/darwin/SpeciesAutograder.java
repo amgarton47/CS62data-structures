@@ -1,6 +1,8 @@
 package darwin;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,8 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.File;
 
-import org.junit.Before;
-import org.junit.Test;
 /**
  * JUnit tests for species
  * @author Sean Zhu
@@ -25,7 +25,7 @@ public class SpeciesAutograder {
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		foodSpecies = new Species(new BufferedReader(new FileReader(
 				FOOD_PATH))); //CHECK THIS FILE PATH pls
@@ -47,8 +47,8 @@ public class SpeciesAutograder {
 	 */
 	@Test
 	public final void testGetSpeciesChar() {
-		assertEquals("Reading Food.txt, species char should be 'O'.", "O",
-				"" + foodSpecies.getSpeciesChar());
+		assertEquals("O", "" + foodSpecies.getSpeciesChar(),
+				"Reading Food.txt, species char should be 'O'.");
 	}
 
 	/**
@@ -58,8 +58,8 @@ public class SpeciesAutograder {
 	 */
 	@Test
 	public final void testGetName() {
-		assertEquals("Reading Food.txt, name should be 'OodFay'", "OodFay",
-				foodSpecies.getName());
+		assertEquals("OodFay", foodSpecies.getName(),
+				"Reading Food.txt, name should be 'OodFay'");
 	}
 
 	/**
@@ -69,8 +69,8 @@ public class SpeciesAutograder {
 	 */
 	@Test
 	public final void testGetColor() {
-		assertEquals("Reading Food.txt, color should be green", "green",
-				foodSpecies.getColor());
+		assertEquals("green", foodSpecies.getColor(),
+				"Reading Food.txt, color should be green");
 	}
 
 	/**
@@ -80,8 +80,8 @@ public class SpeciesAutograder {
 	 */
 	@Test
 	public final void testProgramSize() {
-		assertEquals("Reading Food.txt, program size should be 2", 2,
-				foodSpecies.programSize());
+		assertEquals(2, foodSpecies.programSize(),
+				"Reading Food.txt, program size should be 2");
 	}
 
 	/**
@@ -91,19 +91,16 @@ public class SpeciesAutograder {
 	 */
 	@Test
 	public final void testProgramStep() {
-		assertEquals(
-				"Reading Food.txt, 1st program step should have op code 2",
-				2, foodSpecies.programStep(1).getOpcode());
+		assertEquals(2, foodSpecies.programStep(1).getOpcode(),
+				"Reading Food.txt, 1st program step should have op code 2");
 
 		// assertEquals("Reading Food.txt, 1st program step should have address 0",
 		// -0.5, foodSpecies.programStep(1).getAddress(),0.6);
 
-		assertEquals(
-				"Reading Food.txt, 2nd program step should have op code 10",
-				10, foodSpecies.programStep(2).getOpcode());
-		assertEquals(
-				"Reading Food.txt, 2nd program step should have address 1",
-				1, foodSpecies.programStep(2).getAddress());
+		assertEquals(10, foodSpecies.programStep(2).getOpcode(),
+				"Reading Food.txt, 2nd program step should have op code 10");
+		assertEquals(1, foodSpecies.programStep(2).getAddress(),
+				"Reading Food.txt, 2nd program step should have address 1");
 	}
 
 	/**
@@ -114,7 +111,7 @@ public class SpeciesAutograder {
 	@Test
 	public final void testProgramToString() {
 		String expected = "1: left\n2: go 1\n";
-		assertEquals("Reading Food.txt, printing program to string.",
-				expected, foodSpecies.programToString());
+		assertEquals( expected, foodSpecies.programToString(),
+				"Reading Food.txt, printing program to string.");
 	}
 }

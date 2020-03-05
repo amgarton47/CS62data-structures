@@ -1,14 +1,14 @@
 package darwin;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.File;
 
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * JUnit tests for creatures
@@ -36,7 +36,7 @@ public class CreatureAutograder {
 	 * Loads up the species files
 	 * @throws FileNotFoundException
 	 */
-	@Before
+	@BeforeEach
 	public void setUp() throws FileNotFoundException{
 		flytrap = new Species(new BufferedReader(
 				new FileReader(FLY_PATH)));
@@ -57,22 +57,23 @@ public class CreatureAutograder {
 		Creature f = new Creature(flytrap, w, new Position(1, 1),
 															Position.NORTH);
 		f.takeOneTurn();
-		assertEquals("Flytrap shouldn't move.", 1, f.position().x);
-		assertEquals("Flytrap shouldn't move.", 1, f.position().y);
-		assertEquals("Flytrap should rotate to face west.",
-								Position.WEST, f.direction());
+		assertEquals(1, f.position().x, "Flytrap shouldn't move.");
+		assertEquals(1, f.position().y, "Flytrap shouldn't move.");
+		assertEquals(Position.WEST, f.direction(),
+					"Flytrap should rotate to face west.");
+
 		
 		f.takeOneTurn();
-		assertEquals("Flytrap should rotate to face south.",
-				Position.SOUTH, f.direction());
+		assertEquals(Position.SOUTH, f.direction(),
+					"Flytrap should rotate to face south.");
 
 		f.takeOneTurn();
-		assertEquals("Flytrap should rotate to face east.",
-				Position.EAST, f.direction());
+		assertEquals(Position.EAST, f.direction(),
+					"Flytrap should rotate to face east.");
 		
 		f.takeOneTurn();
-		assertEquals("Flytrap should rotate to face north.",
-				Position.NORTH, f.direction());
+		assertEquals(Position.NORTH, f.direction(),
+					"Flytrap should rotate to face north.");
 		
 	}
 	
@@ -85,10 +86,12 @@ public class CreatureAutograder {
 		Creature t = new Creature(turner, w, new Position(1, 1),
 															Position.NORTH);
 		t.takeOneTurn();
-		assertEquals("Turner shouldn't move.", 1, t.position().x);
-		assertEquals("Turner shouldn't move.", 1, t.position().y);
-		assertEquals("Turner should rotate to face east.",
-								Position.EAST, t.direction());
+		assertEquals(1, t.position().x,
+					"Turner shouldn't move.");
+		assertEquals(1, t.position().y,
+					"Turner shouldn't move.");
+		assertEquals(Position.EAST, t.direction(),
+					"Turner should rotate to face east.");
 	}
 	
 	
@@ -101,10 +104,12 @@ public class CreatureAutograder {
 		Creature f = new Creature(flytrap, w, new Position(1, 1),
 															Position.NORTH);
 		f.takeOneTurn();
-		assertEquals("Flytrap shouldn't move.", 1, f.position().x);
-		assertEquals("Flytrap shouldn't move.", 1, f.position().y);
-		assertEquals("Flytrap should rotate to face west.",
-								Position.WEST, f.direction());
+		assertEquals(1, f.position().x,
+					"Flytrap shouldn't move.");
+		assertEquals(1, f.position().y,
+					"Flytrap shouldn't move.");
+		assertEquals(Position.WEST, f.direction(),
+					"Flytrap should rotate to face west.");
 	}
 		
 	
@@ -117,14 +122,18 @@ public class CreatureAutograder {
 	public void testHop() {
 		Creature r = new Creature(rover, w, new Position(0,1), Position.NORTH);
 		r.takeOneTurn();
-		assertEquals("Rover shouldn't move horizontally.", 0, r.position().x);
-		assertEquals("Rover should move up one square.", 0, r.position().y);
-		assertEquals("Rover shouldn't rotate.", Position.NORTH, r.direction());
+		assertEquals(0, r.position().x,
+					"Rover shouldn't move horizontally.");
+		assertEquals(0, r.position().y,
+					"Rover should move up one square.");
+		assertEquals( Position.NORTH, r.direction(),
+					"Rover shouldn't rotate.");
 
-		assertNull("Rover should remove itself from previous world position.",
-										w.get(new Position(0, 1)));
-		assertEquals("Rover should add itself at new world position.", r,
-										w.get(new Position(0, 0)));
+		assertNull(w.get(new Position(0, 1)),
+					"Rover should remove itself from previous world position.");
+
+		assertEquals(r, w.get(new Position(0, 0)),
+					"Rover should add itself at new world position.");
 	}
 	/**
 	 * Tests the "ifwall" command.
@@ -134,12 +143,12 @@ public class CreatureAutograder {
 	public void testIfWall() {
 		Creature r = new Creature(rover, w, new Position(0,0), Position.NORTH);
 		r.takeOneTurn();
-		assertEquals("Rover shouldn't move if facing a wall.",
-												0, r.position().x);
-		assertEquals("Rover shouldn't move if facing a wall.",
-												0, r.position().y);
-		assertNotEquals("Rover should rotate if facing a wall.",
-												Position.NORTH, r.direction());
+		assertEquals(0, r.position().x,
+					"Rover shouldn't move if facing a wall.");
+		assertEquals(0, r.position().y,
+					"Rover shouldn't move if facing a wall.");
+		assertNotEquals(Position.NORTH, r.direction(),
+					"Rover should rotate if facing a wall.");
 	}
 
 	/**
@@ -151,12 +160,12 @@ public class CreatureAutograder {
 		Creature r = new Creature(rover, w, new Position(0,1), Position.NORTH);
 		new Creature(rover, w, new Position(0,0), Position.NORTH);
 		r.takeOneTurn();
-		assertEquals("Rover shouldn't move if facing a rover.",
-				0, r.position().x);
-		assertEquals("Rover shouldn't move if facing a rover.",
-				1, r.position().y);
-		assertNotEquals("Rover should rotate if facing a rover.",
-				Position.NORTH, r.direction());
+		assertEquals(0, r.position().x,
+					"Rover shouldn't move if facing a rover.");
+		assertEquals(1, r.position().y,
+					"Rover shouldn't move if facing a rover.");
+		assertNotEquals(Position.NORTH, r.direction(),
+					"Rover should rotate if facing a rover.");
 	}
 
 	/**
@@ -168,7 +177,8 @@ public class CreatureAutograder {
 		Creature f = new Creature(flytrap,w,new Position(0, 0), Position.EAST);
 		Creature r = new Creature(rover, w, new Position(1, 0), Position.EAST);
 		f.takeOneTurn();
-		assertEquals("Rover should become a Flytrap.", flytrap, r.species());
+		assertEquals(flytrap, r.species(),
+					"Rover should become a Flytrap.");
 	}
 	
 	/**
@@ -181,9 +191,10 @@ public class CreatureAutograder {
 		Creature f = new Creature(flytrap,w,new Position(0, 0), Position.EAST);
 		Creature r = new Creature(rover, w, new Position(1, 0), Position.EAST);
 		f.takeOneTurn();
-		assertEquals("Rover should become a Flytrap.", flytrap, r.species());
-		assertEquals("Flytrap should not rotate since it infected.",
-				Position.EAST, f.direction());
+		assertEquals(flytrap, r.species(),
+					"Rover should become a Flytrap.");
+		assertEquals(Position.EAST, f.direction(),
+					"Flytrap should not rotate since it infected.");
 	}
 	
 	/**
@@ -197,12 +208,12 @@ public class CreatureAutograder {
 		new Creature(turner, w, new Position(2,1), Position.EAST);
 		
 		t1.takeOneTurn();
-		assertEquals("Turner should rotate right since position directly in front is empty",
-				Position.EAST, t1.direction());
+		assertEquals(Position.EAST, t1.direction(),
+					"Turner should rotate right since position directly in front is empty");
 		
 		t1.takeOneTurn();
-		assertEquals("Turner should rotate left since position directly in front is filled with creature",
-				Position.NORTH, t1.direction());
+		assertEquals(Position.NORTH, t1.direction(),
+					"Turner should rotate left since position directly in front is filled with creature");
 		
 		
 	}
@@ -237,14 +248,13 @@ public class CreatureAutograder {
 			if(hasTurnedLeft && hasTurnedRight) {
 				break;
 			}
-			r.setDir(Position.NORTH);
+
+			r.setDir((int)Position.NORTH);
 		}
 		
-		assertTrue("Rover should randomly turn left and right. Rover never turned left.", hasTurnedLeft);
+		assertTrue(hasTurnedLeft,
+					"Rover should randomly turn left and right. Rover never turned left.");
 		assertTrue(hasTurnedRight);
-		
-		
-		
 	}
 	
 	/**
@@ -256,9 +266,9 @@ public class CreatureAutograder {
 		Creature r = new Creature(rover,w,new Position(0, 0), Position.EAST);
 		r.takeOneTurn();
 		r.takeOneTurn();
-		assertEquals("Rover should have hopped east two times so x should be 2", 2, r.position().x);
-		assertEquals("Rover should have hopped east two times so y should still be 0", 0, r.position().y);		
-		
-		
+		assertEquals(2, r.position().x,
+					"Rover should have hopped east two times so x should be 2");
+		assertEquals(0, r.position().y,
+					"Rover should have hopped east two times so y should still be 0");
 	}
 }
