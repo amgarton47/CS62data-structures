@@ -2,8 +2,8 @@
 
 ## Key Terms and Concepts
 
-* File I/O - Methods for handling input (I) and output (O) to different files. Allows us to read and modify various files through different systems. (See lecture 6 slides, **Apendix A - File I/O in Java**, and these two tutorials [1](https://docs.oracle.com/javase/tutorial/essential/io/)[2](https://www.tutorialspoint.com/java/java_files_io.htm) for more).
-* Mergesort - A divide and conquer algorithm for sorting arrays of n elements in O(n log n) time. The data to be sorted are split into smaller chunks, sorted, and then merged back together by doing simple comparisons while iterating through the smaller sorted sets (See lecture slides and  2.2 pg. 270 - 277 in the textbook for more). Typical implementations of mergesort are not in place and often the data cannot be loaded in memory. 
+* File I/O - Methods for handling input (I) and output (O) to different files. Allows us to read and modify various files through different systems. (See lecture 6 slides, **Apendix A - File I/O in Java**, and these two tutorials [[1](https://docs.oracle.com/javase/tutorial/essential/io/),[2](https://www.tutorialspoint.com/java/java_files_io.htm)] for more).
+* Mergesort - A divide and conquer algorithm for sorting arrays of n elements in O(n log n) time. The data to be sorted are split into smaller chunks, sorted, and then merged back together by doing simple comparisons while iterating through the smaller sorted sets (See lecture slides and  2.2 pg. 270 - 277 in the textbook for more). 
 * Iterator - An interface that allows traversal through a collection based on some property. Requires the `hasNext()` (which checks if there is another element left) and `next()` (which returns the next element) methods (See lecture notes, 1.1 pg. 100 and various other examples in the textbook and [here](https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html) for more)
 
 ## Learning Goals
@@ -11,27 +11,27 @@
 * Practice reading from and writing to files.
 * Practice using Java exceptions and try/catch statements.
 * Practice using an Iterator to iterate over a collection of Strings.
-* Implement a divide-and-conquer algorithm that uses a smart trick to tackle memory requirements.
+* Implement a divide-and-conquer algorithm that uses a smart trick to tackle memory constraints.
 
 ## Description
 
 For this assignment, you will be implementing an on-disk sorting algorithm that is designed to use the
-disk efficiently to sort large data sets.
-All of the sorting algorithms we have looked at so far assume that the data is in memory and that we can swap
-data elements efficiently. Sometimes, because of the size of the data you cannot fit all of it in memory. In
+disk efficiently to sort massive amounts of data.
+All of the sorting algorithms we have seen so far assume that the data can fit in the main memory and that we can swap
+data elements efficiently. Sometimes, because of the size of the data you cannot fit all of it in the memory (usually RAM). In
 these situations, many of the traditional sorting algorithms fail miserably; the algorithms do not preserve
-data locality and end up accessing the disk frequently, resulting in very slow running times.
+data locality and end up accessing the disk frequently, resulting in very slow running times. [External sorting](https://en.wikipedia.org/wiki/External_sorting) techniques allow us to use the external memory (usually hard disk drive) to overcome these constraints. In this assignment, you will implement an external or on-disk mergesort.
 
-Your algorithm will work in two phases:
+Your on-disk mergesort algorithm will work in two phases:
 
-* First, your sorting algorithm breaks the data into reasonably-sized chunks and sorts each of these
-individual chunks. This is accomplished by reading a chunk of data, sorting it, writing it to a file, then
-reading more data, etc. At the end of this phase, you will have a number of files on disk that are all
+* First, your sorting algorithm breaks the data into reasonably-sized chunks (chunks that can fit in the main memory) and sorts each of these
+individual chunks. This is accomplished by reading a chunk of data, sorting it, writing it to a temporary file, then
+reading more data, etc. At the end of this phase, you will have a number of temporary files on disk that are all
 sorted.
 
-* Second, you will need to merge all of these files into one large file. This is accomplished by pair-wise
+* Second, you will need to merge all of these temporary files into one large file which you will be your final output. This is accomplished by pair-wise
 merging of the files (very similar to the merge phase of mergesort) and then writing out the result to a new,
-larger merged file. Eventually, all of the files will be merged to one large file. Note, this can be done
+larger merged file. Eventually, all of the files will be merged into one large file. Note, this can be done
 very memory efficiently.
 
 *The correctness of the assignments in this class will be automatically verified. For this reason, you must
@@ -39,42 +39,45 @@ follow all naming conventions specified in this assignment.*
 
 ## Classes
 
-### `MergeSort`
-Implementation of the Mergesort algorithm. This class has already been implemented for you.
-### `QuickSort`
-Implementation of the Quicksort algorithm. This class has already been implemented for you.
 ### `Sorter`
-An interface for sorting algorithms. Implemented by the `MergeSort` and `Quicksort`classes.
+An interface for sorting algorithms. Implemented by the `MergeSort` class.
+### `MergeSort`
+Implementation of the Mergesort algorithm. This class has already been implemented for you. Note that this implementation is slightly different than the one we have seen in class: it works on ArrayLists rather than arrays,  uses while loops instead of for loops, and does not pass an auxiliary array in the signatures of merge and sort.
 ### `WordScanner`
-Implements the Java `Iterator` interface. An iterator over Strings read in from file. This class has already been implemented for you.
+Implements the Java `Iterator` interface. An iterator over Strings read in as words from an input. This class has already been implemented for you. You will use the constructor, `next()` and `hasNext()` methods.
 
 ### `OnDiskSort`
 
-![mockup](ondisksortmockup.png)
+We have provided you with a skeleton `OnDiskSort` class that you will need to fill in the details for. There are a lot of methods that you will find useful, please review them carefully so that you avoid duplicating your effort and look into the TODO comments that can offer more insights. The `main` method can also help you understand the workflow of external sorting.
 
-We have provided you with a skeleton `OnDiskSort` class that you will need to fill in the details for. We encourage you to add additional private methods, but, as always, do not change the names or parameters of the methods we have provided you. This will make our life much easier when we grade
+We encourage you to add additional private methods, but, as always, do not change the names or parameters of the methods we have provided you. This will make our life much easier when we grade
 the assignment. As an aside, we have made some of the methods protected where normally we would have made them private to, again, assist us in grading.
 
 You will need to fill in the following methods:
 
-* `OnDiskSort`: the constructor for the class. Make sure that you understand what all of the parameters do. `maxSize` is the maximum number of Strings that can be read in to memory at any one time. You will need to create temporary files along the way (for example, to store the sorted chunks). This should be done in the `sorting_run` directory (which is also just a `File`). We suggest you name the
-temporary files something simple like `0.tempfile`, `1.tempfile`, etc.
-Make sure you clear the working directory when you're done. `sorter` is the sorter that you should use
-to sort each chunk. `outputFile` will contain the final result of your sorting.
-
+* `OnDiskSort`: the constructor for the class. Make sure that you understand what all of the parameters do and save them in appropriate instance variable. 
+    * `maxSize` is the maximum number of Strings that can be read into the main memory at any one time. 
+    * `workingDirectory` should be the `sorting_run` directory we have provided you with.
+    * `sorter` should be an object of a class that implements the `Sorter<String>` interface, in this case an object of type `MergeSort`.
+  
 * `sort`: this is the public method that will be called when you want to sort new data. For this assignment,
 we will only be sorting String data (notice that `WordScanner` is an `Iterator<String>`). This method
 will read in the data, `maxSize` words at a time, sort each chunk using the sorter, store the sorted chunk in a temporary file, and then put the file into an arraylist of files. Once all of the data has been read
 in, you will have an arraylist of files, each of which is sorted. You should then call the `mergeFiles` method to merge all the sorted files.
 
+    You will need to create temporary files along the way (for example, to store the sorted chunks). This should be done in the `sorting_run` directory (which is also just a `File`). We suggest you name the
+    temporary files something simple like `0.tempfile`, `1.tempfile`, etc.
+    Make sure you clear the working directory when you're done, using the `clearOutDirectory()` method. `sorter` is the sorter that you should use to sort each chunk. `outputFile` will contain the final result of your sorting.
+
+
 * `merge`: takes two sorted files and merge them into one sorted file. This is very similar to the `merge`
 method of MergeSort. The main difference is that rather than merging from two arrays (or ArrayLists) you are merging two files. You **should not simply read in the data from both of these files
-and then use the merge method from MergeSort**. We are trying to be memory efficient and this would defeat the purpose. Instead, you should open `BufferedReader`s to both of the files and
+and then use the merge method from MergeSort**. We are trying to be memory efficient and this would defeat the purpose of this exercise. Instead, you should open `BufferedReader`s to both of the files and
 then, reading one line at a time, read either from the first file or the second, and write that directly
 out to the output file, depending on the appropriate ordering. Besides the variables for doing the file
 I/0, you should only need **two** String variables to keep track of the data.
 
-* `mergeFiles`: takes an ArrayList of Files, each of which should contain sorted data and then uses the merge method below to eventually merge them into one large sorted file. Notice that the merge method only merges two files at a time. The easiest way to merge all of the `n` sorted files is to merge the first two files, then merge the third file with the result of merging the first two files, then the fourth
+* `mergeFiles`: takes an ArrayList of Files, each of which should contain sorted data and then uses the `merge` method to eventually merge them into one large sorted file. Notice that the `merge` method only merges two files at a time. The easiest way to merge all of the `n` sorted files is to merge the first two files, then merge the third file with the result of merging the first two files, then the fourth
 in, etc. This is *not* the most efficient way of doing it. However, it will make your life easy (see the
 extra credit for doing it a better way). NOTE: you cannot read and write to a file at the same time,
 so you will need to use another temporary file to store your temporary results as you merge the data.
@@ -88,17 +91,19 @@ useful. They primarily do some simple operations with files. If there is any con
 methods do, please come talk to us. In addition, these helper methods may also help you understand basic
 Java file I/O. For more on file I/O, you can also see **Appendix A - File I/O in Java**
 
+![The entire pipeline](ondisksortmockup.png)
+
 
 
 ## Getting started
 
 1. Follow the same steps with the first lab/assignment to clone the github repository for this assignment.
 
-2. You will also need a directory in which to put the files to be sorted. We suggest you create a directory called `sorting_run` in your project directory. In that directory put a file containing a copy of King's
+2. You will also need a directory in which to put the files to be sorted. We suggest you use the provided `sorting_run` in your project directory. In that directory, put a file containing a copy of King's
 “I have a dream” speech. It is in a file named "Ihaveadream.txt" and is in with files from last week’s assignment. Be sure to name these exactly as given here, and make sure the directory `sorting_run` is
-in the same directory as the `src` and `bin` directories. (If not, then the program won’t find them
+in the same level as the `src` and `bin` directories. (If not, then the program won’t find them
 and it will crash!) See the main method of `OnDiskSort` for the names. Note that we may test your
-code using a different directory for temporary files, so your code shouldnt use the name sorting run
+code using a different directory for temporary files, so your code shouldnt use the name `sorting_run`
 except in its main method as a default value.
 
 3. See **Appendix A - File I/O in Java** and **Appendix B - The file system** for some background on the project.
@@ -121,8 +126,7 @@ You will be graded based on the following criteria:
 | General Correctness                                 | 2      |
 | Appropriate comments (including JavaDoc)            | 3      |
 | Style and Formatting                                | 2      |
-| Submitted correctly                                 | 1      |
-| **Total**                                           | **21** |
+| **Total**                                           | **20** |
 | Extra Credit                                        | 2      |
 
 

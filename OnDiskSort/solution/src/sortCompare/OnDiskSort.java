@@ -1,14 +1,14 @@
 package sortCompare;
-
 import java.io.*;
 import java.util.*;
 
+
 /**
- * Sorts the data on-disk, by sorting the data in small chunks and then merging
- * the data into one larger chunk
- * 
+ * Implements an external (on-disk) mergesort to efficiently sort data that do not fit into the main memory.
+ * Instead, it reads files from the hard disk drive, loads in main memory small chunks that fit in it, sorts them individually, and saves them in temporary files.
+ * It then repeatedly merges these temporary files into increasingly larger sorted files until it sorts the entire original dataset.
  */
-public class OnDiskSort{
+ public class OnDiskSort{
 	private static final String TEMP_FILE_ENDING = ".tempSorted";
 	private static final String TEMP_FILE = "temp" + TEMP_FILE_ENDING;
 	
@@ -29,7 +29,7 @@ public class OnDiskSort{
 	}
 	
 	/**
-	 * Creates a new sorter for sorting string data on disk.  The sorter operates by reading
+	 * Instantiates a new sorter for sorting string data on disk.  The sorter operates by reading
 	 * in maxSize worth of data elements (in this case, Strings) and then sorts them using
 	 * the provided sorter.  It does this chunk by chunk for all of the data, at each stage
 	 * writing the sorted data to temporary files in workingDirectory.  Finally, the sorted files
@@ -54,14 +54,14 @@ public class OnDiskSort{
 	}
 	
 	/**
-	 * Remove all files that that end with fileEnding in workingDirectory
+	 * Remove all files that end with fileEnding from the workingDirectory
 	 * 
 	 * If you name all of your temporary files with the same file ending, for example ".temp_sorted" 
 	 * then it's easy to clean them up using this method
 	 * 
 	 * @param workingDirectory the directory to clear
 	 * @param fileEnding clear only those files with fileEnding
-	*/
+	 */
 	private void clearOutDirectory(File workingDirectory, String fileEnding){
 		for( File file: workingDirectory.listFiles() ){
 			if( file.getName().endsWith(fileEnding) ){
@@ -81,11 +81,12 @@ public class OnDiskSort{
 	}
 	
 	/**
-	 * Write the data in dataToWrite to outfile one String per line
+	 * Write the Strings stored in dataToWrite to outfile one String per line
 	 * 
 	 * @param outfile the output file
-	 * @param dataToWrite the data to write out
+	 * @param dataToWrite the String data to write out
 	 */
+
 	private void writeToDisk(File outfile, ArrayList<String> dataToWrite){
 		try{
 			PrintWriter out = new PrintWriter(new FileOutputStream(outfile));
