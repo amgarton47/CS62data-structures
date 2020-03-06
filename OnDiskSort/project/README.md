@@ -2,9 +2,9 @@
 
 ## Key Terms and Concepts
 
-* File I/O - Methods for handling input (I) and output (O) to different files. Allows us to read and modify various files through different systems. (See lecture 6 slides, **Apendix A - File I/O in Java**, and these two tutorials [[1](https://docs.oracle.com/javase/tutorial/essential/io/),[2](https://www.tutorialspoint.com/java/java_files_io.htm)] for more).
+* File I/O - Methods for handling input (I) and output (O) to different files. Allows us to read and modify various files through different systems. (See **Apendix A - File I/O in Java**, and these two tutorials [[1](https://docs.oracle.com/javase/tutorial/essential/io/),[2](https://www.tutorialspoint.com/java/java_files_io.htm)] for more).
 * Mergesort - A divide and conquer algorithm for sorting arrays of n elements in O(n log n) time. The data to be sorted are split into smaller chunks, sorted, and then merged back together by doing simple comparisons while iterating through the smaller sorted sets (See lecture slides and  2.2 pg. 270 - 277 in the textbook for more). 
-* Iterator - An interface that allows traversal through a collection based on some property. Requires the `hasNext()` (which checks if there is another element left) and `next()` (which returns the next element) methods (See lecture notes, 1.1 pg. 100 and various other examples in the textbook and [here](https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html) for more)
+* Iterator - An interface that allows traversal through a collection based on some property. Requires the `hasNext()` (which checks if there is another element left) and `next()` (which returns the next element) methods (See pg. 100 and various other examples in the textbook and [here](https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html) for more)
 
 ## Learning Goals
 
