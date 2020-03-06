@@ -70,7 +70,7 @@ in, you will have an arraylist of files, each of which is sorted. You should the
     Make sure you clear the working directory when you're done, using the `clearOutDirectory()` method. `sorter` is the sorter that you should use to sort each chunk. `outputFile` will contain the final result of your sorting.
 
 
-* `merge`: takes two sorted files and merge them into one sorted file. This is very similar to the `merge`
+* `merge`: takes two sorted files and merges them into one sorted file. This is very similar to the `merge`
 method of MergeSort. The main difference is that rather than merging from two arrays (or ArrayLists) you are merging two files. You **should not simply read in the data from both of these files
 and then use the merge method from MergeSort**. We are trying to be memory efficient and this would defeat the purpose of this exercise. Instead, you should open `BufferedReader`s to both of the files and
 then, reading one line at a time, read either from the first file or the second, and write that directly
@@ -87,7 +87,7 @@ in memory, then creates a `diskSorter` to do the external merges. Parameters to 
 to read King’s "I have a dream" speech. Finally it calls the `sort` method of `diskSorter` with the scanner to input all the words of the speech, sorts them, and puts them in the file `data.sorted`.
 
 To assist you, we have also provided a few helper methods in the `OnDiskSort` class that you may find
-useful. They primarily do some simple operations with files. If there is any confusion about what these
+useful; they primarily do some simple operations with files. If there is any confusion about what these
 methods do, please come talk to us. In addition, these helper methods may also help you understand basic
 Java file I/O. For more on file I/O, you can also see **Appendix A - File I/O in Java**
 
