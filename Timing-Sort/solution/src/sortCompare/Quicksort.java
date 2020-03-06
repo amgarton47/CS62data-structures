@@ -51,12 +51,12 @@ public class Quicksort<E extends Comparable<E>> implements Sorter<E>{
 		while(true)
 		{
 			//find larger item than pivot to swap
-			while (less(data.getIndex(++i), pivot)) {
+			while (less(data.get(++i), pivot)) {
  				if (i == hi) break;
  			}
 
 			//find smaller item than pivot to swap
-			while (less(pivot, data.getIndex(--j))) {
+			while (less(pivot, data.get(--j))) {
  				if (j == lo) break;
  			}
 
@@ -80,7 +80,7 @@ public class Quicksort<E extends Comparable<E>> implements Sorter<E>{
 	 * @param i first element to be swapped
 	 * @param j second element to be swapped
 	 */
-	private static void exch(ArrayList<E> data,, int i, int j) {
+	private void exch(ArrayList<E> data, int i, int j) {
 		E swap = data.get(i);
 		data.set(i, data.get(j));
 		data.set(j, swap);
@@ -93,7 +93,7 @@ public class Quicksort<E extends Comparable<E>> implements Sorter<E>{
 	* @param w second element to be compared
 	* @return true iff v<w based on its comparable interface implementation
 	*/
-	private static boolean less(E v, E w) {
+	private boolean less(E v, E w) {
 		return v.compareTo(w) < 0;
 	}
 }
