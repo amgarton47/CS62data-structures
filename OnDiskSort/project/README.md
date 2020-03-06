@@ -29,7 +29,7 @@ individual chunks. This is accomplished by reading a chunk of data, sorting it, 
 reading more data, etc. At the end of this phase, you will have a number of temporary files on disk that are all
 sorted.
 
-* Second, you will need to merge all of these temporary files into one large file which you will be your final output. This is accomplished by pair-wise
+* Second, you will need to merge all of these temporary files into one large file which will be your final output. This is accomplished by pair-wise
 merging of the files (very similar to the merge phase of mergesort) and then writing out the result to a new,
 larger merged file. Eventually, all of the files will be merged into one large file. Note, this can be done
 very memory efficiently.
