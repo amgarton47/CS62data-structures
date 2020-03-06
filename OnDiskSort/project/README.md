@@ -34,7 +34,7 @@ merging of the files (very similar to the merge phase of mergesort) and then wri
 larger merged file. Eventually, all of the files will be merged into one large file. Note, this can be done
 very memory efficiently.
 
-*The correctness of the assignments in this class will be automatically verified. For this reason, you must
+*The correctness of this assignment will be automatically verified. For this reason, you must
 follow all naming conventions specified in this assignment.*
 
 ## Classes
