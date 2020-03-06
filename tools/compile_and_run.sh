@@ -66,6 +66,8 @@ elif [ -f /Users/csadmin/.p2/pool/plugins/org.junit.jupiter.api*.jar ]
 then
 	# default place for pre-loaded lab machines
 	CLASSPATH='/Users/csadmin/.p2/pool/plugins/*'
+else
+	echo "WARNING: unable to find JUnit5 CLASSPATH, please create CLASSPATH file"
 fi
 
 # add any other per-project dependencies

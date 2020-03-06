@@ -1,9 +1,8 @@
 package darwin;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 /**
  * JUnit tests for the world
  * @author Sean Zhu
@@ -17,7 +16,7 @@ public class WorldAutograder {
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		// a 3 row, 2 column world
 		world = new World<String>(W, H);
@@ -28,9 +27,8 @@ public class WorldAutograder {
 	 */
 	@Test
 	public final void testHeight() {
-		assertEquals(
-				"Initiated a 3 row, 2 column world. Height should be 3.",
-				H, world.height());
+		assertEquals(H, world.height(),
+				"Initiated a 3 row, 2 column world. Height should be 3.");
 	}
 
 	/**
@@ -38,9 +36,8 @@ public class WorldAutograder {
 	 */
 	@Test
 	public final void testWidth() {
-		assertEquals(
-				"Initiated a 3 row, 2 column world. Width should be 2.", W,
-				world.width());
+		assertEquals(W, world.width(),
+				"Initiated a 3 row, 2 column world. Width should be 2.");
 
 	}
 
@@ -52,28 +49,28 @@ public class WorldAutograder {
 
 		// row 0, colum 0
 		Position p0 = new Position(0, 0);
-		assertTrue("h=3, w=2, Pos(0,0) should be in range.",
-				world.inRange(p0));
+		assertTrue(world.inRange(p0),
+				"h=3, w=2, Pos(0,0) should be in range.");
 
 		// row 1, colum 1
 		Position p1 = new Position(1, 1);
-		assertTrue("h=3, w=2, Pos(1,1) should be in range.",
-				world.inRange(p1));
+		assertTrue(world.inRange(p1),
+				"h=3, w=2, Pos(1,1) should be in range.");
 
 		// row 2, colum 1
 		Position p2 = new Position(2, 1);
-		assertFalse("h=3, w=2, Pos(2,1) should not be in range.",
-				world.inRange(p2));
+		assertFalse(world.inRange(p2),
+				"h=3, w=2, Pos(2,1) should not be in range.");
 
 		// row 2, colum 0
 		Position p3 = new Position(2, 2);
-		assertFalse("h=3, w=2, Pos(2,2) should not be in range.",
-				world.inRange(p3));
+		assertFalse(world.inRange(p3),
+				"h=3, w=2, Pos(2,2) should not be in range.");
 
 		// row 3, colum 1
 		Position p4 = new Position(1, 2);
-		assertTrue("h=3, w=2, Pos(1,2) should be in range.",
-				world.inRange(p4));
+		assertTrue(world.inRange(p4),
+				"h=3, w=2, Pos(1,2) should be in range.");
 
 	}
 
@@ -85,8 +82,8 @@ public class WorldAutograder {
 
 		// row -1, colum -1
 		Position p5 = new Position(-1, -1);
-		assertFalse("h=3, w=2, Pos(-1,-1) should not be in range.",
-				world.inRange(p5));
+		assertFalse(world.inRange(p5),
+				"h=3, w=2, Pos(-1,-1) should not be in range.");
 
 	}
 
@@ -99,7 +96,8 @@ public class WorldAutograder {
 	public final void testSetAndGet() {
 		Position p = new Position(0, 0);
 		world.set(p, "cow");
-		assertEquals("Set position(0,0) to be 'cow'.", "cow", world.get(p));
+		assertEquals("cow", world.get(p),
+				"Set position(0,0) to be 'cow'.");
 	}
 
 	/**
@@ -112,29 +110,28 @@ public class WorldAutograder {
 		Position p = new Position(0, 0);
 		world.set(p, "cow");
 		world.set(p, "sheep");
-		assertEquals(
-				"Reset position(0,0) to be 'sheep' after setting it to 'cow'.",
-				"sheep", world.get(p));
+		assertEquals("sheep", world.get(p),
+				"Reset position(0,0) to be 'sheep' after setting it to 'cow'.");
 	}
 
 	/**
 	 * Test method for
 	 * {@link darwin.World#set(darwin.Position, java.lang.Object)}.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public final void testSet_notInRange() {
 		Position p = new Position(10, 10);
-		world.set(p, "cow");
+		assertThrows(IllegalArgumentException.class, () -> { world.set(p, "cow"); } );
 	}
 
 	/**
 	 * Test method for
 	 * {@link darwin.World#get(darwin.Position, java.lang.Object)}.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public final void testGet_notInRange() {
 		Position p = new Position(10, 10);
-		world.get(p);
+		assertThrows(IllegalArgumentException.class, () -> { world.get(p); } );
 	}
 
 }
