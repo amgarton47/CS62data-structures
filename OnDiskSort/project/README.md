@@ -93,8 +93,6 @@ Java file I/O. For more on file I/O, you can also see **Appendix A - File I/O in
 
 ![The entire pipeline](ondisksortmockup.png)
 
-
-
 ## Getting started
 
 1. Follow the same steps with the first lab/assignment to clone the github repository for this assignment.

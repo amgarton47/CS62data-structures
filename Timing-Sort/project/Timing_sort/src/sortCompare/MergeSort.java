@@ -49,6 +49,26 @@ public class MergeSort<E extends Comparable<E>> implements Sorter<E>{
 	 *       was passed as a parameter.
 	 */
 	public void merge(ArrayList<E> data, int low, int mid, int high){
-		//TODO: write the merge method
+
+		//TODO: make a temporary arraylist of Es that has capacity high-low.
+
+		// Keep an index i that starts at low and index j that starts at mid
+
+		// As long as i has not crossed mid and j has not crossed high
+			// If the data at i-th position are <= than the data at j-th position
+			// then add to the temporary arraylist the data from the i-th position and advance i
+
+			//Otherwise, take them from the j-th position and advance j
+
+		
+		// copy over the remaining data on the i to mid side if there
+		// is some remaining.  
+
+		// copy over the remaining data on the j to high side if there
+		// is some remaining.  Only one of these two while loops should
+		// actually execute
+
+		// copy the data back from the temporary auxiliary arraylist to the original data arraylist
+
 	}
 }

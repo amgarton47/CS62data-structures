@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 /**
  * Implementation of the MergeSort algorithm
- * 
+ *
  * @param <E> type of data to be sorted
  */
 public class MergeSort<E extends Comparable<E>> implements Sorter<E>{
@@ -44,30 +44,26 @@ public class MergeSort<E extends Comparable<E>> implements Sorter<E>{
 	 * @param high end of the data to be merged (exclusive)
 	 */
 	public void merge(ArrayList<E> data, int low, int mid, int high){
-		Object[] temp = new Object[high-low];
-				
-		int tempIndex = 0;
+		ArrayList<E> temp = new ArrayList<E>(high-low);
+		
 		int lowIndex = low;
 		int midIndex = mid;
 		
 		while( lowIndex < mid &&
 			   midIndex < high ){
 			if( data.get(lowIndex).compareTo(data.get(midIndex)) < 1 ){
-				temp[tempIndex] = data.get(lowIndex);
+				temp.add(data.get(lowIndex));
 				lowIndex++;
 			}else{
-				temp[tempIndex] = data.get(midIndex);
+				temp.add(data.get(midIndex));
 				midIndex++;
 			}
-			
-			tempIndex++;
 		}
 		
 		// copy over the remaining data on the low to mid side if there
 		// is some remaining.  
 		while( lowIndex < mid ){
-			temp[tempIndex] = data.get(lowIndex);
-			tempIndex++;
+			temp.add(data.get(lowIndex));
 			lowIndex++;
 		}
 		
@@ -75,14 +71,13 @@ public class MergeSort<E extends Comparable<E>> implements Sorter<E>{
 		// is some remaining.  Only one of these two while loops should
 		// actually execute
 		while( midIndex < high ){
-			temp[tempIndex] = data.get(midIndex);
-			tempIndex++;
+			temp.add(data.get(midIndex));
 			midIndex++;
 		}
 
 		// copy the data back from temp to list 
-		for( int i = 0; i < temp.length; i++ ){
-			data.set(i+low, (E)temp[i]);
+		for( int i = 0; i < temp.size(); i++ ){
+			data.set(i+low, temp.get(i));
 		}
 	}
 }

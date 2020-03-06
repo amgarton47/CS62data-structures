@@ -19,7 +19,7 @@ After you've setup your project, spend 5 minutes looking at the different classe
 
 ## Finish `MergeSort`
 
-You've been given all of the code for this lab except the `merge` method, which you should now implement. Give it a good effort, but if you get stuck, ask a mentor or Professor for help.
+You've been given all of the code for this lab except the `merge` method, which you should now implement based on the TODO suggestions. Please note that this is a slight variation of the merge method we have seen in class. Give it a good effort, but if you get stuck, ask a mentor or Professor for help.
 
 Once this is done, you should be able to run the `SortTimer` class.
 
@@ -60,20 +60,7 @@ Create a file (in the top level directory of your repo) called `analysis.txt`, i
 
 ## Submission Instructions
 
-Please fill out the `assignment.json` file. Include your Github name in the collaborators list and your partner's username as well if you worked with someone. If you have anything you want to say to the graders, put it in the notes field. Don't forget to put your name(s) in a comment at the top of the `MergeSort` class.
-
-## Grading
-
-Your submission will be graded based on the following criteria:
-
-
-| Criterion                                | Points |
-| :--------------------------------------- | :----- |
-| clean compilation w/no warnings          | 1      |
-| correctly implements MergeSort.merge     | 3      |
-| plausible results (and analysis)         | 3      |
-| comments (for added methods/code)        | 2      |
-| style and formatting                     | 1      |
+Please fill out the `assignment.json` file. Include your Github name in the collaborators list and your partner's username as well if you worked with someone. 
 
 ## If You Still Have Time
 

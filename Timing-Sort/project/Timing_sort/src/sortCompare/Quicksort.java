@@ -3,9 +3,9 @@ package sortCompare;
 import java.util.ArrayList;
 
 /**
- * An implementation of the Quicksort algorithm
+ * An implementation of the Quicksort algorithm following the Hoare Partition scheme
  * 
- * @param <E> the type of element to be sorted
+ * @param <E> the type of elements to be sorted
  */
 public class Quicksort<E extends Comparable<E>> implements Sorter<E>{
 
@@ -19,54 +19,81 @@ public class Quicksort<E extends Comparable<E>> implements Sorter<E>{
 	}
 	
 	/**
-	 * Helper method for Quicksort.  Sorts data >= start and < end
+	 * Helper method for Quicksort.  Sorts data so that data[lo .. j-1] <= data[j] <= data[j+1 .. hi]
 	 * 
 	 * @param data data to be sorted
-	 * @param start start of the data to be sorted (inclusive)
-	 * @param end end of the data to be sorted (exclusive)
+	 * @param lo start of the data to be sorted (inclusive)
+	 * @param hi end of the data to be sorted (exclusive)
 	 */
-	private void quicksortHelper(ArrayList<E> data, int start, int end){
-		if( start < end ){
-			int partition = partition(data, start, end);
-			quicksortHelper(data, start, partition-1);
-			quicksortHelper(data, partition+1, end);
+	private void quicksortHelper(ArrayList<E> data, int lo, int hi){
+		if( hi <= lo ){
+			return;
 		}
+		int j = partition(data, lo, hi);
+		quicksortHelper(data, lo, j-1);
+		quicksortHelper(data, j+1, hi);
+
 	}
 
 	/**
 	 * partitions the data based on the element at index end.
 	 * 
 	 * @param data data to be partitioned
-	 * @param start start of the data to be partitioned
-	 * @param end end of the data to be partitioned
+	 * @param lo start of the data to be partitioned
+	 * @param hi end of the data to be partitioned
 	 * @return returned the index of the pivot element (after being copied 
 	 * into the correct location)
 	 */
-	private int partition(ArrayList<E> data, int start, int end){
-		int lessThanIndex = start-1;
+	private int partition(ArrayList<E> data, int lo, int hi){
+		E pivot = data.get(lo);
+		int i = lo;
+		int j = hi + 1;
+		while(true)
+		{
+			//find larger item than pivot to swap
+			while (less(data.getIndex(++i), pivot)) {
+ 				if (i == hi) break;
+ 			}
 
-		for( int i = start; i < end; i++ ){
-			if(data.get(i).compareTo(data.get(end)) < 0){
-				lessThanIndex++;
-				swap(data, lessThanIndex, i);
+			//find smaller item than pivot to swap
+			while (less(pivot, data.getIndex(--j))) {
+ 				if (j == lo) break;
+ 			}
+
+			if(i >= j){
+				break;
 			}
+
+			exch(data, i, j);
 		}
 
-		swap(data, lessThanIndex+1, end);
+		//partition pivot at position j
+		exch(data, lo, j);
 
-		return lessThanIndex+1;
+		return j;
 	}
 	
 	/**
 	 * Swap two elements in the ArrayList
 	 * 
 	 * @param data data array
-	 * @param index1 first element to be swapped
-	 * @param index2 second element to be swapped
+	 * @param i first element to be swapped
+	 * @param j second element to be swapped
 	 */
-	private void swap(ArrayList<E> data, int index1, int index2){
-		E temp = data.get(index1);
-		data.set(index1, data.get(index2));
-		data.set(index2, temp);
+	private static void exch(ArrayList<E> data,, int i, int j) {
+		E swap = data.get(i);
+		data.set(i, data.get(j));
+		data.set(j, swap);
+	}
+
+	/**
+	* Compares two elements and returns whether v is smaller than w
+	*
+	* @param v first element to be compared
+	* @param w second element to be compared
+	* @return true iff v<w based on its comparable interface implementation
+	*/
+	private static boolean less(E v, E w) {
+		return v.compareTo(w) < 0;
 	}
 }
