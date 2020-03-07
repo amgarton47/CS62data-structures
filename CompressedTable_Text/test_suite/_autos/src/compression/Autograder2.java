@@ -56,8 +56,8 @@ public class TestCompression {
 		assertEquals(table.tableInfo.get(0).theValue, newValue1, "First node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(0).theValue);
 
 		//Test that the second node contains defaultValue
-		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(1).theValue, defaultValue, "Second node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(1).theKey);
+		assertEquals(table.tableInfo.get(1).theValue, defaultValue, "Second node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(1).theValue);
 	
 		//Test output
 		String output = "grrrr\n" + 
@@ -82,8 +82,8 @@ public class TestCompression {
 		assertEquals(table.tableInfo.get(0).theValue, newValue2, "First node should have had "+ newValue2 +" value but instead was " + table.tableInfo.get(0).theValue);
 
 		//Test that the second node contains defaultValue
-		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(1).theValue, defaultValue, "Second node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(1).theKey);
+		assertEquals(table.tableInfo.get(1).theValue, defaultValue, "Second node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(1).theValue);
 
 		//Test output
 		String output = "krrrr\n" + 
@@ -106,11 +106,11 @@ public class TestCompression {
 		
 		//Test that the first node contains newValue2
 		assertEquals(table.tableInfo.get(0).theKey, new RowOrderedPosn(0, 0, rows, cols), "CurDLL should have had a node for (0,0) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(0).theValue, newValue1, "First node should have had "+ newValue2 +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(0).theValue, newValue1, "First node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(0).theValue);
 
 		//Test that the second node contains defaultValue
-		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(1).theValue, defaultValue, "Second node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(1).theKey);
+		assertEquals(table.tableInfo.get(1).theValue, defaultValue, "Second node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(1).theValue);
 
 		//Test output
 		String output = "grrrr\n" + 
@@ -135,8 +135,8 @@ public class TestCompression {
 		assertEquals(table.tableInfo.get(0).theValue, defaultValue, "First node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
 
 		//Test that the second node contains newValue1
-		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(rows-1, cols-1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(rows-1, cols-1, rows, cols), "CurDLL should have had a node for (rows-1, cols-1) but instead was " + table.tableInfo.get(1).theKey);
+		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(1).theValue);
 
 		//Test output
 		String output = "rrrrr\n" + 
@@ -161,12 +161,12 @@ public class TestCompression {
 		assertEquals(table.tableInfo.get(0).theValue, defaultValue, "First node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
 
 		//Test that the second node contains newValue1
-		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(1).theKey);
+		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(1).theValue);
 
 		//Test that the third node contains defaultValue
-		assertEquals(table.tableInfo.get(2).theKey, new RowOrderedPosn(0, 2, rows, cols), "CurDLL should have had a node for (0,2) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(2).theValue, defaultValue, "Third node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(2).theKey, new RowOrderedPosn(0, 2, rows, cols), "CurDLL should have had a node for (0,2) but instead was " + table.tableInfo.get(2).theKey);
+		assertEquals(table.tableInfo.get(2).theValue, defaultValue, "Third node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(2).theValue);
 		//Test output
 		String output = "rgrrr\n" + 
 				"rrrrr\n" + 
@@ -192,12 +192,12 @@ public class TestCompression {
 		assertEquals(table.tableInfo.get(0).theValue, defaultValue, "First node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
 
 		//Test that the second node contains newValue2
-		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(1).theValue, newValue2, "Second node should have had "+ newValue2 +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(1).theKey);
+		assertEquals(table.tableInfo.get(1).theValue, newValue2, "Second node should have had "+ newValue2 +" value but instead was " + table.tableInfo.get(1).theValue);
 
 		//Test that the third node contains defaultValue
-		assertEquals(table.tableInfo.get(2).theKey, new RowOrderedPosn(0, 2, rows, cols), "CurDLL should have had a node for (0,2) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(2).theValue, defaultValue, "Third node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(2).theKey, new RowOrderedPosn(0, 2, rows, cols), "CurDLL should have had a node for (0,2) but instead was " + table.tableInfo.get(2).theKey);
+		assertEquals(table.tableInfo.get(2).theValue, defaultValue, "Third node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(2).theValue);
 
 		//Test output
 		String output = "rkrrr\n" + 
@@ -224,16 +224,16 @@ public class TestCompression {
 		assertEquals(table.tableInfo.get(0).theValue, defaultValue, "First node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
 
 		//Test that the second node contains newValue1
-		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(1).theKey);
+		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(1).theValue);
 
 		//Test that the third node contains newValue2
-		assertEquals(table.tableInfo.get(2).theKey, new RowOrderedPosn(0, 2, rows, cols), "CurDLL should have had a node for (0,2) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(2).theValue, newValue2, "Third node should have had "+ newValue2 +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(2).theKey, new RowOrderedPosn(0, 2, rows, cols), "CurDLL should have had a node for (0,2) but instead was " + table.tableInfo.get(2).theKey);
+		assertEquals(table.tableInfo.get(2).theValue, newValue2, "Third node should have had "+ newValue2 +" value but instead was " + table.tableInfo.get(2).theValue);
 
 		//Test that the fourth node contains defaultValue
-		assertEquals(table.tableInfo.get(3).theKey, new RowOrderedPosn(0, 3, rows, cols), "CurDLL should have had a node for (0,3) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(3).theValue, defaultValue, "Third node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(3).theKey, new RowOrderedPosn(0, 3, rows, cols), "CurDLL should have had a node for (0,3) but instead was " + table.tableInfo.get(3).theKey);
+		assertEquals(table.tableInfo.get(3).theValue, defaultValue, "Third node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(3).theValue);
 
 		
 		//Test output
@@ -262,24 +262,24 @@ public class TestCompression {
 		assertEquals(table.tableInfo.get(0).theValue, defaultValue, "First node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
 
 		//Test that the second node contains newValue1
-		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(1).theKey);
+		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(1).theValue);
 
 		//Test that the third node contains defaultValue
-		assertEquals(table.tableInfo.get(2).theKey, new RowOrderedPosn(0, 2, rows, cols), "CurDLL should have had a node for (0,2) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(2).theValue, defaultValue, "Third node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(2).theKey, new RowOrderedPosn(0, 2, rows, cols), "CurDLL should have had a node for (0,2) but instead was " + table.tableInfo.get(2).theKey);
+		assertEquals(table.tableInfo.get(2).theValue, defaultValue, "Third node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(2).theValue);
 
 		//Test that the fourth node contains newValue1
-		assertEquals(table.tableInfo.get(3).theKey, new RowOrderedPosn(0, 3, rows, cols), "CurDLL should have had a node for (0,3) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(3).theValue, newValue1, "Fourth node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(3).theKey, new RowOrderedPosn(0, 3, rows, cols), "CurDLL should have had a node for (0,3) but instead was " + table.tableInfo.get(3).theKey);
+		assertEquals(table.tableInfo.get(3).theValue, newValue1, "Fourth node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(3).theValue);
 
 		//Test that the fifth node contains newValue2
-		assertEquals(table.tableInfo.get(4).theKey, new RowOrderedPosn(0,4, rows, cols), "CurDLL should have had a node for (0,4) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(4).theValue, newValue2, "Fifth node should have had "+ newValue2 +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(4).theKey, new RowOrderedPosn(0,4, rows, cols), "CurDLL should have had a node for (0,4) but instead was " + table.tableInfo.get(4).theKey);
+		assertEquals(table.tableInfo.get(4).theValue, newValue2, "Fifth node should have had "+ newValue2 +" value but instead was " + table.tableInfo.get(4).theValue);
 
 		//Test that the sixth node contains defaultValue
-		assertEquals(table.tableInfo.get(5).theKey, new RowOrderedPosn(1,0, rows, cols), "CurDLL should have had a node for (1,0) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(5).theValue, defaultValue, "Sixth node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(5).theKey, new RowOrderedPosn(1,0, rows, cols), "CurDLL should have had a node for (1,0) but instead was " + table.tableInfo.get(5).theKey);
+		assertEquals(table.tableInfo.get(5).theValue, defaultValue, "Sixth node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(5).theValue);
 
 		//Test output
 		String output = "rgrgk\n" + 
@@ -329,12 +329,12 @@ public class TestCompression {
 		assertEquals(table.tableInfo.get(0).theValue, defaultValue, "First node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
 
 		//Test that the second node contains newValue1
-		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(1).theKey);
+		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(1).theValue);
 
 		//Test that the third node contains defaultValue
-		assertEquals(table.tableInfo.get(2).theKey, new RowOrderedPosn(0, 3, rows, cols), "CurDLL should have had a node for (0,3) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(2).theValue, defaultValue, "Third node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(2).theKey, new RowOrderedPosn(0, 3, rows, cols), "CurDLL should have had a node for (0,3) but instead was " + table.tableInfo.get(2).theKey);
+		assertEquals(table.tableInfo.get(2).theValue, defaultValue, "Third node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(2).theValue);
 
 		//Test output
 		String output = "rggrr\n" + 
@@ -360,12 +360,12 @@ public class TestCompression {
 		assertEquals(table.tableInfo.get(0).theValue, defaultValue, "First node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
 
 		//Test that the second node contains newValue1
-		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 1, rows, cols), "CurDLL should have had a node for (0,1) but instead was " + table.tableInfo.get(1).theKey);
+		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(1).theValue);
 
 		//Test that the third node contains defaultValue
-		assertEquals(table.tableInfo.get(2).theKey, new RowOrderedPosn(0, 2, rows, cols), "CurDLL should have had a node for (0,2) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(2).theValue, defaultValue, "Third node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(2).theKey, new RowOrderedPosn(0, 2, rows, cols), "CurDLL should have had a node for (0,2) but instead was " + table.tableInfo.get(2).theKey);
+		assertEquals(table.tableInfo.get(2).theValue, defaultValue, "Third node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(2).theValue);
 
 		//Test output
 		String output = "rgrrr\n" + 
@@ -398,41 +398,50 @@ public class TestCompression {
 		assertEquals(table.tableInfo.size(), 9, "CurDLL should have had 9 nodes but instead had " + table.tableInfo.size());
 
 		//Test that the first node contains defaultValue
+//		<Association: Position: (0,0)=r>
 		assertEquals(table.tableInfo.get(0).theKey, new RowOrderedPosn(0, 0, rows, cols), "CurDLL should have had a node for (0,0) but instead was " + table.tableInfo.get(0).theKey);
 		assertEquals(table.tableInfo.get(0).theValue, defaultValue, "First node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
 
 		//Test that the second node contains newValue1
-		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 3, rows, cols), "CurDLL should have had a node for (0,3) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(0).theValue);
+//		<Association: Position: (0,3)=g>
+		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(0, 3, rows, cols), "CurDLL should have had a node for (0,3) but instead was " + table.tableInfo.get(1).theKey);
+		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(1).theValue);
 
 		//Test that the third node contains defaultValue
-		assertEquals(table.tableInfo.get(2).theKey, new RowOrderedPosn(1, 0, rows, cols), "CurDLL should have had a node for (1,0) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(2).theValue, defaultValue, "Third node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
+//		<Association: Position: (1,0)=r>
+		assertEquals(table.tableInfo.get(2).theKey, new RowOrderedPosn(1, 0, rows, cols), "CurDLL should have had a node for (1,0) but instead was " + table.tableInfo.get(2).theKey);
+		assertEquals(table.tableInfo.get(2).theValue, defaultValue, "Third node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(2).theValue);
 
 		//Test that the fourth node contains newValue2
-		assertEquals(table.tableInfo.get(3).theKey, new RowOrderedPosn(2, 1, rows, cols), "CurDLL should have had a node for (2,1) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(3).theValue, newValue2, "Fourth node should have had "+ newValue2 +" value but instead was " + table.tableInfo.get(0).theValue);
+//		<Association: Position: (2,1)=k>
+		assertEquals(table.tableInfo.get(3).theKey, new RowOrderedPosn(2, 1, rows, cols), "CurDLL should have had a node for (2,1) but instead was " + table.tableInfo.get(3).theKey);
+		assertEquals(table.tableInfo.get(3).theValue, newValue2, "Fourth node should have had "+ newValue2 +" value but instead was " + table.tableInfo.get(3).theValue);
 
 		//Test that the fifth node contains defaultValue
-		assertEquals(table.tableInfo.get(4).theKey, new RowOrderedPosn(2, 2, rows, cols), "CurDLL should have had a node for (2,2) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(4).theValue, defaultValue, "Fifth node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
+//		<Association: Position: (2,2)=r>
+		assertEquals(table.tableInfo.get(4).theKey, new RowOrderedPosn(2, 2, rows, cols), "CurDLL should have had a node for (2,2) but instead was " + table.tableInfo.get(4).theKey);
+		assertEquals(table.tableInfo.get(4).theValue, defaultValue, "Fifth node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(4).theValue);
 
 		//Test that the sixth node contains newValue1
-		assertEquals(table.tableInfo.get(5).theKey, new RowOrderedPosn(3, 3, rows, cols), "CurDLL should have had a node for (3,3) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(5).theValue, newValue1, "Sixth node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(0).theValue);
+//		<Association: Position: (3,3)=g>
+		assertEquals(table.tableInfo.get(5).theKey, new RowOrderedPosn(3, 3, rows, cols), "CurDLL should have had a node for (3,3) but instead was " + table.tableInfo.get(5).theKey);
+		assertEquals(table.tableInfo.get(5).theValue, newValue1, "Sixth node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(5).theValue);
 
 		//Test that the seventh node contains defaultValue
-		assertEquals(table.tableInfo.get(6).theKey, new RowOrderedPosn(3, 4, rows, cols), "CurDLL should have had a node for (3,4) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(6).theValue, defaultValue, "Seventh node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
+//		<Association: Position: (3,4)=r>
+		assertEquals(table.tableInfo.get(6).theKey, new RowOrderedPosn(3, 4, rows, cols), "CurDLL should have had a node for (3,4) but instead was " + table.tableInfo.get(6).theKey);
+		assertEquals(table.tableInfo.get(6).theValue, defaultValue, "Seventh node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(6).theValue);
 
 		//Test that the eighth node contains newValue2
-		assertEquals(table.tableInfo.get(7).theKey, new RowOrderedPosn(4, 2, rows, cols), "CurDLL should have had a node for (4,2) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(7).theValue, newValue2, "Eighth node should have had "+ newValue2 +" value but instead was " + table.tableInfo.get(0).theValue);
+//		<Association: Position: (4,2)=k>
+		assertEquals(table.tableInfo.get(7).theKey, new RowOrderedPosn(4, 2, rows, cols), "CurDLL should have had a node for (4,2) but instead was " + table.tableInfo.get(7).theKey);
+		assertEquals(table.tableInfo.get(7).theValue, newValue2, "Eighth node should have had "+ newValue2 +" value but instead was " + table.tableInfo.get(7).theValue);
 
 		
 		//Test that the ninth node contains defaultValue
-		assertEquals(table.tableInfo.get(8).theKey, new RowOrderedPosn(4, 3, rows, cols), "CurDLL should have had a node for (4,3) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(8).theValue, defaultValue, "Ninth node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
+//		<Association: Position: (4,3)=r>
+		assertEquals(table.tableInfo.get(8).theKey, new RowOrderedPosn(4, 3, rows, cols), "CurDLL should have had a node for (4,3) but instead was " + table.tableInfo.get(8).theKey);
+		assertEquals(table.tableInfo.get(8).theValue, defaultValue, "Ninth node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(8).theValue);
 
 		//Test output
 		String output = "rrrgg\n" + 
@@ -457,8 +466,8 @@ public class TestCompression {
 		assertEquals(table.tableInfo.get(0).theValue, defaultValue, "First node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
 
 		//Test that the second node contains newValue1
-		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(rows-1, cols-2, rows, cols), "CurDLL should have had a node for (rows-1, cols-2) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(0).theValue);
+		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(rows-1, cols-2, rows, cols), "CurDLL should have had a node for (rows-1, cols-2) but instead was " + table.tableInfo.get(1).theKey);
+		assertEquals(table.tableInfo.get(1).theValue, newValue1, "Second node should have had "+ newValue1 +" value but instead was " + table.tableInfo.get(1).theValue);
 
 		
 		//Test output
@@ -477,16 +486,16 @@ public class TestCompression {
 		table.updateInfo(rows-1, cols-1, newValue1);
 		table.updateInfo(rows-1, cols-1, newValue2);
 
-		//Test that the underlying CurDLL has two nodes (0,0, defaultValue) and (rows-1, cols-1, newValue1)
+		//Test that the underlying CurDLL has two nodes (0,0, defaultValue) and (rows-1, cols-1, newValue2)
 		assertEquals(table.tableInfo.size(), 2, "CurDLL should have had 2 nodes but instead had " + table.tableInfo.size());
 		
 		//Test that the first node contains defaultValue
 		assertEquals(table.tableInfo.get(0).theKey, new RowOrderedPosn(0, 0, rows, cols), "CurDLL should have had a node for (0,0) but instead was " + table.tableInfo.get(0).theKey);
 		assertEquals(table.tableInfo.get(0).theValue, defaultValue, "First node should have had "+ defaultValue +" value but instead was " + table.tableInfo.get(0).theValue);
 
-		//Test that the second node contains newValue1
-		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(rows-1, cols-1, rows, cols), "CurDLL should have had a node for (rows-1, cols-1) but instead was " + table.tableInfo.get(0).theKey);
-		assertEquals(table.tableInfo.get(1).theValue, newValue2, "Second node should have had "+ newValue2 +" value but instead was " + table.tableInfo.get(0).theValue);
+		//Test that the second node contains newValue2
+		assertEquals(table.tableInfo.get(1).theKey, new RowOrderedPosn(rows-1, cols-1, rows, cols), "CurDLL should have had a node for (rows-1, cols-1) but instead was " + table.tableInfo.get(1).theKey);
+		assertEquals(table.tableInfo.get(1).theValue, newValue2, "Second node should have had "+ newValue2 +" value but instead was " + table.tableInfo.get(1).theValue);
 
 		
 		//Test output
