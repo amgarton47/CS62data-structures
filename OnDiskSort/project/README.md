@@ -138,8 +138,8 @@ NOTE: Code that does not compile will not be accepted! Make sure that your code 
 
 As we mentioned above, this is not an efficient way to merge all of the sorted chunks. Once you have
 things working above, for extra credit, implement a more efficient `mergeFiles` method by merging pairs of
-files of the same size. That is, if you start with `n` files of size `k`, merge them in pairs to obtain `n/2` files of
-size `2*k`. Then merge those together in pairs to get `n/2` files of size `4*k`. Continue until they are all merged.
+files of the same size. That is, if you start with `f` files of size `k`, merge them in pairs to obtain `f/2` files of
+size `2*k`. Then merge those together in pairs to get `f/4` files of size `4*k`. Continue until they are all merged.
 This is optional and you do not have to do it!
 If you do this, we strongly suggest making a new method (i.e. don’t delete your original `mergeFiles`
 method, just rename is to something like `mergeFilesLinear`).
