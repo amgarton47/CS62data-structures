@@ -330,7 +330,7 @@ public class Autograder {
 		list.removeCurrent();
 		// when removing the last value, check that current becomes null
 		// and the size of the list is 1 (having started with 2 elts)
-		assertEquals((int) list.size(), 1,
+		assertEquals(1, (int) list.size(), 
 				"list is 83, called add(47), add(83), last(), removeCurrent(). Size should be 1.");
 		assertNull(list.current,
 				"list is 83, called add(47), add(83), last(), removeCurrent(). current should be null.");
