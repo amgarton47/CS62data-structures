@@ -1,219 +1,213 @@
 {
   "title": "Compressed Table Assignment",
   "assignment": "assignment4",
-  "info": "Grading of compressed table must be completed manually. Protip: use the green run button to launch the students GUI.",
+  "info": "Might need to update rubric below if grading in two phases.",
     "runner": {
         "mainclass": "GridTest",
         "package": "compression",
         "type": "java_single_package_runner"
     },
-    "max_score": 20,
+    "max_score": 17,
     "tests": [
       {
         "name": "testIsOffRight(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testAddFirst_null(compression.Autograder)",
+        "name": "testAddFirstNull(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testCurrentValue_EmptyList(compression.Autograder)",
+        "name": "testCurrentValueEmptyList(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testAddAfterCurrent_null(compression.Autograder)",
+        "name": "testAddAfterCurrentNull(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testNext_OffRightSide(compression.Autograder)",
+        "name": "testNextOffRightSide(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testRemoveCurrent_isOff(compression.Autograder)",
+        "name": "testRemoveCurrentIsOff(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testRemoveCurrent_empty(compression.Autograder)",
+        "name": "testRemoveCurrentEmpty(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testFirst_off(compression.Autograder)",
+        "name": "testFirstOff(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testCurrentValue_isOff(compression.Autograder)",
+        "name": "testCurrentValueIsOff(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testRemoveLast(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testRemoveCurrent(compression.Autograder)",
+        "name": "testRemoveCurrent(compression.Autograder)",        
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testGetLast(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testAddFirst(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testLast_off(compression.Autograder)",
+        "name": "testLastOff(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testBack_OffLeftSide(compression.Autograder)",
+        "name": "testBackOffLeftSide(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testAddAfterCurrent(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testRemoveFirst(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testNext(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testLast(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testNext_EmptyList(compression.Autograder)",
+        "name": "testNextEmptyList(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testIsOff(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testFirst(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testClear(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testCurDoublyLinkedList(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testAddAfterCurrent_isOff(compression.Autograder)",
+        "name": "testAddAfterCurrentIsOff(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testAddLast_null(compression.Autograder)",
+        "name": "testAddLastNull(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testIsOffLeft(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testAddLast(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testGetFirst(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testCurrentValue(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testBack_EmptyList(compression.Autograder)",
+        "name": "testBackEmptyList(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testRemoveLast_afterOffLeft(compression.Autograder)",
+        "name": "testRemoveLastAfterOffLeft(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testFirst_empty(compression.Autograder)",
+        "name": "testFirstEmpty(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
         "name": "testBack(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testGetLast_afterOff(compression.Autograder)",
+        "name": "testGetLastAfterOff(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testAddFirst_afterOff(compression.Autograder)",
+        "name": "testAddFirstAfterOff(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testAddLast_off(compression.Autograder)",
+        "name": "testFirstOff(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testRemoveFirst_afterOffLeft(compression.Autograder)",
+        "name": "testRemoveFirstAfterOffLeft(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testLast_empty(compression.Autograder)",
+        "name": "testLastEmpty(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
       },
       {
-        "name": "testGetFirst_afterOff(compression.Autograder)",
+        "name": "testGetFirstAfterOff(compression.Autograder)",
+        "descr":"Passes JUnit tests for all methods in CurDoublyLinkedList",
         "score": 0.1
-      },
-      {
-        "name": "No change if new color is same as current color",
-        "score": 1.0
-      },
-      {
-        "name": "Can change color of position already in list",
-        "score": 2.0
-      },
-      {
-        "name": "Can change color of position not already in list",
-        "score": 2.0
-      },
-      {
-        "name": "Correctly adds another node to list when needed",
-        "score": 2.0
-      },
-      {
-        "name": "Has JUnit tests for all methods in CurDoublyLinkedList",
-        "score": 2.0
-      },
-      {
-        "name": "General correctness",
-        "score": 2.0
-      },
-      {
-        "name": "Appropriate comments (including JavaDoc)",
-        "score": 2.0
-      },
-      {
-        "name": "Style and formatting",
-        "score": 2.0
-      },
-      {
-        "name": "Submitted correctly",
-        "score": 1.0
-      },
-      {
-        "name": "Extra credit (eliminating consecutive items with same value) (2.0 max)",
-        "score": 0.0
-      },
-      {
-        "name": "Submitted on time (negative if late)",
-        "score": 0.0
       }
-    ],
-    "title": "Compressed Table",
-    "writeup": "http://www.michaeljbannister.com/teaching/62-s16/Assignment04/Assignment04.pdf"
+    ]
 }

@@ -1,18 +1,18 @@
 package compression;
 
-import java.util.NoSuchElementException;
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Unit tests for CurDoublyLinkedList class
- *	@author Mark Kampe
+ * 
+ * @author cs62
  */
 public class TestCurDoublyLinkedList {
 	CurDoublyLinkedList<Integer> list;
 
-	@BeforeEach
+	@Before
 	public void setUp() throws Exception {
 		list = new CurDoublyLinkedList<Integer>();
 	}
@@ -21,49 +21,58 @@ public class TestCurDoublyLinkedList {
 	@Test
 	public void testCurDoublyLinkedList() {
 		assertNull(list.current);
-		assertEquals(0, list.size());	
-		assertFalse(list.isOffLeft()); 
+		assertEquals(0, list.size());
+		assertFalse(list.isOffLeft());
 		assertFalse(list.isOffRight());
 	}
 
-	// create a multi element list, confirm first takes us to first
+	// create a multi-element list, confirm first takes us to head
 	@Test
 	public void testFirst() {
 		// 83 <=> 47
 		list.add(47);
-		list.add(83);	
-		list.first();			
+		list.add(83);
+		list.first();
 		assertNotNull(list.current);
-		assertEquals(83, (int) list.current.item);
+		assertEquals(83, (int) list.current.item, 0);
 	}
 
-	// create a multi-element list, confir last takes us to last
+	// create an empty list, confirm first() throws IllegalStateException
+	@Test(expected = IllegalStateException.class)
+	public void testFirstEmpty() {
+		list.first();
+	}
+
+	// create a multi-element list, confirm last takes us to tail
 	@Test
 	public void testLast() {
 		// 83 <=> 47
 		list.add(47);
-		list.add(83);	
+		list.add(83);
 		list.last();
 
 		assertNotNull(list.current);
-		assertEquals(47, (int) list.current.item);
+		assertEquals(47, (int) list.current.item, 0);
 	}
 
+	// create an empty list, confirm last() throws IllegalStateException
+	@Test(expected = IllegalStateException.class)
+	public void testLastEmpty() {
+		list.last();
+	}
 
-	// Calls next() on an empty list. Replace the "NoSuchElementException"
-	// with whatever exception you throw when the precondition is violated
-	@Test
-	public void testNext_EmptyList() {
-		assertThrows(NoSuchElementException.class, () -> {list.next();});
+	// create an empty list, confirm next() throws IllegalStateException
+	@Test(expected = IllegalStateException.class)
+	public void testNextEmptyList() {
+		list.next();
 	}
 
 	// Calls next() on a non-empty list where current is off the right side
-	// Replace with whatever exception you throw when the precondition is violated 
-	@Test
-	public void testNext_OffRightSide() {
+	@Test(expected = IllegalStateException.class)
+	public void testNextOffRightSide() {
 		list.addFirst(47);
 		list.next(); // this moves current off right
-		assertThrows(NoSuchElementException.class, () -> {list.next();});
+		list.next(); // this should trigger an exception
 	}
 
 	// Calls next() on non-empty list where current is head
@@ -75,10 +84,10 @@ public class TestCurDoublyLinkedList {
 		list.first();
 
 		assertNotNull(list.current);
-		assertEquals(83, (int) list.current.item);
+		assertEquals(83, (int) list.current.item, 0);
 
 		list.next();
-		assertEquals(47, (int) list.current.item);
+		assertEquals(47, (int) list.current.item, 0);
 	}
 
 	// calls back() on non-empty list where current is tail
@@ -90,72 +99,77 @@ public class TestCurDoublyLinkedList {
 		list.last();
 
 		assertNotNull(list.current);
-		assertEquals(47, (int) list.current.item);
+		assertEquals(47, (int) list.current.item, 0);
 
 		list.back();
-		assertEquals(83, (int) list.current.item);
+		assertEquals(83, (int) list.current.item, 0);
 	}
 
-	// calls back() on empty list
-	@Test
-	public void testBack_empty() {
-		assertNull(list.current);
-		assertThrows(NoSuchElementException.class, () -> {list.back();});
+	// create an empty list, confirm back() throws IllegalStateException
+	@Test(expected = IllegalStateException.class)
+	public void testBackEmptyList() {
+		list.back();
 	}
-	
+
+	// Calls back() on a non-empty list where current is off the left side
+	@Test(expected = IllegalStateException.class)
+	public void testBackOffLeftSide() {
+		list.addFirst(47);
+		list.back(); // this moves current off left
+		list.back(); // this should trigger an exception
+	}
+
 	// move to right of last element and test for offRight
 	@Test
 	public void testIsOffRight() {
 		list.add(47);
 		list.next();
-		
+
 		assertNull(list.current);
 		assertTrue(list.isOffRight());
 		assertFalse(list.isOffLeft());
 	}
 
-	// move to left of last element and test for offLeft
+	// move to left of first element and test for offLeft
 	@Test
 	public void testIsOffLeft() {
 		list.add(47);
 		list.back();
-		
+
 		assertNull(list.current);
 		assertTrue(list.isOffLeft());
 		assertFalse(list.isOffRight());
 	}
 
-	// test on, off-left, off-right
+	// test off-left and off-right
 	@Test
 	public void testIsOff() {
 		list.add(47);
 		assertFalse(list.isOff());
-		
+
 		list.first();
 		list.back();
 		assertTrue(list.isOff());
-		
+
 		list.last();
 		list.next();
 		assertTrue(list.isOff());
 	}
 
-	// Calls currentValue() on an empty list. Replace the "NoSuchElementException"
-	// with whatever exception you throw when the precondition is violated
-	@Test
-	public void testCurrentValue_EmptyList() {
-		assertThrows(NoSuchElementException.class, () -> {list.currentValue();});
+	// Calls currentValue() on an empty list.
+	@Test(expected = IllegalStateException.class)
+	public void testCurrentValueEmptyList() {
+		list.currentValue();
 	}
 
 	// Calls currentValue() on non-empty list where current is off right.
-	// Replace with whatever exception you throw when precondition is violated
-	@Test
-	public void testCurrentValue_isOff() {
+	@Test(expected = IllegalStateException.class)
+	public void testCurrentValueIsOff() {
 		list.addFirst(47);
-		list.next();  // this moves current off right
-		assertThrows(NoSuchElementException.class, () -> {list.currentValue();});
+		list.next(); // this moves current off right
+		list.currentValue(); // this should trigger an exception
 	}
-	
+
 	// check current value for first, middle, and last
 	@Test
 	public void testCurrentValue() {
@@ -163,17 +177,17 @@ public class TestCurDoublyLinkedList {
 		list.add(47);
 		list.add(84);
 		list.add(134);
-		
+
 		list.first(); // current points at 134
-		assertEquals(134, (int) list.currentValue());
-		
+		assertEquals(134, list.currentValue(), 0);
+
 		list.next(); // current points at 84
-		assertEquals(84, (int) list.currentValue());
-		
+		assertEquals(84, list.currentValue(), 0);
+
 		list.next(); // current points at 47
-		assertEquals(47, (int) list.currentValue());
+		assertEquals(47, list.currentValue(), 0);
 	}
-	
+
 	// create list w/two, add after first, confirm correct order
 	@Test
 	public void testAddAfterCurrent() {
@@ -181,22 +195,22 @@ public class TestCurDoublyLinkedList {
 		list.add(47);
 		list.first();
 		assertEquals(1, list.size());
-		assertEquals(47, (int) list.current.item);
-		
+		assertEquals(47, (int) list.current.item, 0);
+
 		// 47 <=> 83
 		list.addAfterCurrent(83);
 		assertEquals(2, list.size());
-		assertEquals(83, (int) list.current.item); // current should point to new node		
-	
-		// 47  60 83
+		assertEquals(83, (int) list.current.item, 0); // current should point to new node
+
+		// 47 <=> 60 <=> 83
 		list.first();
 		list.addAfterCurrent(60);
 		assertEquals(3, list.size());
-		assertEquals(60, (int) list.current.item);
+		assertEquals(60, (int) list.current.item, 0);
 		list.first();
-		assertEquals(47, (int) list.current.item);
+		assertEquals(47, (int) list.current.item, 0);
 		list.last();
-		assertEquals(83, (int) list.current.item);
+		assertEquals(83, (int) list.current.item, 0);
 	}
 
 	// position to middle, remove, check successor and contents
@@ -206,13 +220,13 @@ public class TestCurDoublyLinkedList {
 		list.add(47);
 		list.add(84);
 		list.add(134);
-		
+
 		list.next();
 		assertEquals(84, (int) list.current.item);
-		
+
 		list.removeCurrent();
 		assertEquals(47, (int) list.current.item);
-		
+
 		assertEquals(2, list.size());
 		list.first();
 		assertEquals(134, (int) list.current.item);
@@ -220,20 +234,20 @@ public class TestCurDoublyLinkedList {
 		assertEquals(47, (int) list.current.item);
 	}
 
-	// position to end, AddFirst, confirm where it was added
+	// position to end, addFirst, confirm where it was added
 	@Test
 	public void testAddFirst() {
 		// 134 <=> 84 <=> 47
 		list.add(47);
 		list.add(84);
-		
+
 		list.last();
 		assertEquals(47, (int) list.current.item);
-		
+
 		list.addFirst(134);
 		assertEquals(3, list.size());
 		assertEquals(134, (int) list.current.item);
-		
+
 		list.first();
 		assertEquals(134, (int) list.current.item);
 		list.next();
@@ -249,13 +263,13 @@ public class TestCurDoublyLinkedList {
 		list.add(47);
 		list.add(84);
 		list.add(134);
-		
+
 		list.last();
 		assertEquals(47, (int) list.current.item);
-		
-		assertEquals(134, (int)list.removeFirst());
+
+		assertEquals(134, (int) list.removeFirst());
 		assertEquals(84, (int) list.current.item);
-		
+
 		assertEquals(2, list.size());
 		list.last();
 		assertEquals(47, (int) list.current.item);
@@ -266,16 +280,16 @@ public class TestCurDoublyLinkedList {
 	// create list, add to end, confirm correct list
 	@Test
 	public void testAddLast() {
-		// 134 <=> 84 <=> 47
+		// 84 <=> 47 <=> 134
 		list.add(47);
 		list.add(84);
-		
+
 		assertEquals(84, (int) list.current.item);
-		
+
 		list.addLast(134);
 		assertEquals(3, list.size());
 		assertEquals(134, (int) list.current.item);
-		
+
 		list.first();
 		assertEquals(84, (int) list.current.item);
 		list.next();
@@ -291,13 +305,14 @@ public class TestCurDoublyLinkedList {
 		list.add(47);
 		list.add(84);
 		list.add(134);
-		
+
 		assertEquals(134, (int) list.current.item);
-		
+
 		list.removeLast();
 		assertNull(list.current);
 		assertTrue(list.isOffRight());
-		
+		assertFalse(list.isOffLeft());
+
 		assertEquals(2, list.size());
 		list.first();
 		assertEquals(134, (int) list.current.item);
@@ -312,7 +327,7 @@ public class TestCurDoublyLinkedList {
 		list.add(47);
 		list.add(84);
 		list.add(134);
-		
+
 		list.last();
 		assertEquals(47, (int) list.current.item);
 		assertEquals(134, (int) list.getFirst());
@@ -326,7 +341,7 @@ public class TestCurDoublyLinkedList {
 		list.add(47);
 		list.add(84);
 		list.add(134);
-		
+
 		assertEquals(134, (int) list.current.item);
 		assertEquals(47, (int) list.getLast());
 		assertEquals(47, (int) list.current.item);
@@ -337,7 +352,7 @@ public class TestCurDoublyLinkedList {
 	public void testClear() {
 		list.add(47);
 		list.add(83);
-		list.clear();		
+		list.clear();
 		assertNull(list.current);
 		assertEquals(0, list.size());
 		assertFalse(list.isOffLeft());

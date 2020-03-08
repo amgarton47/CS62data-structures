@@ -11,7 +11,7 @@
   "tests": [
     {
       "name": "Game starts with random coin positions",
-      "decr": "Game has been restarted multiple times and coins are randomly allocated every single time.",
+      "descr": "Game has been restarted multiple times and coins are randomly allocated every single time.",
       "score": 1.0
     },
     {

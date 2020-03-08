@@ -63,13 +63,13 @@ public class TestCurDoublyLinkedList {
 
 	// create an empty list, confirm next() throws IllegalStateException
 	@Test(expected = IllegalStateException.class)
-	public void testNext_EmptyList() {
+	public void testNextEmptyList() {
 		list.next();
 	}
 
 	// Calls next() on a non-empty list where current is off the right side
 	@Test(expected = IllegalStateException.class)
-	public void testNext_OffRightSide() {
+	public void testNextOffRightSide() {
 		list.addFirst(47);
 		list.next(); // this moves current off right
 		list.next(); // this should trigger an exception
@@ -107,13 +107,13 @@ public class TestCurDoublyLinkedList {
 
 	// create an empty list, confirm back() throws IllegalStateException
 	@Test(expected = IllegalStateException.class)
-	public void testBack_EmptyList() {
+	public void testBackEmptyList() {
 		list.back();
 	}
 
 	// Calls back() on a non-empty list where current is off the left side
 	@Test(expected = IllegalStateException.class)
-	public void testBack_OffLeftSide() {
+	public void testBackOffLeftSide() {
 		list.addFirst(47);
 		list.back(); // this moves current off left
 		list.back(); // this should trigger an exception
@@ -158,13 +158,13 @@ public class TestCurDoublyLinkedList {
 
 	// Calls currentValue() on an empty list.
 	@Test(expected = IllegalStateException.class)
-	public void testCurrentValue_EmptyList() {
+	public void testCurrentValueEmptyList() {
 		list.currentValue();
 	}
 
 	// Calls currentValue() on non-empty list where current is off right.
 	@Test(expected = IllegalStateException.class)
-	public void testCurrentValue_isOff() {
+	public void testCurrentValueIsOff() {
 		list.addFirst(47);
 		list.next(); // this moves current off right
 		list.currentValue(); // this should trigger an exception
