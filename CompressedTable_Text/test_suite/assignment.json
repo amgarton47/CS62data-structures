@@ -281,13 +281,13 @@
       },
 
       {
-        "name": "testInitialOutput()(compression.Autograder)",
-        "descr": "General correctness: testInitialOutput()",
+        "name": "testInitialOutput(compression.Autograder)",
+        "descr": "General correctness: testInitialOutput",
         "score": 0.5
       },
       {
-        "name": "testInitialCurDLL()(compression.Autograder)",
-        "descr": "General correctness: testInitialCurDLL()",
+        "name": "testInitialCurDLL(compression.Autograder)",
+        "descr": "General correctness: testInitialCurDLL",
         "score": 0.5
       },
       {
