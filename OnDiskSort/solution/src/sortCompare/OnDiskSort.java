@@ -20,7 +20,6 @@ public class OnDiskSort {
 		MergeSort<String> sorter = new MergeSort<String>();
 		OnDiskSort diskSorter = new OnDiskSort(1, new File("sorting_run"), sorter);
 
-//		WordScanner scanner = new WordScanner(new File("sorting_run//test.txt"));
 		WordScanner scanner = new WordScanner(new File("sorting_run//Ihaveadream.txt"));
 
 		System.out.println("running");
@@ -150,12 +149,12 @@ public class OnDiskSort {
 
 		Stopwatch timer1 = new Stopwatch();
 		mergeFiles(writtenFiles, outputFile);
-		System.out.println("One way merge"+ timer1.elapsedTime()); 
+		System.out.println("One way merge "+ timer1.elapsedTime()); 
 
 		System.gc();
 		Stopwatch timer2 = new Stopwatch();
 		mergeFilesLinear(writtenFiles, outputFile);
-		System.out.println("Two"+ timer2.elapsedTime()); 
+		System.out.println("Two way merge"+ timer2.elapsedTime()); 
 
 		clearOutDirectory(workingDirectory, TEMP_FILE_ENDING);
 	}
@@ -230,29 +229,13 @@ public class OnDiskSort {
 	 */
 	protected void mergeFilesLinear(ArrayList<File> sortedFiles, File outputFile) {
 		File temporary = new File(workingDirectory + File.separator + "linear.tempSorted");
-
-		int exponent = 0;
-		int maximum = (int) Math.floor(Math.log(sortedFiles.size()) / Math.log(2));
-		//work up to a power of 2
-		while (exponent < maximum) {
-			for (int i = 0; i < Math.pow(2, maximum); i += Math.pow(2, (exponent + 1))) {
-				int j = (int) (i + Math.pow(2, exponent));
-				merge(sortedFiles.get(i), sortedFiles.get(j), temporary);
-				copyFile(temporary, sortedFiles.get(i));
-			}
-			exponent++;
-		}
-		//handle leftovers.
-		//merge them with the slow version along with the 0-th index that has all of the fast merged files
-		if(Math.pow(2, maximum) < sortedFiles.size()) {
-			int capacity = sortedFiles.size() - (int)Math.pow(2, maximum);
-			ArrayList<File> leftOver = new ArrayList<File>(capacity);
-			for (int i=0; i<capacity; i++) {
-				leftOver.add(sortedFiles.get(i+(int)Math.pow(2, maximum)));
-			}
-			leftOver.add(sortedFiles.get(0));
-			mergeFiles((ArrayList<File>) leftOver, temporary);
-		}
+		
+        for (int len = 1; len < sortedFiles.size(); len *= 2) {
+            for (int lo = 0; lo < sortedFiles.size()-len; lo += len+len) {
+                merge(sortedFiles.get(lo), sortedFiles.get(lo+len), temporary);
+                copyFile(temporary, sortedFiles.get(lo));
+            }
+        }
 		copyFile(temporary, outputFile);
 	}
 
