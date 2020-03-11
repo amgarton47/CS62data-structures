@@ -48,8 +48,8 @@ public class Autograder {
 		// one element
 		list.add(47);
 		list.first();
-		assertNotNull(list.current, "current not null after calling first().");
-		assertEquals(47, (int) list.current.item, "list is: 47, first is 47.");
+		assertNotNull(list.current, "Added 47, then called first() and current was null.");
+		assertEquals(47, (int) list.current.item, "Added 47, then called first(), and current.item was not 47");
 		// off right
 
 		// 83 <=> 47
