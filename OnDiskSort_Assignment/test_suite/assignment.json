@@ -7,7 +7,7 @@
         "package": "sortCompare",
         "type": "java_single_package_runner"
     },
-    "max_score": 21,
+    "max_score": 20,
     "tests": [
         {
             "name": "mergeFiles_SingleFile_Test(sortCompare.Autograder)",
@@ -37,39 +37,24 @@
             "name": "merge_BFinishThenA_Test(sortCompare.Autograder)",
             "score": 1.5
         },
-
         {
             "name": "Uses only two Strings in merge method",
             "score": 2.0
         },
-
         {
           "name": "Appropriate comments (including JavaDoc)",
           "score": 3.0
         },
-
         {
           "name": "Style and formatting",
           "score": 2.0
         },
-
         {
           "name": "General Correctness",
           "score": 2.0
         },
-
-        {
-          "name": "Submitted correctly",
-          "score": 1.0
-        },
-
         {
           "name": "Extra credit (max 2)",
-          "score": 0.0
-        },
-
-        {
-          "name": "On time (negative if late)",
           "score": 0.0
         }
     ],
