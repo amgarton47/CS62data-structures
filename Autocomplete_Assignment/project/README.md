@@ -53,9 +53,10 @@ to quickly grab all the terms that match a prefix in the `Autocomplete` class.
 Notice the phrase "according to the comparator"! We will be using this with the `Term` comparator
 `byPrefixOrder(r)` and we will want to get a match if the key we are searching for is a prefix of the
 element in the list. The bottom line is that you should not use the `equals` method to check for a
-match. Instead, see if compare `returns` a 0. The problem that we have is that the comparator may not be consistent with the `equals` method. If we knew what
+match. Instead, see if `compare` returns a 0. The problem that we have is that the comparator may not be consistent with the `equals` method. If we knew what
 comparator we would be using for comparing terms then we could override `equals`, but in this case we will use different
-comparators at different times.
+comparators at different times. It might sound obvious, but you should not use a linear search to find elements in the list. 
+Instead, as the name of the class indicates `BinarySearchForAll`, you should use binary search (think of what preconditions need to be true to achieve its superior performance).
 
 ```
     /**
