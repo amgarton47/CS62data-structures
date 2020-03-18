@@ -1,6 +1,6 @@
 {
     "title": "Autocomplete Assignment",
-    "assignment": "assignment6",
+    "assignment": "assignment7",
     "info": "You (auto)complete me!",
     "runner": {
         "mainclass": "AutoCompleteMain",
@@ -30,10 +30,6 @@
             "score": 3.0
         },
         {
-            "name": "extra credit (two points max)",
-            "score": 0.0
-        },
-        {
             "name": "submitted correctly (negative if incorrect)",
             "score": 0.0
         },
@@ -57,7 +53,5 @@
             "name": "testAllMatches(autocomplete.Autograder)",
             "score": 2.0
         }
-    ],
-    "title": "AutoComplete Assignment",
-    "writeup": "http://www.cs.pomona.edu/classes/cs062/assignments/ass08.pdf"
+    ]
 }

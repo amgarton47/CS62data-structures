@@ -175,15 +175,10 @@ You will be graded based on the following criteria:
 | Thoroughness of test code                           | 2      |
 | Appropriate comments + JavaDoc           | 3      |
 | Quality of code                    | 4      |
-| Extra Credit                              | 2 |
 
 
 NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
 
-
-## Extra credit
-If you would like some extra credit, create a GUI version of the program that pops up a window, allows
-the user to select the number of matches to be returned and the file to be used, and then uses a `JComboBox` to get input from the user and display the matches.
 
 ### Appendix A - Which Results to Display
 
