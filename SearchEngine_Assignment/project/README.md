@@ -162,10 +162,8 @@ You will be graded based on the following criteria:
 | PostingsList.andMerge: O(n) implementation | 4      |
 | PostingsList.orMerge: O(n) implementation | 5      |
 | Index | 5      |
-| :--------------------------------------- | :----- |
 | Appropriate comments (including JavaDoc) | 1      |
 | Style and Formatting                     | 1      |
-| :--------------------------------------- | :----- |
 
 
 NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
