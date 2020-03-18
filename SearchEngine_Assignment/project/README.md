@@ -10,13 +10,13 @@
 
 ### Inverted Index
 
-The key data structure that allows search engines (like google) to identify pages that match a query quickly is called an inverted index.  An inverted index is a mapping from words to the documents that contain those words, which is called a "postings list".  For example, take the following three documents:
+The key data structure that allows search engines (like Google) to identify pages that match a query quickly is called an inverted index.  An inverted index is a mapping from words to the documents that contain those words, which is called a "postings list".  For example, take the following three documents that contain various words:
 
 > Document 0: a b c d  
 > Document 1: a b d  
 > Document 2: d f g
 
-For simplicity I'm using letters for word, so the first document has four words in it, 'a', 'b', 'c' and 'd'.  The inverted index for this set of documents would be something like:
+For simplicity, we are using letters for each word, so the first document has four words in it, 'a', 'b', 'c' and 'd'.  The inverted index for this set of documents would be something like:
 
 > a: 0, 1  
 > b: 0, 1  
@@ -25,11 +25,11 @@ For simplicity I'm using letters for word, so the first document has four words 
 > f: 2  
 > g: 2  
 
-Notice that now, if we did a search for the word 'd', we can very quickly go to the entry for 'd', get the postings list, which gives us the documents that 'd' occurs in (in this case 0 and 2).
+Notice that now, if we did a search for the word 'd', we can very quickly go to the entry for 'd', get the postings list, which gives us the documents that 'd' occurs in (in this case 0, 1, and 2).
 
 ### Executing queries
 
-Most real search engines allow you to enter more than just one work and would then return the documents that contain *all* of those words.  For example, take the query "a d".  What we'd like to return documents 0 and 1, since both those documents have both words.  We can calculate this from the inverted index by first getting the postings list for 'a'.  Next, we get the postings list for 'd' and AND it with the postings list for 'a'.  To AND two postings lists, we iterate through the lists and generate a new postings list that has *only those documents that occur in both lists*.  In this case, documents 0 and 1.
+Most real search engines allow you to enter more than just one work and would then return the documents that contain *all* of those words.  For example, take the query "a d".  What we'd like to return is documents 0 and 1, since both those documents contain both words 'a' and 'd'.  We can calculate this from the inverted index by first getting the postings list for 'a'.  Next, we get the postings list for 'd' and AND it with the postings list for 'a'.  To AND two postings lists, we iterate through the lists and generate a new postings list that has *only those documents that occur in both lists*.  In this case, documents 0 and 1.
 
 This can be generalized to handle multiple words easily.  For example, take the query "a b c d".  We start by first ANDing the postings lists for 'a' and 'b' together.  This will give us the postings list 0, 1.  We then can take this postings list and AND it with the postings list for 'c', which would give us just 0.  We can continue to merge the current postings list with the postings list for the next word in the query.  In this case, it would be 'd', which would still give us just the document 0 and we're done.
 
@@ -43,7 +43,7 @@ You will be filling in the details of two classes for this assignment.
 
 The `PostingsList` class will be used to store a postings list.  A postings list will be stored as a singly-linked list of integers (holding the document ids, like above) with both a head and a tail reference.  The class will only have three public non-static methods:
 
-* `addDoc`: takes an `int` as a parameter and adds that integer to the *back* of the postings list.  You can assume that the `addDoc` method will be called with increasing document ids so the result postings list will be in sorted order.   You cannot, however, assume that the document IDs passed in will be unique and must make sure not to add them multiple time.  Since they will be called in increasing order, however, this will just require you to check against the last thing in the post list, which should be fast (and easy).  This must be an *O(1)* run-time method.
+* `addDoc`: takes an `int` as a parameter and adds that integer to the *back* of the postings list.  You can assume that the `addDoc` method will be called with increasing document ids so the result postings list will be in sorted order. You cannot, however, assume that the document IDs passed in will be unique and must make sure not to add them multiple times.  Since they will be called in increasing order, however, this will just require you to check against the last thing in the post list, which should be fast (and easy).  This must be an *O(1)* run-time method.
 
 * `getIDS`: returns an `ArrayList<Integer>` of the ids (i.e. integers) stored in this postings list.  This will be useful for debugging and for printing out the documents that match a query.  Note this is generated when this method is called from the underlying linked list.  You should *not* be storing the IDs in an arraylist. 
 
@@ -67,13 +67,13 @@ The `Index` class will store the inverted index, i.e. a mapping from words (`Str
 
 * `getPostingsList`: given a word, return the postings list associated with that word.  *If a word does not exist in the index, return a new postings list that is empty.*
 
-There are many ways that we can store the inverted index.  Given what we've talked about so far, my advice is to store it as two `ArrayList`s.  In the first `ArrayList` store all of the words and in the second, the associated postings list for that word.  For example, if you use this setup, to get the postings list for a given word you first figure out what index the word occurs at in your first `ArrayList`.  You then return the postings list that occurs at that index in the second `ArrayList`.
+There are many ways that we can store the inverted index.  Given what we've talked about so far, our advice is to store it as two `ArrayList`s.  In the first `ArrayList` store all of the words and in the second, the associated postings list for that word.  For example, if you use this setup, to get the postings list for a given word you first figure out what index the word occurs at in your first `ArrayList`.  You then return the postings list that occurs at that index in the second `ArrayList`.
 
 To write these methods, make sure that you look at the documentation for `ArrayList`.  Most of the things you want to do will be already implemented and the class should not require a lot of code.
 
 ## Build Your Own Search Engine
 
-If you've done all of this correctly, then you should be able to run the `SearchEngine` code to interact with your own search engine!  In the starter code I've included two test dataset you can use to try out your search engine:
+If you've done all of this correctly, then you should be able to run the `SearchEngine` code to interact with your own search engine!  In the starter code, we've included two test dataset you can use to try out your search engine:
 
 * `simple.txt`: This file contains the same three "documents" used in the examples above.
 
@@ -133,18 +133,18 @@ Note that it will take a little while for the index to load (30 second or so) fo
 
 ## One path to implementation
 
-There are many ways to go about coding this all up.  As always, I strongly, strongly suggest an incremental approach, where you work on a single method and then test to make sure it works.  If you try and code all of it up and then debug that way, you will have a very, very hard time tracking down all your issues.
+There are many ways to go about coding this all up.  As always, we strongly, strongly suggest an incremental approach, where you work on a single method and then test to make sure it works.  If you try and code all of it up and then debug that way, you will have a very, very hard time tracking down all your issues.
 
 Here's one way to go:
 
 * Write your "node" class and test the basic functionality.
 
-* Write the `addDoc`, `size` and `getIDs` methods.  Test these methods!  I've provided you with some tests in the `PostingsListTest`.  The first four of these tests should pass.  You should also consider writing a few other tests of your own since these tests may not consider all corner cases.
+* Write the `addDoc`, `size` and `getIDs` methods.  Test these methods!  We've provided you with some tests in the `PostingsListTest`.  The first four of these tests should pass.  You should also consider writing a few other tests of your own since these tests may not consider all corner cases.
 
 * Write the `andMerge` method and test with the associated tests (and your own tests).
 
 * Write the `orMerge` method and test with the associated tests (and your own tests).  The `orMerge` should feel fairly similar to the `andMerge` except you have to do a bit more work.
 
-* Implement the `Index` class methods.  Make sure that you understand exactly how you're going to be representing/storing the inverted index and what methods are available for the `ArrayList` class.  A few minutes of research and thinking about this class can save you *a lot* of headache.  I haven't provided any test cases, but I'd encourage you to write a couple of your own.
+* Implement the `Index` class methods.  Make sure that you understand exactly how you're going to be representing/storing the inverted index and what methods are available for the `ArrayList` class.  A few minutes of research and thinking about this class can save you *a lot* of headache.  We haven't provided any test cases, but we'd encourage you to write a couple of your own.
 
 * If everything is working properly, you should now be able to run the `SearchEngine` code.  First try out the simple example.  Test a bunch of different cases to make sure it works correctly and that you don't get any errors.  If that works, move on to the bigger file and try it out.
