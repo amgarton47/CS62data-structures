@@ -148,3 +148,20 @@ Here's one way to go:
 * Implement the `Index` class methods.  Make sure that you understand exactly how you're going to be representing/storing the inverted index and what methods are available for the `ArrayList` class.  A few minutes of research and thinking about this class can save you *a lot* of headache.  We haven't provided any test cases, but we'd encourage you to write a couple of your own.
 
 * If everything is working properly, you should now be able to run the `SearchEngine` code.  First try out the simple example.  Test a bunch of different cases to make sure it works correctly and that you don't get any errors.  If that works, move on to the bigger file and try it out.
+
+## Grading
+
+You will be graded based on the following criteria:
+
+
+| Criterion                                | Points |
+| :--------------------------------------- | :----- |
+| PostingsList.addDoc: O(1) impementation | 2      |
+| PostingsList.size: O(1) implementation | 1      |
+| PostingsList.getID: local ArrayList only | 3      |
+| PostingsList.andMerge: O(n) implementation | 4      |
+| PostingsList.orMerge: O(n) implementation | 5      |
+| Index | 5      |
+
+
+NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
