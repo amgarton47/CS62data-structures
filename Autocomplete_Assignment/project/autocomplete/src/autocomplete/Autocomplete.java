@@ -2,7 +2,6 @@ package autocomplete;
 
 
 
-public class Autocomplete // implements AutocompleteInterface 
-{
+public class Autocomplete { // should implement the AutocompleteInterface 
 
 }
