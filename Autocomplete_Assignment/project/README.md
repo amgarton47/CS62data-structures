@@ -72,8 +72,7 @@ Instead, as the name of the class indicates, you should use binary search (think
     * Object with compare method corresponding to order on aList
     * @return Index of first item in aList matching key or -1 if not in aList
     **/
-    public static <Key> int firstIndexOf(List<Key> aList, Key key,
-    Comparator<Key> comparator);
+    public static <Key> int firstIndexOf(List<Key> aList, Key key, Comparator<Key> comparator);
     /**
     * Returns the index of the last element in aList that equals key
     *
@@ -85,8 +84,7 @@ Instead, as the name of the class indicates, you should use binary search (think
     * Object with compare method corresponding to order on aList
     * @return Location of last item of aList matching key or -1 if no such key.
     **/
-    public static <Key> int lastIndexOf(List<Key> a, Key key,
-    Comparator<Key> comparator);
+    public static <Key> int lastIndexOf(List<Key> a, Key key, Comparator<Key> comparator);
 ```
 
 
