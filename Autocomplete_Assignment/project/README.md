@@ -102,7 +102,7 @@ single method:
     * string to be matched
     * @return List of all matching terms in descending order by weight
     */
-    List<Term> allMatches(String prefix);
+    public List<Term> allMatches(String prefix);
 ```
 
 ### `AutocompleteMain`
