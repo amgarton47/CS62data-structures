@@ -41,8 +41,10 @@ follow all naming conventions specified in this assignment.*
 
 ### `Sorter`
 An interface for sorting algorithms. Implemented by the `MergeSort` class.
+
 ### `MergeSort`
 Implementation of the Mergesort algorithm. This class has already been implemented for you. Note that this implementation is slightly different than the one we have seen in class: it works on ArrayLists rather than arrays,  uses while loops instead of for loops, and does not pass an auxiliary array in the signatures of merge and sort.
+
 ### `WordScanner`
 Implements the Java `Iterator` interface. An iterator over Strings read in as words from an input. This class has already been implemented for you. You will use the constructor, `next()` and `hasNext()` methods.
 
@@ -80,7 +82,7 @@ I/0, you should only need **two** String variables to keep track of the data.
 * `mergeFiles`: takes an ArrayList of Files, each of which should contain sorted data and then uses the `merge` method to eventually merge them into one large sorted file. Notice that the `merge` method only merges two files at a time. The easiest way to merge all of the `n` sorted files is to merge the first two files, then merge the third file with the result of merging the first two files, then the fourth
 in, etc. This is *not* the most efficient way of doing it. However, it will make your life easy (see the
 extra credit for doing it a better way). NOTE: you cannot read and write to a file at the same time,
-so you will need to use another temporary file to store your temporary results as you merge the data.
+so you will need to use a single temporary file to store your temporary results as you merge the data. `copyFile` should come handy: for every time you merge two files together (one sorted and the single temporary) into `outputFile`, use `copyFile` to move the contents from the `outputFile` to the temporary file.
 
 * `main`: This method gets everything going and is provided to you. It creates a `sorter` that does a mergesort
 in memory, then creates a `diskSorter` to do the external merges. Parameters to the `OnDiskSort` sets up directory sorting run to be the working directory for the sorts. It then creates a word scanner
@@ -101,14 +103,20 @@ Java file I/O. For more on file I/O, you can also see **Appendix A - File I/O in
 “I have a dream” speech. It is in a file named "Ihaveadream.txt" and is in with files from last week’s assignment. Be sure to name these exactly as given here, and make sure the directory `sorting_run` is
 in the same level as the `src` and `bin` directories. (If not, then the program won’t find them
 and it will crash!) See the main method of `OnDiskSort` for the names. Note that we may test your
-code using a different directory for temporary files, so your code shouldnt use the name `sorting_run`
+code using a different directory for temporary files, so your code shouldn't use the name `sorting_run`
 except in its main method as a default value.
 
 3. See **Appendix A - File I/O in Java** and **Appendix B - The file system** for some background on the project.
 
 4. Start working on the methods in `OnDiskSort`. Try to understand how they each fit together before beginning work on them. My recommended order for the methods is the one presented in the **Classes** section, though you can jump around and work on various other pieces if you are stuck on one method.
 
+5. Eclipse does not refresh by default the contents of your project. Every time you run your code, you will need to right-click on your project and click on `Refresh`.
 
+6. If you want to build confidence in your code, create your own test files and make sure that you create the appropriate number of temporary files in `sort` and that you correctly merge them into the final `data.sorted` file.
+
+7. The final file will contain all strings starting with a capital letter first. This is to be expected according to `String`'s [`compareTo` method](https://docs.oracle.com/javase/10/docs/api/java/lang/String.html).
+
+  
 ## Grading
 
 You will be graded based on the following criteria:
@@ -142,12 +150,20 @@ files of the same size. That is, if you start with `f` files of size `k`, merge 
 size `2*k`. Then merge those together in pairs to get `f/4` files of size `4*k`. Continue until they are all merged.
 This is optional and you do not have to do it!
 If you do this, we strongly suggest making a new method (i.e. don’t delete your original `mergeFiles`
-method, just rename is to something like `mergeFilesLinear`).
+method, just rename is to something like `mergeFilesLinear`). Similar to `mergeFiles`, create a single temporary file. Start with the first and second file, merge them into the temporary file and then use the `copyFile` method to move the contents to the 
 
 ### Appendix A - File I/O in Java:
 
 For those that haven't had any file I/O experience in Java, we’ll give a brief intro here, but also take a look at the streams cheat sheet available off of the course Documentation page. You can also look
 up information about the classes seen in the code and discussed here via the Java libraries link there. For most I/O, you’ll need to `import java.io.*`.
+
+To create a reference to a file you will use the class `File` whose constructor takes as a parameter a `String` that contains the path that the file will reside. Please note that instantiating an object of type `File` will not create an empty file. Instead, you will need to use a `PrintWriter` as described below.
+
+A few useful things to keep in mind:
+- If you have an object of type `File` you can get its location in memory through its `getAbsolutePath()` method. 
+- Depending on the operating system that you use, the separator in paths might take different forms, e.g., `/` or `\`. A useful shortcut to find it is to use the `File.separator` String.
+- Putting these two things together, you can create a `String` that will be used in `File`'s constructor without hard-coding paths.
+
 The two main classes you’ll be concerned with when doing file I/O in java are `BufferedReader` for
 reading data and `PrintWriter` for writing data. To read data, you can create a new reader by:
 
