@@ -3,21 +3,21 @@
 ## Objectives
 
 For this assignment, you will:
-* Gain experience working with tree data structures
+* Gain experience working with tree data structures of higher than 2 arity
 * Gain more experience with recursive algorithms
 * Implement a basic artificial intelligence algorithm for a two-player zero-sum game
 
 
 ## Description
 
-This week's assignment uses trees to play a small chess-like game. You will build a tree representing
+This week's assignment uses trees to play a small chess-like game called Hex-a-Pawn. You will build a tree representing
 all possible states that the game board can be in. You will then implement several different players that
 consult this tree to make moves as they play Hex-a-Pawn. The players include: a human player that asks
 the user for moves to make; a random player that picks possible moves at random; and a computer player
-that improves its strategy by learning from past mistakes. In the end, you will be able to run the different
+that improves its strategy by learning from past mistakes (but not from past victories). In the end, you will be able to run the different
 players against each other.
 
-This assignment has been found in the Java Structures textbook by Bailey. You can find more information at the Appendix A. 
+This assignment can been found in the [12.11 Laboratory of the Java Structures textbook by Bailey](http://www.cs.williams.edu/~bailey/JavaStructures/Book_files/JavaStructures.pdf). You can find more information at Appendix A
 which describes the Hex-a-Pawn
 game as well as listing some steps to help you get started. It also tells you that a complete game
 tree for 3x3 boards has 252 nodes. You will find some helpful debugging
@@ -33,8 +33,8 @@ to different types of players. Each of these player classes will implement the `
 ### `GameTree` 
 
 You are responsible for designing the `GameTree` class. This is a tree structure with potentially many children
-instead of just two. The included starter defines the most basic methods to instantiate and traverse a
-GameTree.  But, as you design your `Player` sub-classes, you will surely identify additional methods
+instead of just two. The included starter defines the most basic methods to implement and traverse a
+GameTree.  But, as you design your `Player` sub-classes, you might identify additional methods
 that you would like to implement in the `GameTree` class.  Think about the methods you will need for 
 this class and how you can represent the structure.
 
@@ -49,6 +49,9 @@ The root node of the tree contains the starting board position (`new HexBoard(3,
 white (`HexBoard.WHITE`). Note that this is not a binary tree since it is possible for a node in the tree to
 have multiple children each child corresponding to a legal action by the player.
 
+Do not start implementing this class before you have carefully reviewed the provided `HexBoard` and `HexMove` classes. 
+They contain useful methods and variables that you can incorporate in your `GameTree` class. Make sure you also check the Getting started section and Appendix A.
+
 
 ### `Player` classes
 
@@ -62,9 +65,9 @@ player. The return value of this method is the `Player` who won the game. Inside
 the board configuration is a win for the opponent. If not, the player makes a move based on what type of
 player it is. After making a move, you should then call the opponents play method.
 
-You will have to think carefully about how the `Player` classes interact with the `GameTree` class this
-should inform what methods and instance variables you include in the `GameTree` class. You can also create
-a main method inside each `Player` class where you create two players and have them play a game this will
+You will have to think carefully about how the `Player` classes interact with the `GameTree` class; this
+should inform what methods and instance variables you include in the `GameTree` class. You are also encouraged to create
+a main method inside each `Player` class where you create two players and have them play a game. This will
 help you debug your code.
 
 ## Grading
@@ -72,21 +75,18 @@ help you debug your code.
 You will be graded based on the following criteria:
 
 
-| Criterion                                | Points |
-| :--------------------------------------- | :----- |
-| Efficient implementation of `GameTree` class | 3      |
-| Correct `HumanPlayer`                       | 3     |
-| Correct `RandPlayer`                       | 3     |
-| Correct `CompPlayer` that trims tree over time                       | 3     |
-| General Correctness                           | 3      |
-| Appropriate comments + JavaDoc           | 2      |
-| Style and Formatting                     | 2      |
-| Extra Credit                              | 2 |
+| Criterion                                      | Points |
+| :--------------------------------------------- | :----- |
+| Efficient implementation of `GameTree` class   | 3      |
+| Correct `HumanPlayer`                          | 3      |
+| Correct `RandPlayer`                           | 3      |
+| Correct `CompPlayer` that trims tree over time | 3      |
+| General Correctness                            | 2      |
+| Appropriate comments + JavaDoc                 | 1      |
+| Style and Formatting                           | 1      |
 
 
 NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
-
-
 
 ## Getting started
 
@@ -94,22 +94,18 @@ NOTE: Code that does not compile will not be accepted! Make sure that your code 
 
 2. The javadoc documentation for the classes can be found [here](http://www.cs.williams.edu/~freund/cs136-073/javadoc/hexapawn/index.html).
 
-3. You can play a game of Hex-a-Pawn from the command-line by running the `HexBoard` class (that class
+3. You can play a game of Hex-a-Pawn by running the `HexBoard` class (that class
 can compile on its own even though the `Player` class requires `GameTree` to be defined).
 
 4. You can look at the `main` method in the `HexBoard` class to see an example of how to code up a game between two players.
 
 
-## Extra credit
-If you would like some extra credit, create a GUI version of the game that pops up a window, allows the
-user to select the kind of opponent, displays nice graphics and allows the user to move by dragging pieces.
-
 ### Appendix A - Gardner's Hex-a-Pawn
 
-The Hex-a-Pawn game was developed in the early sixties by Martin Gardner. Three white and
-three black pawns are placed on a 3x3 chessboard. On alternate moves they
+The Hex-a-Pawn game was developed in the early sixties by [Martin Gardner](https://en.wikipedia.org/wiki/Martin_Gardner). Three white and
+three black pawns are placed on a 3x3 board. On alternate moves, they
 may be either moved forward one square, or they may capture an opponent on
-the diagonal. The game ends when a pawn is promoted to the opposite rank, or
+the immediate diagonal. The game ends when a pawn is promoted to the opposite rank, or
 if a player loses all their pieces, or if no legal move is possible.
 
 In his article in the March 1962 Scientific American, Gardner discussed a
@@ -128,14 +124,14 @@ of possible moves.
 
 During the course of this assignment you are to
 1. Construct a tree of Hex-a-Pawn board positions. Each node of the tree is
-called a `GameTree`. The underlying data structure is of your own design.
+called a `GameTree`. The underlying data structure is of your own design but we provide you with a lot of hints.
 Think about the ways in which you might want to navigate this tree (downwards
 and upwards) and design a data structure to enable those operations.
 
 2. Construct three classes of `Player`s that play the game of Hex-a-Pawn.
 These three classes may interact in pairs to play a series of games.
 
-Available for your use are three Javafiles:
+Available for your use are three Java files:
 
 `HexBoard`: This class describes the state of a board. The default board is the 3×3
 starting position. You can ask a board to print itself out (`toString`) or to
@@ -160,8 +156,8 @@ Read these class files carefully. You should not expect to modify them.
 There are many approaches to experimenting with Hex-a-Pawn. One series
 of experiments might be the following:
 
-1. Compile `HexBoard.java` and run it as a program. Play a few games
-against the computer. You may wish to modify the size of the board. Very
+1. Run `HexBoard` and play a few games
+against the computer. If you wish to modify the size of the board, very
 little is known about the games larger than 3x3.
 
 2. Implement a `GameTree` class. This class should have a constructor that,
@@ -185,10 +181,10 @@ hasn’t already lost (i.e., if the opponent hasn’t won), this player prints t
 board, presents the moves, and allows a human (through a scanner)
 to select a move. The play is then handed off to the opponent.
 
-4. The second player, `RandPlayer`, should play randomly. Make sure you
+4. The second player, `RandPlayer`, should pick a move randomly. Make sure you
 check for a loss before attempting a move.
 
 5. The third player, called `CompPlayer`, should attempt to have the CompPlayer
-object modify the game tree to remove losing moves.
+object modify the game tree to remove losing moves. Too bad it doesn't learn from its victories, too.
 
-Clearly, `Player`s may be made to play against each other in any combination.
+`Player`s may be made to play against each other in any combination.
