@@ -1,4 +1,4 @@
-package hexApawn;
+package hexAPawn;
 
 
 // A class for representing a HexAPawn move

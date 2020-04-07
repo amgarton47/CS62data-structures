@@ -17,8 +17,8 @@ the user for moves to make; a random player that picks possible moves at random;
 that improves its strategy by learning from past mistakes (but not from past victories). In the end, you will be able to run the different
 players against each other.
 
-This assignment can been found in the [12.11 Laboratory of the Java Structures textbook by Bailey](http://www.cs.williams.edu/~bailey/JavaStructures/Book_files/JavaStructures.pdf). You can find more information at Appendix A
-which describes the Hex-a-Pawn
+This assignment can been found in the [12.11 Laboratory of the Java Structures textbook by Bailey](http://www.cs.williams.edu/~bailey/JavaStructures/Book_files/JavaStructures.pdf). 
+You can find more information at Appendix A which describes the Hex-a-Pawn
 game as well as listing some steps to help you get started. It also tells you that a complete game
 tree for 3x3 boards has 252 nodes. You will find some helpful debugging
 advice (e.g., if your tree has 370 nodes then you have the wrong win test).
@@ -66,9 +66,12 @@ the board configuration is a win for the opponent. If not, the player makes a mo
 player it is. After making a move, you should then call the opponents play method.
 
 You will have to think carefully about how the `Player` classes interact with the `GameTree` class; this
-should inform what methods and instance variables you include in the `GameTree` class. You are also encouraged to create
+should inform what methods and instance variables you include in the `GameTree` class. 
+We have provided you with a lot of TODO comments and hints on how to achieve this and a main method for each class that will help you with debugging.
+
+<!-- You are also encouraged to create
 a main method inside each `Player` class where you create two players and have them play a game. This will
-help you debug your code.
+help you debug your code. -->
 
 ## Grading
 

@@ -1,4 +1,4 @@
-package hexApawn;
+package hexAPawn;
 
 // An interface for a player of hexapawn.
 // (c) duane a. bailey
