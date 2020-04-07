@@ -1,4 +1,4 @@
-package hexAPawn;
+package hexApawn;
 
 /**
  * A GameTree is a tree of HexBoard positions.
