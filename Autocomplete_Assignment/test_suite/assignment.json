@@ -10,8 +10,33 @@
     "max_score": 20,
     "tests": [
         {
-            "name": "Term class & comparables",
-            "score": 2.25
+            "name": "testCompareTo(autocomplete.Autograder)",
+            "descr": "Term class & comparables",
+            "score": 1
+        },
+        {
+            "name": "testTermByReverseWeightOrder(autocomplete.Autograder)",
+            "descr": "Term class & comparables",
+            "score": 1
+        },
+        {
+            "name": "testTermByPrefixOrder(autocomplete.Autograder)",
+            "descr": "Term class & comparables",
+            "score": 1
+        },
+        {
+            "name": "testFirstIndexOf(autocomplete.Autograder)",
+            "descr": "Search Operations",
+            "score": 1.5
+        },
+        {
+            "name": "testLastIndexOf(autocomplete.Autograder)",
+            "descr": "Search Operations",
+            "score": 1.5
+        },
+        {
+            "name": "testAllMatches(autocomplete.Autograder)",
+            "score": 2.0
         },
         {
             "name": "Load files and user interaction",
@@ -28,30 +53,6 @@
         {
             "name": "Appropriate comments (including JavaDoc)",
             "score": 3.0
-        },
-        {
-            "name": "submitted correctly (negative if incorrect)",
-            "score": 0.0
-        },
-        {
-            "name": "testTermByReverseWeightOrder(autocomplete.Autograder)",
-            "score": 0.5
-        },
-        {
-            "name": "testTermByPrefixOrder(autocomplete.Autograder)",
-            "score": 0.25
-        },
-        {
-            "name": "testFirstIndexOf(autocomplete.Autograder)",
-            "score": 1.0
-        },
-        {
-            "name": "testLastIndexOf(autocomplete.Autograder)",
-            "score": 2.0
-        },
-        {
-            "name": "testAllMatches(autocomplete.Autograder)",
-            "score": 2.0
         }
     ]
 }

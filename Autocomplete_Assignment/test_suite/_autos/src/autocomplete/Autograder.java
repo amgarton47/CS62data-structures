@@ -25,6 +25,32 @@ public class Autograder {
 
 
 	/******************* TERM CLASS TESTING *******************/
+	
+	
+	@Test
+	public void testCompareTo() {
+		List<Term> lst = new ArrayList<Term>();
+		lst.add(term1);		// hello, 7
+		lst.add(term2);		// goodbye, 99
+		lst.add(term3);		// banana, 27
+		lst.add(term4);		// goodie, 47
+		lst.add(term5);		// goofie, 12
+        lst.add(term6);		// Goodbye, 50
+
+		Collections.sort(lst);
+
+		List<Term> lst2 = new ArrayList<Term>();
+        lst2.add(term6);		// Goodbye, 50
+		lst2.add(term3);		// banana, 27
+		lst2.add(term2);		// goodbye, 99
+		lst2.add(term4);		// goodie, 47
+		lst2.add(term5);		// goofie, 12
+		lst2.add(term1);		// hello, 7
+
+		assertEquals(lst2, lst);
+	}
+	
+	
 	@Test
 	public void testTermByReverseWeightOrder() {
 		List<Term> lst = new ArrayList<Term>();
@@ -58,7 +84,7 @@ public class Autograder {
 		lst.add(term5);		// goofie, 12
         lst.add(term6);		// Goodbye, 50
 
-		Collections.sort(lst, Term.byPrefixOrder(1));
+		Collections.sort(lst, Term.byPrefixOrder(7));
 
 		List<Term> lst2 = new ArrayList<Term>();
         lst2.add(term6);		// Goodbye, 50
