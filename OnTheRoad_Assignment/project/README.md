@@ -1,9 +1,10 @@
-# Assignment 09 - Maps
+# Assignment - Maps
 
 ## Objectives
 
 For this assignment, you will:
 * Gain experience with graph algorithms.
+* Work on a real-world problem.
 
 ## Description
 
