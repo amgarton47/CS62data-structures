@@ -8,8 +8,8 @@ For this assignment, you will:
 
 ## Description
 
-As residents of southern California, most of us face the realities of having to drive or ride from one place
-to another on streets and freeways. Given that this is a heavily populated area, we also have to contend
+Most of you have lived somewhere where we need to drive or ride from one place
+to another on streets and freeways to get around. Given that this is a heavily populated area, we also have to contend
 with traffic. If we attempt to drive on a local freeway during rush hour, we often experience traffic jams and
 long delays, requiring us to find alternative routes or simply put up with the traffic and wait.
 
