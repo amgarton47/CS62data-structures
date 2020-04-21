@@ -68,7 +68,7 @@ or feel free to think up a more creative solution.
 
 ### `FreqList`
 
-`FreqList` should contain a `HashMap` (make sure to carefully read the [documentation of the class](https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html)). Its keys will be words and its values the number of times that each associated word occurs. When a word is added, if it already occurs in the array list then its value (i.e. its frequency)
+`FreqList` should contain a `HashMap` (make sure to carefully read the [documentation of the class](https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html)). Its keys will be words and its values the number of times that each associated word occurs. When a word is added, if it already occurs in the dictionary then its value (i.e. its frequency)
 is incremented by 1. If it doesn’t exist, add the word to the `HashMap` object with a value (i.e. frequency) of 1.
 
 Your `FreqList` class should have an instance variable that keeps track of the 
