@@ -68,6 +68,18 @@ assignments and loops) to complete all of the methods so that they work correctl
    
 2. Install the Eclipse IDE
    
+   - Go to https://www.eclipse.org/downloads/
+   - Click the orange "Download 64-Bit" button.  This should take you to a page specific for your operating system.
+   - Click the "Download" button.
+   - When the download is complete, run the application.  This is the Eclipse installer which will help you install Eclipse.
+   - When the application runs, you'll see a number of different versions of Eclipse that you can install.  **Select "Eclipse IDE for Java Developers"**.  It should be the first one.
+   - Follow the instructions of the installer selecting all of the default options.
+   
+3. Running Eclipse
+   - When the installation finishes, there should be a green button to "Launch" Eclipse.  Click on it.  (In the future, you'll need to search for Eclipse as an application and then run it.  I'll let you configure your own machine however makes the most sense for you."
+   - When Eclipse first starts, it will ask you to enter the workspace location:
+   
+   ![Eclipse Startup](images/eclipse_startup.png "Eclipse Startup")
   
 
 ## Some Basic Setup
