@@ -1,17 +1,14 @@
-# Introduction to CLI, Eclipse, and Java
+# Introduction to Eclipse, and Java
 
 ## Learning Goals
 
-* Introduction to the shell command line interface.
+* Install Java and Eclipse
 * Introduction to Eclipse.
 * Introduction to Github and assignment repos.
 * Building and running simple Java programs.
 * Project submission (committing changes and pushing them back to github.
 
 ## Key Terms and Concepts
-* `CLI` - [Command Line Interface](https://en.wikipedia.org/wiki/Command-line_interface): running 
-   programs by typing commands and arguments to a command intepreter like 
-   the Linux/OSX [shell](https://en.wikipedia.org/wiki/Unix_shell).
 * `Eclipse` - an [Integrated Development Environment](https://en.wikipedia.org/wiki/Integrated_development_environment) 
    that includes powerful tools for editing, running, and debugging programs. In this course we will be using it as a Java IDE.
 * `Git` - a distributed [version control system](https://en.wikipedia.org/wiki/Version_control) 
@@ -22,7 +19,7 @@
 
 ## Overview
 The goals of this assignment are to:
-   1. learn to run a few basic commands in a Linux/OSX terminal window.
+   1. Install Java and Eclipse
    2. bring up Eclipse as an Integrated Development Environment.
    3. establish (if you do not already have one) a free personal
       [github account](https://help.github.com/en/articles/signing-up-for-a-new-github-account).
@@ -58,7 +55,22 @@ As provided, several of these methods are incomplete (and have **// TODO** comme
 what needs to be done). You are to fill in the missing code (mostly a few simple
 assignments and loops) to complete all of the methods so that they work correctly.
 
-## Getting Started
+## Installing Java and Eclipse
+
+1. Install the Java JDK (Java Development Kit), version 1.8 ("Java 8")
+
+   - Go to https://java.com/en/download/ and click the "Java Download" button
+   - You should see your system (seen in red "Download Java for ...") and you should also see "Recommended Version 8 Update ..."
+   - Click "Agree and Start Free Download"
+   - Once downloaded open/run the file and follow instructions to install Java.
+   
+   If this doesn't work, go to https://www.java.com/en/download/manual.jsp and select your operating system manually.
+   
+2. Install the Eclipse IDE
+   
+  
+
+## Some Basic Setup
 
 1. Click the terminal window icon on the Desktop menu bar.  A new window
    with a shell prompt will appear.  Create a new workspace directory
