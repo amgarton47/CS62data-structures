@@ -1,4 +1,4 @@
-# Introduction to Eclipse, and Java
+# Introduction to Java and Eclipse
 
 ## Learning Goals
 
