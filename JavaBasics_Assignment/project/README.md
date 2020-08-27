@@ -8,7 +8,7 @@ As you program, do commit and push regularly.
 
 ## Assignment Details
 
-The details for this assignment is a pdf that can be found ![here](images/assignment_handout.pdf).
+The details for this assignment is a pdf that can be found [here](images/assignment_handout.pdf).
 
 
 ## Submitting your work
