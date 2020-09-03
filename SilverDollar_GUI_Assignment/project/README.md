@@ -1,4 +1,4 @@
-# Assignment 01 - Graphics Silver Dollar Game
+# Assignment 2 - Graphics Silver Dollar Game
 
 ## Learning Goals
 
