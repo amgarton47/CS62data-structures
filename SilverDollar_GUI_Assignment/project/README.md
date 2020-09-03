@@ -38,7 +38,7 @@ as the required `JFrame` when the new coins are constructed if you are within th
 The `CoinSquare` class represents a square. This class is already implemented for you and contains methods to interact with and gain information about the coin contained in a square. Again, these methods are useful for the assignment and it will be very helpful to understand them before beginning the assignment.
 
 ### `GraphicsCoinStrip`
-The `GraphicsCoinStrip` class uses the `Coin` and `CoinSquare` classes to implement the Silver Dollar Game. This class is partially implemented. There are TODO comments where you need to add code. The `contains` methods that `Coin` and `CoinSquare` inherit from `Eclipse2D` and `Rectangle2D` will be helpful.
+The `GraphicsCoinStrip` class uses the `Coin` and `CoinSquare` classes to implement the Silver Dollar Game. This class is partially implemented. There are TODO comments where you need to add code. Both `Coin` and `CoinSquare` have a `contains` method that takes an `x` and `y` and returns a `boolean` indicating if the `x,y` location is within them (there are inherited from `Eclipse2D` and `Rectangle2D`, respectively).
 
 Notice that there are no `play` or `move` methods in the `GraphicsCoinStrip` class because the mouse is in control of the game. Much of what drives the game is the mouse event handling which can be found in the inner class `CoinMouseListener` inside the `GraphicsCoinStrip` class. The purpose of the inner class `CoinMouseListener` is to encapsulate all of the methods that deal with the mouse movement.
 
