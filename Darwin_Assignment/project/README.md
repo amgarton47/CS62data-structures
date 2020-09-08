@@ -1,4 +1,4 @@
-# Assignment 02 - Darwin
+# Assignment 3 - Darwin
 
 ### This is a pair assignment! Feel free to work with a partner.
 
