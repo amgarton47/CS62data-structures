@@ -1,6 +1,6 @@
 # Assignment 3 - Darwin
 
-### This is a pair assignment! Feel free to work with a partner.
+### This is a pair assignment! Feel free to work with a partner. If you do this, one of you will need to make a team and then the other person can join it.
 
 
 ## Learning Goals
