@@ -41,7 +41,7 @@ This `run` method will create a new empty arrayList of type `CapacityArrayList<S
 
 - `public static ArrayList<Double> trial(int maxSize, CapacityArrayList<Integer> capacityIncrements)`
 
-Your `trial` method will compare the results from `run` for a specific number of strings to be added to the arrayList while varying its increments when it's full. It should make one call to `run` for each entry in the `capacityIncrements` ArrayList. The results of these trials should be returned in a `CapacityArrayList` whose size is the same as that of `capacityIncrements` and the entry at position `i` in the returned arrayList should correspond to the trial with increment set to the entry at position `i` in `capacityIncrements`.
+Your `trial` method will compare the results from `run` for a specific number of strings to be added to the arrayList while varying its increments when it's full. It should make one call to `run` for each entry in the `capacityIncrements` ArrayList. The results of these trials should be returned in a `ArrayList` whose size is the same as that of `capacityIncrements` and the entry at position `i` in the returned arrayList should correspond to the trial with increment set to the entry at position `i` in `capacityIncrements`.
 
 - `public static void main(String[] args)`
 
