@@ -1,6 +1,6 @@
 # Timing ArrayList Additions
 
-[//]: # We encourage you to work in pairs on this lab as it is useful to learn from others and two pairs of eyes on a program are more likely to find errors.  Having someone to discuss the results of your program will also make it more likely that you'll get a deeper understanding of the results.  Don't forget to acknowledge your partner in the json file.
+<!-- We encourage you to work in pairs on this lab as it is useful to learn from others and two pairs of eyes on a program are more likely to find errors.  Having someone to discuss the results of your program will also make it more likely that you'll get a deeper understanding of the results.  Don't forget to acknowledge your partner in the json file. -->
 
 ## Learning Goals
 
@@ -10,7 +10,7 @@
 
 ## Key Terms and Concepts
 
-* `ArrayList` - An ArrayList is a resizable array-like data structure, where items can be added and removed regardless of the initialized size (See 1.3 pg. 136 in the textbook and the lecture notes for more information).
+* `ArrayList` - An ArrayList is a resizable array-like data structure, where items can be added and removed regardless of the initialized size <!-- (See 1.3 pg. 136 in the textbook and--> the lecture notes for more information).
 
 
 ## `CapacityArrayList` Class
