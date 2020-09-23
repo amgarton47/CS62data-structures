@@ -40,7 +40,7 @@ Be careful about the ordering of the operands, i.e., when applying an operator t
 
 ## Text Postfix Calculator
 
-Your program will prompt the user for either a number of an operator and will either add the number to the stack directly or perform the operation and then add the result back to the stack.  Here is an example execution of the program following the example above:
+Your program will prompt the user for either a number or an operator and will either add the number to the stack directly or perform the operation and then add the result back to the stack.  Here is an example execution of the program following the example above:
 
 	Enter a number or operator: 52
 	
