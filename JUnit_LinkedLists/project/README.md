@@ -11,7 +11,7 @@
 
 ## JUnit
 
-A "unit" test is a test that tests a very small, portion of code, often some functionality of a single function/method.  `JUnit` is a framework for that allows you to write meaningful tests, run them regularly and easily identify which parts of your code might be problematic.
+A "unit" test is a test that tests a very small, portion of code, often some functionality of a single function/method.  `JUnit` is a framework that allows you to write meaningful tests, run them regularly and easily identify which parts of your code might be problematic.
 
 To get started, we're going to write some JUnit tests to test the functionality of the `LinkedList` class.
 
