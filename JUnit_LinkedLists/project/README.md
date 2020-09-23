@@ -15,7 +15,7 @@ A "unit" test is a test that tests a very small, portion of code, often some fun
 
 To get started, we're going to write some JUnit tests to test the functionality of the `LinkedList` class.
 
-To create a new set of tests, right click on your project and then select `New -> JUnit Test case`.  This should pop up a dialog box.  Under the "Name" field, put the name "LinkedListTest". Then press "Finish".  When you do, you may see a window pop-up telling you that JUnit 5 is not on the build path.  If it does, make sure that "Add JUnit 5 library to the build path" is selected and click "OK".
+To create a new set of tests, right click on your project and then select `New -> JUnit Test case`.  This should pop up a dialog box.  Make sure that `New JUnit Jupiter test` is selected at the top.  Under the "Name" field, put the name "LinkedListTest". Then press "Finish".  When you do, you may see a window pop-up telling you that JUnit 5 is not on the build path.  If it does, make sure that "Add JUnit 5 library to the build path" is selected and click "OK".
 
 You should now see a class called LinkedListTest with a *very* simple test.
 
