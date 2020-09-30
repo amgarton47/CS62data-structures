@@ -1,4 +1,4 @@
-# Assignment 04 - Compression
+# Assignment 5 - Compression
 
 ## Learning Goals
 
