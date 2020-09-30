@@ -21,10 +21,11 @@ Structure
 
 3. Run tools/create_project.sh. For example:
 
-	tools/create_project.sh Timing-ArrayList pomonacs622020fa/lab3
+    tools/create_project.sh Timing-ArrayList pomonacs622020fa/lab3
 
 4. Create a new assignment in github classroom.  It should be private and select starter code for how to import. For example:
-	pomonacs622020sp/lab3
+
+    pomonacs622020sp/lab3
 
 5. Share invitation URL with students.
 
