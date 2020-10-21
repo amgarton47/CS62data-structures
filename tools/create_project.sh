@@ -61,11 +61,11 @@ git remote add origin https://github.com/$REPO_NAME.git
 git pull origin master
 
 # back to CWD
-cd ${CWD}
+cd "${CWD}"
 # copy contents
-rsync -rv --delete --exclude=.git ${PROJ_DIR}/ ${REPO_DIR}
+rsync -rv --delete --exclude=.git "${PROJ_DIR}"/ "${REPO_DIR}"
 # back to repo
-cd ${REPO_DIR}
+cd "${REPO_DIR}"
 
 git add -A
 if [ -f .gitignore ]
