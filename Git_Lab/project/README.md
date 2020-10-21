@@ -125,7 +125,6 @@ One team member should:
      ```
      git clone https://github.com/creators_github_id/your_new_repo.git
      cd your_new_repo
-
      ```
 * create initial contents (in the cloned repo copy)
    * edit the `README.md` to identify the which lab this is and the names of your team members
