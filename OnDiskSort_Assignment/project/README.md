@@ -150,7 +150,7 @@ files of the same size. That is, if you start with `f` files of size `k`, merge 
 size `2*k`. Then merge those together in pairs to get `f/4` files of size `4*k`. Continue until they are all merged.
 This is optional and you do not have to do it!
 If you do this, we strongly suggest making a new method (i.e. don’t delete your original `mergeFiles`
-method, just rename is to something like `mergeFilesLinear`). Similar to `mergeFiles`, create a single temporary file. Start with the first and second file, merge them into the temporary file and then use the `copyFile` method to move the contents to the 
+method, just rename is to something like `mergeFilesLinear`). Similar to `mergeFiles`, create a single temporary file. Start with the first and second file, merge them into the temporary file and then use the `copyFile` method to move the contents of the temporary file over either the first or second file and keep track of the name.  Merge the third and fourth and again copy the contents back to either the third or fourth filename and keep track of that.  After one pass, you'll have half as many files.  Repeat this process.
 
 ### Appendix A - File I/O in Java:
 
