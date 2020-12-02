@@ -1,0 +1,62 @@
+---------------------------
+Long test
+Shortest distance from 1st St & 101st Ave to 3rd St & 103rd Ave:
+ Begin at 1st St & 101st Ave
+ Continue to Freeway South @ 101st Ave (0.06)
+ Continue to Freeway South @ 102nd Ave (2.75)
+ Continue to Freeway South @ 103rd Ave (3.2)
+ Continue to 3rd St & 103rd Ave (0.08)
+Total distance: 6.09 miles
+Shortest driving time from 1st St & 103rd Ave to 3rd St & 102nd Ave:
+ Begin at 1st St & 103rd Ave
+ Continue to 2nd St & 103rd Ave (3 minutes 14.4 seconds)
+ Continue to 3rd St & 103rd Ave (3 minutes 30.3 seconds)
+ Continue to 3rd St & 102nd Ave (3 minutes 41.5 seconds)
+Total time: 10 minutes 26.2 seconds
+Shortest distance from 1st St & 101st Ave to 4th St & 102nd Ave:
+ Begin at 1st St & 101st Ave
+ Continue to Freeway South @ 101st Ave (0.06)
+ Continue to Freeway South @ 102nd Ave (2.75)
+ Continue to 2nd St & 102nd Ave (0.09)
+ Continue to 3rd St & 102nd Ave (2.5)
+ Continue to 4th St & 102nd Ave (2.0)
+Total distance: 7.4 miles
+
+---------------------------
+Short test
+Shortest distance from Baseline & Monte Vista to 1st & Indian Hill:
+ Begin at Baseline & Monte Vista
+ Continue to 6th & Claremont (1.7)
+ Continue to 1st & Indian Hill (1.2)
+Total distance: 2.9 miles
+Shortest driving time from Baseline & Monte Vista to 1st & Indian Hill:
+ Begin at Baseline & Monte Vista
+ Continue to Foothill & Mills (2 minutes 24.0 seconds)
+ Continue to Foothill & Indian Hill (1 minutes 12.0 seconds)
+ Continue to 1st & Indian Hill (1 minutes 48.0 seconds)
+Total time: 5 minutes 24.0 seconds
+Shortest driving time from Foothill & Indian Hill to 6th & Claremont:
+ Begin at Foothill & Indian Hill
+ Continue to Foothill & Mills (1 minutes 12.0 seconds)
+ Continue to 6th & Claremont (1 minutes 12.0 seconds)
+Total time: 2 minutes 24.0 seconds
+
+---------------------------
+Weak test2
+Should print out that the graph is disconnected
+Disconnected Map
+
+---------------------------
+Disjoint test
+Should print out that the graph is disconnected
+Disconnected Map
+
+---------------------------
+Weak test
+Should print out that the graph is disconnected
+Disconnected Map
+
+---------------------------
+Broken test
+Should print out error about file formatting
+Formatting error
