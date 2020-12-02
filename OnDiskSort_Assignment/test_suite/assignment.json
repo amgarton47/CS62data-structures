@@ -1,6 +1,6 @@
 {
     "title": "On-Disk Sort Assignment",
-    "assignment": "assignment5",
+    "assignment": "assignment6",
     "info": "In this assignment, please verify (by hand) that students did not sort any more data than maxSize in memory. Also, if a student fails a test, investigate the cause and leave a helpful comment on the final PDF. To manually check student output, modify their main to output the data.sorted file to a permanent location. The default runner deletes all files after execution.",
     "runner": {
         "mainclass": "OnDiskSort",
@@ -42,22 +42,21 @@
             "score": 2.0
         },
         {
-          "name": "Appropriate comments (including JavaDoc)",
-          "score": 3.0
+            "name": "Appropriate comments (including JavaDoc)",
+            "score": 3.0
         },
         {
-          "name": "Style and formatting",
-          "score": 2.0
+            "name": "Style and formatting",
+            "score": 2.0
         },
         {
-          "name": "General Correctness",
-          "score": 2.0
+            "name": "General Correctness",
+            "score": 2.0
         },
         {
-          "name": "Extra credit (max 2)",
-          "score": 0.0
+            "name": "Extra credit (max 2)",
+            "score": 0.0
         }
     ],
-    "title": "On Disk Sort",
     "writeup": "http://www.michaeljbannister.com/teaching/62-s16/Assignment03/Assignment03.pdf"
 }

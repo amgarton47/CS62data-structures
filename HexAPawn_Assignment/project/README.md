@@ -3,7 +3,8 @@
 ## Objectives
 
 For this assignment, you will:
-* Gain experience working with tree data structures of higher than 2 arity
+
+* Gain experience working with tree data structures of higher than 2 arity (number of children)
 * Gain more experience with recursive algorithms
 * Implement a basic artificial intelligence algorithm for a two-player zero-sum game
 
@@ -17,7 +18,7 @@ the user for moves to make; a random player that picks possible moves at random;
 that improves its strategy by learning from past mistakes (but not from past victories). In the end, you will be able to run the different
 players against each other.
 
-This assignment can been found in the [12.11 Laboratory of the Java Structures textbook by Bailey](http://www.cs.williams.edu/~bailey/JavaStructures/Book_files/JavaStructures.pdf). 
+This assignment can been found in the [12.11 Laboratory of the Java Structures textbook by Bailey](http://www.cs.williams.edu/~bailey/JavaStructures/Book_files/JavaStructures.pdf).
 You can find more information at Appendix A which describes the Hex-a-Pawn
 game as well as listing some steps to help you get started. It also tells you that a complete game
 tree for 3x3 boards has 252 nodes. You will find some helpful debugging
@@ -30,18 +31,20 @@ In this assignment, you must implement a `GameTree` class as well as three diffe
 to different types of players. Each of these player classes will implement the `Player` interface.
 
 
-### `GameTree` 
+### `GameTree`
 
 You are responsible for designing the `GameTree` class. This is a tree structure with potentially many children
 instead of just two. The included starter defines the most basic methods to implement and traverse a
 GameTree.  But, as you design your `Player` sub-classes, you might identify additional methods
-that you would like to implement in the `GameTree` class.  Think about the methods you will need for 
+that you would like to implement in the `GameTree` class.  Think about the methods you will need for
 this class and how you can represent the structure.
 
 The picture below shows the top two levels (i.e. the nodes at depth 0 and 1) of the game tree that results
-from a call to the constructor: 
+from a call to the constructor:
 
+~~~java
     new GameTree(new HexBoard(3, 3), HexBoard.WHITE)
+~~~
 
 ![Board](board.png "Board")
 
@@ -49,7 +52,7 @@ The root node of the tree contains the starting board position (`new HexBoard(3,
 white (`HexBoard.WHITE`). Note that this is not a binary tree since it is possible for a node in the tree to
 have multiple children each child corresponding to a legal action by the player.
 
-Do not start implementing this class before you have carefully reviewed the provided `HexBoard` and `HexMove` classes. 
+Do not start implementing this class before you have carefully reviewed the provided `HexBoard` and `HexMove` classes.
 They contain useful methods and variables that you can incorporate in your `GameTree` class. Make sure you also check the Getting started section and Appendix A.
 
 
@@ -58,7 +61,9 @@ They contain useful methods and variables that you can incorporate in your `Game
 You will implement three player classes: `HumanPlayer`, `RandPlayer`, and `CompPlayer`. Each player implements
 the `Player` interface. This interface has only one method:
 
+~~~java
     public Player play(GameTree node, Player opponent);
+~~~
 
 The `play` method takes in a `GameTree` corresponding to some configuration of the board and the opponent
 player. The return value of this method is the `Player` who won the game. Inside play, you should check if
@@ -66,7 +71,7 @@ the board configuration is a win for the opponent. If not, the player makes a mo
 player it is. After making a move, you should then call the opponents play method.
 
 You will have to think carefully about how the `Player` classes interact with the `GameTree` class; this
-should inform what methods and instance variables you include in the `GameTree` class. 
+should inform what methods and instance variables you include in the `GameTree` class.
 We have provided you with a lot of TODO comments and hints on how to achieve this and a main method for each class that will help you with debugging.
 
 <!-- You are also encouraged to create
@@ -93,7 +98,7 @@ NOTE: Code that does not compile will not be accepted! Make sure that your code 
 
 ## Getting started
 
-1. Follow the same steps with the first lab/assignment to clone the github repository for this assignment. 
+1. Follow the same steps with the first lab/assignment to clone the github repository for this assignment.
 
 2. The javadoc documentation for the classes can be found [here](http://www.cs.williams.edu/~freund/cs136-073/javadoc/hexapawn/index.html).
 
@@ -125,7 +130,8 @@ of possible moves.
 
 #### Procedure
 
-During the course of this assignment you are to
+During the course of this assignment you are to:
+
 1. Construct a tree of Hex-a-Pawn board positions. Each node of the tree is
 called a `GameTree`. The underlying data structure is of your own design but we provide you with a lot of hints.
 Think about the ways in which you might want to navigate this tree (downwards
@@ -144,7 +150,7 @@ also ask a `HexBoard` if the current position is a win for a particular color—
 takes a color and returns the opposite color. The `main` method of this class
 demonstrates how `HexBoard`s are manipulated.
 
-`HexMove`: This class describes a valid move. The components of the arraylist 
+`HexMove`: This class describes a valid move. The components of the arraylist
 turned from the `HexBoard.moves` contains objects of type `HexMove`. Given
 a `HexBoard` and a `HexMove` one can construct the resulting `HexBoard` using
 a `HexBoard` constructor.
@@ -174,7 +180,7 @@ little is known about the games larger than 3x3.
 
    The hardest part of your initial implementation of this class will be
    generating the (recursive) tree of all possible moves.  If you look
-   at the `HexBoard` class you will see sample code that generates 
+   at the `HexBoard` class you will see sample code that generates
    a list of possible moves and the board resulting from each.
 
  Hints: 608 nodes? No win test. 370? Wrong win test. 150? early stop.

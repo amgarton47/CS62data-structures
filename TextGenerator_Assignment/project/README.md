@@ -3,20 +3,16 @@
 ## Objectives
 
 For this assignment, you will:
+
 * Gain practice using Java Generics
 * Gain practice with `HashMap`s
 * Gain proficiency in using objects to build more complex data structures
 
 ## Description
 
-In this assignment, we will use a basic technique in Artificial Intelligence to automatically generate text.
-You will write a program that reads in a piece of text and then uses that text as a basis to generate new
-text. The method for generating new text uses simple probability.
+In this assignment, we will use a basic technique in Artificial Intelligence to automatically generate text. You will write a program that reads in a piece of text and then uses that text as a basis to generate new text. The method for generating new text uses simple probability.
 
-First, we read in a piece of text word by word (we consider punctuation symbols to be words) keeping track
-of how often each three-word sequence (trigram) appears. For example, consider the following excerpt from
-Rudyard Kipling’s poem “If”:
-
+First, we read in a piece of text word by word (we consider punctuation symbols to be words) keeping track of how often each three-word sequence (trigram) appears. For example, consider the following excerpt from Rudyard Kipling’s poem “If”:
 
     If you can keep your head when all about you
     Are losing theirs and blaming it on you,
@@ -26,24 +22,17 @@ Rudyard Kipling’s poem “If”:
 
 In this excerpt, the trigrams are: “if you can”, “you can keep”, “can keep your”, “keep your head”, “your head when”, “head when all”, etc.
 
-Once we have counted all of the trigrams, we can compute the probability that a word *w*<sub>3</sub> will immediately
-follow two other words (*w*1*w*2)
- using the following equation:
+Once we have counted all of the trigrams, we can compute the probability that a word *w*<sub>3</sub> will immediately follow two other words (*w*1*w*2) using the following equation:
 
 *p*(*w*3|*w*1, *w*2) = *n*<sub>123</sub>/*n*<sub>12</sub>
 
-where *n*<sub>123</sub> is the number of times we observed the sequence (*w*1*w*2*w*3) and *n*<sub>12</sub> is the number of times we
-observed the sequence  *w*1*w*2.
+where *n*<sub>123</sub> is the number of times we observed the sequence (*w*1*w*2*w*3) and *n*<sub>12</sub> is the number of times we observed the sequence  *w*1*w*2.
 
-For example, let’s compute the probability that the word “can” will immediately follow the words “if you”.
-In the excerpt above, the sequence “if you can” occurs three times. The sequence “if you” also occurs three
-times. So the probability is given by,
+For example, let’s compute the probability that the word “can” will immediately follow the words “if you”. In the excerpt above, the sequence “if you can” occurs three times. The sequence “if you” also occurs three times. So the probability is given by,
 
 *p*(*can*|*if you*) = *3/3 = 1*
 
-The probability that any other word comes immediately after “if you” is *0*. Consider another example. In
-the excerpt above, the words “you can” appear *3* times. The first time followed by “keep”, the second time
-by “trust”, and the last time by “wait”. Thus,
+The probability that any other word comes immediately after “if you” is *0*. Consider another example. In the excerpt above, the words “you can” appear *3* times. The first time followed by “keep”, the second time by “trust”, and the last time by “wait”. Thus,
 
 * *p*(*keep*|*you can*) = *1/3*
 * *p*(*trust*|*you can*) = *1/3*
@@ -71,11 +60,11 @@ or feel free to think up a more creative solution.
 `FreqList` should contain a `HashMap` (make sure to carefully read the [documentation of the class](https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html)). Its keys will be words and its values the number of times that each associated word occurs. When a word is added, if it already occurs in the dictionary then its value (i.e. its frequency)
 is incremented by 1. If it doesn’t exist, add the word to the `HashMap` object with a value (i.e. frequency) of 1.
 
-Your `FreqList` class should have an instance variable that keeps track of the 
+Your `FreqList` class should have an instance variable that keeps track of the
 number of word references added.
 This is equivalent to the sum of all the values (i.e. frequencies) in the `HashMap`.
 
-You will probably also find it helpful to implement a `toString` method that 
+You will probably also find it helpful to implement a `toString` method that
 dumps out a list of the words and their reference counts.
 
 The `FreqList` class should also have a method with the following definition:
@@ -95,7 +84,7 @@ before attempting to write or test the probabilistic `get` method.
 
 We suggest that you write the `StringPair` class next.
 `StringPair` should represent a pair of two strings.
-Fill in the constructor, and write 
+Fill in the constructor, and write
 a `toString` method that returns something like "<string_one,string_two>".
 Because we will be using these with `HashMap` you will also have to implement
 `equals` and `hashCode` methods that do their comparisons and computations
@@ -113,7 +102,7 @@ create a `main()` method that tests them by:
 ### `TextGenerator`
 
 The `TextGenerator` class should also contain a `HashMap` object. In this case, the keys will be sequences of two words (e.g., “you can”) that you will represent through the `StringPair` class you created. The values will be objects
-of type `FreqList`. 
+of type `FreqList`.
 
 We have provided you with startup code in the `main` method of class `TextGenerator` that will pop up a
 dialog box to allow the user to choose a file containing the input text. We have also provided the headers of
@@ -152,7 +141,7 @@ in the wind”:
     {...
     <how,many>=Frequency List: <seas=1> <times=3> <ears=1> <roads=1> <years=2> <deaths=1>, <many,roads>=Frequency List: <must=1>, <must,the>=Frequency List: <cannon=1>, <?,the>=Frequency List: <answer=3>,...}
 
-And 
+And
 
     Generated data:
     how many years can a man ? how many years can a mountain exist before they ' re forever banned ?
@@ -172,11 +161,13 @@ This output indicates that after the word pair “how many”, the words “road
 
 **Warning**: As a general rule it is good to be as specific as possible with import statements. Thus, when you import the package with the class, use
 
+~~~java
     import java.util.Random;
     import java.util.HashMap;
     import java.util.Map;
+~~~
 
-### `WordStream` 
+### `WordStream`
 
 This class is already implemented for you. It processes a text file and breaks up the input into separate words that can be requested using the method `nextToken`. In the `main` method of the `TextGenerator` class, there is an object of type `WordStream` called `ws`. You can get successive words from `ws` by calling
 `ws.nextToken()` repeatedly. Before getting a new word, always check that there is a word available by evaluating `ws.hasMoreTokens()`, which will return true if there are more words available. If you call `nextToken()` when there are no more words available (i.e., you’ve exhausted the input), then it will throw
@@ -187,16 +178,16 @@ an `IndexOutOfBoundsException`.
 
 1. Think carefully about the design of this program before sitting down at a computer. What would a reasonable `hashCode` method be for `StringPair`? What other methods and instance variables might the `FreqList` class need? For the `get` method in the `FreqList` class, take a piece of paper and create different examples of frequency lists. For each example, work out what the `get` method would return for different values of `p` (e.g., if the frequency list contained 4 words that each occurred once and *p* = *0.45*, what word would be returned?)
 
-2.  You are now ready to get started! 
+2.  You are now ready to get started!
 
    - We recommend starting with the `FreqList` class and its `main()` test cases.
    - Next we suggest implementing the `StringPair` class and `main()` test cases.
    - Next we suggest that you implement and test `TextGenerator.enter()`,
      followed by `TextGenerator.getNextWord()`.
-   - Only after all of these work should you work on the actual text 
+   - Only after all of these work should you work on the actual text
      generation in `TextGenerator.main()`.
 
-Again, try and develop incrementally. That is, get one small piece working 
+Again, try and develop incrementally. That is, get one small piece working
 and then move on to another piece.  Do not attempt to move on to the next
 step until you are confident of the correctness of the code you wrote in
 the previous step.
@@ -226,9 +217,9 @@ NOTE: Code that does not compile will not be accepted! Make sure that your code 
 
 ## Submitting your work
 
-Double-check that your work is indeed pushed in Github! It is your responsibility to ensure that you do so before the deadline. Don't forget to commit and push your changes as you go and to edit the provided `json`. 
+Double-check that your work is indeed pushed in Github! It is your responsibility to ensure that you do so before the deadline. Don't forget to commit and push your changes as you go and to edit the provided `json`.
 
- ## Extra credit
+## Extra credit
 
 There are many ways in which you might extend such a program. For example, as described, word pairs
 which never appeared in the input will never appear in the output. Is there a way you could introduce a bit

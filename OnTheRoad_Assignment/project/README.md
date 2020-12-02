@@ -1,36 +1,19 @@
-# Assignment - Maps
+# Assignment - Maps (The Geographic Kind)
 
 ## Objectives
 
 For this assignment, you will:
+
 * Gain experience with graph algorithms.
 * Work on a real-world problem.
 
 ## Description
 
-Most of you have lived somewhere where we need to drive or ride from one place
-to another on streets and freeways to get around. Given that this is a heavily populated area, we also have to contend
-with traffic. If we attempt to drive on a local freeway during rush hour, we often experience traffic jams and
-long delays, requiring us to find alternative routes or simply put up with the traffic and wait.
+Most of you have lived somewhere where we need to drive or ride from one place to another on streets and freeways to get around. Given that this is a heavily populated area, we also have to contend with traffic. If we attempt to drive on a local freeway during rush hour, we often experience traffic jams and long delays, requiring us to find alternative routes or simply put up with the traffic and wait.
 
-Fortunately, technology offers at least some assistance. With ubiquitous wireless Internet connections,
-powerful devices embedded into cars and available in a mobile form, we have easy access to information that
-can help. Aside from providing the obvious ability to download traffic reports and maps on demand, these
-devices have gone a step further; given up-to-the-minute traffic information and with a little computing
-power, your device can actively aid you in finding the best way to get from one place to another, optimized
-not only for distance, but also for the shortest driving time given the current traffic conditions. Further, if
-all cars used such a system, as drivers were diverted around the scene of an accident, traffic conditions would
-change, and the advice offered by drivers' in-car or mobile devices would also change, optimally routing cars
-around a traffic jam by sending different cars down different alternate paths. This way, even the alternatives
-might flow as quickly as possible. (And, taking things a step further, Google has made a lot of recent progress
-on self-driving cars, which can optimize the traffic problem even further.)
+Fortunately, technology offers at least some assistance. With ubiquitous wireless Internet connections, powerful devices embedded into cars and available in a mobile form, we have easy access to information that can help. Aside from providing the obvious ability to download traffic reports and maps on demand, these devices have gone a step further; given up-to-the-minute traffic information and with a little computing power, your device can actively aid you in finding the best way to get from one place to another, optimized not only for distance, but also for the shortest driving time given the current traffic conditions. Further, if all cars used such a system, as drivers were diverted around the scene of an accident, traffic conditions would change, and the advice offered by drivers' in-car or mobile devices would also change, optimally routing cars around a traffic jam by sending different cars down different alternate paths. This way, even the alternatives might flow as quickly as possible. (And, taking things a step further, Google has made a lot of recent progress on self-driving cars, which can optimize the traffic problem even further.)
 
-Many of these features are already available on smartphones and in-car systems. And while there are a
-lot of different kinds of technology you need in order to build a system like this, the core of the problem is
-actually one that's familiar to us in this course. For this project, you will write a simplified version of an
-important piece of such a system: given a map of streets and freeways, along with a snapshot of the current
-traffic between points on the map, your program will be capable of finding the shortest distance or fastest
-route to get from one location on the map to another.
+Many of these features are already available on smartphones and in-car systems. And while there are a lot of different kinds of technology you need in order to build a system like this, the core of the problem is actually one that's familiar to us in this course. For this project, you will write a simplified version of an important piece of such a system: given a map of streets and freeways, along with a snapshot of the current traffic between points on the map, your program will be capable of finding the shortest distance or fastest route to get from one location on the map to another.
 
 ## Our view of a street map
 
@@ -59,6 +42,7 @@ on the map in which decisions would need to be made, such as:
 
 Connecting pairs of locations on the map are stretches of road. In order to solve our problem, we'll need
 to know two things about each stretch of road:
+
 * Its length, in miles.
 * The current speed of traffic traveling on it, in miles per hour.
 
@@ -98,7 +82,7 @@ miles and (sometimes) driving time of each of the segments of the trip, as well 
 
 If you consider all of the data that we'll need to represent this abstraction, the task of organizing it
 can seem overwhelming. However, there is a well-known data structure that represents this system in a
-straightforward way: a directed graph. Using a directed graph, locations on our map can be represented as 
+straightforward way: a directed graph. Using a directed graph, locations on our map can be represented as
 vertices, and the stretches of road connecting locations can be represented as edges. (Since traffic travels in
 only one direction on a given stretch of road, it makes good sense that the graph should be directed.)
 Each vertex in the graph will have a human-readable name for the location it represents. For example,
@@ -135,7 +119,35 @@ be formatted and commented, for readability.
 The first section of the input defines the names of the map locations. First is a line that specifies the
 number of locations. If there are n locations, the next n lines of the input (not counting blank lines or
 comments) will contain the names of each location. The locations will be stored in the order read in an
-`ArrayList` of Strings.
+`ArrayList` of `Strings`.
+
+~~~text
+# LOCATIONS
+
+# number of locations
+15
+
+# intersections
+1st St & 101st Ave
+1st St & 102nd Ave
+1st St & 103rd Ave
+2nd St & 101st Ave
+2nd St & 102nd Ave
+2nd St & 103rd Ave
+3rd St & 101st Ave
+3rd St & 102nd Ave
+3rd St & 103rd Ave
+
+# Freeway North locations
+Freeway North @ 101st Ave
+Freeway North @ 102nd Ave
+Freeway North @ 103rd Ave
+
+# Freeway South locations
+Freeway South @ 101st Ave
+Freeway South @ 102nd Ave
+Freeway South @ 103rd Ave
+~~~
 
 The next section of the input defines the road segments. Each road segment will be an edge in the directed
 graph. The first line of this section specifies the number of segments. Following that are the appropriate
@@ -149,6 +161,73 @@ number of road segment definitions, with each segment defined on a line with fou
 Each road segment will be stored in an object from class `Segment`, and the collection of all road segment
 will initially be stored in an ArrayList of such objects.
 
+~~~text
+# ROAD SEGMENTS
+
+# number of road segments
+40
+
+# 1st St
+0 1 1.5 30.0
+1 0 1.5 27.5
+1 2 2.0 30.5
+2 1 2.0 27.5
+
+# 2nd St
+3 4 1.5 26.5
+4 3 1.5 28.0
+4 5 2.0 30.2
+5 4 2.0 24.5
+
+# 3rd St
+6 7 1.5 29.0
+7 6 1.5 28.5
+7 8 2.0 35.2
+8 7 2.0 32.5
+
+# 101st Ave
+0 3 2.3 37.5
+3 0 2.3 37.4
+3 6 2.5 39.2
+6 3 2.5 38.5
+
+# 102nd Ave
+1 4 2.3 30.3
+4 1 2.3 32.5
+4 7 2.5 31.5
+7 4 2.5 30.9
+
+# 103rd Ave
+2 5 2.3 42.6
+5 2 2.3 40.5
+5 8 2.5 42.8
+8 5 2.5 43.2
+
+# Freeway North
+11 10 2.75 57.6
+10 9 3.2 59.3
+
+# Freeway North on and off ramps
+0 9 0.05 40.1
+9 0 0.05 39.5
+4 10 0.1 37.1
+10 4 0.1 39.0
+8 11 0.07 35.4
+11 8 0.07 37.6
+
+# Freeway South
+12 13 2.75 60.0
+13 14 3.2 59.5
+
+# Freeway South on and off ramps
+0 12 0.06 40.0
+12 0 0.06 40.5
+4 13 0.09 38.5
+13 4 0.09 39.0
+8 14 0.08 41.5
+14 8 0.08 37.5
+~~~
+
 Finally, the desired trips are defined. Again, the section begins with a line specifying the number of trips.
 Following that are an appropriate number of trip requests, with each trip request appearing on a line with
 three values on it:
@@ -161,6 +240,19 @@ shortest driving time.
 Trips will be stored as objects from class `TripRequest`, containing their three defining values, and the
 collection of all trips will be stored in an `ArrayList`.
 
+~~~text
+# TRIPS
+
+# number of trips to analyze
+4
+
+# the trips
+0 8 D
+1 8 T
+2 7 T
+12 14 D
+~~~
+
 Your program should read the vertices and edges from the input, build a graph (or multiple graphs),
 then process the trip requests in the order that they appear. The output for each trip request is described
 later in this write-up.
@@ -171,8 +263,9 @@ vertices, different configurations of edges, different names, different distance
 The code to read in these values is provided in the class `FileParser`. As well as the constructor, this
 class provides methods `getVertices`, `getSegments`, and `getTrips`. There is also the method `makeGraph`:
 
+~~~java
     public EdgeWeightedDigraph makeGraph(boolean isDistance) {
-
+~~~
 
 that returns a weighted digraph. If `isDistance` is true, the it should return a graph in which the edges represent
 distances between location, while if it is false, the edges represent times.
@@ -180,14 +273,14 @@ distances between location, while if it is false, the edges represent times.
 ## Implementing your program
 
 Use the `EdgeWeightedDigraph` class to represent your directed graphs. (Why does it make more sense to use
-an adjacency list implementation than an matrix-based one for this particular problem?). Make sure you read its code carefully.
+an adjacency list implementation than a matrix-based one for this particular problem?). Make sure you read its code carefully.
 
 The problem we need to solve, that of finding the fastest or shortest trip along a network of roads, is
-not an uncommon one in computing. In fact, it's so common that it's already been solved abstractly. Our
+common in computing. In fact, it's so common that it's already been solved abstractly. Our
 problem is an instance of the single-source, positive-weighted, shortest-path problem. In other words, from
 one particular vertex (a single source), we'll be finding the shortest path to another vertex, where all of the
 edges have a positive weight (in our case, distance or speed, neither of which will ever be negative or zero)
-associated with them. We'll use a well-known algorithm called Dijkstra's Shortest-Path Algorithm to solve
+associated with them. We'll use a well-known algorithm called **Dijkstra's Shortest-Path Algorithm** to solve
 this problem. You will want to use the version of Dijkstra Algorithm described in class, as it is the simplest
 to implement and often the fastest. You will need a priority queue to implement Dijkstra Algorithm. You will be needing a min-priority queue and we have provided such a class, `IndexMinPQ` for your convenience.
 
@@ -214,7 +307,7 @@ Most of your work will be in filling out the static methods in class `GraphAlgor
 vertex in the graph with an arraylist of edges in the shortest path.
 
 The last few algorithms in this class have not been discussed earlier. `getShortestPath` takes a start and
-end node and uses the data calculated by dijkstra to return an arraylist of the edges of the shortest path that connects the start and end node. `printShortestPath` prints this information out as described below. 
+end node and uses the data calculated by dijkstra to return an arraylist of the edges of the shortest path that connects the start and end node. `printShortestPath` prints this information out as described below.
 
 We've provided you with class `testGraphs` in order to provide some simple tests for these algorithms. (Of
 course, you should provide more testing to make sure your code is correct. Think `JUnit`!) We will want you
@@ -299,8 +392,8 @@ You will be graded based on the following criteria:
 | Handles trip requests correctly          | 3      |
 | Creates correct output                   | 4      |
 | Appropriate comments + JavaDoc           | 2      |
-| Total                                    | 21     |  
+| Total                                    | 21     |
 
 
 
-NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it. 
+NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
