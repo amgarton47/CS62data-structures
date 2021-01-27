@@ -96,7 +96,7 @@ public class Token {
 	 * 
 	 * @return string representation of a Token
 	 */
-	String toString() {
+	public String toString() {
 		// TODO: Complete this line of code so that it will also print the value of the token
 		
 		return "Token's color is " + color + " and has value ";
@@ -123,7 +123,7 @@ public class Token {
 		System.out.println(example.isHighValue());
 
 		// 4. test setValue and isMax
-		example.setValue(MAX_VALUE);
+		example.setValue(10);
 		System.out.println(example.isMax());
 
 		// 5. test toString
