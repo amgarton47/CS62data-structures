@@ -147,18 +147,19 @@ Once you've been approved as a student, message me on slack by typing @David Kau
    (**Note:** If you have two-factor authentication enabled for your Github account, 
    you will need to disable it prior to entering your credentials here)
 
+6. You'll see a screen with "master" checked.  Click "Next".
 
-6. **Carefully** browse to the destination which needs to be your workspace that you created on your Desktop. 
+7. **Carefully** browse to the destination which needs to be your workspace that you created on your Desktop. 
 
 ![Destination](images/destination.png "Destination")
 
-7. Follow the following screens to complete cloning.
+8. Follow the following screens to complete cloning.
 
 ![Existing](images/existing.png "Existing")
 
 ![Finish](images/finish.png "Finish")
 
-8. You should now be able to see your newly-cloned starter code. 
+9. You should now be able to see your newly-cloned starter code. 
 
 ## Your first coding project ##
 
