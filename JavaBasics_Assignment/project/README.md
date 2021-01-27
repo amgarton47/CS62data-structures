@@ -54,7 +54,6 @@ You must comment your code. We will be using the JavaDoc commenting style. To be
 
    A comment for each method describing what the method does. 
    This comment should describe the what but not the how.
-   `@param`, `@return` and `@throws` tags for each method (when appropriate)
-   `pre-` and `post`- conditions as appropriate
+   `@param`, `@return` and `@throws` tags for each method (when appropriate).
 
 Double-check that your work is indeed pushed in Github! It is your responsibility to ensure that you do so before the deadline.
