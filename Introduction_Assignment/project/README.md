@@ -19,13 +19,14 @@
 
 ## Overview
 The goals of this assignment are to:
-   1. Install Java and Eclipse
-   2. bring up Eclipse as an Integrated Development Environment.
-   3. establish (if you do not already have one) a free personal
+   1. Get slack setup for the course
+   2. Install Java and Eclipse
+   3. bring up Eclipse as an Integrated Development Environment.
+   4. establish (if you do not already have one) a free personal
       [github account](https://help.github.com/en/articles/signing-up-for-a-new-github-account).
-   4. import a clone of the master-copy for this project into Eclipse.
-   5. fill in the missing code in a simple Java program.
-   6. submit your work by committing and pushing it back to github.
+   5. import a clone of the master-copy for this project into Eclipse.
+   6. fill in the missing code in a simple Java program.
+   7. submit your work by committing and pushing it back to github.
 
 ## Classes
 
@@ -54,6 +55,18 @@ methods:
 As provided, several of these methods are incomplete (and have **// TODO** comments explaining
 what needs to be done). You are to fill in the missing code (mostly a few simple
 assignments and loops) to complete all of the methods so that they work correctly.
+
+## Signing up for slack
+
+We're going to use slack for this class for asking questions outside of class, etc.  If you haven't used it before, it's a fairly standard posting platform that with a number of extra features that we won't heavily utilize for this class, but that you're welcome to play with.
+
+### Signing up for slack
+
+If you haven't used slack at Pomona before follow the instructoins at https://pomona.app.box.com/v/SlackDocuments/file/702470770217 to create a new account and add yourself to the student workspace.
+
+### Message me on slack so I can add you to the CS62 channel
+
+Once you've been approved as a student, message me on slack by typing @David Kauchak followed by some message.  I'll then add you to the CS62 channel for this course.  Note that it can take ITS a little while to approve your addition to the student workspace, so feel free to move on to the rest of the lab while you wait.
 
 ## Installing Java and Eclipse
 
