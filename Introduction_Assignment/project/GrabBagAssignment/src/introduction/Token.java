@@ -8,12 +8,12 @@ import java.util.Random;
  * @author: YOUR NAME HERE
  */
 public class Token {
-	private static final int MAX_VALUE = 10;	// max legal value the token can take
+	int MAX_VALUE = 10;	// max legal value the token can take
 
-	private String color;	// The color of the imagined token
-	private int value;		// The value of the imagined token
+	String color;	// The color of the imagined token
+	int value;		// The value of the imagined token
 
-	private static String[] colors = {
+	String[] colors = {
 		"Green", "Blue", "Yellow", "Red"
 	};
 
@@ -23,7 +23,7 @@ public class Token {
 	 *	@param	color of the desired Token
 	 *	@param	numerical value of desired Token
 	 */
-	public Token(String newColor, int newValue) {
+	Token(String newColor, int newValue) {
 		color = newColor;
 		value = newValue;
 	}
@@ -31,7 +31,7 @@ public class Token {
 	/**
 	 * Creates a Token with randomly chosen color and value
 	 */
-	public Token() {
+	Token() {
 		Random rand = new Random();
 		color = colors[rand.nextInt(colors.length)];
 		value = rand.nextInt(MAX_VALUE + 1);
@@ -42,7 +42,7 @@ public class Token {
 	 *
 	 * @return color of this Token
 	 */
-	public String getColor() {
+	String getColor() {
 		return color;
 	}
 
@@ -51,7 +51,7 @@ public class Token {
 	 *
 	 * @return value of this Token
 	 */
-	public int getValue() {
+	int getValue() {
 		// TODO: Have this function return the value of this Token
 	}
 
@@ -60,7 +60,7 @@ public class Token {
 	 *
 	 * @param color desired color
 	 */
-	public void setColor(String color) {
+	void setColor(String newColor) {
 		// TODO: Have this function change the color of this Token
 	}
 
@@ -69,7 +69,7 @@ public class Token {
 	 *
 	 * @param value desired value
 	 */
-	public void setValue(int value) {
+	void setValue(int newValue) {
 		// TODO: Have this function change the value of this Token
 	}
 
@@ -78,7 +78,7 @@ public class Token {
 	 *
 	 * @return true if this Token has maximum value
 	 */
-	public boolean isMax() {
+	boolean isMax() {
 		return(value == MAX_VALUE);
 	}
 
@@ -87,7 +87,7 @@ public class Token {
 	 *
 	 * @return true if this Token has a higher than average value
 	 */
-	public boolean isHighValue() {
+	boolean isHighValue() {
 		// TODO write this function so that it returns true if the value is greater than half the maximum value
 	}
 
@@ -96,7 +96,7 @@ public class Token {
 	 * 
 	 * @return string representation of a Token
 	 */
-	public String toString() {
+	String toString() {
 		// TODO: Complete this line of code so that it will also print the value of the token
 		
 		return "Token's color is " + color + " and has value ";
