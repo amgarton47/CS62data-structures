@@ -60,7 +60,7 @@ assignments and loops) to complete all of the methods so that they work correctl
 
 We're going to use slack for this class for asking questions outside of class, etc.  If you haven't used it before, it's a fairly standard posting platform that with a number of extra features that we won't heavily utilize for this class, but that you're welcome to play with.
 
-### Signing up for slack
+### Sign up for slack
 
 If you haven't used slack at Pomona before follow the instructoins at https://pomona.app.box.com/v/SlackDocuments/file/702470770217 to create a new account and add yourself to the student workspace.
 
@@ -179,10 +179,6 @@ You should fill in the missing code in `Token.java` first because  `Bag.java` de
 
 *Commit* your changes and *Push* them back to Github.
    
-   Make sure you edit the `.json` file you are given with every lab/assignment to include 
-   your username, your partner's username (if collaboration is allowed), and indicate 
-   if you did any extra credit work.
-
    Enable the Git Repositories view:
 
    ![Git View](images/git_view.png "Git View")
@@ -220,8 +216,7 @@ You should fill in the missing code in `Token.java` first because  `Bag.java` de
    Submitting correctly is your responsibility, and if you forget to submit or 
    submit unsuccessfully without following up, everyone will be unhappy. 
 
-   **Important:** The last commit you push by the due date is the one we will look at and grade.
-
+   **Important:** For assignments, the last commit you push by the due date is the one we will look at and grade.
 
 ## Helpful Considerations
 
@@ -229,35 +224,5 @@ You should fill in the missing code in `Token.java` first because  `Bag.java` de
 **AVOID** one big push at the end of your work.   
 We want to be able to see the progressive development process that you followed.
 
-## Grading
-Your submission (in your own personal github repo) will be graded based on the following criteria:
-
-| Criterion                                                                                        | Points |
-| :----------------------------------------------------------------------------------------------- | :----- |
-| all `Token` methods work correctly                                                               | 3      |
-| all `Bag` methods work correctly                                                                 | 3      |
-| submitted correctly                                                                              | 1      |
-| builds correctly                                                                                 | 1      |
-| [Style and formatting*](https://github.com/pomonacs622020sp/Handouts/blob/master/style_guide.md) | 1      |
-| **Total**                                                                                        | **9** |
-
-*Style and Formatting refers to the correct use of Java constructs including booleans, loop constructs, etc. Think of it as good writing style for programs.
-
-NOTE: Code that does not compile will not be accepted! Make sure that your code compiles and runs before submitting it.
-
-You must comment your code. We will be using the JavaDoc commenting style. To be compliant with JavaDoc, you must have the following:
-
-   Each comment on a method or class should start with `/**` and end with `**/`. 
-   Every line in between should start with a `*` and be appropriately indented. 
-   (Comments on variables and constants do NOT have to use this style unless they are public.)
-
-   A comment describing the class right before the class declaration 
-   (i.e. after the `import` statements). This comment should include the `@author` tag 
-   after the class description, and the `@version` tag after the author tag.
-
-   A comment for each method describing what the method does. 
-   This comment should describe the what but not the how.
-   `@param`, `@return` and `@throws` tags for each method (when appropriate)
-   `pre-` and `post`- conditions as appropriate
-
-Double-check that your work is indeed pushed in Github! It is your responsibility to ensure that you do so before the deadline.
+## Wrapping up
+When you're all done, make sure that you've pushed the latest version of your code via git.  Labs are participation based, so make sure that you've pushed something by the end of the lab.
