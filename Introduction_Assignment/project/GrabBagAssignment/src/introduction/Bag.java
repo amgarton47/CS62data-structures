@@ -89,7 +89,7 @@ public class Bag {
 	 */
 	 public static void main(String[] args) {
 		// create a bag full of random cips
-		Bag example = new Bag(DEFAULT_TOKENS);
+		Bag example = new Bag(10);
 
 		// test firstToken ... to print the first Token
 		example.firstToken();
