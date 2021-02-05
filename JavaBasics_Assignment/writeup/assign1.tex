@@ -1,0 +1,193 @@
+\documentclass[11pt]{article}
+
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{hyperref}
+
+\title{CS62 - Java Practice}
+
+\author{}
+\date{}
+
+\parindent=0in
+
+\parskip 7.2pt 
+
+\begin{document}
+\maketitle
+
+\vspace{-.75in}
+
+\begin{center}
+\includegraphics[scale=.6]{figures/java_incompetence.jpg}
+
+\end{center}
+\vspace{-0.1in}
+
+\section{WarmUp}
+
+Static functions are functions that you can call without instantiating the class.  If you're within the class (in the main method) you can simply call them by their name.  If you're outside of the class, you have to say the class name, followed by a period, followed by the name of the static method.
+
+Write the following static methods in the \texttt{WarmUp} class (I've provided you with the method header for the first, but you'll need to add the others:
+
+\begin{itemize}
+
+\item [--] Write a static method called \texttt{printVertical} that takes a \texttt{String} as a parameter and prints all of the characters in the string vertically on a line by themselves.
+
+For example:
+
+\begin{verbatim}
+printVertical("I love CS")
+\end{verbatim}
+
+would show in the console:
+
+\begin{verbatim}
+I
+
+l
+o
+v
+e
+
+C
+S
+\end{verbatim}
+
+\item [--] Write a static method called \texttt{savings} that takes a dollar amount and an interest rate (e.g. an interest rate of 1\% would be passed as 0.01) and calculates how much money you would have if you put that money in a savings account with that interest rate,  \emph{including the original amount} 
+
+For example:
+
+\begin{verbatim}
+savings(1000, .1)
+\end{verbatim}
+
+would give you back 1100.
+
+\item [--] Write another static method also called \texttt{savings} that takes a \textbf{third} parameter, the number of years that you plan to leave the money in the savings account.  The function should calculate how much money you'll have if you leave it in the savings account for that number of years.  You can assume the interest is only compounded yearly (i.e. calculated and added up each year).  Notice that in Java you can define two methods with the same name as long as the parameters are different!
+
+For example:
+
+\begin{verbatim}
+savings(1000, .1, 3)
+\end{verbatim}
+
+would return 1331.
+
+You \textbf{must} use your other \texttt{savings} method in writing this method.
+
+%\item Write a function called \texttt{repeatString} that takes a \texttt{String} and a number as a parameter and repeats the string that number of times, with spaces in between.  As you concatenate, the string should alternate between lowercase and uppercase.  For example:
+%
+%\begin{verbatim}
+%repeatString("love", 5)
+%\end{verbatim}
+%
+%would give you "love LOVE love LOVE love".
+
+\item [--] Write a \emph{recursive} function called \texttt{hailstorm} which takes a number as a parameter and prints out the hailstorm sequence starting at this number.  The hailstorm sequence is calculated as follows:
+
+\begin{itemize}
+
+\item print out the number
+
+\item if the number is 1, the sequence is done.
+
+\item if the number is even, then the sequence is continued with the number divided by 2.
+
+\item if the number is odd, then the sequence is continued with three times the number plus 1.
+
+\end{itemize}
+
+(See \url{http://plus.maths.org/content/mathematical-mysteries-hailstone-sequences} for more examples).
+
+\end{itemize}
+
+\section{My First Class (from scratch)}
+
+Fill in the details for the \texttt{Person} class.  The class should support the following methods:
+
+\begin{itemize}
+
+\item A constructor that takes a first name and a last name.  The default age of a person should be 18.
+
+\item \texttt{getFirst}, \texttt{getLast} which don't take any parameters, but return \texttt{Strings} representing the first and last name respectively.
+
+\item \texttt{getAge} which doesn't take any parameters and returns an integer representing the age.
+
+\item \texttt{anotherYear}: takes no parameters but increases the persons age by a year (and doesn't return anything).
+
+\end{itemize}
+
+For example, if you ran the following main method:
+
+\begin{verbatim}
+public static void main(String[] args){
+    Person me = new Person("Teran", "Cole");
+    System.out.println(me.getFirst() + " " + me.getLast() + " is " + me.getAge());
+		
+    me.anotherYear();
+    System.out.println("and now: " + me.getAge());
+}
+\end{verbatim}
+
+You would see printed out in the console:
+
+\begin{verbatim}
+Teran Cole is 18
+and now: 19
+\end{verbatim}
+
+You may use whatever instance variables you like to implement this.  Make sure to declare all instance variables and methods as either \texttt{private} or \texttt{public} as appropriate.
+
+\section{A Better Card Class}
+
+For the last part of this assignment, I want you to change the functionality of the \texttt{Card} class that we looked at in class. Make the following changes to the class:
+
+\begin{itemize}
+
+\item Change the \texttt{getNumber} method to return a \texttt{String}.  We want it to return ``Ace'', if it's a 1, 2-10 (as a \texttt{String}) if it's a 2-10, ``Jack'' for 11, ``Queen'' for 12 and ``King'' for 13.  You should \textbf{NOT} change the type of the instance variable \texttt{number}.  Instead, simply rewrite the \texttt{getNumber} function to calculate the appropriate \texttt{String} depending on the stored number.
+
+To convert an integer into a \texttt{String} there is static method called \texttt{Integer.toString()} that you can call.  For example,
+
+\begin{verbatim}
+String s = Integer.toString(10)
+\end{verbatim}
+
+would have the \texttt{String} 10 (i.e. ``10'') in the variable \texttt{s}.
+
+\item We want to keep track of whether or not the card is face up or face down.  By default, when a card is constructed, it should be face down (having it take a default value keeps us from having to add any extra parameter to the constructor).  Add a method called \texttt{isFaceUp} that doesn't have any parameters aand returns \texttt{true} if the card is face up and \texttt{false} if the card is face down.
+
+\item Add a method called \texttt{flip} that changes whether a card is face up or face down, that is, if it's face up it will be face down after and if it's face down it will be face up after.  The method should not take any parameters and should not return a value, but will change the state of the card.
+
+\end{itemize}
+
+After you make these changes, you should be able to run the following main method:
+
+\begin{verbatim}
+public static void main(String[] args){
+    Card card = new Card(10, "hearts");
+    Card jack = new Card(11, "spades");
+    Card ace = new Card(1, "clubs");
+		
+    System.out.println(card.toString());
+    System.out.println(jack.toString());
+    System.out.println(ace.toString());
+				
+    System.out.println("--------CHEATING------");
+    card.cheat();
+    System.out.println(card.toString());
+    System.out.println(jack.toString());
+    System.out.println(ace.toString());
+		
+    System.out.println("--------BEFORE FLIPPING-------");
+    System.out.println(card.toString() + ": " + card.isFaceUp());
+    System.out.println("--------AFTER FLIPPING-------");
+    card.flip();
+    System.out.println(card.toString() + ": " + card.isFaceUp());
+    System.out.println("--------AFTER FLIPPING-------");
+    card.flip();
+    System.out.println(card.toString() + ": " + card.isFaceUp());
+}
+\end{verbatim}
+
+\end{document}
