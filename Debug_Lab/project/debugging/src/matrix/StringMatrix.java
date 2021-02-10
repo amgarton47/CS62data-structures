@@ -4,7 +4,7 @@ package matrix;
 import java.util.ArrayList;
 
 // Class representing a two dimensional square matrix
-public class BadMatrix3 extends StringMatrix{
+public class StringMatrix {
 	// representation of matrix as a lists of lists
 	private ArrayList<ArrayList<String>> rep;
 
@@ -12,12 +12,12 @@ public class BadMatrix3 extends StringMatrix{
 	private int numRows, numCols;
 	
 	//Create an empty matrix
-	public BadMatrix3() {
+	public StringMatrix() {
 		this(0,0);
 	}
 
 	// Create a new matrix with numRows rows and numCols columns
-	public BadMatrix3(int numRows, int numCols) {
+	public StringMatrix(int numRows, int numCols) {
 		this.numRows = numRows;
 		this.numCols = numCols;
 		
@@ -26,7 +26,7 @@ public class BadMatrix3 extends StringMatrix{
 		for (int row = 0; row < numRows; row++) {
 			rep.add(new ArrayList<String>(numCols));
 			
-			for (int col = 0; col < numRows; col++) {
+			for (int col = 0; col < numCols; col++) {
 				rep.get(row).add(null);
 			}
 		}

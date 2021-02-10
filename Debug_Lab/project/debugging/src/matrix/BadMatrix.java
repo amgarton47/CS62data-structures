@@ -4,9 +4,9 @@ package matrix;
 import java.util.ArrayList;
 
 // Class representing a two dimensional square matrix
-public class BadMatrix<E> extends Matrix<E>{
+public class BadMatrix extends StringMatrix{
 	// representation of matrix as a lists of lists
-	private ArrayList<ArrayList<E>> rep;
+	private ArrayList<ArrayList<String>> rep;
 
 	// number of rows and columns in the matrix
 	private int numRows, numCols;
@@ -21,10 +21,10 @@ public class BadMatrix<E> extends Matrix<E>{
 		this.numRows = numRows;
 		this.numCols = numCols;
 		
-		rep = new ArrayList<ArrayList<E>>(numRows);
+		rep = new ArrayList<ArrayList<String>>(numRows);
 		
 		for (int row = 0; row < numRows; row++) {
-			rep.add(new ArrayList<E>(numCols));
+			rep.add(new ArrayList<String>(numCols));
 			
 			for (int col = 0; col < numCols; col++) {
 				rep.get(row).add(null);
@@ -33,13 +33,13 @@ public class BadMatrix<E> extends Matrix<E>{
 	}
 
 	// Set the entry at (row,col) to newValue.
-	public void set(int row, int col, E newValue) {
+	public void set(int row, int col, String newValue) {
 		checkRowCol(row, col);
 		rep.get(row).set(col, newValue);
 	}
 
 	// Return the entry at (row,col)
-	public E get(int row, int col) {
+	public String get(int row, int col) {
 		checkRowCol(row, col);
 		return rep.get(row).get(col);
 	}
