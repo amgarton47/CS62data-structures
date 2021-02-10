@@ -42,8 +42,8 @@ public class Instruction {
 	/** opcode for the go instruction */
 	public static final int GO = 10;
 
-	protected int opcode; /** the opcode */
-	protected int address; /** the address */
+	private int opcode; /** the opcode */
+	private int address; /** the address */
 
 	/**
 	 * Creates a new instruction. address is the target of the operation, if one

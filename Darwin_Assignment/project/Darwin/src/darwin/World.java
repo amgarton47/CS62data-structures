@@ -5,7 +5,7 @@ package darwin;
  * a two-dimensional world. 
  */
 
-public class World<E> {
+public class World {
 
 	/**
 	 * This function creates a new world consisting of width columns and height
@@ -13,6 +13,7 @@ public class World<E> {
 	 * contains no objects.
 	 */
 	public World(int w, int h) {
+		// BE CAREFUL: think about how width/heights translates to row/col in a matrix
 	}
 
 	/**
@@ -32,8 +33,7 @@ public class World<E> {
 	/**
 	 * Returns whether pos is in the world or not.
 	 * 
-	 * @post returns true if pos is an (x,y) location within the bounds of the
-	 *       board.
+	 * returns true *if* pos is an (x,y) location within the bounds of the board.
 	 */
 	public boolean inRange(Position pos) {
 		return false; // FIX
@@ -42,18 +42,19 @@ public class World<E> {
 	/**
 	 * Set a position on the board to contain e.
 	 * 
-	 * @pre pos is in range - throws IllegalArgumentException otherwise
+	 * @throws IllegalArgumentException if pos is not in range
 	 */
-	public void set(Position pos, E e) {
+	public void set(Position pos, Creature e) {
 		// FIX
 	}
 
 	/**
 	 * Return the contents of a position on the board.
 	 * 
-	 * @pre pos is a in range - throws IllegalArgumentException otherwise
+	 * @throws IllegalArgumentException if pos is not in range
 	 */
-	public E get(Position pos) {
+	public Creature get(Position pos) {
+		// BE CAREFUL: think about how x,y translates to row/col in a matrix
 		return null; // FIX
 	}
 

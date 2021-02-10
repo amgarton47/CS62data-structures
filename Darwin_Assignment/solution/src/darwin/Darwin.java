@@ -23,18 +23,18 @@ import java.io.*;
  * 
  */
 class Darwin {
-
-	public static final int width = 15;
-	public static final int height = 15;
-	World<Creature> world;
-	Random rand;
-	ArrayList<Creature> creatures;
+	private static final int WIDTH = 15;
+	private static final int HEIGHT = 15;
+	
+	private World world;
+	private Random rand;
+	private ArrayList<Creature> creatures;
 
 	public Darwin(String[] speciesFilenames) {
-		world = new World<Creature>(width, height);
+		world = new World(WIDTH, HEIGHT);
 		rand = new Random();
 		creatures = new ArrayList<Creature>(speciesFilenames.length);
-		WorldMap.createWorldMap(width, height);
+		WorldMap.createWorldMap(WIDTH, HEIGHT);
 		for (int i = 0; i < speciesFilenames.length; i++) {
 			Species sp;
 			try {
@@ -53,9 +53,9 @@ class Darwin {
 	 */
 	private void placeCreatures(Species sp, int num) {
 		for (int i = 0; i < num; i++) {
-			Position pos = new Position(rand.nextInt(width), rand.nextInt(height));
+			Position pos = new Position(rand.nextInt(WIDTH), rand.nextInt(HEIGHT));
 			while (world.get(pos) != null) {
-				pos = new Position(rand.nextInt(width), rand.nextInt(height));
+				pos = new Position(rand.nextInt(WIDTH), rand.nextInt(HEIGHT));
 			}
 			Creature c = new Creature(sp, world, pos, rand.nextInt(4));
 			creatures.add(c);

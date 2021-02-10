@@ -14,11 +14,10 @@ import java.util.ArrayList;
  * Note: The instruction addresses start at one, not zero.
  */
 public class Species {
-
-	protected String name;
-	protected String color;
-	protected char speciesChar; // the first character of Species name
-	protected ArrayList<Instruction> program;
+	private String name;
+	private String color;
+	private char speciesChar; // the first character of Species name
+	private ArrayList<Instruction> program;
 
 	/**
 	 * Create a species for the given fileReader. 

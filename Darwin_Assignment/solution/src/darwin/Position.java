@@ -7,18 +7,18 @@ package darwin;
 public class Position {
 
 	/** The North compass point. */
-	static public final int NORTH = 0;
+	public static final int NORTH = 0;
 
 	/** The East compass point. */
-	static public final int EAST = 1;
+	public static final int EAST = 1;
 
 	/** The South compass point. */
-	static public final int SOUTH = 2;
+	public static final int SOUTH = 2;
 
 	/** The West compass point. */
-	static public final int WEST = 3;
+	public static final int WEST = 3;
 
-	protected int x, y;
+	private int x, y;
 
 	/**
 	 * Create a new position for the given x and y coordinates.

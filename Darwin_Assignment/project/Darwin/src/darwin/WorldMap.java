@@ -17,13 +17,13 @@ public class WorldMap {
 	 * Uses the inst pattern. This is the map to be operated on by the rest of
 	 * the program.
 	 */
-	static protected WorldMapImpl map = null;
+	protected static WorldMapImpl map = null;
 
 	/**
 	 * Initialize the world map to have size (x,y) and create the Window for it.
 	 * This must be called once and only once.
 	 */
-	static public void createWorldMap(int x, int y) {
+	public static void createWorldMap(int x, int y) {
 		map = new WorldMapImpl(x, y);
 		try {
 			Thread.sleep(100);
@@ -42,7 +42,7 @@ public class WorldMap {
 	 * @pre color is "black", "red", "gray", "dark gray", "pink", "orange", "yellow",
 	 * "green", "magenta", "cyan", "blue" (color is ignore if c is ' ').
 	 */
-	static public void displaySquare(
+	public static void displaySquare(
 		Position pos,
 		char c,
 		int dir,
@@ -55,7 +55,7 @@ public class WorldMap {
 	 * simulation loop so that the computer can process mouse / keyboard events.
 	 *  
 	 */
-	static public void pause(int millis) {
+	public static void pause(int millis) {
 		try {
 			Thread.sleep(millis);
 		} catch (Exception e) {
