@@ -165,8 +165,6 @@ correctly. Test `ifenemy`, `infect`, etc.
 
 10. Design and test your own creature for the competition! Think about what it could do to set itself apart and succeed over other creatures.
 
-11. Make sure you fill out the `assignment.json` file with **your name**, the name of your **collaborator**, and a description of **extra credit**.
-
 ## Helpful Considerations
 
 * Incremental testing - One of the main advantages of segmented programs, especially object oriented ones, is their ability to be developed and tested piece by piece. Test classes individually, not altogether. This will help you verify that each piece works and avoid a situation where some unknown is broken. What does it take to convince yourself that your code is correct? What edge cases should you make sure to test? How might something break?
