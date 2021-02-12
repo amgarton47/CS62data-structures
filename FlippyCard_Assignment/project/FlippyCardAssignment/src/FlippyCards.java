@@ -13,7 +13,8 @@ public class FlippyCards {
 	private Card[] cards; // the cards for the game
 
 	/**
-	 * Create a new flippy card game state
+	 * Create a new flippy card game state, which consists of the
+	 * numCards cards for the game.
 	 * 
 	 * @param numCards number of cards in the game
 	 */
