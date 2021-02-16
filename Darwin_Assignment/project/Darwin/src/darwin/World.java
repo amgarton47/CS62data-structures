@@ -6,7 +6,8 @@ package darwin;
  */
 
 public class World {
-
+	private Matrix<Creature> creatures;
+	
 	/**
 	 * This function creates a new world consisting of width columns and height
 	 * rows, each of which is numbered beginning at 0. A newly created world
