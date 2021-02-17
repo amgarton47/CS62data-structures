@@ -4,7 +4,7 @@ package arraylist;
  * The {@code BasicArrayList} class represents a list that is indexable
  * and can dynamically grow.
  */
-public class CapacityArrayList<E> implements BasicList<E>{
+public class CapacityArrayList<E>{
 	private static final int START_SIZE = 10;
 	
 	private E[] data; // underlying array of items
