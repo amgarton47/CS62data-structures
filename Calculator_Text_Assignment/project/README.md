@@ -106,7 +106,7 @@ Your interactive calculator must meet the following requirements:
 
 * Follow *exactly* the output shown in the example above.
 
-* Keep going until the user enters ``quit''.
+* Keep going until the user enters "quit" (without quotes).
 
 * Support +, -, *, and /, as well as two other operators:
 
