@@ -1,4 +1,4 @@
-# Assignment 4 - Text Calculator
+# Assignment - Text Calculator
 
 For this assignment, you will be implementing a text-based postfix calculator which takes input in postfix notation and displays the results of the computation.  As always, read through the entire handout first before you start working on the assignment.
 
