@@ -208,7 +208,7 @@ In addition to the three classes above, you must also submit two classes `Operat
 
 There are many ways that you can go about doing this assignment, but I'd strongly encourage you to work incrementally.  Here's one path:
 
-1. Write the `Operator` class.
+1. Write the `Operation` class.
 
 2. Write your JUnit tests for `Operator` (`OperatorTest`).  Fix any bugs you find :).
 
