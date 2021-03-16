@@ -5,14 +5,13 @@
  * successive rows.
  * 
  * @author cs62
- * @param <ValueType> type of value stored in the table
+ * @param <E> type of value stored in the table
  */
 package compression;
 
-class CompressedTable<ValueType> implements TwoDTable<ValueType> {
+class CompressedTable<E> implements TwoDTable<E> {
 	// List holding table entries - do not change
-	protected CurDoublyLinkedList<Association<RowOrderedPosn, ValueType>> tableInfo; 
-
+	protected CurDoublyLinkedList<Association<RowOrderedPosn, E>> tableInfo;
 	protected int numRows, numCols; // Number of rows and cols in table
 
 	/**
@@ -26,7 +25,7 @@ class CompressedTable<ValueType> implements TwoDTable<ValueType> {
 	 * @param defaultValue
 	 *            initial value of all entries in table
 	 */
-	public CompressedTable(int rows, int cols, ValueType defaultValue) {
+	public CompressedTable(int rows, int cols, E defaultValue) {
 		//TODO: fix based on specifications
 	}
 
@@ -42,7 +41,7 @@ class CompressedTable<ValueType> implements TwoDTable<ValueType> {
 	 */
 	private void find(RowOrderedPosn findPos) {
 		tableInfo.first();
-		Association<RowOrderedPosn, ValueType> entry = tableInfo.currentValue();
+		Association<RowOrderedPosn, E> entry = tableInfo.currentValue();
 		RowOrderedPosn pos = entry.getKey();
 		while (!findPos.less(pos)) {
 			// search through list until pass elt looking for
@@ -66,7 +65,7 @@ class CompressedTable<ValueType> implements TwoDTable<ValueType> {
 	 * @param newInfo
 	 *            new value to place in cell (row, col)
 	 */
-	public void updateInfo(int row, int col, ValueType newInfo) {
+	public void updateInfo(int row, int col, E newInfo) {
 		//TODO: fix
 	}
 
@@ -83,7 +82,7 @@ class CompressedTable<ValueType> implements TwoDTable<ValueType> {
 	 *            column of cell to be queried
 	 * @return value stored in (row, col) cell of table
 	 */
-	public ValueType getInfo(int row, int col) {
+	public E getInfo(int row, int col) {
 
 		return null;   // fix this!
 	}
