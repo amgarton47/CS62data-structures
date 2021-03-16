@@ -112,7 +112,7 @@ the new class should support the following methods:
 * `currentValue()`,
 * `addFirst()`, `addLast()`, `removeFirst()`, `removeLast()`, `getFirst()`, `getLast()`, `addAfterCurrent(Object value)`, and `removeCurrent()`.
 
-Detailed specifications for these methods can be found in the provided code. Review the pre-conditions and post-conditions carefully. You should start this
+Detailed specifications for these methods can be found in the provided code. For most of the methods we have provided pre-conditioins and post-conditions.  Pre-conditions are assumed to be true before the method is called.  If these are not true, then there is no guarantee about what the method will do.  Post-conditions are things that should be true when the method finishes, i.e., what you need to make happen!  Review the pre-conditions and post-conditions carefully. You should start this
 assignment by finishing the `CurDoublyLinkedList` class.
 
 ### `TestCurDoublyLinkedList`
