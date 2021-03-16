@@ -11,6 +11,7 @@ package compression;
 
 class CompressedTable<E> implements TwoDTable<E> {
 	// List holding table entries - do not change
+	// We've made the variables protected to facilitate testing (grading)
 	protected CurDoublyLinkedList<Association<RowOrderedPosn, E>> tableInfo;
 	protected int numRows, numCols; // Number of rows and cols in table
 
