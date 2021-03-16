@@ -11,7 +11,7 @@
 
 * `DoublyLinkedList` - A list consisting of nodes that each contain an item and a reference to the node ahead and behind them. This means the list has minimal structure and instead consists of individual elements strung together. Please *review* the `DoublyLinkedList.java` file we have provided you with as it contains methods that you need to reuse in the `CurDoublyLinkedList` class. Being familiar with this class will ensure that you don't duplicate work in its subclass `CurDoublyLinkedList`.
 * `Association` - A data structure containing a key and a value together. This allows for two pieces of data to be "associated" and referenced together, and can be useful for storing certain information in a dictionary. We have provided an `Association.java` file for your convenience. Please review it.
-* Compression - A very useful technique where large amounts of data is efficiently stored to reduce the space it takes up, through encoding or other methods. (See 5.5 pg. 810 in the textbook and **Appendix A - Compression** for more)
+* Compression - A very useful technique where large amounts of data is efficiently stored to reduce the space it takes up, through encoding or other methods. (See **Appendix A - Compression** for more)
 
 ## Description
 
