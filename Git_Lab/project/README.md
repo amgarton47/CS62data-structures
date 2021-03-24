@@ -134,8 +134,8 @@ One team member should:
      ```
    * commit your changes
      ```
-     git add file1.txt file2.txt
-     git commit README.md file1.txt file2.txt
+     git add .
+     git commit -m "initial commit"
      ```
      You will be put into an editor to enter a description of what you have
      done in this commit.
