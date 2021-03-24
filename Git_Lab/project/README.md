@@ -151,14 +151,14 @@ One team member should:
 
 ### Step 2 - Create personal branches
 
-We will call these branches *person1* and *person2*.  You should use your
+We will call these branches *person1* and *person2* (and possibly *person3*).  You should use your
 own personal branch names.
 
 * For the person who already has a cloned copy of the repo:
   ```
   git checkout -b person1
   ```
-* For the person who has not yet cloned their own copy
+* For all other people who have not yet cloned their own copy
   ```
   git clone https://github.com/creators_github_id/your_new_repo.git
   cd your_new_repo
@@ -179,25 +179,23 @@ After both personal branches have been created
      ```
    * commit your changes
      ```
-     git commit file1.txt
+     git commit -m "STEP 3" file1.txt
      ```
-     And, again, enter a comment (including "STEP 3:") to describe
-     the changes you have made.
    * push these changes back to github
      ```
      git push
      ```
 * return to your personal branch
   ```
-  git checkout *person1*
+  git checkout person1
   ```
 
-At this point, both of the new personal branches are behind master ...
+At this point, both of the new personal branches are behind (i.e., are not up to date with) master ...
 giving rise to conflicts that will have to be reconciled in step 5.
 
 ### Step 4 - People do work in their own branches
 
-Each person, working on their own machine, _in their own branch_ will:
+Each person, working on their own computer, _in their own branch_ should:
 
 * create a new file (e.g. *person1.txt*) containing a line like:
   ```
@@ -210,11 +208,8 @@ Each person, working on their own machine, _in their own branch_ will:
 * commit your changes
   ```
   git add person1.txt
-  git commit file1.txt person1.txt
+  git commit -m "STEP 4" file1.txt person1.txt
   ```
-  And, again, enter a comment (including "STEP 4:") to describe the
-  changes you have made.
-
 * review the git log to confirm that all of these changes have infact
 been made
   ```
@@ -227,7 +222,7 @@ you will not be able to `push` them back to *github*.
 
 ### Step 5 - Merge the (now conflicted) branches back into *master*
 
-This is (at minimum) a two step process:
+This is (at a minimum) a two step process:
 
 1. update personal branch to be based on the latest updates in *master* (which
    has been updated since this branch was created).
@@ -252,11 +247,10 @@ Each person, working on their own machine, will, _in their own branch_:
      and committing (all of) the merge.
     ```
     git add file1.txt
-    git commit -a
+    git commit -m "STEP 5" -a
     ```
     The `commit -a` tells git that you want to commit *all* of the changes
-    associated with this merge.  Include in your commit comment the notation
-    "STEP 5: update my branch for changes in master".
+    associated with this merge.
 
   The first person to do this will only have to merge their changes against the line
   added to file1.txt in step 3.  The second person to do this will also have to merge
