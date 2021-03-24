@@ -63,7 +63,8 @@ In this lab:
 ### Git configuration
 
 If you have not used the Git Command-Line-Interfaces before, it would be
-helpful to do a little bit of initial setup.  From a terminal window
+helpful to do a little bit of initial setup.  From a terminal window (you can get 
+this on a Mac by typing comman+spacebar and then searching for ``Terminal'').
 type the following commands:
    ```
    git config --global user.name "Your Name"
