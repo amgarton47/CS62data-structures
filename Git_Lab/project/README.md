@@ -71,7 +71,7 @@ type the following commands:
    git config --global user.email your_email@your_domain
    ```
 
-When you do `git commit` command (without a **-m** argument), you will be put
+<!-- When you do `git commit` command (without a **-m** argument), you will be put
 into a text editor to see the files being committed and edit your comment.
 If you have a preferred editor, you can set it with a command like:
    ```
@@ -81,7 +81,7 @@ If you are not comfortable with any of the available editors, you
 should always use the **-m** "*comment*" to create your commit
 comments.
 
-<!--
+
 ### Following Instructions Carefully
 
 1. You will be graded based on your ability to create and merge
