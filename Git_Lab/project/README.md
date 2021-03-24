@@ -228,6 +228,7 @@ This is (at a minimum) a two step process:
    has been updated since this branch was created).
 2. update *master* to include the (now consistent) updates from your branch.
 
+Take turns doing step 5.  Wait for one person to finish before the next person starts.  
 Each person, working on their own machine, will, _in their own branch_:
 
 * update their copy of the master branch (which they are not currently on)
