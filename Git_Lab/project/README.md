@@ -135,11 +135,9 @@ One team member should:
    * commit your changes
      ```
      git add .
-     git commit -m "initial commit"
+     git commit -m "Step 1 done!"
      ```
-     You will be put into an editor to enter a description of what you have
-     done in this commit.
-     **Include "STEP 1:" in your commit comments.
+    
    * look at what you have done
      ```
      git status
