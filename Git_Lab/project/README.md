@@ -40,8 +40,7 @@ for when we needed to make changes to files that were outside of *Eclipse* proje
 
 In this lab we will work directly with the underlying *git* commands (using the
 Command Line Interfaces in terminal windows).  These commands should be usable on
-most MacOS and Linux machines.  Students with Windows notebooks should use one of
-the lab machines for these exercises or install [git for windows](https://gitforwindows.org/) (specifically, the `Git BASH` tool will mimic the Unix experience).
+most MacOS and Linux machines.  Students with Windows computers should install [git for windows](https://gitforwindows.org/) (specifically, the `Git BASH` tool will mimic the Unix experience) or just pair up with someone working on a Mac computer.
 
 ## Lab Exercises
 
