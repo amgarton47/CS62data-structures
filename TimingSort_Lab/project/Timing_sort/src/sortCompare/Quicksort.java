@@ -48,8 +48,8 @@ public class Quicksort<E extends Comparable<E>> implements Sorter<E>{
 		E pivot = data.get(lo);
 		int i = lo;
 		int j = hi + 1;
-		while(true)
-		{
+		
+		while(true) {
 			//find larger item than pivot to swap
 			while (less(data.get(++i), pivot)) {
  				if (i == hi) break;
