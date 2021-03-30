@@ -57,11 +57,6 @@ Discuss with your partner:
    2. for each algorithm, the time as a function of the number of items to sort.
    3. why each algorithm has that performance.
 
-
-## Submission Instructions
-
-Please fill out the `assignment.json` file. Include your Github name in the collaborators list and your partner's username as well if you worked with someone. 
-
-## If You Still Have Time
+## If You Would Like Practice (not required)
 
 Try implementing a new class for one of the `O(n^2)` running time sorting methods that `extends` our `Sorter` interface. Add this new class into the `SortTimer` class and compare its runtime to the other sorting methods.
