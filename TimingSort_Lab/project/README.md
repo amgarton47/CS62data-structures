@@ -4,7 +4,7 @@
 
 In this lab, we'll be playing with some of the sorting algorithms we've been discussing in class. In addition, you'll get some familiarity with the `merge` method of `MergeSort`, which you will be implementing an on-disk version of for the next assignment.
 
-You may again work in pairs on this lab, but choose a partner that you have not worked with before.
+You may work in pairs on this lab.  If you don't have a partner, let me know and I'll pair you up!
 
 Note: this lab assumes you've kept up with the reading for the class! In particular, we'll be looking at selectionsort, insertionsort, quicksort, and mergesort but we'll also encounter bubblesort and heapsort.
 
