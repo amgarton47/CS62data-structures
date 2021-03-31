@@ -43,7 +43,7 @@ follow all naming conventions specified in this assignment.*
 An interface for sorting algorithms. Implemented by the `MergeSort` class.
 
 ### `MergeSort`
-Implementation of the Mergesort algorithm. This class has already been implemented for you. Note that this implementation is slightly different than the one we have seen in class: it works on ArrayLists rather than arrays,  uses while loops instead of for loops, and does not pass an auxiliary array in the signatures of merge and sort.
+Implementation of the Mergesort algorithm. This class has already been implemented for you.
 
 ### `WordScanner`
 Implements the Java `Iterator` interface. An iterator over Strings read in as words from an input. This class has already been implemented for you. You will use the constructor, `next()` and `hasNext()` methods.
