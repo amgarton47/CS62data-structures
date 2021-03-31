@@ -82,7 +82,7 @@ I/0, you should only need **two** String variables to keep track of the data.
 * `mergeFiles`: takes an ArrayList of Files, each of which should contain sorted data and then uses the `merge` method to eventually merge them into one large sorted file. Notice that the `merge` method only merges two files at a time. The easiest way to merge all of the `n` sorted files is to merge the first two files, then merge the third file with the result of merging the first two files, then the fourth
 in, etc. This is *not* the most efficient way of doing it. However, it will make your life easy (see the
 extra credit for doing it a better way). NOTE: you cannot read and write to a file at the same time,
-so you will need to use a single temporary file to store your temporary results as you merge the data. `copyFile` should come handy: for every time you merge two files together (one sorted and the single temporary) into `outputFile`, use `copyFile` to move the contents from the `outputFile` to the temporary file.
+so you will need to use a single temporary file to store your temporary results as you merge the data. `copyFile` should come in handy!  Each time you need to merge time a new file, merge the new file with the temporary file and put the results in the `outputFile`.  Then, copy the `outputFile` to the temporary file to get ready to merge the next file.
 
 * `main`: This method gets everything going and is provided to you. It creates a `sorter` that does a mergesort
 in memory, then creates a `diskSorter` to do the external merges. Parameters to the `OnDiskSort` sets up directory sorting run to be the working directory for the sorts. It then creates a word scanner
