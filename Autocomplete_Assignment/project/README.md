@@ -36,7 +36,7 @@ field, but compares the `weights` in reverse order by size. That is, if used in 
 
 The second static method, `byPrefixOrder(int r)`, returns a comparator with a `compare` method that only considers the first `r` characters of the `key` field, and represents the usual lexicographic order. Thus if `r` is 3, the term with `key` `"hello"` would come before `"hopper"`, but `"hello"` and `"help"` would be considered equal (because their first three characters are the same.
 
-You may build the comparators in the static methods using anonymous classes or inner classes, but you will find it simpler if you use Java lambda expressions <!--(see [`avgComparator`](https://github.com/pomonacs622020fa/LectureCode/blob/3414bdd8cb5b8a01ec34ba0d9878ee90ba48847e/CompareAndIterate/StudentComp.java#L57) for an example)-->.
+You may build the comparators in the static methods using classes or inner classes, but you will find it simpler if you use Java lambda expressions <!--(see [`avgComparator`](https://github.com/pomonacs622020fa/LectureCode/blob/3414bdd8cb5b8a01ec34ba0d9878ee90ba48847e/CompareAndIterate/StudentComp.java#L57) for an example)-->.
 
 Test the methods in this class thoroughly (using `JUnit` or a `main` method) before proceeding to the
 other classes. We suggest you build a small `ArrayList` of `Terms` and then sort them in several different
