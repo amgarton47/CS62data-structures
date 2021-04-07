@@ -92,7 +92,8 @@ public static <Key> int lastIndexOf(List<Key> a, Key key, Comparator<Key> compar
 ### `Autocomplete`
 
 This class will use `Term` and `BinarySearchForAll` to find all of the terms that match
-a given prefix and to return them in a list held in descending order by weight. The constructor of the class should take in a `List<Term>` and sort it according to the keys of the terms. Don’t forget to the list returned should be sorted in descending order by weight! We have provided an interface `AutocompleteInterface` that your class should implement.
+a given prefix and to return them in a list held in descending order by weight. The constructor of the class should take in a `List<Term>` and sort it according to the keys of the terms. Don’t forget the list
+returned should be sorted in descending order by weight! We have provided an interface `AutocompleteInterface` that your class should implement.
 The class has only a
 single method:
 
