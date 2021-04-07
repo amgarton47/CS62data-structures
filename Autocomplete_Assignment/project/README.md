@@ -31,7 +31,7 @@ allowed to the `key` or `weight` fields after a `Term` has been created).
 
 The class should implement the interface `Comparable<Term>`, and thus it must include the `compareTo` method. It should also override the `toString` method so you can easily print the `key` and `weight` of a term.
 
-We also ask you to implement two static methods that return `Comparators` (see the lecture notes on [comparing and iterating](https://cs.pomona.edu/classes/cs62/lectures/lecture15-compare-and-iterate.html). These can be static because they don’t depend on the instance variables of the `Term`. They return `Comparators` that can be used to compare any two `Terms`. The first method, `byReverseWeightOrder` should return a comparator that has a `compare` method that ignores the `key`
+We also ask you to implement two static methods that return `Comparators` (see the lecture notes on comparing and iterating). These can be static because they don’t depend on the instance variables of the `Term`. They return `Comparators` that can be used to compare any two `Terms`. The first method, `byReverseWeightOrder` should return a comparator that has a `compare` method that ignores the `key`
 field, but compares the `weights` in reverse order by size. That is, if used in a sort, terms with higher weight would occur before those elements with smaller weight.
 
 The second static method, `byPrefixOrder(int r)`, returns a comparator with a `compare` method that only considers the first `r` characters of the `key` field, and represents the usual lexicographic order. Thus if `r` is 3, the term with `key` `"hello"` would come before `"hopper"`, but `"hello"` and `"help"` would be considered equal (because their first three characters are the same.
