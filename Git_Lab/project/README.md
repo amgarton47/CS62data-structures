@@ -128,7 +128,7 @@ One team member should:
      ```
 * create initial contents (in the cloned repo copy)
    * edit the `README.md` to identify the which lab this is and the names of your team members
-   * create new files `file1.txt` and `file2.txt` with contents like:
+   * create new files `file1.txt` and `file2.txt` in your repo directory with contents like:
      ```
      STEP 1:  created by YOUR_NAME on 11/06/19 at 14:05
      ```
