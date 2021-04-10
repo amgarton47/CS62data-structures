@@ -127,7 +127,7 @@ You will be graded based on the following criteria:
 | `Merge`                                             | 3      |
 | `MergeFiles`                                        | 3      |
 | `Sort`                                              | 3      |
-| Uses on 2 strings in `merge`                        | 2      |
+| Uses only 2 strings in `merge`                      | 2      |
 | Cleans up temporary files appropriately             | 2      |
 | General Correctness                                 | 2      |
 | Appropriate comments (including JavaDoc)            | 3      |
