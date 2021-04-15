@@ -126,6 +126,12 @@ returned. In that case, just print out all the matching items.
 To test your program we have provided two files, `cities.txt` and `wiktionary.txt`. They are both very
 large so don’t print them out. For testing feel free to select a small amount of data from these files.
 
+Note that `cities.txt` contains some cities that have accented characters, which, depending on the OS (read, Windows) can sometimes cause problems with the `Scanner` class.  If you have troubles constructing a `Scanner` with the `cities.txt` file, you can pass in a second parameter to the constructor specifying the character encoding.  In this case "utf-8" would be good, e.g., 
+
+```
+new Scanner(theFile, "utf-8")
+```
+
 Here is some sample output if the command line parameters are 5 and `wiktionary.txt`.
 
 ```
