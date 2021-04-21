@@ -217,7 +217,7 @@ NOTE: Code that does not compile will not be accepted! Make sure that your code 
 
 ## Submitting your work
 
-Double-check that your work is indeed pushed in Github! It is your responsibility to ensure that you do so before the deadline. Don't forget to commit and push your changes as you go. <!--and to edit the provided `json`.>
+Double-check that your work is indeed pushed in Github! It is your responsibility to ensure that you do so before the deadline. Don't forget to commit and push your changes as you go. <!--and to edit the provided `json`.-->
 
 ## Extra credit
 
