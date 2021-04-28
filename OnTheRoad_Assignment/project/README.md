@@ -267,7 +267,7 @@ class provides methods `getVertices`, `getSegments`, and `getTrips`. There is al
     public EdgeWeightedDigraph makeGraph(boolean isDistance) {
 ~~~
 
-that returns a weighted digraph. If `isDistance` is true, the it should return a graph in which the edges represent
+that returns a weighted directed graph. If `isDistance` is true, the it should return a graph in which the edges represent
 distances between location, while if it is false, the edges represent times.
 
 ## Implementing your program
