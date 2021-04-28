@@ -76,20 +76,6 @@ public class GraphAlgorithms {
 		// FIX THIS!
 		return null;
 	}
-	
-	/**
-	 * Relaxes edge e of graph g and updates min-priority queue pq if changes.
-	 * 
-	 * @param g
-	 *            directed edge weighted graph
-	 * @param e
-	 *            edge to be relaxed
-	 * @param pq
-	 *            min-priority queue
-	 */
-	private static void relax(EdgeWeightedDigraph g, DirectedEdge e, IndexMinPQ<Double> pq) {
-		//FIX THIS!
-	}
 
 	/**
 	 * Computes shortest path from start to end using Dijkstra's algorithm.
