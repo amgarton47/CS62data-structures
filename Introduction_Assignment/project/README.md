@@ -64,17 +64,17 @@ assignments and loops) to complete all of the methods so that they work correctl
    with a shell prompt will appear.  Create a new workspace directory
    on your desktop, by typing the following commands:
 ```
-cd Desktop
-mkdir cs062
-chmod 700 cs062
-cd cs062
+cd /Volumes/yourPomonaID/Documents/
+mkdir cs62
+chmod 700 cs62
+cd cs62
 mkdir workspace
 ```
    The effect of these commands are:
-   * Create a new directory for this course on your `Desktop` 
+   * Create a new directory, `cs62` for this course on your `Documents` folder. 
      (Though you might prefer to create it within your `Documents` folder).
    * Change the protection on this folder so that *only you* are able to access it.
-   * Within the new `cs062` folder, create a `workspace` folder, where
+   * Within the new `cs62` folder, create a `workspace` folder, where
      Eclipse will store all of the information associated with your projects.
 
    Note that you could have achieved much of this by clicking through menus,
@@ -83,6 +83,8 @@ mkdir workspace
    * the commands available from the shell are much more powerful than those
      available with the *Finder* or other file access Graphical User Interfaces.
 
+  You will be able to access `cs62` on any lab machine. You can confirm that's the case by clicking the globe icon at the bottom right of your screen, titled as "Your Name Network Home" and navigating through the Documents folder. Please make sure that you are **not** working on the local Home folder as any change you make will be only accessible to the machine you are currently working on.
+
    For more information on the advantages and design of Command Line Interfaces,
    please see this paper on [CLI design](http://htmlpreview.github.io/?https://github.com/markkampe/Big-Software/blob/master/supp/cli.html).
 
@@ -90,11 +92,16 @@ mkdir workspace
    [register a new personal user account](https://help.github.com/en/articles/signing-up-for-a-new-github-account).
 
 3. You will receive an email invitation to join each lab.  Follow that
-   URL and you should see a message like:
+   URL; you will be asked to link your github account to your name.
+
+   ![Link to roster](images/roster.png "Link Username to Name")
+
+   
+   You will then see a message like:
 
    ![Accepted Invitation](images/accepted_invitation.png "Accept this Assignment")
    
-   Once you accept the invitation, you will be provided with a unique URL for
+   If it takes long, refresh the page (Cmd+R). Once you accept the invitation, you will be provided with a unique URL for
    your (private) version of this project.  Click it.
 
    ![Assignment Invitation](images/assignment_invitation.png "Invitation Accepted")
@@ -128,7 +135,7 @@ mkdir workspace
    you will need to disable it prior to entering your credentials here)
 
 
-7. **Carefully** browse to the destination which needs to be your workspace that you created in Desktop. 
+7. **Carefully** browse to the destination which needs to be your workspace that you created in /Volumes/yourPomonaID/Documents/. 
 
 ![Destination](images/destination.png "Destination")
 
