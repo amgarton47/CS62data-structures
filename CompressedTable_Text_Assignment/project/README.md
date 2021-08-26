@@ -1,4 +1,4 @@
-# Assignment 04 - Compression
+# Assignment 5 - Compression
 
 ## Learning Goals
 
@@ -11,7 +11,7 @@
 
 * `DoublyLinkedList` - A list consisting of nodes that each contain an item and a reference to the node ahead and behind them. This means the list has minimal structure and instead consists of individual elements strung together. Please *review* the `DoublyLinkedList.java` file we have provided you with as it contains methods that you need to reuse in the `CurDoublyLinkedList` class. Being familiar with this class will ensure that you don't duplicate work in its subclass `CurDoublyLinkedList`.
 * `Association` - A data structure containing a key and a value together. This allows for two pieces of data to be "associated" and referenced together, and can be useful for storing certain information in a dictionary. We have provided an `Association.java` file for your convenience. Please review it.
-* Compression - A very useful technique where large amounts of data is efficiently stored to reduce the space it takes up, through encoding or other methods. (See 5.5 pg. 810 in the textbook and **Appendix A - Compression** for more)
+* Compression - A very useful technique where large amounts of data is efficiently stored to reduce the space it takes up, through encoding or other methods. (See **Appendix A - Compression** for more)
 
 ## Description
 
@@ -112,7 +112,7 @@ the new class should support the following methods:
 * `currentValue()`,
 * `addFirst()`, `addLast()`, `removeFirst()`, `removeLast()`, `getFirst()`, `getLast()`, `addAfterCurrent(Object value)`, and `removeCurrent()`.
 
-Detailed specifications for these methods can be found in the provided code. Review the pre-conditions and post-conditions carefully. You should start this
+Detailed specifications for these methods can be found in the provided code. For most of the methods we have provided pre-conditioins and post-conditions.  Pre-conditions are assumed to be true before the method is called.  If these are not true, then there is no guarantee about what the method will do.  Post-conditions are things that should be true when the method finishes, i.e., what you need to make happen!  Review the pre-conditions and post-conditions carefully. You should start this
 assignment by finishing the `CurDoublyLinkedList` class.
 
 ### `TestCurDoublyLinkedList`

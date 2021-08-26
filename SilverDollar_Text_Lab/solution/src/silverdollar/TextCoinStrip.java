@@ -60,9 +60,11 @@ public class TextCoinStrip {
 	 */ 
 	public String toString() { 
 		String result = "";
-		Iterator<Boolean> iter = theStrip.iterator();
-		while(iter.hasNext())
-			result += iter.next() ? "o" : "_";
+		
+		for( int i = 0; i < theStrip.size(); i++ ) {
+			result += theStripg.get(i) ? "o" : "_";
+		}
+		
 		return result;
 	} 
 
@@ -75,24 +77,27 @@ public class TextCoinStrip {
 	 */ 
 	public boolean isLegalMove(int start, int distance) {
 		// 1. ensure the starting point is legal
-		if (start >= theStrip.size())
+		if (start >= theStrip.size()) {
 			return false;
-		
-		// 2. ensure there is a coin at start position
-		if (!theStrip.get(start))
-			return false;
-		
-		// 3. ensure the requested distance is legal
-		if (distance > start)
-			return false;
-		
-		// 4. ensure that all intervening spaces are legal and empty
-		int next = start-1;
-		while(distance-- > 0) {
-			if (theStrip.get(next--))
-				return false;
 		}
 		
+		// 2. ensure there is a coin at start position
+		if (!theStrip.get(start)) {
+			return false;
+		}
+		
+		// 3. ensure the requested distance is legal
+		if (distance > start) {
+			return false;
+		}
+		
+		// 4. ensure that all intervening spaces are legal and empty
+		for( int current = start - 1; current >= start - distance; current-- ){
+			if (theStrip.get(current)) {
+				return false;
+			}
+		}
+				
 		// 5. did we make it to the end of the move
 		return true;
 	} 

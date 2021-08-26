@@ -11,13 +11,13 @@ import java.util.*;
  * fact, you should only update the WorldMap from inside the Creature class.
  */
 public class Creature {
-	Species species;
-	World<Creature> world;
-	Position pos;
-	int dir;
-	int pc;
+	private Species species;
+	private World world;
+	private Position pos;
+	private int dir;
+	private int pc;
 	
-	Random rand = new Random();
+	private Random rand = new Random();
 
 	/**
 	 * Create a creature of the given species, with the indicated position and
@@ -25,7 +25,7 @@ public class Creature {
 	 * that you can check what is in front of the creature and update the board
 	 * when the creature moves.
 	 */
-	public Creature(Species species, World<Creature> world, Position pos, int dir) {
+	public Creature(Species species, World world, Position pos, int dir) {
 		this.species = species;
 		this.world = world;
 		this.pos = pos;

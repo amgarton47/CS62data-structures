@@ -3,8 +3,8 @@
 ## Key Terms and Concepts
 
 * File I/O - Methods for handling input (I) and output (O) to different files. Allows us to read and modify various files through different systems. (See **Apendix A - File I/O in Java**, and these two tutorials [[1](https://docs.oracle.com/javase/tutorial/essential/io/),[2](https://www.tutorialspoint.com/java/java_files_io.htm)] for more).
-* Mergesort - A divide and conquer algorithm for sorting arrays of n elements in O(n log n) time. The data to be sorted are split into smaller chunks, sorted, and then merged back together by doing simple comparisons while iterating through the smaller sorted sets (See lecture slides and  2.2 pg. 270 - 277 in the textbook for more). 
-* Iterator - An interface that allows traversal through a collection based on some property. Requires the `hasNext()` (which checks if there is another element left) and `next()` (which returns the next element) methods (See pg. 100 and various other examples in the textbook and [here](https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html) for more)
+* Mergesort - A divide and conquer algorithm for sorting arrays of n elements in O(n log n) time. The data to be sorted are split into smaller chunks, sorted, and then merged back together by doing simple comparisons while iterating through the smaller sorted sets (See lecture slides<!-- and  2.2 pg. 270 - 277 in the textbook for more-->). 
+* Iterator - An interface that allows traversal through a collection based on some property. Requires the `hasNext()` (which checks if there is another element left) and `next()` (which returns the next element) methods (See <!--pg. 100 and various other examples in the textbook and--> [here](https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html) for more)
 
 ## Learning Goals
 
@@ -43,7 +43,7 @@ follow all naming conventions specified in this assignment.*
 An interface for sorting algorithms. Implemented by the `MergeSort` class.
 
 ### `MergeSort`
-Implementation of the Mergesort algorithm. This class has already been implemented for you. Note that this implementation is slightly different than the one we have seen in class: it works on ArrayLists rather than arrays,  uses while loops instead of for loops, and does not pass an auxiliary array in the signatures of merge and sort.
+Implementation of the Mergesort algorithm. This class has already been implemented for you.
 
 ### `WordScanner`
 Implements the Java `Iterator` interface. An iterator over Strings read in as words from an input. This class has already been implemented for you. You will use the constructor, `next()` and `hasNext()` methods.
@@ -82,7 +82,7 @@ I/0, you should only need **two** String variables to keep track of the data.
 * `mergeFiles`: takes an ArrayList of Files, each of which should contain sorted data and then uses the `merge` method to eventually merge them into one large sorted file. Notice that the `merge` method only merges two files at a time. The easiest way to merge all of the `n` sorted files is to merge the first two files, then merge the third file with the result of merging the first two files, then the fourth
 in, etc. This is *not* the most efficient way of doing it. However, it will make your life easy (see the
 extra credit for doing it a better way). NOTE: you cannot read and write to a file at the same time,
-so you will need to use a single temporary file to store your temporary results as you merge the data. `copyFile` should come handy: for every time you merge two files together (one sorted and the single temporary) into `outputFile`, use `copyFile` to move the contents from the `outputFile` to the temporary file.
+so you will need to use a single temporary file to store your temporary results as you merge the data. `copyFile` should come in handy!  Each time you need to merge time a new file, merge the new file with the temporary file and put the results in the `outputFile`.  Then, copy the `outputFile` to the temporary file to get ready to merge the next file.
 
 * `main`: This method gets everything going and is provided to you. It creates a `sorter` that does a mergesort
 in memory, then creates a `diskSorter` to do the external merges. Parameters to the `OnDiskSort` sets up directory sorting run to be the working directory for the sorts. It then creates a word scanner
@@ -127,7 +127,7 @@ You will be graded based on the following criteria:
 | `Merge`                                             | 3      |
 | `MergeFiles`                                        | 3      |
 | `Sort`                                              | 3      |
-| Uses on 2 strings in `merge`                        | 2      |
+| Uses only 2 strings in `merge`                      | 2      |
 | Cleans up temporary files appropriately             | 2      |
 | General Correctness                                 | 2      |
 | Appropriate comments (including JavaDoc)            | 3      |
@@ -140,7 +140,8 @@ NOTE: Code that does not compile will not be accepted! Make sure that your code 
 
 ## Submitting your work
 
- Double-check that your work is indeed pushed in Github! It is your responsibility to ensure that you do so before the deadline. Don't forget to commit and push your changes as you go and to edit the provided `json`. The code you submit should be your own.
+ Double-check that your work is indeed pushed in Github! It is your responsibility to ensure that you do so before the deadline.
+ <!--Don't forget to commit and push your changes as you go and to edit the provided `json`. The code you submit should be your own.-->
 
 ## Extra credit
 
@@ -150,7 +151,7 @@ files of the same size. That is, if you start with `f` files of size `k`, merge 
 size `2*k`. Then merge those together in pairs to get `f/4` files of size `4*k`. Continue until they are all merged.
 This is optional and you do not have to do it!
 If you do this, we strongly suggest making a new method (i.e. don’t delete your original `mergeFiles`
-method, just rename is to something like `mergeFilesLinear`). Similar to `mergeFiles`, create a single temporary file. Start with the first and second file, merge them into the temporary file and then use the `copyFile` method to move the contents to the 
+method, just rename is to something like `mergeFilesLinear`). Similar to `mergeFiles`, create a single temporary file. Start with the first and second file, merge them into the temporary file and then use the `copyFile` method to move the contents of the temporary file over either the first or second file and keep track of the name.  Merge the third and fourth and again copy the contents back to either the third or fourth filename and keep track of that.  After one pass, you'll have half as many files.  Repeat this process.
 
 ### Appendix A - File I/O in Java:
 

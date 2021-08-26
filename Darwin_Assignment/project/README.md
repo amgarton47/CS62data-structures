@@ -1,6 +1,6 @@
-# Assignment 02 - Darwin
+# Assignment 3 - Darwin
 
-### This is a pair assignment! Feel free to work with a partner.
+### This is a pair assignment! Feel free to work with a partner. If you do this, one of you will need to make a team and then the other person can join it.
 
 
 ## Learning Goals
@@ -164,8 +164,6 @@ If you want to add command-line arguments in Eclipse, do the following:
 correctly. Test `ifenemy`, `infect`, etc.
 
 10. Design and test your own creature for the competition! Think about what it could do to set itself apart and succeed over other creatures.
-
-11. Make sure you fill out the `assignment.json` file with **your name**, the name of your **collaborator**, and a description of **extra credit**.
 
 ## Helpful Considerations
 

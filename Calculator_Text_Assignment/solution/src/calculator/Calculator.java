@@ -43,14 +43,12 @@ public class Calculator {
 		int second = 0;
 		
 		try {
-			Operation op = new Operation(line.charAt(0));
-			
 			if( memory.size() < 2 ) {
 				System.out.println("Error: operator requires two arguments");
 			} else {
 				second = memory.pop();
 				first = memory.pop();
-				int result = op.performOperation(first, second);
+				int result = Operation.performOperation(line.charAt(0), first, second);
 				memory.push(result);
 				System.out.println("Answer: " + result);
 			}

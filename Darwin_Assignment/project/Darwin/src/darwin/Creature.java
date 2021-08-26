@@ -18,7 +18,7 @@ public class Creature {
 	 * that you can check what is in front of the creature and update the board
 	 * when the creature moves.
 	 */
-	public Creature(Species species, World<Creature> world, Position pos, int dir) {
+	public Creature(Species species, World world, Position pos, int dir) {
 	}
 
 	/**

@@ -15,11 +15,10 @@ import java.util.ArrayList;
  * Note: The instruction addresses start at one, not zero.
  */
 public class Species {
-
-	protected String name;
-	protected String color;
-	protected char speciesChar; // the first character of Species name
-	protected ArrayList<Instruction> program;
+	private String name;
+	private String color;
+	private char speciesChar; // the first character of Species name
+	private ArrayList<Instruction> program;
 
 	/**
 	 * Create a species for the given fileReader. 
@@ -43,7 +42,7 @@ public class Species {
 	/**
 	 * Helper method for reading species
 	 */
-	protected void readProgramFromStream(BufferedReader fileReader) {
+	private void readProgramFromStream(BufferedReader fileReader) {
 		while (true) {
 			String line;
 			try {
@@ -110,7 +109,7 @@ public class Species {
 	 * @pre code is the name of an opcode. 
 	 * @post returns the opcode for the string.
 	 */
-	protected int stringToOpcode(String code) {
+	private int stringToOpcode(String code) {
 		String lowerCode = code.toLowerCase();
 		if (lowerCode.startsWith("hop"))
 			return Instruction.HOP;

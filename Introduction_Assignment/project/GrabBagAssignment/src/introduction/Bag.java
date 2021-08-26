@@ -8,16 +8,16 @@ package introduction;
  */
 public class Bag {
 
-	private static final int DEFAULT_TOKENS = 10;	// default number of Tokens in bag
+	int DEFAULT_TOKENS = 10;	// default number of Tokens in bag
 
-	private Token[] contents;	// the Tokens contained in this bag
+	Token[] contents;	// the Tokens contained in this bag
 
 	/**
 	 * Creates a new bag populated with the given number of Tokens
 	 *
 	 * @param numTokens number of desired Tokens
 	 */
-	public Bag(int numTokens){
+	Bag(int numTokens){
 		contents = new Token[numTokens];
 		for(int i = 0; i < numTokens; i++) {
 			contents[i] = new Token();
@@ -27,7 +27,7 @@ public class Bag {
 	/**
 	 * Prints out the first Token in the bag
 	 */
-	public void firstToken() {
+	void firstToken() {
 		System.out.println(contents[0]);
 	}
 	
@@ -35,7 +35,7 @@ public class Bag {
 	 *	Prints out each Token in the bag
 	 *	use a for loop to enumerate the contents
 	 */
-	public void allTokens() {
+	void allTokens() {
 		for(int i = 0; i < contents.length; i++) {
 			// TODO print out the currently chosen Token
 		}
@@ -45,7 +45,7 @@ public class Bag {
 	 *	Prints out each Token in the bag
 	 *	using a while loop to enumerate the contents
 	 */
-	public void allTokensWhile() {
+	void allTokensWhile() {
 		// TODO turn this into a while loop that enumerates and
 		// prints all of the tokens in the bag
 		while() {
@@ -57,7 +57,7 @@ public class Bag {
 	 *
 	 * @return sum of values of all Tokens in bag
 	 */
-	public int addTokens() {
+	int addTokens() {
 		// TODO write a loop that enumerates the entire bag
 		// and sums the total of all of the Token values
 		return 0;
@@ -68,7 +68,7 @@ public class Bag {
 	 *
 	 * @return number of high value Tokens
 	 */
-	public int highValueTokens() {
+	int highValueTokens() {
 		// TODO write a loop that enumerates the entire bag
 		// and returns the number of high value Tokens
 		return 0;	
@@ -79,7 +79,7 @@ public class Bag {
 	 *
 	 * @return index of first green Token, or -1 if none
 	 */
-	public int firstGreen() {
+	int firstGreen() {
 		// TODO search bag for a green Token, if found, return its index
 		return -1;
 	}
@@ -89,7 +89,7 @@ public class Bag {
 	 */
 	 public static void main(String[] args) {
 		// create a bag full of random cips
-		Bag example = new Bag(DEFAULT_TOKENS);
+		Bag example = new Bag(10);
 
 		// test firstToken ... to print the first Token
 		example.firstToken();

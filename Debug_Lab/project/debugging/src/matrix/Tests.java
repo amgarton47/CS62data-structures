@@ -8,14 +8,14 @@ public class Tests {
 	 * @param rows the number of rows that are supposed to be in the matrix
 	 * @param cols the number of columns that are supposed to be in the matrix
 	 */
-	public static void checkGetSet(Matrix<Integer> m, int rows, int cols) {
+	public static void checkGetSet(StringMatrix m, int rows, int cols) {
 		boolean failed = false;
 
 		try {
 			// set the entry
 			for( int i = 0; i < rows; i++ ) {
 				for( int j = 0; j < cols; j++ ) {
-					m.set(i,j,1);
+					m.set(i,j,"1");
 				}
 			}
 		} catch( Exception e ) {
@@ -27,7 +27,7 @@ public class Tests {
 			// set the entry
 			for( int i = 0; i < rows; i++ ) {
 				for( int j = 0; j < cols; j++ ) {
-					if( m.get(i,j) != 1 ) {
+					if( !m.get(i,j).equals("1") ) {
 						System.err.println("Found bad entry: (" + i + ", " + j);
 						failed = true;
 					}
@@ -49,11 +49,11 @@ public class Tests {
 	 * Check to make sure that off by one errors outside the accessible
 	 * range are handled properly by the matrix.
 	 * 
-	 * @param m
-	 * @param rows
-	 * @param cols
+	 * @param m the matrix
+	 * @param rows the number of rows that are supposed to be in the matrix
+	 * @param cols the number of columns that are supposed to be in the matrix
 	 */
-	public static void rangeCheck(Matrix<Integer> m, int rows, int cols) {
+	public static void rangeCheck(StringMatrix m, int rows, int cols) {
 		boolean failed = false;
 
 
@@ -99,24 +99,24 @@ public class Tests {
 	}
 	
 	public static void testBadMatrix() {
-		checkGetSet(new BadMatrix<Integer>(3, 3), 3, 3);
-		rangeCheck(new BadMatrix<Integer>(3, 3), 3, 3);
-		checkGetSet(new BadMatrix<Integer>(2, 3), 2, 3);
-		rangeCheck(new BadMatrix<Integer>(2, 3), 2, 3);
+		checkGetSet(new BadMatrix(3, 3), 3, 3);
+		rangeCheck(new BadMatrix(3, 3), 3, 3);
+		checkGetSet(new BadMatrix(2, 3), 2, 3);
+		rangeCheck(new BadMatrix(2, 3), 2, 3);
 	}
 
 	public static void testBadMatrix2() {
-		checkGetSet(new BadMatrix2<Integer>(3, 3), 3, 3);
-		rangeCheck(new BadMatrix2<Integer>(3, 3), 3, 3);
-		checkGetSet(new BadMatrix2<Integer>(2, 3), 2, 3);
-		rangeCheck(new BadMatrix2<Integer>(2, 3), 2, 3);
+		checkGetSet(new BadMatrix2(3, 3), 3, 3);
+		rangeCheck(new BadMatrix2(3, 3), 3, 3);
+		checkGetSet(new BadMatrix2(2, 3), 2, 3);
+		rangeCheck(new BadMatrix2(2, 3), 2, 3);
 	}
 	
 	public static void testBadMatrix3() {
-		checkGetSet(new BadMatrix3<Integer>(3, 3), 3, 3);
-		rangeCheck(new BadMatrix3<Integer>(3, 3), 3, 3);
-		checkGetSet(new BadMatrix3<Integer>(2, 3), 2, 3);
-		rangeCheck(new BadMatrix3<Integer>(2, 3), 2, 3);
+		checkGetSet(new BadMatrix3(3, 3), 3, 3);
+		rangeCheck(new BadMatrix3(3, 3), 3, 3);
+		checkGetSet(new BadMatrix3(2, 3), 2, 3);
+		rangeCheck(new BadMatrix3(2, 3), 2, 3);
 	}
 	
 	public static void main(String[] args) {

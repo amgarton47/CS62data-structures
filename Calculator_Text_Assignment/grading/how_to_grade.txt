@@ -9,7 +9,7 @@
 
 -- Check all of the error conditions. You can follow the error transcript from the project writeup or use your own just make sure you check all 5 error conditions.
 
--- Check that the program terminates with a blank line
+-- Check that the program terminates with quit
 
 -- Peek at their tests.  They should have two classes, one for CalculatorMemory and one for Operation.  In each of these, they should have at least one JUNit test per method.  As long as they have these, that's sufficient.
 

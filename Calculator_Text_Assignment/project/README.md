@@ -1,4 +1,4 @@
-# Assignment 3 - Text Calculator
+# Assignment - Text Calculator
 
 For this assignment, you will be implementing a text-based postfix calculator which takes input in postfix notation and displays the results of the computation.  As always, read through the entire handout first before you start working on the assignment.
 
@@ -40,7 +40,7 @@ Be careful about the ordering of the operands, i.e., when applying an operator t
 
 ## Text Postfix Calculator
 
-Your program will prompt the user for either a number of an operator and will either add the number to the stack directly or perform the operation and then add the result back to the stack.  Here is an example execution of the program following the example above:
+Your program will prompt the user for either a number or an operator and will either add the number to the stack directly or perform the operation and then add the result back to the stack.  Here is an example execution of the program following the example above:
 
 	Enter a number or operator: 52
 	
@@ -106,7 +106,7 @@ Your interactive calculator must meet the following requirements:
 
 * Follow *exactly* the output shown in the example above.
 
-* Keep going until the user enters a blank line.
+* Keep going until the user enters "quit" (without quotes).
 
 * Support +, -, *, and /, as well as two other operators:
 
@@ -173,9 +173,8 @@ Here is an example showing the errors:
 
 The three classes you need to implement are outlined below:
 
-* `Operation`: This class represents a mathematical operation. It should have two methods:
-	* `public Operation(char op)`: Creates a new operation based on a character.  Valid operations are +, -, * and /.  If the input is not one of these four operations, it should throw an `IllegalArgumentException`.
-	* `public int performOperation(int left, int right)`: Perform the math operation on these two operands and return the result.  This method could throw an `ArithmeticException` *if* we try and divide by zero (Java will do this naturally for you).
+* `Operation`: This class represents a mathematical operation. It should have just a single static method:
+	* `public static int performOperation(char op, int left, int right)`: Perform the math operation on these two operands and return the result.  Valid operations are +, -, * and /.  If the input is not one of these four operations, it should throw an `IllegalArgumentException`.  This method could throw an `ArithmeticException` *if* we try and divide by zero (Java will do this naturally for you).
 * `CalculatorMemory`: The memory of the calculator.  It must have the following methods:
 	* `public void push(int number)`:  Add the number to memory.  **Must run in O(1).**
 	* `public int pop()`: Return and remove the most recently pushed value.  **Must run in O(1).**
@@ -209,7 +208,7 @@ In addition to the three classes above, you must also submit two classes `Operat
 
 There are many ways that you can go about doing this assignment, but I'd strongly encourage you to work incrementally.  Here's one path:
 
-1. Write the `Operator` class.
+1. Write the `Operation` class.
 
 2. Write your JUnit tests for `Operator` (`OperatorTest`).  Fix any bugs you find :).
 

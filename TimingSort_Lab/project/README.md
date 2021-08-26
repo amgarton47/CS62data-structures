@@ -4,7 +4,7 @@
 
 In this lab, we'll be playing with some of the sorting algorithms we've been discussing in class. In addition, you'll get some familiarity with the `merge` method of `MergeSort`, which you will be implementing an on-disk version of for the next assignment.
 
-You may again work in pairs on this lab, but choose a partner that you have not worked with before.
+You may work in pairs on this lab.  If you don't have a partner, let me know and I'll pair you up!
 
 Note: this lab assumes you've kept up with the reading for the class! In particular, we'll be looking at selectionsort, insertionsort, quicksort, and mergesort but we'll also encounter bubblesort and heapsort.
 
@@ -57,11 +57,6 @@ Discuss with your partner:
    2. for each algorithm, the time as a function of the number of items to sort.
    3. why each algorithm has that performance.
 
-
-## Submission Instructions
-
-Please fill out the `assignment.json` file. Include your Github name in the collaborators list and your partner's username as well if you worked with someone. 
-
-## If You Still Have Time
+## If You Would Like Practice (not required)
 
 Try implementing a new class for one of the `O(n^2)` running time sorting methods that `extends` our `Sorter` interface. Add this new class into the `SortTimer` class and compare its runtime to the other sorting methods.

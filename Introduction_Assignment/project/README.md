@@ -1,17 +1,14 @@
-# Introduction to CLI, Eclipse, and Java
+# Introduction to Java and Eclipse
 
 ## Learning Goals
 
-* Introduction to the shell command line interface.
+* Install Java and Eclipse
 * Introduction to Eclipse.
 * Introduction to Github and assignment repos.
 * Building and running simple Java programs.
 * Project submission (committing changes and pushing them back to github.
 
 ## Key Terms and Concepts
-* `CLI` - [Command Line Interface](https://en.wikipedia.org/wiki/Command-line_interface): running 
-   programs by typing commands and arguments to a command intepreter like 
-   the Linux/OSX [shell](https://en.wikipedia.org/wiki/Unix_shell).
 * `Eclipse` - an [Integrated Development Environment](https://en.wikipedia.org/wiki/Integrated_development_environment) 
    that includes powerful tools for editing, running, and debugging programs. In this course we will be using it as a Java IDE.
 * `Git` - a distributed [version control system](https://en.wikipedia.org/wiki/Version_control) 
@@ -22,13 +19,14 @@
 
 ## Overview
 The goals of this assignment are to:
-   1. learn to run a few basic commands in a Linux/OSX terminal window.
-   2. bring up Eclipse as an Integrated Development Environment.
-   3. establish (if you do not already have one) a free personal
+   1. Get slack setup for the course
+   2. Install Java and Eclipse
+   3. bring up Eclipse as an Integrated Development Environment.
+   4. establish (if you do not already have one) a free personal
       [github account](https://help.github.com/en/articles/signing-up-for-a-new-github-account).
-   4. import a clone of the master-copy for this project into Eclipse.
-   5. fill in the missing code in a simple Java program.
-   6. submit your work by committing and pushing it back to github.
+   5. import a clone of the master-copy for this project into Eclipse.
+   6. fill in the missing code in a simple Java program.
+   7. submit your work by committing and pushing it back to github.
 
 ## Classes
 
@@ -64,7 +62,7 @@ assignments and loops) to complete all of the methods so that they work correctl
    with a shell prompt will appear.  Create a new workspace directory
    on your desktop, by typing the following commands:
 ```
-cd /Volumes/yourPomonaID/Documents/
+cd Documents/
 mkdir cs62
 chmod 700 cs62
 cd cs62
@@ -72,7 +70,6 @@ mkdir workspace
 ```
    The effect of these commands are:
    * Create a new directory, `cs62` for this course on your `Documents` folder. 
-     (Though you might prefer to create it within your `Documents` folder).
    * Change the protection on this folder so that *only you* are able to access it.
    * Within the new `cs62` folder, create a `workspace` folder, where
      Eclipse will store all of the information associated with your projects.
@@ -83,13 +80,19 @@ mkdir workspace
    * the commands available from the shell are much more powerful than those
      available with the *Finder* or other file access Graphical User Interfaces.
 
-  You will be able to access `cs62` on any lab machine. You can confirm that's the case by clicking the globe icon at the bottom right of your screen, titled as "Your Name Network Home" and navigating through the Documents folder. Please make sure that you are **not** working on the local Home folder as any change you make will be only accessible to the machine you are currently working on.
+  Note that you will NOT be able to access `cs62` on any lab machine and it will only be stored on the one you are currently working on. This is why it is important to follow all the steps of this guide.
 
    For more information on the advantages and design of Command Line Interfaces,
    please see this paper on [CLI design](http://htmlpreview.github.io/?https://github.com/markkampe/Big-Software/blob/master/supp/cli.html).
 
 2. If you do not already have a github account, go to github.com and
    [register a new personal user account](https://help.github.com/en/articles/signing-up-for-a-new-github-account).
+
+   Verify your email and follow the instructions to generate [a personal access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+   - In step 6, give your token the name "Eclipse".
+   - In step 7, set the expiration to "No expiration".
+   - In step 8, only click the "repo" checkbox.
+   Make sure you store somewhere securely the generated token!
 
 3. You will receive an email invitation to join each lab.  Follow that
    URL; you will be asked to link your github account to your name.
@@ -111,13 +114,15 @@ mkdir workspace
 
    ![HTTPS_Clone](images/https_clone.png "HTTPS Clone")
 
-4. Start Eclipse on your local machine.  It will ask you to choose
+3. Start Eclipse on your computer (if you don't already have it open and running).  It will ask you to choose
    a workspace. You should browse to the workspace folder that you 
-   created above. Eclipse will remember this selection
+   created above (`Users/yourPomonaID/Documents/cs62/workspace`).
+   
+   Eclipse will remember this selection
    and prompt it as a default (or in the list of Recent Workspaces)
    when you start Eclipse in the future.
 
-5. Import your new github repo onto the machine where you are working.
+4. Import your new github repo onto the machine where you are working.
   ![Import](images/import.png "Import")
   Click on `File`->`Import` and follow the windows below: 
    
@@ -125,29 +130,26 @@ mkdir workspace
 
    ![Clone URI](images/cloneURI.png "Clone URI")
 
-6. Paste the URL you copied from Github. It will automatically populate 
+5. Paste the URL you copied from Github. It will automatically populate 
    the fields. 
-   Add your Github username and password. 
+   Add your Github username and token we generated. 
    Make sure to check `Store in Secure Store` unless you want to re-enter your 
    credentials every time you interact with the repository. 
    Feel free to add a password hint if you consider it necessary, once prompted. 
    (**Note:** If you have two-factor authentication enabled for your Github account, 
    you will need to disable it prior to entering your credentials here)
 
+6. You'll see a screen with "master" checked.  Click "Next".
 
-7. **Carefully** browse to the destination which needs to be your workspace that you created in /Volumes/yourPomonaID/Documents/. 
+7. **Carefully** browse to the destination which needs to be your workspace that you created in yourPomonaID/Documents/cs62/workspace. 
 
-![Destination](images/destination.png "Destination")
-
-8. Follow the following screens to complete cloning.
-
-![Existing](images/existing.png "Existing")
-
-![Finish](images/finish.png "Finish")
+8. Continue clicking next until you find the button Finish.
 
 9. You should now be able to see your newly-cloned starter code. 
 
-10. Edit the `Token.java` and `Bag.java` files to add the missing code (which is indicated by **// TODO** comments).  If you are not yet sure how to code a particular type of statement (e.g., a Java `for` loop), Google for examples or ask the instructor and the TAs for assistance.
+## Your first coding project ##
+
+Edit the `Token.java` and `Bag.java` files to add the missing code (which is indicated by **// TODO** comments).  If you are not yet sure how to code a particular type of statement (e.g., a Java `for` loop), Google for examples or ask the instructor and the TAs for assistance.
 
 If your program contains any obvious syntax errors, Eclipse will give you red warning indications on the affected lines of code.  If the errors are distributed over multiple modules you can see all of them by selecting the `Problems` tab in the bottom part of the Eclipse window.
    
@@ -162,12 +164,8 @@ You should fill in the missing code in `Token.java` first because  `Bag.java` de
 
 ## Submitting your work
 
-8. *Commit* your changes and *Push* them back to Github.
+*Commit* your changes and *Push* them back to Github.
    
-   Make sure you edit the `.json` file you are given with every lab/assignment to include 
-   your username, your partner's username (if collaboration is allowed), and indicate 
-   if you did any extra credit work.
-
    Enable the Git Repositories view:
 
    ![Git View](images/git_view.png "Git View")
@@ -205,8 +203,7 @@ You should fill in the missing code in `Token.java` first because  `Bag.java` de
    Submitting correctly is your responsibility, and if you forget to submit or 
    submit unsuccessfully without following up, everyone will be unhappy. 
 
-   **Important:** The last commit you push by the due date is the one we will look at and grade.
-
+   **Important:** For assignments, the last commit you push by the due date is the one we will look at and grade.
 
 ## Helpful Considerations
 
@@ -214,35 +211,37 @@ You should fill in the missing code in `Token.java` first because  `Bag.java` de
 **AVOID** one big push at the end of your work.   
 We want to be able to see the progressive development process that you followed.
 
-## Grading
-Your submission (in your own personal github repo) will be graded based on the following criteria:
+## Wrapping up
+When you're all done, make sure that you've pushed the latest version of your code via git.  Labs are participation based, so make sure that you've pushed something by the end of the lab.
 
-| Criterion                                                                                        | Points |
-| :----------------------------------------------------------------------------------------------- | :----- |
-| all `Token` methods work correctly                                                               | 3      |
-| all `Bag` methods work correctly                                                                 | 3      |
-| submitted correctly                                                                              | 1      |
-| builds correctly                                                                                 | 1      |
-| [Style and formatting*](https://github.com/pomonacs622020sp/Handouts/blob/master/style_guide.md) | 1      |
-| **Total**                                                                                        | **9** |
 
-*Style and Formatting refers to the correct use of Java constructs including booleans, loop constructs, etc. Think of it as good writing style for programs.
 
-NOTE: Code that does not compile will not be accepted! Make sure that your code compiles and runs before submitting it.
+## Installing Java and Eclipse on your own computer
 
-You must comment your code. We will be using the JavaDoc commenting style. To be compliant with JavaDoc, you must have the following:
+1. Install the Java JDK (Java Development Kit), version 1.8 ("Java 8")
 
-   Each comment on a method or class should start with `/**` and end with `**/`. 
-   Every line in between should start with a `*` and be appropriately indented. 
-   (Comments on variables and constants do NOT have to use this style unless they are public.)
-
-   A comment describing the class right before the class declaration 
-   (i.e. after the `import` statements). This comment should include the `@author` tag 
-   after the class description, and the `@version` tag after the author tag.
-
-   A comment for each method describing what the method does. 
-   This comment should describe the what but not the how.
-   `@param`, `@return` and `@throws` tags for each method (when appropriate)
-   `pre-` and `post`- conditions as appropriate
-
-Double-check that your work is indeed pushed in Github! It is your responsibility to ensure that you do so before the deadline.
+   - Go to https://java.com/en/download/ and click the "Java Download" button
+   - You should see your system (seen in red "Download Java for ...") and you should also see "Recommended Version 8 Update ..."
+   - Click "Agree and Start Free Download"
+   - Once downloaded open/run the file and follow instructions to install Java.
+   
+   If this doesn't work, go to https://www.java.com/en/download/manual.jsp and select your operating system manually.
+   
+2. Install the Eclipse IDE
+   
+   - Go to https://www.eclipse.org/downloads/
+   - Click the orange "Download 64-Bit" button.  This should take you to a page specific for your operating system.
+   - Click the "Download" button.
+   - When the download is complete, run the application.  This is the Eclipse installer which will help you install Eclipse.
+   - When the application runs, you'll see a number of different versions of Eclipse that you can install.  **Select "Eclipse IDE for Java Developers"**.  It should be the first one.
+   - Follow the instructions of the installer selecting all of the default options.
+   
+3. Running Eclipse
+   - When the installation finishes, there should be a green button to "Launch" Eclipse.  Click on it.  (In the future, you'll need to search for Eclipse as an application and then run it.  I'll let you configure your own machine however makes the most sense for you.
+   - When Eclipse first starts, it will ask you to enter the workspace location.
+   - Click the "Browse..." button and browse to your Documents, **but don't click open yet**
+   - Create a new folder called cs62_workspace within the browse window (this will be something specific to your operating system).
+   - Select this folder and then click open.
+   - Your Eclipse launcher should now have a workspace folder selected that ends in "cs62_workspace" (the rest of the path will be different depending on your computer setup.
+   - Click "Launch"
+  

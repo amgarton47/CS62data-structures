@@ -11,11 +11,11 @@
 
 ## JUnit
 
-A "unit" test is a test that tests a very small, portion of code, often some functionality of a single function/method.  `JUnit` is a framework for that allows you to write meaningful tests, run them regularly and easily identify which parts of your code might be problematic.
+A "unit" test is a test that tests a very small, portion of code, often some functionality of a single function/method.  `JUnit` is a framework that allows you to write meaningful tests, run them regularly and easily identify which parts of your code might be problematic.
 
 To get started, we're going to write some JUnit tests to test the functionality of the `LinkedList` class.
 
-To create a new set of tests, right click on your project and then select `New -> JUnit Test case`.  This should pop up a dialog box.  Under the "Name" field, put the name "LinkedListTest". Then press "Finish".  When you do, you may see a window pop-up telling you that JUnit 5 is not on the build path.  If it does, make sure that "Add JUnit 5 library to the build path" is selected and click "OK".
+To create a new set of tests, right click on your project and then select `New -> JUnit Test case`.  This should pop up a dialog box.  Make sure that `New JUnit Jupiter test` is selected at the top.  Under the "Name" field, put the name "LinkedListTest". Then press "Finish".  When you do, you may see a window pop-up telling you that JUnit 5 is not on the build path.  If it does, make sure that "Add JUnit 5 library to the build path" is selected and click "OK".
 
 You should now see a class called LinkedListTest with a *very* simple test.
 
@@ -69,18 +69,18 @@ The two JUnit tests are a good start, but a good test suite will test all of the
 
 * You should have at least one test case for each method.  Often, for more complicated methods, you should have more than one.
 
-* Your test cases should try hard to just isolate the one method that you're testing.  This isn't always possible (e.g., in the case of `testAddFirst`, but you should minimize the number of methods that you call in a test.  The goal of a JUnit test is to try and as precisely as possible where the issue is.
+* Your test cases should try hard to just isolate the one method that you're testing.  This isn't always possible (e.g., in the case of `testAddFirst`, but you should minimize the number of methods that you call in a test.  The goal of a JUnit test is to try and precisely as possible isolate where the issue is.
 
 * As you write your test cases, think about edge cases, e.g., when the linked list is empty.
 
 
-Once you have a reasonable test suite. Compare your tests with someone else in the lab.
+Once you have a reasonable test suite. Compare your tests with another group in the lab. (Bug me and I'll combine breakout rooms!)
 
 * How similar are you tests?
 
-* Were there any cases that you tested that the other person didn't (and vice versa)?
+* Were there any cases that you tested that the other group didn't (and vice versa)?
 
-* Pick one of your test cases that you think is particularly interesting (between the two of you) and write it up on the whiteboard somewhere.
+<!--* Pick one of your test cases that you think is particularly interesting (between the two of you) and write it up on the whiteboard somewhere.-->
 
 ## Linked Lists
 

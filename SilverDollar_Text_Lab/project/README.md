@@ -1,4 +1,4 @@
-# Lab 1 - The Silver Dollar Game
+# Lab 2 - The Silver Dollar Game
 
 ## Learning Goals
 
@@ -31,7 +31,7 @@ ooooo_______ You win!!
 The pair of numbers after `Next move?` signifies the location of a coin and the number of squares
 that the coin is to move to the left. To be consistent with how we do indexing in Java the leftmost square is location 0, not 1.
 
-For this first exercise, we have given you a start on the code for the class `TextCoinStrip`. Take some time to understand the code (I promise you’ll be much better off spending 5-10 minutes
+For this exercise, we have given you a start on the code for the class `TextCoinStrip`. Take some time to understand the code (I promise you’ll be much better off spending 5-10 minutes
 looking at the code before doing any coding yourself), then fill in the four missing methods.
 
 1. `toString` which creates the string representation of the strip,

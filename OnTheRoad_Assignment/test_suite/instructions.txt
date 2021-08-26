@@ -1,0 +1,8 @@
+Instructions
+- Make sure you've pulled the latest version of CS62_projects
+- The unit tests are in OnTheRoad/test_suite/GradingTests.java
+- You'll need to modify the constant at the top to point to the test_suite directory since it relies on some files.
+- Run the unit tests
+- All tests should pass.  If some fail, you'll have to see if you can figure out why.  A number of the tests are end-to-end, so there may be multiple causes (sorry!).
+- Compare the output of the tests to the correct_test_output.txt
+- Check for comments, style and JavaDoc (only in GraphAlgorithms and Optimizer)

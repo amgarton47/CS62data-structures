@@ -13,6 +13,21 @@ Structure
   * tools ... scripts/programs to put-up assignments, download submissions, grade and post results
   * autograder ... a grading GUI used between 2015 and 2019
 
+## How to deploy a lab/assignment
+
+1. Make any relevant changes to the core projects: https://github.com/PomonaCS/CS62_projects/
+
+2. Create a new repository in the semester specific github group (e.g., https://github.com/organizations/pomonacs622020fa).  The repository should be private and should be empty (no README).
+
+3. Run tools/create_project.sh. For example:
+      
+      tools/create_project.sh Timing-ArrayList pomonacs622020fa/lab3
+
+4. Create a new assignment in github classroom.  It should be private and select starter code for how to import. For example:
+
+      pomonacs622020sp/lab3
+
+5. Share invitation URL with students.
 
 ## How to Grade
 

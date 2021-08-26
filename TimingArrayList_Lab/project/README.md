@@ -1,6 +1,8 @@
 # Timing ArrayList Additions
 
-We encourage you to work in pairs on this lab as it is useful to learn from others and two pairs of eyes on a program are more likely to find errors.  Having someone to discuss the results of your program will also make it more likely that you'll get a deeper understanding of the results.  Don't forget to acknowledge your partner in the json file.
+<!-- We encourage you to work in pairs on this lab as it is useful to learn from others and two pairs of eyes on a program are more likely to find errors.  Having someone to discuss the results of your program will also make it more likely that you'll get a deeper understanding of the results.  Don't forget to acknowledge your partner in the json file. -->
+
+For this lab, we'll be exploring the different variations of the `ArrayList` class.  In particular, we'll examine how resizing the list when the array fills up affects the overall run-time and how this relates to our theoretical calculations.
 
 ## Learning Goals
 
@@ -10,7 +12,7 @@ We encourage you to work in pairs on this lab as it is useful to learn from othe
 
 ## Key Terms and Concepts
 
-* `ArrayList` - An ArrayList is a resizable array-like data structure, where items can be added and removed regardless of the initialized size (See 1.3 pg. 136 in the textbook and the lecture notes for more information).
+* `ArrayList` - An ArrayList is a resizable array-like data structure, where items can be added and removed regardless of the initialized size <!-- (See 1.3 pg. 136 in the textbook and--> the lecture notes for more information).
 
 
 ## `CapacityArrayList` Class
@@ -29,7 +31,7 @@ You will be using a `Stopwatch` class that represents a stopwatch and collects t
 
 ## Your Program
 
-Once you have everything setup, create a new class `ArrayListTimer` and specify its package to be `arraylist`. 
+Once you have everything setup, create a new class `ArrayListTimer` and specify its package to be `arraylist`.  To do this, right-click on the `arraylist` package and then select `New->Class` and enter `ArrayListTimer` as the class name.
 
 `ArrayListTimer` will simply contain the `main` method and a few other static methods:
 
@@ -37,9 +39,9 @@ Once you have everything setup, create a new class `ArrayListTimer` and specify 
 
 This `run` method will create a new empty arrayList of type `CapacityArrayList<String>` with the specified rate of growth. Set its initial capacity to 2. It should return the time that it takes to add `maxSize` strings to the `CapacityArrayList`. Use the `add` method, and always add the same constant string of your choice, for example, your name. To attempt to minimize the impact from garbage collection add the line: `System.gc();` in your run method right before you start the stopwatch. 
 
-- `public static ArrayList<Double> trial(int maxSize, CapacityArrayList<Integer> capacityIncrements)`
+- `public static ArrayList<Double> trial(int maxSize, ArrayList<Integer> capacityIncrements)`
 
-Your `trial` method will compare the results from `run` for a specific number of strings to be added to the arrayList while varying its increments when it's full. It should make one call to `run` for each entry in the `capacityIncrements` ArrayList. The results of these trials should be returned in a `CapacityArrayList` whose size is the same as that of `capacityIncrements` and the entry at position `i` in the returned arrayList should correspond to the trial with increment set to the entry at position `i` in `capacityIncrements`.
+Your `trial` method will compare the results from `run` for a specific number of strings to be added to the arrayList while varying its increments when it's full. It should make one call to `run` for each entry in the `capacityIncrements` ArrayList. The results of these trials should be returned in a `ArrayList` whose size is the same as that of `capacityIncrements` and the entry at position `i` in the returned arrayList should correspond to the trial with increment set to the entry at position `i` in `capacityIncrements`.
 
 - `public static void main(String[] args)`
 
@@ -102,7 +104,10 @@ We will discuss the results when most people have their timings working.
 
 ## Submission Instructions
 
-Please fill out the `assignment.json` file. Include your Github name in the collaborators list and your partner's username as well if you worked with someone. If you have anything you want to say to the graders, put it in the notes field. Don't forget to put your name(s) in a comment at the top of the `ArrayListTimer` class.
+<!--Please fill out the `assignment.json` file.
+Include your Github name in the collaborators list and your partner's username as well if you worked with someone. If you have anything you want to say to the graders, put it in the notes field. -->
+
+Put your name(s) in the `@author` tage at the top of the `ArrayListTimer` class and then commit and push your final code.
 
 ## More Fun!
 

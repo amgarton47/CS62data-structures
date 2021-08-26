@@ -30,9 +30,13 @@ public class TextCoinStrip {
 	public TextCoinStrip (int squares, int coins) { 
 		if (0 > coins || coins >= squares) { // Check precondition
 			System.out.println("Game must be played with number of\n"+
-							   "coins less than number of squares");
+						"coins less than number of squares");
+			
+			// This is how exceptions are raised/thrown in Java.  We'll talk more about this later
+			// When an exception is thrown, the method exits and, if nothing handles the exception,
+			// the program will exit.
 			throw new IllegalArgumentException("# coins: "+coins+" must be positive "
-											   +"and less than # squares: "+squares);
+								+ "and less than # squares: "+squares);
 		}
 		
 		theStrip = new ArrayList<Boolean>(); 
@@ -43,6 +47,7 @@ public class TextCoinStrip {
 
 		//place #coins randomly on the strip
 		Random rand = new Random (); 
+		
 		while (0 < coins) { 
 			int i = rand.nextInt (squares); 
 			if (!theStrip.get(i)) { 
@@ -101,16 +106,19 @@ public class TextCoinStrip {
 		Scanner scanner = new Scanner(System.in); 
 		int start = 0; 
 		int distance = 0; 
+		
 		while (!gameIsOver()) { 
 			System.out.print(toString() + " Next move? "); 
 			start = scanner.nextInt(); 
 			distance = scanner.nextInt(); 
-			if (isLegalMove(start, distance)){ 
+			
+			if (isLegalMove(start, distance)) { 
 				makeMove(start, distance); 
-			}else{ 
+			} else { 
 				System.out.println("Illegal move!"); 
 			} 
 		} 
+		
 		System.out.println(toString() + "You win!!"); 
 		scanner.close();
 	} 

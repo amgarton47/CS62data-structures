@@ -6,8 +6,8 @@ package darwin;
  */
 
 
-public class World<E> {
-	Matrix<E> board;
+public class World {
+	private Matrix<Creature> board;
 
 	/**
 	 * This function creates a new world consisting of width columns and height
@@ -15,7 +15,7 @@ public class World<E> {
 	 * contains no objects.
 	 */
 	public World(int w, int h) {
-		board = new Matrix<E>(h, w);
+		board = new Matrix<Creature>(h, w);
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class World<E> {
 	 * Set a position on the board to contain e. 
 	 * @pre pos is in range - throws IllegalArgumentException otherwise
 	 */
-	public void set(Position pos, E e) {
+	public void set(Position pos, Creature e) {
 		if(inRange(pos))	
 			board.set(pos.getY(), pos.getX(), e);
 		else
@@ -60,7 +60,7 @@ public class World<E> {
 	 * Return the contents of a position on the board. 
 	 * @pre pos is a in range - throws IllegalArgumentException otherwise
 	 */
-	public E get(Position pos) {
+	public Creature get(Position pos) {
 		if(inRange(pos))
 			return board.get(pos.getY(), pos.getX());
 		else

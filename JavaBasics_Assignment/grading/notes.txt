@@ -1,0 +1,28 @@
+Style:
+
+Take off a quarter of a point for any issue, but only take it off once for the same issue
+
+* public/private
+- WarmUp: all methods should be public (unless they wrote helper methods, in which case, they should be private)
+- Card: 
+-- all instance variables private
+-- flip/isFaceUp public
+- Person
+-- all instance variables private
+-- all methods should be public (unless they wrote helper methods, in which case, they should be private)
+
+* comments on all methods (they didn't have to do JavaDoc this time)
+
+* make sure they used good variable names (most probably did)
+
+* if/else
+
+if they wrote:
+
+if( some_boolean_expression ){
+    return true; // or some variable
+} else {
+    return false; // or the negation of that variable
+}
+
+suggest they rewrite it without the if statement

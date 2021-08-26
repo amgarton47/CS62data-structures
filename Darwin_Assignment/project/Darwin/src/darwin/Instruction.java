@@ -42,12 +42,21 @@ public class Instruction {
 	/** opcode for the go instruction */
 	public static final int GO = 10;
 
-	protected int opcode; /** the opcode */
-	protected int address; /** the address */
+	private int opcode; /** the opcode */
+	private int address; /** the address */
 
 	/**
-	 * Creates a new instruction. address is the target of the operation, if one
-	 * is needed. Otherwise it is not used. @pre 0 < opcode <= GO.
+	 * Creates a new instruction for operations that do
+	 * NOT require an address.
+	 * @pre 0 < opcode <= GO.
+	 */
+	public Instruction(int opcode) {
+		this(opcode, 0);	
+	}
+	
+	/**
+	 * Creates a new instruction for operations that require an address.
+	 * @pre 0 < opcode <= GO.
 	 */
 	public Instruction(int opcode, int address) {
 		this.opcode = opcode;
