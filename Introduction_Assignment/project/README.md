@@ -62,14 +62,16 @@ assignments and loops) to complete all of the methods so that they work correctl
    with a shell prompt will appear.  Create a new workspace directory
    on your desktop, by typing the following commands:
 ```
-cd Documents/
+cd /Volumes/.../yourPomonaID/Documents/
 mkdir cs62
 chmod 700 cs62
 cd cs62
 mkdir workspace
 ```
+
+   Please note that `...` will stand for something different based on who you are. For example, for me it is `fac-staff` but for you it will be something else. Check with an instructor or a TA to confirm the correct path. Similarly, `yourPomonaID` is your unique Pomona ID that you use to log in throughout the different IT services around the campus. For example, for me it is `apaa2017`.
    The effect of these commands are:
-   * Create a new directory, `cs62` for this course on your `Documents` folder. 
+   * Create a new directory, `cs62` for this course on your `Documents` folder **in the global network**. 
    * Change the protection on this folder so that *only you* are able to access it.
    * Within the new `cs62` folder, create a `workspace` folder, where
      Eclipse will store all of the information associated with your projects.
@@ -80,8 +82,8 @@ mkdir workspace
    * the commands available from the shell are much more powerful than those
      available with the *Finder* or other file access Graphical User Interfaces.
 
-  Note that you will NOT be able to access `cs62` on any lab machine and it will only be stored on the one you are currently working on. This is why it is important to follow all the steps of this guide.
-
+  Note that by saving your workspace in the global network, you will be able to access it independently of the lab machine you are working on campus!
+  
    For more information on the advantages and design of Command Line Interfaces,
    please see this paper on [CLI design](http://htmlpreview.github.io/?https://github.com/markkampe/Big-Software/blob/master/supp/cli.html).
 
@@ -116,7 +118,7 @@ mkdir workspace
 
 3. Start Eclipse on your computer (if you don't already have it open and running).  It will ask you to choose
    a workspace. You should browse to the workspace folder that you 
-   created above (`Users/yourPomonaID/Documents/cs62/workspace`).
+   created above (it will look similar to `Volumes/.../yourPomonaID/Documents/cs62/workspace`).
    
    Eclipse will remember this selection
    and prompt it as a default (or in the list of Recent Workspaces)
@@ -141,7 +143,7 @@ mkdir workspace
 
 6. You'll see a screen with "master" checked.  Click "Next".
 
-7. **Carefully** browse to the destination which needs to be your workspace that you created in yourPomonaID/Documents/cs62/workspace. 
+7. **Carefully** browse to the destination which needs to be your workspace that you created in `Volumes/.../yourPomonaID/Documents/cs62/workspace`. 
 
 8. Continue clicking next until you find the button Finish.
 

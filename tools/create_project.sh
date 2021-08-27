@@ -7,7 +7,7 @@
 # Note: the (empty) repo must exist on github before you do this
 #
 
-DFLT_ACCOUNT="pomonacs622020sp"
+DFLT_ACCOUNT="pomonacs622021fa"
 
 # validate the arguments
 if [ -z "$1" -o -z "$2" ]
@@ -75,3 +75,4 @@ fi
 git commit -m "Created from $1"
 
 git push origin master
+
