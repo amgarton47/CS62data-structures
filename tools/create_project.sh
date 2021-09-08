@@ -2,7 +2,7 @@
 #
 # Usage: create_project.sh project_path name-of-repo
 # cd in CS062_Projects
-# Example: tools/create_project.sh Introduction pomonacs622020sp/lab0
+# Example: tools/create_project.sh Introduction pomonacs622021fa/lab0
 #
 # Note: the (empty) repo must exist on github before you do this
 #

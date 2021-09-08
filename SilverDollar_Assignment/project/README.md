@@ -1,4 +1,4 @@
-# Assignment 2 - Graphics Silver Dollar Game
+# Assignment - Graphics Silver Dollar Game
 
 ## Learning Goals
 
@@ -27,7 +27,7 @@ The correctness of the assignments in this class will be automatically verified.
 ![Calculator Mockup](coinsquaremockup.png)
 
 ### `Coin`
-The `Coin` class represents a single coin. This class is already implemented for you. This class contains several useful methods for creating and moving the coin, which will be useful for the assignment. Make sure to read its code.
+The `Coin` class represents a single coin. This class is already implemented for you. This class contains several useful methods for creating and moving the coin, which will be useful for the assignment. Make sure to read its code!
 
 Note that the `Coin` constructor requires a `JFrame` (a drawable panel
 on the screen) as a parameter.  The primary (`GraphicsCoinStrip`) class 
@@ -49,11 +49,12 @@ After you have a working copy of the game, fill in the `gameIsOver` method in th
 **Note**: Make sure that you do not "hard-code" your solution to the specific number of coins and strip positions we have given you. Your code should work for any strip size and any number of coins.
 
 ## Getting Started
-1. Read through the [CS 062 style guide](https://github.com/pomonacs622020sp/Handouts/blob/master/style_guide.md "Style guide"). You must follow these guidelines for all of your assignments. In short, write clean and readable code, thorough comments, and understandable variable and method names.
-2. As with the first lab/assignment, we will provide you with a URL that will consist your invitation to the assignment. Follow the same steps, changing the URL where appropriate so that you clone Assignment01.
+1. Read through the [CS 062 style guide](https://github.com/pomonacs622021fa/Handouts/blob/master/style_guide.md "Style guide"). You must follow these guidelines for all of your assignments. In short, write clean and readable code, thorough comments, and understandable variable and method names.
+2. As befrore, we will provide you with a URL that will consist your invitation to the assignment. Follow the same steps, changing the URL where appropriate so that you clone Assignment01.
 3. Look closely at the classes and methods that have been provided already. In this case, these are the `Coin` and `CoinSquare` classes. Figure out what they do, what methods they have available, and how these methods might be useful to your code.
 4. You are now ready to get started! This assignment asks you to fill in the constructor and fill in other methods in the `GraphicsCoinStrip` class and inner class to play the game. As much as possible, try and develop incrementally. That is, get one small piece working and then move on to another piece. Don't forget to push your code to Github as you go.
-5. Make sure to edit your assignment.json with your name.
+5. Make sure you edit the `.json` file you are given with every lab/assignment to include your username, your partner's username (if collaboration is allowed), and indicate if you did any extra credit work.
+
 
 ## Helpful Considerations
 * Breaking the rules - What happens when the user attempts to make an illegal move? Keep in mind that the user has much more power over your program than in the text iteration, as they have full control of the mouse to click or drag coins anywhere. Make sure that the user cannot break the rules of the game, or, even worse, break your program entirely.
@@ -75,7 +76,7 @@ You will be graded based on the following criteria:
 | General Correctness                               | 2      |
 | Code Quality*                                     | 3      |
 | Appropriate comments including JavaDoc            | 2      |
-| [Style and formatting](https://github.com/pomonacs622020sp/Handouts/blob/master/style_guide.md)                               | 2      |
+| [Style and formatting](https://github.com/pomonacs622021fa/Handouts/blob/master/style_guide.md)                               | 2      |
 | Submitted correctly                               | 1      |
 | **Total**                                         | **20** |
 
