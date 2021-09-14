@@ -30,7 +30,7 @@ public class Coin extends Ellipse2D.Double {
     private int diameter;   // the diameter of a coin
     
     /**
-     * Creates a coin with the specified and defaults to 0, 0 coordinates
+     * Creates a coin with the specified and defaults to diam/2, diam/2 coordinates
      * 
      * @param f the frame in which the coin will appear
      * @param diam the diameter of the coin
