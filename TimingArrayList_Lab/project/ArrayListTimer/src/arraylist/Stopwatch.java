@@ -3,7 +3,6 @@ package arraylist;
 /**
  *  A stopwatch class for measuring elapsed time
  *
- *  @author David Kauchak
  */
 
 

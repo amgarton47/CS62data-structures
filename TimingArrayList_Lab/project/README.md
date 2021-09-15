@@ -1,6 +1,6 @@
 # Timing ArrayList Additions
 
-<!-- We encourage you to work in pairs on this lab as it is useful to learn from others and two pairs of eyes on a program are more likely to find errors.  Having someone to discuss the results of your program will also make it more likely that you'll get a deeper understanding of the results.  Don't forget to acknowledge your partner in the json file. -->
+We encourage you to work in pairs on this lab as it is useful to learn from others and two pairs of eyes on a program are more likely to find errors.  Having someone to discuss the results of your program will also make it more likely that you'll get a deeper understanding of the results.  Don't forget to acknowledge your partner in the json file.
 
 For this lab, we'll be exploring the different variations of the `ArrayList` class.  In particular, we'll examine how resizing the list when the array fills up affects the overall run-time and how this relates to our theoretical calculations.
 
@@ -12,12 +12,12 @@ For this lab, we'll be exploring the different variations of the `ArrayList` cla
 
 ## Key Terms and Concepts
 
-* `ArrayList` - An ArrayList is a resizable array-like data structure, where items can be added and removed regardless of the initialized size <!-- (See 1.3 pg. 136 in the textbook and--> the lecture notes for more information).
+* `ArrayList` - An ArrayList is a resizable array-like data structure, where items can be added and removed regardless of the initialized size (See 1.3 pg. 136 in the textbook and the lecture notes for more information).
 
 
 ## `CapacityArrayList` Class
 
-In this laboratory, we will use a `Stopwatch` class to measure the efficiency of the ArrayLists.  The Java version of arraylists (`java.util.ArrayList`) always doubles the size of the underlying array when add is called and the array is full.  To be able to play a bit with other options, we've included a basic arraylist class that also allows us to grow the arraylist by a constant amount when it is full and we need to increase the capacity. 
+In this laboratory, we will use a `Stopwatch` class to measure the efficiency of the ArrayLists.  As a preview of the Thursday lecture, the Java version of arraylists (`java.util.ArrayList`) always doubles the size of the underlying array when `add` is called and the array is full.  To be able to play a bit with other options, we've included a basic arraylist class that also allows us to grow the arraylist by a constant amount when it is full and we need to increase the capacity. 
 
 Take a look at the source code of the attached `CapacityArrayList` class. You will notice that we have added one more constructor that takes an additional argument `capacityIncrement`. This argument corresponds to the rate of growth of the ArrayList. If it is equal to 0, the ArrayList should double in size when full. Otherwise, it will just grow by the specified increment.
 
@@ -104,8 +104,8 @@ We will discuss the results when most people have their timings working.
 
 ## Submission Instructions
 
-<!--Please fill out the `assignment.json` file.
-Include your Github name in the collaborators list and your partner's username as well if you worked with someone. If you have anything you want to say to the graders, put it in the notes field. -->
+Please fill out the `assignment.json` file.
+Include your Github name in the collaborators list and your partner's username as well if you worked with someone. If you have anything you want to say to the graders, put it in the notes field.
 
 Put your name(s) in the `@author` tage at the top of the `ArrayListTimer` class and then commit and push your final code.
 

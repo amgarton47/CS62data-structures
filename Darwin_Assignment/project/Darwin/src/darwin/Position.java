@@ -1,8 +1,7 @@
 package darwin;
 
 /**
- * A Position is an (x,y) coordinate in the World, much like the Positions for
- * the maze program.
+ * A Position is an (x,y) coordinate in the World.
  */
 public class Position {
 
@@ -21,7 +20,7 @@ public class Position {
 	private int x, y;
 
 	/**
-	 * Create a new position for the given x and y coordinates.
+	 * Create a new Position object for the given x and y coordinates.
 	 */
 	public Position(int x, int y) {
 		this.x = x;
@@ -29,14 +28,14 @@ public class Position {
 	}
 
 	/**
-	 * Return the x coordinate for the position.
+	 * Return the x coordinate for this Position object.
 	 */
 	public int getX() {
 		return x;
 	}
 
 	/**
-	 * Return the y coordinate for the position.
+	 * Return the y coordinate for this Position object.
 	 */
 	public int getY() {
 		return y;
@@ -47,9 +46,10 @@ public class Position {
 	}
 
 	/**
-	 * Return a new position that is in one of the four compass directions from
-	 * this. @pre direction must be NORTH, SOUTH, EAST, or WEST. @post the
-	 * Position adjecent to this in the given direction.
+	 * Return a new position that is in one of the four adjacent compass directions from
+	 * this. 
+	 * @pre direction must be NORTH, SOUTH, EAST, or WEST. 
+	 * @post the Position adjecent to this in the given direction.
 	 */
 	public Position getAdjacent(int direction) {
 		switch (direction) {

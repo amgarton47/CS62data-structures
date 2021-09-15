@@ -4,10 +4,13 @@ import java.util.ArrayList;
 
 /**
  * Class representing a two dimensional square matrix
+ * When you instantiate objects of type Matrix, keep in mind that Matrix works with generics. 
+ * In our case, a Matrix will eventually hold Creatures, that is Matrix<Creature>.
+ * The syntax for instantiating a Matrix of Creatures will be similar to instantiating ArrayLists of Booleans, as we saw them in lab1.
  */
 public class Matrix<E> {
 	
-	// representation of matrix as a lists of lists
+	// representation of matrix as a list of lists
 	private ArrayList<ArrayList<E>> rep;
 
 	// number of rows and columns in the matrix

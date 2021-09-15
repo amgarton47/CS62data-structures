@@ -1,6 +1,6 @@
-# Assignment 3 - Darwin
+# Assignment - Darwin
 
-### This is a pair assignment! Feel free to work with a partner. If you do this, one of you will need to make a team and then the other person can join it.
+### This is a pair assignment where you will work with a partner from your learning community. If there is an odd number of people in your learning community, teams can have 3 members.
 
 
 ## Learning Goals
@@ -93,9 +93,8 @@ This class represents (x,y) points in the world and constants for compass direct
 ### `WorldMap`
 This class handles all of the graphics for the simulation. This class is already implemented for you.  They key method in this class is the `displaySquare` method that your creature will need to call to update the visual status of the game.
 
-
 ### `Matrix`
-This class represents a two-dimensional square matrix that consists of a specified number of rows and columns. This class is already implemented for you.
+This class represents a two-dimensional square matrix that consists of a specified number of rows and columns. This class is already implemented for you. When you instantiate objects of type `Matrix`, keep in mind that `Matrix` works with generics. In our case, a `Matrix` object will eventually hold `Creature`s, that is `Matrix<Creature>`. The syntax for instantiating a `Matrix` of `Creature`s will be similar to instantiating `ArrayList`s of `Boolean`s, as we saw them in lab1.
 
 ### `Species`
 This class represents a species, and provides operations for reading in a species description from a file and
@@ -106,7 +105,7 @@ Objects of this class represent individual creatures, along with operations for 
 taking a turn. You must fill in some basic getter and setter methods for this class, the constructor, and a `takeOneTurn` method which executes instructions from the Creature's Species instructions until it gets to a hop, turn, or infect instruction.
 
 ### `World`
-This class contains an abstraction for a two-dimensional world, into which you can place the creatures. You must fill in some getter and setter methods for this class, as well as a constructor. Remember that this is only the abstraction for the grid and should be based on the `Matrix` class. Furthermore, this class does not handle the graphics. The graphics end of the program is already covered by the `WorldMap` class which has been completed for you.
+This class contains an abstraction for a two-dimensional world, into which you can place the creatures. You must fill in some getter and setter methods for this class, as well as a constructor. Make sure to throw the appropriate exceptions in setters and getters as specified in the JavaDoc. Remember that this is only the abstraction for the grid and should be based on the `Matrix` class. Furthermore, this class does not handle the graphics. The graphics end of the program is already covered by the `WorldMap` class which has been completed for you.
 
 ### `Darwin`
 This class contains the main program, which is responsible for setting up the world, populating it with
@@ -116,14 +115,15 @@ locations, pointing in random directions.
 
 ## Getting started
 
-1. Follow the same steps with the first lab/assignment to clone the github repository for this assignment. However, if you want to work with a partner, create a team for them to join. If you partner has already created a team, simply join their team. Now you should have a joint GitHub repository that you can both push and pull from. Make sure to do the work on one computer at a time, pushing when you are finished, so that you don't have conflicts. 
+1. Follow the same steps with the first lab/assignment to clone the github repository for this assignment. You will need to create a team for your teammate(s) to join. If you partner(s) has already created a team, simply join their team. Now you should have a joint GitHub repository that you can both push and pull from. Make sure to do the work on one computer at a time, pushing when you are finished, so that you don't have conflicts. 
 
 2. You can double click on `DarwinTest.jar` to run the sample solution. This will give you a chance to see
 how the program is supposed to behave. It should prompt you to open creature files. Select at least
 two different creature types. When you are done, click on cancel and the program should commence
 running.
 
-1. Write the `World` class. This should be straight-forward if you use the provided `Matrix` class. When constructing a world with a speficied width and height, be careful to match the width to the number of columns and height to the number of rows in your `Matrix` object.
+1. Write the `World` class. This should be straight-forward if you use the provided `Matrix` class. 
+When constructing a world with a speficied width and height, be careful to match the width to the number of columns and height to the number of rows in your `Matrix` object.
 
 2. Test this class thoroughly before proceeding. Use the provided `AutograderCompTest` class (and any additional tests that you think would be helpful) in order to verify and convince yourself that all of the methods work. 
 
@@ -134,7 +134,7 @@ See the hints within the starter file for the `Species` class on how to read lin
 
 5. Fill in the *basic* details of `Creature` class. Implement only enough to create creatures and have them
 display themselves on the world map. Implement `takeOneTurn` for the simple instructions (left,
-right, go, hop). **Test the basic `Creature` thoroughly before proceeding. Write a main
+right, go, hop). **Test the basic `Creature` thoroughly before proceeding. Write a `main`
 method in that class and verify that all of the methods work**.
 
 6. Begin to implement the simulator in the `Darwin` class. Start by reading a single species and creating
@@ -145,11 +145,11 @@ an instruction or two, and verify that a `Creature` will behave correctly, using
 `Darwin` class.
 
 8. Finish up the `Darwin` class. Populate the board with creatures of different species (We suggest about
-10 of each kind of creature) and make your main simulation loop iterate over the creatures, giving
+10 of each kind of creature) and make your `main` simulation loop iterate over the creatures, giving
 each a turn. The class should create creatures for the species given as command line arguments to the
 program when you run it. See `Darwin.java` for more details. Run the simulation for several hundred
 iterations or so. You can always stop the program by pressing `control-C` in the terminal window or
-closing the Darwin Window. Make sure you know how to pass in arguments to the main method as
+closing the Darwin Window. Make sure you know how to pass in arguments to the `main` method as
 the autograder will be passing in command line arguments to run Darwin.
 **Please do not change the folder structure! You should keep all creature files in the `Creature`
 folder.**
@@ -198,14 +198,14 @@ This assignment spans two weeks.  However, we will still be grading some of the 
 
 ## Submitting your work
 
-1. If you decide to work with another student, then all of the work on the project must be done together.
+1. All of the work on the project must be done together with your team.
 You may not have one person work on it for a while, for example, and then have another student come in
-and try to fix errors. Thus if you are going to work on it with another student you should make sure that
-you can find significant periods of time in which you can work together.
+and try to fix errors. Thus, you should make sure that
+you can find significant periods of time in which you can work together. Learning community pre-determined meeting times can be a good first step but you need to schedule extra time.
 
 2. Double-check that your work is indeed pushed in Github! It is your responsibility to ensure that you do so before the deadline. Don't forget to commit and push your changes as you go and to edit the provided `json`. In particular, don't forget to put a description of the extra credit if you did extra credit.
 
-3. You must include in your submission a species of your own design in a file named it `lastNameOfFirstStudent_lastNameOfSecondStudent.txt`.
+3. You must include in your submission a species of your own design in a file named it `lastNameOfFirstStudent_lastNameOfSecondStudent.txt` (or third if you work in teams of three).
 It can be as simple or as complex as you like, but must use **only** the instructions specified above for
 creatures. The color must also be one of those specified in `WorldMap`. We will pit your creatures against
 each other to watch them battle for survival! Prizes will be awarded! Be sure to include your name in
