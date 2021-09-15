@@ -39,9 +39,9 @@ Once you have everything setup, create a new class `ArrayListTimer` and specify 
 
 This `run` method will create a new empty arrayList of type `CapacityArrayList<String>` with the specified rate of growth. Set its initial capacity to 2. It should return the time that it takes to add `maxSize` strings to the `CapacityArrayList`. Use the `add` method, and always add the same constant string of your choice, for example, your name. To attempt to minimize the impact from garbage collection add the line: `System.gc();` in your run method right before you start the stopwatch. 
 
-- `public static ArrayList<Double> trial(int maxSize, ArrayList<Integer> capacityIncrements)`
+- `public static CapacityArrayList<Double> trial(int maxSize, CapacityArrayList<Integer> capacityIncrements)`
 
-Your `trial` method will compare the results from `run` for a specific number of strings to be added to the arrayList while varying its increments when it's full. It should make one call to `run` for each entry in the `capacityIncrements` ArrayList. The results of these trials should be returned in a `ArrayList` whose size is the same as that of `capacityIncrements` and the entry at position `i` in the returned arrayList should correspond to the trial with increment set to the entry at position `i` in `capacityIncrements`.
+Your `trial` method will compare the results from `run` for a specific number of strings to be added to the `CapacityArrayList` while varying its increments when it's full. It should make one call to `run` for each entry in the `capacityIncrements` `CapacityArrayList`. The results of these trials should be returned in a `CapacityArrayList` whose size is the same as that of `capacityIncrements` and the entry at position `i` in the returned arrayList should correspond to the trial with increment set to the entry at position `i` in `capacityIncrements`.
 
 - `public static void main(String[] args)`
 
