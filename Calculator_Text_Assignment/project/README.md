@@ -4,21 +4,21 @@ For this assignment, you will be implementing a text-based postfix calculator wh
 
 ## Learning Goals
 
-* Write your own program from scratch (mostly)
-* Think about different ways of implementing Stacks
+* Write your own program from scratch
+* Think about different ways of implementing stacks
 * Practice dealing with error handling
-* Gain more experience with unit testing
+<!-- * Gain experience with unit testing -->
 
 ## Postfix Notation
 
-The normal mathematical notation that we use is called "infix" notation, where the mathematical operator is in between the operands (e.g., `3 - 5`).  With postfix notation, the operator comes after the operands. For example, the expression `3 - 5` would be
-written as `3 5 -`. As another example, the expression `52 - (5 + 7) * 4` would be written as:
+When performing mathematical operations (additions, subtractions, etc), the normal mathematical notation that we use is called "infix" notation, where the mathematical operator is in between the operands (e.g., `3 - 5`).  There is a different notation known as postfix notation where the operator comes after the operands. For example, the expression `3 - 5` would be
+written as `3 5 -`. As another example, the expression `47 - (5 + 7) * 4` would be written as:
 
-    52 5 7 + 4 * -
+    47 5 7 + 4 * -
 
 And one final example, `3+5*7` would be written as `3 5 7 * +` in postfix notation.
 
-One of the key advantages of postfix notation is that we can do the calculation as we go, working left to right (with some memory).  The main idea is to use a "Stack" to keep track of the values we've seen so far, but have not used in computation.  A Stack is a data structure where we can add things ("push" in stack terminology) and remove things ("pop").  Stacks operate like a stack of plates: we add plates to the top and we grab a plate from the top.  When data is added to a stack, it is added to the "top" and when we remove data, the first thing we remove is the item on the top.  Another way this is sometimes referred to is "last in first out" (or LIFO), i.e., the most recent thing that was added will be the first thing to get removed.
+One of the key advantages of postfix notation is that we can do the calculation as we go, working left to right (with some memory).  The main idea is to use a "Stack" to keep track of the values we've seen so far, but have not used in computation.  A stack is a data structure where we can add things ("push" in stack terminology) and remove things ("pop").  Stacks operate like a stack of plates: we add plates to the top and we grab a plate from the top.  When data is added to a stack, it is added to the "top" and when we remove data, the first thing we remove is the item on the top.  Another way this is sometimes referred to is "last in first out" (or LIFO), i.e., the most recent thing that was added will be the first thing to get removed.
 
 Using a stack, we can do postfix computations as follows:
 
@@ -26,33 +26,33 @@ Using a stack, we can do postfix computations as follows:
 
 * If the next thing is an operation, remove the top two things from the stack, perform the operation *and* push the answer back on the stack.
 
-Here is the computation of `52 5 7 + 4 * -`,
+Here is the computation of `47 5 7 + 4 * -`,
 
-	52	Stack top (left): 52
-	5	Stack top (left): 5 52
-	7	Stack top (left): 7 5 52
-	+	Stack top (left): 12 52
-	4	Stack top (left): 4 12 52
-	*	Stack top (left): 48 52
-	-	Stack top (left): 4
+	47	Stack top (left): 47
+	5	Stack top (left): 5 47
+	7	Stack top (left): 7 5 47
+	+	Stack top (left): 12 47
+	4	Stack top (left): 4 12 47
+	*	Stack top (left): 48 47
+	-	Stack top (left): -1
 
-Be careful about the ordering of the operands, i.e., when applying an operator the first thing off the stack is the right operand (in infix terminology) and the second thing off the stack is the left operand.  This is why we get 4 and not -4 at the end.
+Be careful about the ordering of the operands, i.e., when applying an operator the first thing off the stack is the right operand (in infix terminology) and the second thing off the stack is the left operand.  This is why we get -1 and not 1 at the end.
 
 ## Text Postfix Calculator
 
 Your program will prompt the user for either a number or an operator and will either add the number to the stack directly or perform the operation and then add the result back to the stack.  Here is an example execution of the program following the example above:
 
-	Enter a number or operator: 52
+	Enter a number or operator: 47
 	
 	Memory contents: 
-	52
+	47
 	---
 	
 	Enter a number or operator: 5
 	
 	Memory contents: 
 	5
-	52
+	47
 	---
 	
 	Enter a number or operator: 7
@@ -60,7 +60,7 @@ Your program will prompt the user for either a number or an operator and will ei
 	Memory contents: 
 	7
 	5
-	52
+	47
 	---
 	
 	Enter a number or operator: +
@@ -68,7 +68,7 @@ Your program will prompt the user for either a number or an operator and will ei
 	
 	Memory contents: 
 	12
-	52
+	47
 	---
 	
 	Enter a number or operator: 4
@@ -76,7 +76,7 @@ Your program will prompt the user for either a number or an operator and will ei
 	Memory contents: 
 	4
 	12
-	52
+	v
 	---
 	
 	Enter a number or operator: *
@@ -84,14 +84,14 @@ Your program will prompt the user for either a number or an operator and will ei
 	
 	Memory contents: 
 	48
-	52
+	47
 	---
 	
 	Enter a number or operator: -
-	Answer: 4
+	Answer: -1
 	
 	Memory contents: 
-	4
+	-1
 	---
 	
 	Enter a number or operator:
@@ -200,9 +200,9 @@ The three classes you need to implement are outlined below:
 	* `public void run()`: This runs the calculator, which will prompt the user for numbers, do the calculations, etc.
 
 
-## JUnit tests
+<!-- ## JUnit tests
 
-In addition to the three classes above, you must also submit two classes `OperationTest` and `CalculatorMemoryTest` that have JUnit tests that test all of the public methods of those two classes.  We will run your JUnit tests on "bad" versions of these classes and you will be graded on how well you identify problematic cases.
+In addition to the three classes above, you must also submit two classes `OperationTest` and `CalculatorMemoryTest` that have JUnit tests that test all of the public methods of those two classes.  We will run your JUnit tests on "bad" versions of these classes and you will be graded on how well you identify problematic cases. -->
 
 ## One Path to Implementation
 
@@ -210,17 +210,17 @@ There are many ways that you can go about doing this assignment, but I'd strongl
 
 1. Write the `Operation` class.
 
-2. Write your JUnit tests for `Operator` (`OperatorTest`).  Fix any bugs you find :).
+<!-- 2. Write your JUnit tests for `Operator` (`OperatorTest`).  Fix any bugs you find :). -->
 
-3. Write the `CalculatorMemory` class.
+2. Write the `CalculatorMemory` class.
 
-4. Write your JUnit tests for `CalculatorMemory` (`CalculatorMemoryTest`).  Fix any bugs you find :).
+<!-- 4. Write your JUnit tests for `CalculatorMemory` (`CalculatorMemoryTest`).  Fix any bugs you find :). -->
 
-5. Get a basic version of the calculator running without error checking and with just the math operators.
+3. Get a basic version of the calculator running without error checking and with just the math operators.
 
-6. Add the pop and clear operations.
+4. Add the pop and clear operations.
 
-6. Add in all of the error checking.
+5. Add in all of the error checking.
 
 ## Grading
 
@@ -231,12 +231,13 @@ There are many ways that you can go about doing this assignment, but I'd strongl
 | Arithmetic operations work correctly | 3      |
 | pop and clear work correctly | 1
 | Appropriately handle errors and show message | 3     |
-| Good JUnit tests for each method in OperationTest | 1 |
-| Good JUnit tests for each method in CalculatorMemoryTest | 1 |
 | Appropriate comments + JavaDoc           | 3      |
 | [Style and formatting](https://github.com/pomonacs622018f/Handouts/blob/master/style_guide.md)                       | 2      |
 | Submitted correctly                      | 1      |
 
+
+<!-- | Good JUnit tests for each method in OperationTest | 1 |
+| Good JUnit tests for each method in CalculatorMemoryTest | 1 | -->
 ## Submitting your work
 
  Double-check that your work is indeed pushed in Github! It is your responsibility to ensure that you do so before the deadline.
