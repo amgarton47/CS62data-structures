@@ -1,119 +1,131 @@
 {
-    "TwinOmega": {
-    	"email": "haaa2019@mymail.pomona.edu",
-	    "name": "Hadi Al Musa"
-    },
-    "jbronstein2022": {
-    	"email": "jaba2018@mymail.pomona.edu",
-	    "name": "Jett Bronstein"
-    },
-    "irmakbky": {
-    	"email": "ibab2018@mymail.pomona.edu",
-	    "name": "Irmak Bukey"
-    },
-    "jancharatan": {
-    	"email": "jbca2019@mymail.pomona.edu",
-	    "name": "Jan Charatan"
-    },
-    "rubyaepstein": {
-    	"email": "raea2018@mymail.pomona.edu",
-	    "name": "Ruby Epstein"
-    },
-    "erdsal4": {
-    	"email": "scea2018@mymail.pomona.edu",
-	    "name": "Salih Erdal"
-    },
-    "Alex-Fay": {
-    	"email": "knfa2018@mymail.pomona.edu",
-	    "name": "Alex Fay"
-    },
-    "michellegarcia2000": {
-    	"email": "mgab2018@mymail.pomona.edu",
-	    "name": "Michelle Garcia"
-    },
-    "amgarton47": {
-    	"email": "amgb2018@mymail.pomona.edu",
-	    "name": "Aidan Garton"
-    },
-    "ngetachew": {
-    	"email": "ngaa2019@mymail.pomona.edu",
-	    "name": "Nathaniel Getachew"
-    },
-    "awguo2019": {
-    	"email": "awga2019@mymail.pomona.edu",
-	    "name": "Alan Guo"
-	},
-	"meghanjoyce": {
-    	"email": "Meghan Murphy Joyce <MJoyce5831@scrippscollege.edu>",
-	    "name": "Meghan Joyce"
-    },
-    "jhoogst": {
-    	"email": "jpha2019@mymail.pomona.edu",
-	    "name": "Jordan Hoogsteden"
-    },
-    "Indiana": {
-    	"email": "ihaa2019@mymail.pomona.edu",
-	    "name": "Indiana Huey"
-	},
-	"GabrielKS": {
-    	"email": "gmka2019@mymail.pomona.edu",
-	    "name": "Gabriel Konar-Steenberg"
-	}, 
-    "soksamnanglim": {
-    	"email": "slab2019@mymail.pomona.edu",
-	    "name": "Lucky Kim"
-    },
-    "milliemince": {
-    	"email": "cima2018@mymail.pomona.edu",
-	    "name": "Millie Mince"
-    },
-    "sambex-fadsen": {
-    	"email": "snab2018@mymail.pomona.edu",
-	    "name": "Siddharth Namachivayam"
-    },
-    "samuelnunoo": {
-    	"email": "sana2018@mymail.pomona.edu",
-	    "name": "Sam Nunoo"
-    },
-    "swow2015": {
-    	"email": "swow2015@mymail.pomona.edu",
-	    "name": "Sean O'Connor"
-    },
-    "srsb2018": {
-    	"email": "srsb2018@mymail.pomona.edu",
-	    "name": "Sam Sasaki"
-    },
-    "sarahshader": {
-    	"email": "sdsb2018@mymail.pomona.edu",
-	    "name": "Sarah Shader"
-    },
-    "Gleb-Tebaykin": {
-    	"email": "gtac2018@mymail.pomona.edu",
-	    "name": "Gleb Tabaykin"
-    },    
-    "vata2018": {
-    	"email": "vata2018@mymail.pomona.edu",
-	    "name": "Victoria Thai"
-    },    
-    "jvw424": {
-    	"email": "jvwa2018@mymail.pomona.edu",
-	    "name": "Joe Williams"
-    },    
-    "tyxiang0530": {
-    	"email": "txaa2019@mymail.pomona.edu",
-	    "name": "Tai Xiang"
-    },    
-    "ZiangXue": {
-    	"email": "zxaa2018@mymail.pomona.edu",
-	    "name": "Ziang Xue"
-    },    
-    "syaa2018": {
-    	"email": "syaa2018@mymail.pomona.edu",
-	    "name": "Stephanie Yu"
-    },    
-    "Sadie-Zhao": {
-    	"email": "jzae2019@mymail.pomona.edu",
-	    "name": "Sadie Zhao"
-    }
+    "joramador": {
+		"email": "jaab2020@mymail.pomona.edu",
+		"name": "Amador, Joram"
+},
+    "Dnamanat049": {
+		"email": "diaa2019@mymail.pomona.edu",
+		"name": "Amanat, Deen"
+},
+    "carlbell": {
+		"email": "cdba2019@mymail.pomona.edu",
+		"name": "Bell, Carl"
+},
+    "CaptainHex": {
+		"email": "hrba2020@mymail.pomona.edu",
+		"name": "Berman, Harry"
+},
+    "avery-c88": {
+		"email": "aaca2020@mymail.pomona.edu",
+		"name": "Chen, Avery"
+},
+    "Tonyaradzwa": {
+		"email": "tlca2020@mymail.pomona.edu",
+		"name": "Chivandire, Tonyaradzwa Louisa"
+},
+    "tadiusfrank2001": {
+		"email": "tcfa2018@mymail.pomona.edu",
+		"name": "Frank, Tadius Christopher"
+},
+    "jgarner7": {
+		"email": "argb2018@mymail.pomona.edu",
+		"name": "Garner, Jayce"
+},
+    "AnikaGG": {
+		"email": "agaa2020@mymail.pomona.edu",
+		"name": "Gupta, Anika"
+},
+    "andyqhan": {
+		"email": "ahag2018@mymail.pomona.edu",
+		"name": "Han, Andy"
+},
+    "evelynhasama": {
+		"email": "ehaa2020@mymail.pomona.edu",
+		"name": "Hasama, Evelyn"
+},
+	"summerhasama": {
+		"email": "shaa2020@mymail.pomona.edu",
+		"name": "Hasama, Summer"
+},
+    "victorhernandez11": {
+		"email": "vyha2020@mymail.pomona.edu",
+		"name": "Hernandez Brito, Victor"
+},
+    "rachelHoman": {
+		"email": "rmha2020@mymail.pomona.edu",
+		"name": "Homan, Rachel"
+},
+	"s-jainr": {
+		"email": "rjaa2020@mymail.pomona.edu",
+		"name": "Jain, Rahul"
+}, 
+    "tsawsum": {
+		"email": "glja2019@mymail.pomona.edu",
+		"name": "Johnson, George"
+},
+    "ColinKp47": {
+		"email": "cpka2018@mymail.pomona.edu",
+		"name": "Kirkpatrick, Colin"
+},
+    "jakelamjakelam": {
+		"email": "jala2019@mymail.pomona.edu",
+		"name": "Lam, Ming"
+},
+    "hanoomlee": {
+		"email": "hlaa2020@mymail.pomona.edu",
+		"name": "Lee, Hanoom"
+},
+    "kacielee": {
+		"email": "kwla2020@mymail.pomona.edu",
+		"name": "Lee, Kacie"
+},
+    "gracejli": {
+		"email": "gjla2019@mymail.pomona.edu",
+		"name": "Li, Grace"
+},
+	"Eryn-Y": {
+	"email": "ymac2020@mymail.pomona.edu",
+	"name": "Ma, Eryn"
+},
+	"christymarc-Y": {
+		"email": "cemb2020@mymail.pomona.edu",
+		"name": "Marchese, Christy"
+},
+    "charlottemoremen": {
+		"email": "cbma2019@mymail.pomona.edu",
+		"name": "Moremen, Charlotte"
+},    
+    "nickmorgenstein": {
+		"email": "nmaa2019@mymail.pomona.edu",
+		"name": "Morgenstein, Nick"
+},    
+    "matthewong136": {
+		"email": "meoa2020@mymail.pomona.edu",
+		"name": "Ong, Matthew"
+},    
+    "dashpederson": {
+		"email": "dtpa2018@mymail.pomona.edu",
+		"name": "Pederson, Dash"
+},    
+    "jhpa2017": {
+		"email": "john.pier@pomona.edu",
+		"name": "Pier, Jay"
+},    
+    "chuckrak": {
+		"email": "cerb2020@mymail.pomona.edu",
+		"name": "Rak, Chuck"
+},    
+	"arsmith514": {
+		"email": "arsa2018@mymail.pomona.edu",
+		"name": "Smith, Abby"
+},    
+	"Hayden-Snyder": {
+	"email": "hlsa2018@mymail.pomona.edu",
+	"name": "Snyder, Hayden"
+},    
+    "LTiangco": {
+		"email": "ldta2019@mymail.pomona.edu",
+		"name": "Tiangco, Lucas"
+}
 }
 
