@@ -1,11 +1,11 @@
-# Assignment 5 - Compression
+# Assignment - Compression
 
 ## Learning Goals
 
 * Practice inheritance by extending and using a doubly linked list data structure to include a "current" reference.
 * Gain experience designing and implementing a non-trivial algorithm.
 * Gain experience debugging complex and troublesome code.
-* Gain even more experience using `JUnit`.
+* Gain experience using `JUnit`.
 
 ## Key Terms and Concepts
 
