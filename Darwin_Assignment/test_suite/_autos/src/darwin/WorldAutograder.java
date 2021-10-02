@@ -5,10 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 /**
  * JUnit tests for the world
- * @author Sean Zhu
+ * @author Sean Zhu, Alexandra Papoutsaki
  */
 public class WorldAutograder {
-	World<String> world;
+	World world;
 
 	private static final int H = 3;
 	private static final int W = 2;
@@ -19,7 +19,7 @@ public class WorldAutograder {
 	@BeforeEach
 	public void setUp() throws Exception {
 		// a 3 row, 2 column world
-		world = new World<String>(W, H);
+		world = new World(W, H);
 	}
 
 	/**
@@ -85,43 +85,6 @@ public class WorldAutograder {
 		assertFalse(world.inRange(p5),
 				"h=3, w=2, Pos(-1,-1) should not be in range.");
 
-	}
-
-	/**
-	 * Test method for
-	 * {@link darwin.World#set(darwin.Position, java.lang.Object)}.
-	 * {@link darwin.World#get(darwin.Position, java.lang.Object)}.
-	 */
-	@Test
-	public final void testSetAndGet() {
-		Position p = new Position(0, 0);
-		world.set(p, "cow");
-		assertEquals("cow", world.get(p),
-				"Set position(0,0) to be 'cow'.");
-	}
-
-	/**
-	 * Test method for
-	 * {@link darwin.World#set(darwin.Position, java.lang.Object)}.
-	 * {@link darwin.World#get(darwin.Position, java.lang.Object)}.
-	 */
-	@Test
-	public final void testResetAndGet() {
-		Position p = new Position(0, 0);
-		world.set(p, "cow");
-		world.set(p, "sheep");
-		assertEquals("sheep", world.get(p),
-				"Reset position(0,0) to be 'sheep' after setting it to 'cow'.");
-	}
-
-	/**
-	 * Test method for
-	 * {@link darwin.World#set(darwin.Position, java.lang.Object)}.
-	 */
-	@Test
-	public final void testSet_notInRange() {
-		Position p = new Position(10, 10);
-		assertThrows(IllegalArgumentException.class, () -> { world.set(p, "cow"); } );
 	}
 
 	/**

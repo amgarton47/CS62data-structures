@@ -12,11 +12,10 @@ import java.io.File;
 
 /**
  * JUnit tests for species
- * @author Sean Zhu
+ * @author Sean Zhu, Alexandra Papoutsaki
  */
 public class SpeciesAutograder {
-	public static final File TESTING_DIR = new File(System.getProperty("testing"));
-	public static final File DEP_DIR = new File(TESTING_DIR, "dependencies");
+	public static final File DEP_DIR = new File("Creatures");
 
 	public static final String FOOD_PATH = new File(DEP_DIR, "Food.txt").getPath();
 
