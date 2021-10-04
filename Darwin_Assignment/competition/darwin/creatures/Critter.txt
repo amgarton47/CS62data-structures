@@ -1,0 +1,13 @@
+Critter
+black
+ifenemy 8
+ifwall 6
+ifsame 9
+hop
+go 1
+right
+right
+infect
+left
+go 1
+

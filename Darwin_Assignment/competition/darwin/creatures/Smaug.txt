@@ -1,14 +1,15 @@
-CoolCreach
-cyan
+Smaug
+orange
 ifenemy 10
 ifwall 6
-ifsame 6
+ifsame 8
 hop
 go 1
-ifrandom 8
-right
 left
 go 1
+right
+go 8
 infect
 go 1
+
 

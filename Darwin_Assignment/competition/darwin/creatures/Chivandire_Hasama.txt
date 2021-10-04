@@ -1,0 +1,11 @@
+Winter
+Cyan
+ifenemy 7
+ifwall 5
+ifempty 6
+right
+left
+hop
+infect
+go 1 
+

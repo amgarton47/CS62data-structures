@@ -1,0 +1,20 @@
+Tsunami
+cyan
+ifenemy 12
+ifrandom 8
+ifrandom 6
+left
+go 1
+right
+go 1
+ifwall 3
+ifsame 3
+hop
+go 1
+infect
+go 1
+
+The tsunami is designed by Evelyn Hasama, 
+Kacie Lee, and Abby Smith. Our creature
+infects enemies or will randomly hop or
+turn.

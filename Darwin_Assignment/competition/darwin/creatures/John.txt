@@ -1,0 +1,13 @@
+John
+brown
+ifenemy 7
+ifrandom 5
+left
+go 1
+hop
+go 1
+infect
+go 1
+
+
+

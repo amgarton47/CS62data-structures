@@ -1,0 +1,8 @@
+Idiots
+blue
+ifsame 4
+ifwall 4
+infect
+left
+go 1
+

@@ -1,0 +1,35 @@
+Steve Jobs
+cyan
+ifenemy 14
+ifwall 9
+ifsame 9
+hop
+go 1
+ifenemy 14
+ifwall 9
+ifsame 9
+ifrandom 12
+right
+go 1
+left
+go 1
+infect 6
+go 6
+
+We made a modified rover for our competition that acts different based on whether infected 
+We left our code for a great flytrap in this file, sad we cannot use it for the competition
+
+ifenemy 5
+if2enemy 7 
+left
+go 1
+infect
+go 1
+hop 
+go 1
+
+Currently it's just a lightly modified Flytrap which after much deliberation, 
+we realized perfection needs barely any modification. 
+Considering improving mr. jobs but we're pretty happy with it.
+
+

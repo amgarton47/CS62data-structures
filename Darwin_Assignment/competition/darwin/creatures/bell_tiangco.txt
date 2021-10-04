@@ -1,0 +1,10 @@
+Crash
+black
+ifsame 5
+ifwall 5
+infect
+go 1
+right
+go 1
+
+Lucas and Carl

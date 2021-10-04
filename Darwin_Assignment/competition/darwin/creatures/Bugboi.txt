@@ -1,0 +1,14 @@
+Bugboi
+brown
+ifenemy 8
+ifwall 6
+ifsame 6
+hop
+ifenemy 8
+left
+go 1
+infect
+go 1
+
+The Bugboi goes in a buggy square.
+It infects anything that comes in front.

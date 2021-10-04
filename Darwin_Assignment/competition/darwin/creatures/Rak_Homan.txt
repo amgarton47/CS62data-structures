@@ -1,0 +1,18 @@
+Gosling
+orange
+ifenemy 11
+ifwall 6
+ifsame 9
+hop
+go 1
+ifrandom 9
+left
+go 1
+right
+go 1
+infect
+go 1
+
+
+
+Gosling is our homeboy from Crazy Stupid Love.

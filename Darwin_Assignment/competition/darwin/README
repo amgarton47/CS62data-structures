@@ -1,0 +1,8 @@
+
+You can run the round robin tournament with "make run"
+The creatures should all be placed in the "creatures" folder and the names of the files in the "contestants.txt"
+The code will run a round robin tournament based on the creatures listed in a text file
+You can uncomment "WorldMap.DISPLAY = false;" in DarwinRR.java to run faster with no display
+You can change the number of rounds run by changing "for (int rounds = 0; rounds < 5; rounds++)" appropriately
+Before the lab I'd recommend running the code with all of the creatures using one round. Some students will have bugs or errors in their creatures.
+A common error is that the program counter exceeds the number of lines. just add go 1 as the last line in their file.

@@ -1,0 +1,15 @@
+Advancer
+pink
+ifenemy 6
+ifwall 9
+ifsame 9
+hop
+ifenemy 6
+infect
+left
+go 1
+ifrandom 10
+left
+go 1
+right
+go 1
