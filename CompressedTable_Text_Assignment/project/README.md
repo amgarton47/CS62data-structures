@@ -2,7 +2,7 @@
 
 ## Learning Goals
 
-* Practice inheritance by extending and using a doubly linked list data structure to include a "current" reference.
+* Practice inheritance by extending and using a doubly linked list data structure to include a `current` reference.
 * Gain experience designing and implementing a non-trivial algorithm.
 * Gain experience debugging complex and troublesome code.
 * Gain experience using `JUnit`.
@@ -10,8 +10,30 @@
 ## Key Terms and Concepts
 
 * `DoublyLinkedList` - A list consisting of nodes that each contain an item and a reference to the node ahead and behind them. This means the list has minimal structure and instead consists of individual elements strung together. Please *review* the `DoublyLinkedList.java` file we have provided you with as it contains methods that you need to reuse in the `CurDoublyLinkedList` class. Being familiar with this class will ensure that you don't duplicate work in its subclass `CurDoublyLinkedList`.
-* `Association` - A data structure containing a key and a value together. This allows for two pieces of data to be "associated" and referenced together, and can be useful for storing certain information in a dictionary. We have provided an `Association.java` file for your convenience. Please review it.
-* Compression - A very useful technique where large amounts of data is efficiently stored to reduce the space it takes up, through encoding or other methods. (See **Appendix A - Compression** for more)
+* `Association` - A data structure containing a key and a value together (think of it as an entry in a python dictionary). This allows for two pieces of data to be "associated" and referenced together, and can be useful for storing certain information in a dictionary. We have provided an `Association.java` file for your convenience. Please review it.
+* Compression - A very useful technique where large amounts of data is efficiently stored to reduce the space it takes up, through encoding or other methods.)
+
+## Intro
+
+
+Sometimes we need to store massive amounts of information about an object. A good example is storing
+graphic images. To save space on disks and in transmission of information across the internet, researchers
+have designed algorithms to compress data. In this assignment, you will learn one of these compression
+techniques.
+
+A graphic image can be represented by a two dimensional array of information about the colors of various
+picture elements (or pixels). At high resolution, the image may be composed of 1000 rows and 1000 columns
+of information, leading to the need to store information on 1,000,000 pixels per image. Needless to say this
+creates serious problems for storing and transmitting these images. However most images tend to have many
+contiguous groups of pixels, each of which are the same color. We can take advantage of this by trying to
+encode information about the entire block in a relatively efficient manner.
+
+We have provided you with a lot of code here, but you will find that much of the code you must write is
+quite tricky. This project will require you to be very careful in developing the code for the methods. Look
+carefully at the provided code and design your methods very carefully. In particular, be sure to test your
+code carefully as it is developed as you will likely make several logical errors if you are not extremely careful.
+This is your most complex program yet. You should start early on this assignment and make a very
+complete design for your program before you ever sit down at the computer to program.
 
 ## Description
 
@@ -245,26 +267,4 @@ NOTE: Code that does not compile will not be accepted! Make sure that your code 
 
 ## Two part assignment
 
-This assignment spans two weeks.  However, we will still be grading some of the assignment next week.  Specifically, you must complete and push the `CurDoublyLinkedList` class by next Tuesday midnight. **The assignment grade portion for this class will be based on its status at the end of the day on Tuesday**.  You may include other files/changes in your repository.  We will not grade these, but make sure that they compile.  You may change the `CurDoublyLinkedList` file after Tuesday, e.g., if you find a bug that affects the other classes, but we will not grade these changes. The entire program must be submitted by the final deadline.
-
-
-### Appendix A - compression
-
-Sometimes we need to store massive amounts of information about an object. A good example is storing
-graphic images. To save space on disks and in transmission of information across the internet, researchers
-have designed algorithms to compress data. In this assignment, you will learn one of these compression
-techniques.
-
-A graphic image can be represented by a two dimensional array of information about the colors of various
-picture elements (or pixels). At high resolution, the image may be composed of 1000 rows and 1000 columns
-of information, leading to the need to store information on 1,000,000 pixels per image. Needless to say this
-creates serious problems for storing and transmitting these images. However most images tend to have many
-contiguous groups of pixels, each of which are the same color. We can take advantage of this by trying to
-encode information about the entire block in a relatively efficient manner.
-
-We have provided you with a lot of code here, but you will find that much of the code you must write is
-quite tricky. This project will require you to be very careful in developing the code for the methods. Look
-carefully at the provided code and design your methods very carefully. In particular, be sure to test your
-code carefully as it is developed as you will likely make several logical errors if you are not extremely careful.
-This is your most complex program yet. You should start early on this assignment and make a very
-complete design for your program before you ever sit down at the computer to program.
+This assignment spans two weeks.  However, we will still be grading some of the assignment next week.  Specifically, you must complete and push the `CurDoublyLinkedList` class by next Tuesday midnight. **The assignment grade portion for this class will be based on its status at the end of the day on Tuesday**.  You may include other files/changes in your repository.  We will not grade these, but make sure that they compile.  You may change the `CurDoublyLinkedList` file after the first Tuesday, e.g., if you find a bug that affects the other classes, but we will not grade these changes. The entire program must be submitted by the final deadline.

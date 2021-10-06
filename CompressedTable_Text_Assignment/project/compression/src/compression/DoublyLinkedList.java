@@ -317,7 +317,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 	 *            the index to check
 	 */
 	private void rangeCheck(int index) {
-		if (index > n || index < 0)
+		if (index >= n || index < 0)
 			throw new IndexOutOfBoundsException("Index " + index + " out of bounds");
 	}
 	
