@@ -108,7 +108,7 @@ Your interactive calculator must meet the following requirements:
 
 * Keep going until the user enters "quit" (without quotes).
 
-* Support +, -, *, and /, as well as two other operators:
+* Support +, -, *, and /, as well as the following two operators:
 
 	* `pop`: the answer shown should be the top element of the Stack and the top item should be removed from the Stack
 

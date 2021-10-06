@@ -3,7 +3,11 @@ package calculator;
 import java.util.Scanner;
 
 public class Calculator {
-	private CalculatorMemory memory = new CalculatorMemory();
+	private CalculatorMemory memory;
+
+	public Calculator(){
+		memory = new CalculatorMemory();
+	}
 
 	public void run() {
 		Scanner in = new Scanner(System.in);
