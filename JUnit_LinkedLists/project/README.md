@@ -64,7 +64,7 @@ Delete the method test that is auto-generated and then copy and paste the follow
 	@Test
 	void testGetRange() {
 		assertThrows(IndexOutOfBoundsException.class, () -> {
-		    l.get(0);
+		    l.get(1);
 		  });
 	}
 

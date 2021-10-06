@@ -41,7 +41,7 @@ class SinglyLinkedListTest {
 	@Test
 	void testgetRange() {
 		assertThrows(IndexOutOfBoundsException.class, () -> {
-		    l.get(0);
+		    l.get(1);
 		  });
 	}
 	
