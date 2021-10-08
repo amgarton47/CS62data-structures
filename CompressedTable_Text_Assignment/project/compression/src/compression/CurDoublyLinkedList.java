@@ -63,7 +63,7 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 *       throws IllegalStateException if list is empty with message "Empty list,
 	 *       cannot move current to the right"
 	 * 
-	 *       throws IllegalStateException if off left state is true with message
+	 *       throws IllegalStateException if off right state is true with message
 	 *       "Current is already off right, cannot move it further"
 	 * 
 	 * @post: if the off left state is true, then current points to head and off
@@ -84,7 +84,7 @@ public class CurDoublyLinkedList<E> extends DoublyLinkedList<E> {
 	 *       throws IllegalStateException if list is empty with message "Empty list,
 	 *       cannot move current to the left"
 	 * 
-	 *       throws IllegalStateException if off right state is true with message
+	 *       throws IllegalStateException if off left state is true with message
 	 *       "Current is already off left, cannot move it further"
 	 * 
 	 * @post: if the off right state is true, then current points to tail and off

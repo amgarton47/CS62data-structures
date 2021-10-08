@@ -140,7 +140,7 @@ public class DarwinRR extends WindowController {
 			int trounds = 0;
 
 			for (int rounds = 0; rounds < 5; rounds++) {
-				if (rounds == 1)
+				// if (rounds == 1)
 					WorldMap.DISPLAY = false;
 				System.out.println("###### Round " + (rounds + 1) + "#####");
 				for (int i = 0; i < s.length; i++) {
