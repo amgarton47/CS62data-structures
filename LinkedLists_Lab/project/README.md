@@ -46,14 +46,6 @@ Finish the implementation of the `DLL_Node` class:
       implement the `DLL_Node_Iterator` class and `iterator`
       method.
 
-Then, for extra credit, you can:
-
-   4. Implement a new insert method that will maintain the nodes in 
-      an order determined by their `ordinal` fields.  
-      Do this using the methods in the `DLL_Node` class.
-      Do not un-privatize the `next` and `prev` instance variables.
-   5. Based on the code you used to find the correct insertion
-      point, implement the `find` method.
 
 ## Getting started
 
@@ -66,7 +58,7 @@ Then, for extra credit, you can:
 
 3. Implement the `insert`, `remove` methods, and then implement the
    `listToString` method and create a few more test cases in the `main`
-    method.
+    method. Think of the edge cases.
 
 4. based on the experience you gained implementing the `listToString`
    method, implement the `iterator` method, and the `DLL_Node_Iterator` class.
@@ -75,40 +67,9 @@ Then, for extra credit, you can:
    class) the *complete* set of test cases you would use to satisfy yourself
    of the correctness of this implementation.
 
-## Extra Credit
-
-6. Study the included [Ordered_DLL starter](LinkedList/src/Ordered_DLL.java)
-   with its well-formed-list invariants, method descriptions, and
-   instance variables.
-
-7. Implement the `insert` and `find` methods.  These implementations will
-   require you to traverse the `DLL_Node` list, but the `next` and `prev`
-   fields in that class are `private`.  This means that you will have to
-   use the `DLL_Node.iterator` method to find the desired element or
-   insertion point.
-
-8. Describe (e.g.  in a block comment at the end of the `Ordered_DLL` 
-   class) the set of test cases you would use to satisfy yourself of the
-   correctness of this implementation.
-
-## Grading
-
-Your submission will be graded based on the following criteria:
 
 
-| Criterion                                   | Points |
-| :------------------------------------------ | :----- |
-| clean compilation w/no warnings             | 1      |
-| correctly implements DLL_Node methods       | 4      |
-| comprehensivness of DLL_Node test cases     | 3      |
-| format, names, clarity, code quality        | 2      |
-|                                             |        |
-| **Extra Credit**                            |        |
-| correctly implements Ordered_DLL methods    | 2      |
-| comprehensiveness of Ordered_DLL test cases | 3      |
+## When you're done
 
-NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
+After you have implemented and tested the DLL_Node methods, do a final commit of your DLL_Node.java file.
 
-## Submitting your work
-
-Double-check that your work is indeed pushed in Github! It is your responsibility to ensure that you do so before the deadline. Don't forget to commit and push your changes as you go and to edit the provided `json`.
