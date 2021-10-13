@@ -52,7 +52,7 @@ Finish the implementation of the `DLL_Node` class:
 1. Follow the same steps for previous labs/assignments to clone the github 
    repository for this assignment. 
 
-2. Study the included [DLL_Node starter](LinkedList/src/DLL_Node.java), 
+2. Study the included `DLL_Node` starter, 
    with its well-formed-list invariants, method descriptions, and
    instance variables.
 
