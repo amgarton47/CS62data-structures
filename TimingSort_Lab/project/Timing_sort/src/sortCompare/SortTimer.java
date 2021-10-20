@@ -32,6 +32,7 @@ public class SortTimer {
 		
 		SortTimer timer = new SortTimer();
 		timer.printTimes(sorters, sizes);
+		timer.printTimes(sorters, sizes);
 	}
 	
 	/**
@@ -57,6 +58,8 @@ public class SortTimer {
         	System.out.printf("%8d", size);
         		
         	for( Sorter<Integer> s: sorters){
+			// TODO: Is this a fair way to compare the different algorithms?
+			// TODO: How can we improve the comparison?
         		ArrayList<Integer> data = getRandom(size);
         		
         		System.out.printf(" | %15f", time(s, data)*1000);
