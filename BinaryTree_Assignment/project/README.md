@@ -58,8 +58,8 @@ Finish the implementation of the `BSTExercise` class:
       *item*.  This recursive descent will compare the item (which is 
       `Comparable`) with the value of each node in the tree, descending
       left or right depending on whether the item is less than or greater
-      than the current node.
-
+      than the current node. 
+  
    4. Implement the `insert` method, which does a (similar to `locate`) search
       for the correct insertion point, and (assuming it is a new value) adds
       a new node for that item at the appropriate point in the tree.
@@ -96,36 +96,15 @@ Analysis of Binary Search Tree performance:
       of 128 numbers?  Extend your implementation of `randomTreeHeights` to print
       out these numbers (e.g. "Theoretical heights for 128 nodes: best-case=#, worst-case=#")
 
-## Extra credit:
+## If You Want More Practice (not required):
 
    9. Further extend your `randomTreeHeights` implementation to actually 
       construct and measure the heights of best-case and worst-case trees,
       and report on the actual measured heights.
 
-## Grading
-
-Your submission will be graded based on the following criteria:
-
-| Criterion                                   | Points |
-| :------------------------------------------ | :----- |
-| clean compilation w/no warnings             | 1      |
-| correctly implements size and height        | 1      |
-| correctly implements lookup		      | 1      |
-| correctly implements insert                 | 2      |
-| constructIntTree results                    | 1      |
-| randomTreeHeights min/max/mean results      | 1      |
-| randomTreeHeights best-case/worst-case      | 1      |
-| format, names, clarity, code quality        | 2      |
-|                                             |        |
-| **Extra Credit**                            |        |
-| worst-case creation and results             | 2      |
-| best-case creation and results              | 2      |
-
-NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
 
 ## Submitting your work
 
 Double-check that your work is indeed pushed to Github! 
-It is your responsibility to ensure that you do so before the deadline.
 Don't forget to commit and push your chages as you go,
 and to edit the provided `.json`.
