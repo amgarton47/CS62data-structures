@@ -1,4 +1,4 @@
-# Assignment 07 - You (auto) complete me!
+# Autocomplete
 
 ## Key Terms and Concepts
 
