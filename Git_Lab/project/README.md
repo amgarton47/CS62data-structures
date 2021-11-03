@@ -181,7 +181,7 @@ After both personal branches have been created
      ```
      git commit -m "STEP 3" file1.txt
      ```
-   * push these changes back to github
+   * push these changes back to github -- if the git push doesn't work, you need to add your partner as a collaborator in settings->manage access
      ```
      git push
      ```
@@ -312,7 +312,7 @@ what you have done since the last time you ran `git` commit (for this reason, it
 often). `git` stores all of its data in a hidden `.git` directory, so unless you wipe out that directory (and any
 clones other people may have made) you will be able to recover your project.
 
-<!--
+
 ## Grading
 
 Your submission will be evaluated based on the the file contents and history
@@ -327,4 +327,4 @@ their instructor the URL for the (public) repo in which this work was done.
 | 3. moving main past those branches        |
 | 4. correct updates in personal branches     | 
 | 5. correct merging back into main         | 
- -->
+ 
