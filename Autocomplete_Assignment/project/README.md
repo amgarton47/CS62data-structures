@@ -3,7 +3,7 @@
 ## Key Terms and Concepts
 
 * `Comparators` - An interface used to order objects in Java. For custom Java objects that have an inherent order (like `int`s and `String`s), you can implement this interface to let the program know how they should be ordered.
-* Java lambda expressions - A way to express simple functional interfaces in Java. Basically allows you to define a shorter functional interface in what is otherwise an object oriented language. (See [here](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html) and the slides for more)
+
 * Autocomplete - A system where a program identifies likely results based on a prefix typed by the user.
 
 ## Description
@@ -36,7 +36,10 @@ field, but compares the `weights` in reverse order by size. That is, if used in 
 
 The second static method, `byPrefixOrder(int r)`, returns a comparator with a `compare` method that only considers the first `r` characters of the `key` field, and represents the usual lexicographic order. Thus if `r` is 3, the term with `key` `"hello"` would come before `"hopper"`, but `"hello"` and `"help"` would be considered equal (because their first three characters are the same.
 
-You may build the comparators in the static methods using a static inner classes, but you will find it simpler if you use Java lambda expressions <!--(see [`avgComparator`](https://github.com/pomonacs622020fa/LectureCode/blob/3414bdd8cb5b8a01ec34ba0d9878ee90ba48847e/CompareAndIterate/StudentComp.java#L57) for an example)-->.
+You may build the comparators in the static methods using a static inner classes. Here are two files for you to reference:
+See `nameComparator` in (https://github.com/pomonacs622021fa/LectureCode/blob/main/Lecture11/Employee.java). 
+
+See `avgComparator` in (https://github.com/pomonacs622020fa/LectureCode/blob/3414bdd8cb5b8a01ec34ba0d9878ee90ba48847e/CompareAndIterate/StudentComp.java).
 
 Test the methods in this class thoroughly (using `JUnit` or a `main` method) before proceeding to the
 other classes. We suggest you build a small `ArrayList` of `Terms` and then sort them in several different
@@ -175,13 +178,13 @@ You will be graded based on the following criteria:
 
 | Criterion                                | Points |
 | :--------------------------------------- | :----- |
-| `Term` class and comparables  | 3      |
-| Search operations                      | 3     |
-| `allMatches`                       | 2     |
-| Load files and user interaction                       | 3     |
-| Thoroughness of test code                           | 2      |
+| `Term` class and comparables             | 3      |
+| Search operations                        | 3     |
+| `allMatches`                             | 2     |
+| Load files and user interaction          | 3     |
+| Thoroughness of test code                | 2      |
 | Appropriate comments + JavaDoc           | 3      |
-| Quality of code                    | 4      |
+| Quality of code                          | 4      |
 
 
 NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
