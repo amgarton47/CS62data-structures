@@ -5,7 +5,7 @@
 For this assignment, you will:
 
 * Gain practice using Java Generics
-* Gain practice with `HashMap`s
+* Gain practice with `HashMap`s (efficient implementation of dictionaries/symbol tables)
 * Gain proficiency in using objects to build more complex data structures
 
 ## Description
@@ -22,7 +22,7 @@ First, we read in a piece of text word by word (we consider punctuation symbols 
 
 In this excerpt, the trigrams are: “if you can”, “you can keep”, “can keep your”, “keep your head”, “your head when”, “head when all”, etc.
 
-Once we have counted all of the trigrams, we can compute the probability that a word *w*<sub>3</sub> will immediately follow two other words (*w*1*w*2) using the following equation:
+Once we have counted all of the trigrams, we can compute the probability that a word *w*<sub>3</sub> will immediately follow two other words (*w*1 *w*2) using the following equation:
 
 *p*(*w*3|*w*1, *w*2) = *n*<sub>123</sub>/*n*<sub>12</sub>
 
@@ -30,9 +30,9 @@ where *n*<sub>123</sub> is the number of times we observed the sequence (*w*1*w*
 
 For example, let’s compute the probability that the word “can” will immediately follow the words “if you”. In the excerpt above, the sequence “if you can” occurs three times. The sequence “if you” also occurs three times. So the probability is given by,
 
-*p*(*can*|*if you*) = *3/3 = 1*
+*p*(*can*|*if you*) = *n*<sub>if you can</sub>/*n*<sub>if you</sub> = *3/3 = 1*
 
-The probability that any other word comes immediately after “if you” is *0*. Consider another example. In the excerpt above, the words “you can” appear *3* times. The first time followed by “keep”, the second time by “trust”, and the last time by “wait”. Thus,
+The probability that any other word comes immediately after “if you” is *0* (probabilities need to add up to 1). Consider another example. In the excerpt above, the words “you can” appear *3* times. The first time followed by “keep”, the second time by “trust”, and the last time by “wait”. Thus,
 
 * *p*(*keep*|*you can*) = *1/3*
 * *p*(*trust*|*you can*) = *1/3*
@@ -57,14 +57,14 @@ or feel free to think up a more creative solution.
 
 ### `FreqList`
 
-`FreqList` should contain a `HashMap` (make sure to carefully read the [documentation of the class](https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html)). Its keys will be words and its values the number of times that each associated word occurs. When a word is added, if it already occurs in the dictionary then its value (i.e. its frequency)
+`FreqList` should contain a `HashMap` object (make sure to carefully read the [documentation of the class](https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html)). Its keys will be words and its values the number of times that each associated word occurs. When a word is added, if it already occurs in the dictionary then its value (i.e. its frequency)
 is incremented by 1. If it doesn’t exist, add the word to the `HashMap` object with a value (i.e. frequency) of 1.
 
 Your `FreqList` class should have an instance variable that keeps track of the
 number of word references added.
 This is equivalent to the sum of all the values (i.e. frequencies) in the `HashMap`.
 
-You will probably also find it helpful to implement a `toString` method that
+You will probably also find it helpful to override the `toString` method that
 dumps out a list of the words and their reference counts.
 
 The `FreqList` class should also have a method with the following definition:
@@ -72,11 +72,11 @@ The `FreqList` class should also have a method with the following definition:
     public String get(double p)
 
 This method takes a `double p` as an input and returns a word from the `HashMap`. The input `p` must be between 0.0 and 1.0, otherwise the method should throw an `IllegalArgumentException`. How can we use `p`
-to generate a word? In our example above, for the words “you can” would look like: `{<“keep”,1>, <“trust”, 1>, <“wait, 1>}`. The sum of all of the frequencies is 3. Thus, we will return “keep” whenever
+to generate a word? In our example above, for the words “you can”, the three words that can follow this pair and their associated frequency would look like: `{<“keep”,1>, <“trust”, 1>, <“wait, 1>}`. The sum of all of the frequencies is 3. Thus, we will return “keep” whenever
 0 ≤ *p* &lt; 1/3, “trust” whenever 1/3 ≤ *p* &lt; 2/3 and “wait” whenever 2/3 ≤ p ≤ 1. If the frequency list is
 empty, this method should return an empty string.
 
-Write this class and test it thoroughly by adding a `main` method to make sure all methods work correctly.
+Write this class and test it thoroughly by adding a `main` method, instantiating a `FreqList` object and adding some Strings to make sure all methods work correctly.
 We suggest implementing the `toString` method and print out a representation of the frequency list first to make sure that the table is correct
 before attempting to write or test the probabilistic `get` method.
 
@@ -84,10 +84,10 @@ before attempting to write or test the probabilistic `get` method.
 
 We suggest that you write the `StringPair` class next.
 `StringPair` should represent a pair of two strings.
-Fill in the constructor, and write
-a `toString` method that returns something like "<string_one,string_two>".
-Because we will be using these with `HashMap` you will also have to implement
-`equals` and `hashCode` methods that do their comparisons and computations
+Fill in the constructor and override
+the `toString` method that will return something like `<string_one,string_two>`.
+Because we will be using `StringPair` objects in `HashMap`s you will also have to implement
+`equals` and `hashCode` methods (look for shortcut 1 in lecture slides) that do their comparisons and computations
 based on *both* of the string values.
 
 To make sure that you have correctly implemented these methods, you should
@@ -108,26 +108,26 @@ We have provided you with startup code in the `main` method of class `TextGenera
 dialog box to allow the user to choose a file containing the input text. We have also provided the headers of
 two methods for that class.
 
-The first method, `enter(s1, s2, s3)`, will be used to build the table. The three String parameters are used to build the table that will be used later to generate random text. The elements of the table are of the form
+The first method, `enter(String first, String second, String third)`, will be used to build the table that will be used later to generate random text. The elements of the table are of the form
 
     [<Word1, Word2> -> <w1, n1>, <w2, n2>, ..., <wk, nk>]
 
-where this notation represents an association, where the key is the pair <Word1, Word2> and the value is the **frequency list** *<w1,n1>,<w2,n2>,...,<wk,nk>*
+where this notation represents an association, where the key is the word pair of type `StringPair` <Word1, Word2> and the value is the **frequency list** *<w1,n1>,<w2,n2>,...,<wk,nk>* (of type `FreqList`).
 
-Suppose the table you are building is named `table` and the input starts with “This is the time for”. Then you will call `table.enter("This", "is", "the")`, which should update the entry for the word pair of
+Suppose the TextGenerator object you are building is named `table` and the input file starts with “This is the time for”. Then you will call `table.enter("This", "is", "the")`, which should update the entry for the word pair of
 “This” and “is” to record that “the” is a possible word to follow the pair. More carefully, if there is no entry
 for that word pair, then it will create one for that pair with an empty frequency list, and then add “the”
 occurring once to that frequency list. If the word pair is already there, update the frequency list to record
 the added occurrence of “the”. Having done this, continue with `table.enter("is","the","time")`, then
 `table.enter("the","time","for")`, and continuing in the same way if there is more text.
 
-We have included some text files (ending with suffix “txt”) in the assignment folder that you can use to test
+We have included some text files (ending with suffix “txt”) in the `text` folder that you can use to test
 your program. We’ve tried to pick files with sufficient repetition of triples.
 
 After the input has been processed to build the table, you should generate new text. You may start with
-a fixed pair of words or choose two words randomly. The method `getNextWord(s1,s2)` uses the table
+a fixed pair of words or choose two words randomly. The method `getNextWord(String first, String second)` uses the table
 generated from the input to return a randomly chosen word from the frequency list associated with the word
-pair of s1 and s2. (Of course it should choose the word using the probabilities as discussed earlier.)
+pair of `first` and `second`. (Of course it should choose the word using the probabilities as discussed earlier.)
 
 Generate and print a string of at least 400 words so that we can see how your program works. When
 printing the text, please generate a new line after every 20 words so that you don’t just generate one very
