@@ -88,8 +88,6 @@ The compilation and execution should all be automated by the supplied `Makefile`
 
 ### Files
 
-Open a terminal and navigate (command `cd`) to the project you just cloned.
-
 * Makefile - rules to:
 
    * compile the test program and list implementations,
