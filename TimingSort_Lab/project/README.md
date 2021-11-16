@@ -27,13 +27,17 @@ Once this is done, you should be able to run the `SortTimer` class.
 
 Notice that we have sent the `printTimes` method twice to the `SortTimer` object. Run the `SortTimer` class. What explains the very different answers obtained in the two runs for small values of size? Does the data obtained from the second run look like you would expect? Which one is faster?
 
-This should give you some confidence that `Quicksort`'s average case works as we expect. As an additional test, change the `printTimes` method to generate sorted data instead of random data. For example, have it fill the array with numbers from 1 to `size`. How does this change your timing data? Is this what you expected?
+Inside the `printTimes` method, we generate random data for the initial Arraylist to sort. Look at the TODOs here and see if you can figure out how to set up the experiment to compare the sorting algorithms fairly with random data.
+
+The data generated should give you some confidence that `Quicksort`'s average case works as we expect. As an additional test, change the `printTimes` method to generate sorted data instead of random data. For example, have it fill the array with numbers from 1 to `size`. How does this change your timing data? Is this what you expected?
 
 ## Play with the Sorting Algorithms
 
 In Eclipse, navigate to the `coinSort` package and click on the file `CoinSorter.java`. Now click on the green run button in the top toolbar.
 
 You will see a window similar to the one for the Silver Dollar Game, except that all the squares are filled, and the coins have different sizes. Use the keystrokes below to shuffle and sort the coins. Experiment with several of the sorting algorithms.
+
+# 
 
 * `c`: sort the coins using a randomly-selected algorithm
 * `b`: sort the coins using bubble sort
@@ -48,6 +52,12 @@ The program you are using has a few additional features. Typing `f` (for "freeze
 
 Typing `c` selects one of the sorting algorithms at random and executes it. Practice with the `c` command to develop your skill in identifying the algorithm from the pattern of comparisons and swaps.
 
+The yellow coins are the coins being compared, and green coins show exchanges between 2 locations.
+
+The insertion sort is using a different implementation than the one presented in class. It compares the element to be inserted with elements in the sorted subarray from left to right instead of right to left.
+The selection sort is also a different implementation than the one presented in class. This one starts from the right side and finds the biggest element and exchanges with the rightmost element of the unsorted subarray. For the quicksort, the pivot is chosen as the rightmost element with the highest index.
+
+
 ## Analysis
 
 Discuss with your partner:
@@ -59,4 +69,4 @@ Discuss with your partner:
 
 ## If You Would Like Practice (not required)
 
-Try implementing a new class for one of the `O(n^2)` running time sorting methods that `extends` our `Sorter` interface. Add this new class into the `SortTimer` class and compare its runtime to the other sorting methods.
+Try implementing an optimization for merge sort that eliminates the copying of the data for each merge. Create a new class that `extends` our `Sorter` interface. Add this new class into the `SortTimer` class and compare its runtime to the other sorting methods.

@@ -44,19 +44,19 @@ most MacOS and Linux machines.  Students with Windows computers should install [
 
 ## Lab Exercises
 
-**Note: [GitHub to replace 'master' with 'main'](https://www.zdnet.com/article/github-to-replace-master-with-main-starting-next-month/) October 1.** This lab still uses the term master, but it will eventually be updated to use main. For now, we've decided to leave the term as "master" because all other documentation for *git* will continue to use this terminology. We hope that the term "main" will become more common place so that we can scrub it from this lab description.
+**Note: [GitHub replaced 'master' with 'main' for newly created repositories. ](https://www.zdnet.com/article/github-to-replace-master-with-main-starting-next-month/) ** This lab will use the term main, but you should be aware that older repositories may still use the term master to describe the main branch. Some documentation for *git* may continue to use this terminology. 
 
 In this lab:
 
 1. one team member will log into *github* and create a new public repo,
    clone that repo on their local machine, and create some initial content.
 2. each team member will *clone* local copies and create new personal branches.
-3. one team member will go back to the *master* branch, and make changes
+3. one team member will go back to the *main* branch, and make changes
    (that will not be reflected in the new branches).
 4. each team member will, in their personal branches, create some
    new files, and make changes to one of the original files.
 5. each team member will merge their personal branches back into
-   the master branch.
+   the main branch.
 
 ![Succession of steps](GitSteps.jpg)
 
@@ -84,7 +84,7 @@ comments.
 
 ### Following Instructions Carefully
 
-1. You will be graded based on your ability to create and merge
+1. You should be able to create and merge
    conflicting updates.  I will look, not only at the text in
    the modified files, but at your commit history to see which
    steps were done in which order.  Make sure that all commit
@@ -94,11 +94,11 @@ comments.
 
 2. If you make the STEP 3 changes before cloning your repos
    and creating your branches, you will not have a conflicting
-   update in the master branch, and you will be unable to earn
-   points for resolving that conflict.
+   update in the main branch, and you will be unable to learn from
+    resolving that conflict.
 
 3. The two team-mates should take turns doing their STEP 5
-   merges of STEP 4 updates back into the *master* branch.
+   merges of STEP 4 updates back into the *main* branch.
    If you attempt to do them in parallel, you will have to
    go through more pull/merge/push cycles.
 
@@ -115,7 +115,7 @@ One team member should:
    * enter a name and description
    * check the `public` and `with README` options
    * click the green `Create repository` button
-   * copy the returned URL and send it to your team mate
+   * copy the returned URL (green Code tab) and send it to your team mate
    * click `settings` and un-check the `Restrict editing to collaborators only` box.
 * create a local clone (on a personal or lab machine)
    * start a Terminal window
@@ -130,7 +130,7 @@ One team member should:
    * edit the `README.md` to identify the which lab this is and the names of your team members
    * create new files `file1.txt` and `file2.txt` in your repo directory with contents like:
      ```
-     STEP 1:  created by YOUR_NAME on 11/06/19 at 14:05
+     STEP 1:  created by YOUR_NAME on 11/03/21 at 14:05
      ```
    * commit your changes
      ```
@@ -142,7 +142,7 @@ One team member should:
      ```
      git status
      ```
-   * push these changes back to the *master* branch on *github*
+   * push these changes back to the *main* branch on *github*
      ```
      git push
      ```
@@ -165,23 +165,23 @@ own personal branch names.
   git checkout -b person2
   ```
 
-### Step 3 - Create conflicts by moving *master* beyond the new branches
+### Step 3 - Create conflicts by moving *main* beyond the new branches
 
 After both personal branches have been created
 
-* one team member goes back to the *master* branch
+* one team member goes back to the *main* branch
   ```
-  git checkout master
+  git checkout main
   ```
 * adds a new line to file1.txt ... with contents like
      ```
-     STEP 3:  added by YOUR_NAME on 11/06/19 at 14:10
+     STEP 3:  added by YOUR_NAME on 11/03/21 at 14:10
      ```
    * commit your changes
      ```
      git commit -m "STEP 3" file1.txt
      ```
-   * push these changes back to github
+   * push these changes back to github -- if the git push doesn't work, you need to add your partner as a collaborator in settings->manage access
      ```
      git push
      ```
@@ -190,7 +190,7 @@ After both personal branches have been created
   git checkout person1
   ```
 
-At this point, both of the new personal branches are behind (i.e., are not up to date with) master ...
+At this point, both of the new personal branches are behind (i.e., are not up to date with) main ...
 giving rise to conflicts that will have to be reconciled in step 5.
 
 ### Step 4 - People do work in their own branches
@@ -210,7 +210,7 @@ Each person, working on their own computer, _in their own branch_ should:
   git add person1.txt
   git commit -m "STEP 4" file1.txt person1.txt
   ```
-* review the git log to confirm that all of these changes have infact
+* review the git log to confirm that all of these changes have in fact
 been made
   ```
   git log
@@ -220,27 +220,27 @@ Note that because your personal branches were created on your
 personal machines, they do not (yet) exist on *github*, and so
 you will not be able to `push` them back to *github*.
 
-### Step 5 - Merge the (now conflicted) branches back into *master*
+### Step 5 - Merge the (now conflicted) branches back into *main*
 
 This is (at a minimum) a two step process:
 
-1. update personal branch to be based on the latest updates in *master* (which
+1. update personal branch to be based on the latest updates in *main* (which
    has been updated since this branch was created).
-2. update *master* to include the (now consistent) updates from your branch.
+2. update *main* to include the (now consistent) updates from your branch.
 
 Take turns doing step 5.  Wait for one person to finish before the next person starts.  
 Each person, working on their own machine, will, _in their own branch_:
 
-* update their copy of the master branch (which they are not currently on)
+* update their copy of the main branch (which they are not currently on)
   ```
-  git pull origin master
+  git pull origin main
   ```
-  Because your branch is based on *master*, git will automatically check
-  to see if *master* now contains updates that your branch does not ... which it does.
-  Worse, *master* contains an update to a file that you have
-  also changed, so git will insist that you must fix this confict manually.
+  Because your branch is based on *main*, git will automatically check
+  to see if *main* now contains updates that your branch does not ... which it does.
+  Worse, *main* contains an update to a file that you have
+  also changed, so git will insist that you must fix this conflict manually.
 
-* merge your updates to file1.txt with those in the *master* branch
+* merge your updates to file1.txt with those in the *main* branch
   * edit the conflicted file1.txt and correctly organize the lines
     (from different versions) in chronological order
     (and deleting the notations about which text came from which version)
@@ -257,16 +257,16 @@ Each person, working on their own machine, will, _in their own branch_:
   added to file1.txt in step 3.  The second person to do this will also have to merge
   with the changes made by the first person in step 5.
 
-* now that your branch is up-todate with *master*, merge *your changes* back into the *master* branch
-  (note: The command `git merge branch1` when executed in *master* will update
-  *master* to include changes made to *branch1*).
+* now that your branch is up-todate with *main*, merge *your changes* back into the *main* branch
+  (note: The command `git merge branch1` when executed in *main* will update
+  *main* to include changes made to *branch1*).
 
   ```
-  git checkout master
+  git checkout main
   git merge person1
   ```
   This time, because your (*person1*) branch is now up-to-date with respect
-  to *master*, git should be able to automatically perform a fast-forward merge.
+  to *main*, git should be able to automatically perform a fast-forward merge.
   If so, all you have to do is a *commit* and *push*.  But if there are other
   changes to be reconciled, you may have to resolve them as you did above.
 
@@ -284,14 +284,14 @@ Each person, working on their own machine, will, _in their own branch_:
   ```
 
   The *status* command should show that you are up-to-date with respect to
-  *master*, and that you have no uncommitted changes.
+  *main*, and that you have no uncommitted changes.
 
   The *log* command should show (in reverse chronological order):
   - the STEP 5 merge from person2
   - the STEP 5 merge from person1
   - the STEP 4 changes from person2
   - the STEP 4 changes from person1
-  - the STEP 3 change to master
+  - the STEP 3 change to main
   - the original STEP 1 creation and contents additions
 
   If the person who created the repo on *github* does not correctly authorize
@@ -303,7 +303,7 @@ Each person, working on their own machine, will, _in their own branch_:
 ### The `git` workflow
 
 This is the usual workflow of `git`: you create a branch for working on a specific feature, commit (perhaps
-several times) to that branch as you work on it, then eventually merge it back into the master branch, which
+several times) to that branch as you work on it, then eventually merge it back into the main branch, which
 may take some manual fixing-up (but `git` does a lot for you). No matter how many people are working on
 the same code, as long as they work mostly on different parts of it, they can all work separately this way,
 and still synchronize their results periodically as branches merge together.
@@ -312,19 +312,19 @@ what you have done since the last time you ran `git` commit (for this reason, it
 often). `git` stores all of its data in a hidden `.git` directory, so unless you wipe out that directory (and any
 clones other people may have made) you will be able to recover your project.
 
-<!--
+
 ## Grading
 
-Your submission will be graded based on the the file contents and history
-(including commit comments) in your *master* branch.  Each team should email
+Your submission will be evaluated based on the the file contents and history
+(including commit comments) in your *main* branch.  Each team should email
 their instructor the URL for the (public) repo in which this work was done.
 
 
-| Criterion                                   | Points |
-| :------------------------------------------ | :----- |
-| 1. repo created w/initial contents          | 1      |
-| 2. creation of two personal branches        | 1      |
-| 3. moving master past those branches        | 2      |
-| 4. correct updates in personal branches     | 2      |
-| 5. correct merging back into master         | 4      |
- -->
+| Tasks                                       |
+| :------------------------------------------ |
+| 1. repo created w/initial contents          |
+| 2. creation of two personal branches        | 
+| 3. moving main past those branches        |
+| 4. correct updates in personal branches     | 
+| 5. correct merging back into main         | 
+ 

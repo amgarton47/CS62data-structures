@@ -82,11 +82,11 @@ I/0, you should only need **two** String variables to keep track of the data.
 * `mergeFiles`: takes an ArrayList of Files, each of which should contain sorted data and then uses the `merge` method to eventually merge them into one large sorted file. Notice that the `merge` method only merges two files at a time. The easiest way to merge all of the `n` sorted files is to merge the first two files, then merge the third file with the result of merging the first two files, then the fourth
 in, etc. This is *not* the most efficient way of doing it. However, it will make your life easy (see the
 extra credit for doing it a better way). NOTE: you cannot read and write to a file at the same time,
-so you will need to use a single temporary file to store your temporary results as you merge the data. `copyFile` should come in handy!  Each time you need to merge time a new file, merge the new file with the temporary file and put the results in the `outputFile`.  Then, copy the `outputFile` to the temporary file to get ready to merge the next file.
+so you will need to use a single temporary file to store your temporary results as you merge the data. `copyFile` should come in handy!  Each time you need to merge a new file, merge the new file with the temporary file and put the results in the `outputFile`.  Then, copy the `outputFile` to the temporary file to get ready to merge the next file.
 
 * `main`: This method gets everything going and is provided to you. It creates a `sorter` that does a mergesort
 in memory, then creates a `diskSorter` to do the external merges. Parameters to the `OnDiskSort` sets up directory sorting run to be the working directory for the sorts. It then creates a word scanner
-to read King’s "I have a dream" speech. Finally it calls the `sort` method of `diskSorter` with the scanner to input all the words of the speech, sorts them, and puts them in the file `data.sorted`.
+to read Kingâ€™s "I have a dream" speech. Finally it calls the `sort` method of `diskSorter` with the scanner to input all the words of the speech, sorts them, and puts them in the file `data.sorted`.
 
 To assist you, we have also provided a few helper methods in the `OnDiskSort` class that you may find
 useful; they primarily do some simple operations with files. If there is any confusion about what these
@@ -100,8 +100,8 @@ Java file I/O. For more on file I/O, you can also see **Appendix A - File I/O in
 1. Follow the same steps with the first lab/assignment to clone the github repository for this assignment.
 
 2. You will also need a directory in which to put the files to be sorted. We suggest you use the provided `sorting_run` in your project directory. In that directory, put a file containing a copy of King's
-“I have a dream” speech. It is in a file named "Ihaveadream.txt" and is in with files from last week’s assignment. Be sure to name these exactly as given here, and make sure the directory `sorting_run` is
-in the same level as the `src` and `bin` directories. (If not, then the program won’t find them
+â€œI have a dreamâ€� speech. It is in a file named "Ihaveadream.txt". Be sure to name these exactly as given here, and make sure the directory `sorting_run` is
+in the same level as the `src` and `bin` directories. (If not, then the program wonâ€™t find them
 and it will crash!) See the main method of `OnDiskSort` for the names. Note that we may test your
 code using a different directory for temporary files, so your code shouldn't use the name `sorting_run`
 except in its main method as a default value.
@@ -150,13 +150,13 @@ things working above, for extra credit, implement a more efficient `mergeFiles` 
 files of the same size. That is, if you start with `f` files of size `k`, merge them in pairs to obtain `f/2` files of
 size `2*k`. Then merge those together in pairs to get `f/4` files of size `4*k`. Continue until they are all merged.
 This is optional and you do not have to do it!
-If you do this, we strongly suggest making a new method (i.e. don’t delete your original `mergeFiles`
+If you do this, we strongly suggest making a new method (i.e. donâ€™t delete your original `mergeFiles`
 method, just rename is to something like `mergeFilesLinear`). Similar to `mergeFiles`, create a single temporary file. Start with the first and second file, merge them into the temporary file and then use the `copyFile` method to move the contents of the temporary file over either the first or second file and keep track of the name.  Merge the third and fourth and again copy the contents back to either the third or fourth filename and keep track of that.  After one pass, you'll have half as many files.  Repeat this process.
 
 ### Appendix A - File I/O in Java:
 
-For those that haven't had any file I/O experience in Java, we’ll give a brief intro here, but also take a look at the streams cheat sheet available off of the course Documentation page. You can also look
-up information about the classes seen in the code and discussed here via the Java libraries link there. For most I/O, you’ll need to `import java.io.*`.
+For those that haven't had any file I/O experience in Java, weâ€™ll give a brief intro here, but also take a look at the streams cheat sheet available off of the course Documentation page. You can also look
+up information about the classes seen in the code and discussed here via the Java libraries link there. For most I/O, youâ€™ll need to `import java.io.*`.
 
 To create a reference to a file you will use the class `File` whose constructor takes as a parameter a `String` that contains the path that the file will reside. Please note that instantiating an object of type `File` will not create an empty file. Instead, you will need to use a `PrintWriter` as described below.
 
@@ -165,7 +165,7 @@ A few useful things to keep in mind:
 - Depending on the operating system that you use, the separator in paths might take different forms, e.g., `/` or `\`. A useful shortcut to find it is to use the `File.separator` String.
 - Putting these two things together, you can create a `String` that will be used in `File`'s constructor without hard-coding paths.
 
-The two main classes you’ll be concerned with when doing file I/O in java are `BufferedReader` for
+The two main classes youâ€™ll be concerned with when doing file I/O in java are `BufferedReader` for
 reading data and `PrintWriter` for writing data. To read data, you can create a new reader by:
 
     BufferedReader in = new BufferedReader(new FileReader(...))
@@ -180,16 +180,17 @@ In both cases, you will need to surround these with a try-catch to handle the `I
 
 ### Appendix B - The file system
 
-The file system on these computers starts at the very base directory of `/`. Everything is then expanded
-out based on directories. For example `/home/apapoutsaki/` is two directories starting from the base, first
-`home` then `apapoutsaki`. The `/` is called the file separator and is different depending on the operating
-system (e.g. it’s `\` on windows computers). Filenames can be specified as *relative* filenames, where
+The file system on these computers starts at the very base directory of `/`.
+This directory is also called the root. Everything is then expanded
+out based on directories. For example `/home/tyya2021/` is two directories starting from the base, first
+`home` then `tyya2021`. The `/` is called the file separator and is different depending on the operating
+system (e.g. itâ€™s `\` on windows computers). Filenames can be specified as *relative* filenames, where
 they are relative to the current location of the program (or user). Relative filenames do NOT start
 with a `/`. It can be confusing telling exactly where your program currently is when running it, so
 often the best approach when writing programs is to use a full path which starts at the base directory.
-(Don’t do that this time because we want the program you turn in to work when copied to the TA’s
-directory!) If you ever want to know where you are when you’re in the `Terminal`, the `pwd` command
+(Donâ€™t do that this time because we want the program you turn in to work when copied to the TAâ€™s
+directory!) If you ever want to know where you are when youâ€™re in the `Terminal`, the `pwd` command
 (for *print working directory*). You can try it out by just typing `pwd` and hitting return (though that
-won’t work in `Eclipse` – you must be in the `Terminal`)!.
+wonâ€™t work in `Eclipse` â€“ you must be in the `Terminal`)!.
 Rather than hard-coding in a file or directory, you can also pop up a dialog box and let the user choose
 the file. 

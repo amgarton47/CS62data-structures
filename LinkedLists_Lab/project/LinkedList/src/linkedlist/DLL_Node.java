@@ -152,11 +152,11 @@ public class DLL_Node implements Iterable<DLL_Node> {
 	  *		b.remove()				a: [a], b: []
 	  *		... add your own to fully exercise insert/remove
 	  */
-	public void main(String args[]) {
-		a = new DLL_Node();
+	public static void main(String args[]) {
+		DLL_Node a = new DLL_Node();
 		System.out.println("a: " + a + " = " + a.listToString());
 
-		b = new DLL_Node();
+		DLL_Node b = new DLL_Node();
 		System.out.println("b: " + b + " = " + b.listToString());
 
 		b.insert(a);
