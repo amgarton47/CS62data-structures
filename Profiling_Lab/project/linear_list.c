@@ -1,5 +1,5 @@
 /*
- * Simple, un-sorted, linear list ... dumbest implemenation
+ * Simple, un-sorted, linear list ... dumbest implementation
  *
  *  methods:
  *      linear_list(int)                constructor
@@ -34,7 +34,7 @@ struct node_list {
  * @return address of next free word_node)
  */
 struct word_node *linear_allocate(struct word_list *this) {
-        struct node_list *nodeList = (struct node_list *) this->list;
+    struct node_list *nodeList = (struct node_list *) this->list;
 
 	assert(nodeList->num_free > 0);
 	nodeList->num_free -= 1;
@@ -100,10 +100,10 @@ long linear_refs(struct word_list *this, char *word) {
  */
 struct word_list *linear_list(int max_size) {
         
-        struct word_list *my_list = (struct word_list *) malloc(sizeof (struct word_list));
-        my_list->type = "unsorted linked list";
-        my_list->add_method = linear_add;
-        my_list->ref_method = linear_refs;
+	struct word_list *my_list = (struct word_list *) malloc(sizeof (struct word_list));
+	my_list->type = "unsorted linked list";
+	my_list->add_method = linear_add;
+	my_list->ref_method = linear_refs;
 
 	/* allocate and initialize the free node list */
 	struct node_list *nodeList = (struct node_list *) malloc(sizeof(struct node_list));

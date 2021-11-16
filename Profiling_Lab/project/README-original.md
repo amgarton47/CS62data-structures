@@ -8,7 +8,7 @@
 
 ## Key Terms and Concepts
 
-* Open Hashing with Linear Probing - All entries are stored in a single array, but the the location of a 
+* Open Hashing with Linear Probing - All dictionary entries are stored in a single array, but the the location of a 
   particular entry within that array is not fixed by its hash value (the location is *open*).
   Rather, the hash value is used to compute a starting index, and the entry will be placed
   (by *linear probing*) in the first unused slot after that index.
@@ -17,7 +17,7 @@
 
 * Bucket Hashing with Linked List (Separate) Chaining - The name-space is divided into some number of *buckets*
   (chosen by taking a hash value modulo the number of buckets).  Each bucket contains a linear linked
-  list (chain) of the items that hashed into that bucket.  If the number of buckets is chosen to be a reasonable
+  list (chain) of the entries that hashed into that bucket.  If the number of buckets is chosen to be a reasonable
   fraction of the total number of (expected) entries, the lists should be relatively short.
 
 * Hash Collisions - A situation where multiple keys hash to the same value, necessitating
@@ -25,45 +25,44 @@
 
 ## Introduction
 
-A program is not running as quickly as we would like.  How can we improve it?
-Stop-watch type measurements can enable us to compute operations-per-second, but this
-does not tell us where the cycles are going.  As the designers and implementers, we
-may be aware of things that could have been done better... but intuition is, at best,
-an unreliable tool for performance management.  That poorly written function may indeed
+Imagine a program which is not running as quickly as we would like.  How can we improve it?
+We could use a stop-watch but this
+does not tell us where most of the computation time is spent on.  As the designers and implementers of this program, we
+may be aware of things that could have been done better, for example, an inefficient method. But intuition is, at best,
+an unreliable tool for performance management.  That poorly written method may indeed
 be 100x slower than a better version might be, but if it is only very seldomly called, 
 it doesn't matter how slow it is.  We need fine-grained data about which code is consuming
-what fraction of our total time.
+what fraction of the total time.
 
 Analyzing the performance of a complex system may involve considerable instrumentation,
 but a pair of standard tools can often provide us with a great deal of insight:
 
 * _call counting_ - we can ask the compiler to add a little bit of extra code to
-  each routine/method to increment a counter each time it is called.
+  each method to increment a counter each time it is called.
 
 * _execution profiling_ - we can set a timer to go off regularly (e.g., every few 
-  milliseconds), note the address at which the program was executing when it was
-  interrupted, and increment a counter associated with that region of code.
+  milliseconds), make note of the call stack, and increment a counter associated with that region of code.
 
 These counters can be written out to a file after the program has completed its
 execution, and a profiling analysis tool can then be run to:
 
-   * tabulate the number of calls to each method/routine.
+   * tabulate the number of calls to each method.
 
    * estimate, based on the random profiling samples, how much time was
-     spent in each method/routine.
+     spent in each method.
 
    * report on the number of calls to each method, the amount (and fraction)
      of time spent in that method, and an estimated time (in ns or us) per
      call.
 
-Having real data on how often every routine is called, and the run-time cost
+Having real data on how often every method is called and the run-time cost
 of each call will direct our attention to the places where the costs are 
 greatest, and where improvement yield the greatest benefits.
 
 
 ## Description
 
-In this lab, we will look at multiple implementations of a symbol table for keeping track of references
+In this lab, we will look at multiple implementations of a symbol table (dictionary) for keeping track of references
 to strings.  Each known string will have an entry that contains the string, and the number of
 references.  The implementations we are supplying are:
 
@@ -83,20 +82,22 @@ The supplied `list_tester` program takes three command line parameters:
 
 Execution profiling of Java software is both difficult and noisy due to the fact
 that Java is an interpreted language with run-time garbage collection.  To give you
-cleaner data, this test program and set of list implementations have been written in C, 
-which is similar enough to Java that you should not have much trouble reading it.
+cleaner data, this test program and set of list implementations have been written in C. Don't panic! 
+C is similar enough to Java that you should not have much trouble reading it.
 The compilation and execution should all be automated by the supplied `Makefile`.
 
 ### Files
+
+Open a terminal and navigate (command `cd`) to the project you just cloned.
 
 * Makefile - rules to:
 
    * compile the test program and list implementations,
    * run the program to exercise each of the implementations,
-   * process the raw profiling data into a per-implementation reports, and
+   * process the raw profiling data into a per-implementation report, and
    * create a combined report from the per-implementation reports
 
-  If you type the command `make`, it will build everything.  If you only 
+  If you type the command `make`, it will build all these rules.  If you only 
   want to rebuild a single report, you can specify what you want to build 
   on the command line (e.g., `make bucket.txt`).
 
@@ -109,12 +110,12 @@ The compilation and execution should all be automated by the supplied `Makefile`
    3. counts and reports the total number of references for all words.
    4. writes out the profiling data (`gprof.out`)
 
-* words.c - implements functions to create a list of random words,
+* words.c - implements methods to create a list of random words,
   choose words from that list, and compute (reasonably well-distributed)
   hash codes for those words.
 
 * word_list.h - this header file defines the *interface* for a word-list
-  manager.  This data structure contains::
+  manager.  This data structure contains:
 
      * a string to identify the chosen implementation
      * pointers to methods to add a new reference or return the number of references
@@ -124,7 +125,7 @@ The compilation and execution should all be automated by the supplied `Makefile`
   Each implementation has a constructor, an add method, and a references method.
 
   This is an example of how *objects* (with instance variables and methods)
-  were implemented in C before the advent of the (newer, object-oriented)
+  were implemented in C before the advent of the (newer, object-oriented, and much closer to Java)
   C++ language.
 
  
