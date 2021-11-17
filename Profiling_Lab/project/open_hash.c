@@ -1,5 +1,5 @@
 /*
- * open_hash table ... very short searches (until it fills up)
+ * open_hash table ... very short searches in dictionary (until it fills up)
  *
  *  methods:
  *      open_hash(int)                constructor

@@ -1,5 +1,5 @@
 /*
- * Simple, sorted linear list ... faster than un-sorted
+ * Simple, sorted linear list ... faster implementation of dictionaries than un-sorted
  *
  *  methods:
  *      sorted_list(int)                constructor

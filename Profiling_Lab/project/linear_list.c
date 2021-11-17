@@ -1,5 +1,5 @@
 /*
- * Simple, un-sorted, linear list ... dumbest implementation
+ * Simple, un-sorted, linear list ... dumbest implementation of a dictionary
  *
  *  methods:
  *      linear_list(int)                constructor

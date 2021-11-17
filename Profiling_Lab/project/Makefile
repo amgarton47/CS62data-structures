@@ -1,14 +1,14 @@
 #
 # This makefile builds a list-intensive application with several different
-# list implementations, so that they can be profiled and call counted.
+# dictionary implementations, so that they can be profiled and call counted.
 #
 # Why is this being done in C?
 #
 #    1.	Execution profiling in Java (an interpreted language with garbage
-#	collection is both complex and noisy.  Profiling results are much
+#	collection) is both complex and noisy.  Profiling results are much
 #	clearer for a simple, compiled language.
 #    2. Alternative List implementations beg to be done by multiple
-#	sub-classes in an O-O language, but the name-mangling in C++
+#	sub-classes in an Object Oriented language, but the name-mangling in C++
 #	makes results a little bit harder to interpret.  
 #
 

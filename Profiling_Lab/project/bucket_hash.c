@@ -1,5 +1,5 @@
 /*
- * bucket hash lists ... should be very fast
+ * bucket hash lists ... should be a very fast implementation of dictionaries
  *
  *  methods:
  *      bucket_hash(int)                constructor
