@@ -10,26 +10,40 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
+import org.w3c.dom.Text;
+
 public class TextGenerator {
 
     // symbol table of string pairs and frequency lists
-    protected HashMap<StringPair, FreqList> letPairList;
+    protected HashMap<WordPair, FreqList> hm;
 
-    // add any instance variables needed and a constructor
+    public TextGenerator() {
+        hm = new HashMap<WordPair, FreqList>();
+    }
 
     /**
-     * Add a reference to <first,second>->third to our letPairList
+     * Add a reference to <first,second>->third to our hash map
      * 
      * @param first  string in triad
      * @param second string in triad
      */
     public void enter(String first, String second, String third) {
-        // TODO implement TextGenerator.enter()
+        WordPair wp = new WordPair(first, second);
+        FreqList fl = new FreqList();
+        fl.add(third);
+
+        FreqList val = hm.putIfAbsent(wp, fl);
+
+        if (val != null) {
+            val.add(third);
+            hm.replace(wp, val);
+        }
     }
 
     /**
@@ -43,8 +57,15 @@ public class TextGenerator {
      *         has followed the <first,second> pair.
      */
     public String getNextWord(String first, String second) {
-        // TODO implement TextGenerator.getNextWord()
-        return "";
+        Random r = new Random();
+
+        WordPair wp = new WordPair(first, second);
+        FreqList fl = hm.get(wp);
+
+        if (fl == null) {
+            return "";
+        } else
+            return fl.get(r.nextDouble());
     }
 
     // START OF CODE FOR MAIN PROGRAM -- WRITE & FIX COMMENTS
@@ -76,15 +97,50 @@ public class TextGenerator {
                 JOptionPane.showMessageDialog(null, "Can't load file " + e.getMessage());
             }
 
-            // TODO create extGenerator, populate it from the WordStream
+            TextGenerator textGenerator = new TextGenerator();
+            ArrayList<String> tokens = new ArrayList<String>();
 
-            // TODO (for debug) print resulting <StringPair,FreqList> map
+            while (ws.hasMoreTokens()) {
+                tokens.add(ws.nextToken());
+            }
 
-            // TODO (for debug) add a few getNextWord test cases
+            for (int i = 0; i < tokens.size() - 3; i++) {
+                String first, second, third;
+                first = tokens.get(i);
+                second = tokens.get(i + 1);
+                third = tokens.get(i + 2);
 
-            // TODO pick two starting words
-            // TODO generate 400 words of text, choosing likely random
-            // words to follow each preceding pair.
+                textGenerator.enter(first, second, third);
+            }
+
+            // pick two starting words from a randomly selected StringPair in input
+            ArrayList<WordPair> keysAsArray = new ArrayList<WordPair>(textGenerator.hm.keySet());
+            WordPair sp = keysAsArray.get(new Random().nextInt(keysAsArray.size()));
+            String s1 = sp.getFirst(), s2 = sp.getSecond();
+
+            // print out first two words
+            System.out.println("\nGenerated text based on input above:");
+            System.out.println("------------------------------------");
+            System.out.print(s1 + " " + s2 + " ");
+
+            final int NUM_GENERATED_WORDS = 400;
+            final int NUM_WORDS_PER_LINE = 20;
+
+            // generate 400 words of text, choosing likely random words to follow each
+            // preceding pair.
+            for (int i = 0; i < NUM_GENERATED_WORDS; i++) {
+                String nextWord = textGenerator.getNextWord(s1, s2);
+                System.out.print(nextWord + " ");
+
+                if (i != 0 && i % NUM_WORDS_PER_LINE == 0)
+                    System.out.println();
+
+                s1 = s2;
+                s2 = nextWord;
+
+                if (s1 == "" && s2 == "")
+                    break;
+            }
         } else {
             System.out.println("User cancelled file chooser");
         }

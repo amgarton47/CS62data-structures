@@ -58,7 +58,8 @@ public class FreqList {
         return key;
       }
     }
-    throw new AssertionError("Iterated through entire hashmap but temp probability < 1");
+
+    return "";
   }
 
   /**
