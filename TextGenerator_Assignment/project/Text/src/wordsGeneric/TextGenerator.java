@@ -1,8 +1,7 @@
 /**
  * Class to artificially generate sentences
  * 
- * Fix these comments!!
- * @author NAME GOES HERE!!
+ * @author Aidan Garton
  **/
 package wordsGeneric;
 
@@ -22,28 +21,30 @@ public class TextGenerator {
     protected HashMap<StringPair, FreqList> letPairList;
 
     // add any instance variables needed and a constructor
-    
-    /** 
+
+    /**
      * Add a reference to <first,second>->third to our letPairList
-     * @param first string in triad
+     * 
+     * @param first  string in triad
      * @param second string in triad
      */
     public void enter(String first, String second, String third) {
-		// TODO implement TextGenerator.enter()
+        // TODO implement TextGenerator.enter()
     }
 
     /**
      * Use the <first,second> FreqList to choose a word to follow them
-     * @param first String in triad
+     * 
+     * @param first  String in triad
      * @param second String in triad
      * @return likely third String to follow the first two
-	 *
-	 * Note: it would also be very good to do something graceful
-	 *       if nothing has followed the <first,second> pair.
+     *
+     *         Note: it would also be very good to do something graceful if nothing
+     *         has followed the <first,second> pair.
      */
     public String getNextWord(String first, String second) {
-		// TODO implement TextGenerator.getNextWord()
-        return ""; 
+        // TODO implement TextGenerator.getNextWord()
+        return "";
     }
 
     // START OF CODE FOR MAIN PROGRAM -- WRITE & FIX COMMENTS
@@ -72,19 +73,18 @@ public class TextGenerator {
                 // Close the file
                 input.close();
             } catch (IOException e) {
-                JOptionPane.showMessageDialog(null, "Can't load file "
-                        + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Can't load file " + e.getMessage());
             }
 
-			// TODO create extGenerator, populate it from the WordStream
+            // TODO create extGenerator, populate it from the WordStream
 
-			// TODO (for debug) print resulting <StringPair,FreqList> map
+            // TODO (for debug) print resulting <StringPair,FreqList> map
 
-			// TODO (for debug) add a few getNextWord test cases
+            // TODO (for debug) add a few getNextWord test cases
 
-			// TODO pick two starting words
-			// TODO generate 400 words of text, choosing likely random
-			//      words to follow each preceding pair.
+            // TODO pick two starting words
+            // TODO generate 400 words of text, choosing likely random
+            // words to follow each preceding pair.
         } else {
             System.out.println("User cancelled file chooser");
         }
