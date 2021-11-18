@@ -1,1 +1,0 @@
-Note: The lab changed and the autograder was not updated.

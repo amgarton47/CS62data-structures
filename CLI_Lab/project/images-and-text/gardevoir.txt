@@ -1,9 +1,0 @@
-Gardevoir-Mega @ Gardevoirite  
-Ability: Pixilate  
-EVs: 16 HP / 8 Def / 232 SpA / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Hyper Voice  
-- Psyshock  
-- Focus Blast  
-- Will-O-Wisp
