@@ -72,7 +72,7 @@ public class TextGenerator {
     public static void main(String args[]) {
 
         WordStream ws = new WordStream();
-        JFileChooser dialog = new JFileChooser(".");
+        JFileChooser dialog = new JFileChooser("..");
 
         // Display the dialog box and make sure the user did not cancel.
         if (dialog.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
