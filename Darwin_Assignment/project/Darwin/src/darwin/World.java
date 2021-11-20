@@ -63,6 +63,12 @@ public class World {
 	 * @throws IllegalArgumentException if pos is not in range
 	 */
 	public Creature get(Position pos) {
+		if (!inRange(pos)) {
+			throw new IllegalArgumentException("Trying to set position of creature out of bounds");
+		}
+
+		System.out.println(pos.getX());
+		System.out.println(pos.getY());
 		return creatures.get(pos.getY(), pos.getX());
 	}
 

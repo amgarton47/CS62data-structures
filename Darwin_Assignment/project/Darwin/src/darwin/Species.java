@@ -148,7 +148,6 @@ public class Species {
 		} catch (Exception e) {
 			System.out.println("file read error");
 		}
-
 	}
 
 }

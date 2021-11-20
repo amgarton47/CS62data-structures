@@ -7,15 +7,15 @@ import java.awt.event.*;
 /**
  * This class exports the methods necessary to display the creatures on the
  * screen. You should not change this class. You should have the following as
- * the first line of your main: createWorldMap(x, y); 
+ * the first line of your main: createWorldMap(x, y);
  * 
  * Only the Creature code should need to call the displaySquare method.
  */
 public class WorldMap {
 
 	/**
-	 * Uses the inst pattern. This is the map to be operated on by the rest of
-	 * the program.
+	 * Uses the inst pattern. This is the map to be operated on by the rest of the
+	 * program.
 	 */
 	protected static WorldMapImpl map = null;
 
@@ -35,25 +35,22 @@ public class WorldMap {
 	 * Update the contents of the square indicated by pos. If c is ' ', then the
 	 * square is cleared, and dir and color are ignored.
 	 * 
-	 * @pre pos is a valid position 
-	 * @pre c is the character to be put into the square 
+	 * @pre pos is a valid position
+	 * @pre c is the character to be put into the square
 	 * @pre dir is Position.NORTH,Position.SOUTH,Position.EAST,or Position.WEST (dir
-	 * is ignore if c is ' ') 
-	 * @pre color is "black", "red", "gray", "dark gray", "pink", "orange", "yellow",
-	 * "green", "magenta", "cyan", "blue" (color is ignore if c is ' ').
+	 *      is ignore if c is ' ')
+	 * @pre color is "black", "red", "gray", "dark gray", "pink", "orange",
+	 *      "yellow", "green", "magenta", "cyan", "blue" (color is ignore if c is '
+	 *      ').
 	 */
-	public static void displaySquare(
-		Position pos,
-		char c,
-		int dir,
-		String color) {
+	public static void displaySquare(Position pos, char c, int dir, String color) {
 		map.displaySquareInst(pos, c, dir, color);
 	}
 
 	/**
-	 * Pause for millis milliseconds. Call this atleast once in the main
-	 * simulation loop so that the computer can process mouse / keyboard events.
-	 *  
+	 * Pause for millis milliseconds. Call this atleast once in the main simulation
+	 * loop so that the computer can process mouse / keyboard events.
+	 * 
 	 */
 	public static void pause(int millis) {
 		try {
@@ -63,13 +60,13 @@ public class WorldMap {
 	}
 
 	/****************************************************************************
-	 * Everything else below is the internal code to manage the window. You
-	 * should not need to modify, understand, or even look at it.
+	 * Everything else below is the internal code to manage the window. You should
+	 * not need to modify, understand, or even look at it.
 	 ***************************************************************************/
 
 	/**
-	 * Inner class for the panel so that everything is encapsulated in the
-	 * WorldMap class and not visible outside.
+	 * Inner class for the panel so that everything is encapsulated in the WorldMap
+	 * class and not visible outside.
 	 */
 	static class WorldMapImpl extends JPanel {
 
@@ -97,7 +94,7 @@ public class WorldMap {
 		protected WorldMapImpl(int w, int h) {
 			super(true);
 
-			//Initialize drawing colors, border, opacity.
+			// Initialize drawing colors, border, opacity.
 			setBackground(Color.white);
 			setForeground(Color.black);
 
@@ -111,10 +108,7 @@ public class WorldMap {
 			}
 
 			JFrame f = new JFrame("Darwin");
-			f.setSize(
-				new Dimension(
-					2 * INSET + SQUARE_SIZE * (w + 1),
-					2 * INSET + SQUARE_SIZE * (h + 1)));
+			f.setSize(new Dimension(2 * INSET + SQUARE_SIZE * (w + 1), 2 * INSET + SQUARE_SIZE * (h + 1)));
 			f.addWindowListener(new WindowAdapter() {
 				public void windowClosing(WindowEvent e) {
 					System.exit(0);
@@ -128,20 +122,15 @@ public class WorldMap {
 		}
 
 		/*
-		 * Use this to control synchronization between Darwin thread and event
-		 * thread.
+		 * Use this to control synchronization between Darwin thread and event thread.
 		 */
 		final Object sem = new Object();
 
 		/*
-		 * Store the new info in the board, and generate a repaint event. This
-		 * method will block until the repaint actually occurs.
+		 * Store the new info in the board, and generate a repaint event. This method
+		 * will block until the repaint actually occurs.
 		 */
-		protected void displaySquareInst(
-			Position pos,
-			char c,
-			int d,
-			String color) {
+		protected void displaySquareInst(Position pos, char c, int d, String color) {
 			int x = pos.getX();
 			int y = pos.getY();
 			board[x][y].c = c;
@@ -153,11 +142,7 @@ public class WorldMap {
 			// occurred.
 			synchronized (sem) {
 				// dont't repaint over grid lines
-				repaint(
-					INSET + x * SQUARE_SIZE + 1,
-					INSET + y * SQUARE_SIZE + 1,
-					SQUARE_SIZE - 2,
-					SQUARE_SIZE - 2);
+				repaint(INSET + x * SQUARE_SIZE + 1, INSET + y * SQUARE_SIZE + 1, SQUARE_SIZE - 2, SQUARE_SIZE - 2);
 				try {
 					// wait until repaint has occured.
 					sem.wait(1000);
@@ -172,24 +157,16 @@ public class WorldMap {
 		protected void drawGrid(Graphics g) {
 			g.setColor(Color.black);
 			for (int i = 0; i <= width; i++) {
-				g.drawLine(
-					INSET + i * SQUARE_SIZE,
-					INSET,
-					INSET + i * SQUARE_SIZE,
-					INSET + height * SQUARE_SIZE);
+				g.drawLine(INSET + i * SQUARE_SIZE, INSET, INSET + i * SQUARE_SIZE, INSET + height * SQUARE_SIZE);
 			}
 			for (int i = 0; i <= height; i++) {
-				g.drawLine(
-					INSET,
-					INSET + i * SQUARE_SIZE,
-					INSET + width * SQUARE_SIZE,
-					INSET + i * SQUARE_SIZE);
+				g.drawLine(INSET, INSET + i * SQUARE_SIZE, INSET + width * SQUARE_SIZE, INSET + i * SQUARE_SIZE);
 			}
 		}
 
 		/**
-		 * Supports the basic colors provided in the AWT. @pre s must be a valid
-		 * color string.
+		 * Supports the basic colors provided in the AWT. @pre s must be a valid color
+		 * string.
 		 */
 		protected Color stringToColor(String s) {
 			if (s.equals("black"))
@@ -218,8 +195,8 @@ public class WorldMap {
 		}
 
 		/**
-		 * Draw one cell on the grid. Pass in the x and y grid position and the
-		 * contents of the cell.
+		 * Draw one cell on the grid. Pass in the x and y grid position and the contents
+		 * of the cell.
 		 */
 		protected void drawSquare(Graphics g, int x, int y, Cell cell) {
 			int sqX = INSET + x * SQUARE_SIZE + 1; // left edge of square
@@ -235,50 +212,38 @@ public class WorldMap {
 			g.setColor(stringToColor(cell.color));
 
 			switch (cell.dir) {
-				case Position.NORTH :
-					{
-						int x1Points[] =
-							{ sqX + 10, sqX + 18, sqX + 18, sqX + 2, sqX + 2 };
-						int y1Points[] =
-							{ sqY + 2, sqY + 10, sqY + 18, sqY + 18, sqY + 10 };
-						g.drawPolygon(x1Points, y1Points, x1Points.length);
-						fontX = 1;
-						fontY = 1;
-						break;
-					}
-				case Position.WEST :
-					{
-						int x1Points[] =
-							{ sqX + 2, sqX + 10, sqX + 18, sqX + 18, sqX + 10 };
-						int y1Points[] =
-							{ sqY + 10, sqY + 18, sqY + 18, sqY + 2, sqY + 2 };
-						g.drawPolygon(x1Points, y1Points, x1Points.length);
-						fontX = 4;
-						fontY = 2;
-						break;
-					}
-				case Position.SOUTH :
-					{
-						int x1Points[] =
-							{ sqX + 10, sqX + 18, sqX + 18, sqX + 2, sqX + 2 };
-						int y1Points[] =
-							{ sqY + 18, sqY + 10, sqY + 2, sqY + 2, sqY + 10 };
-						g.drawPolygon(x1Points, y1Points, x1Points.length);
-						fontX = 1;
-						fontY = 4;
-						break;
-					}
-				case Position.EAST :
-					{
-						int x1Points[] =
-							{ sqX + 18, sqX + 10, sqX + 2, sqX + 2, sqX + 10 };
-						int y1Points[] =
-							{ sqY + 10, sqY + 18, sqY + 18, sqY + 2, sqY + 2 };
-						g.drawPolygon(x1Points, y1Points, x1Points.length);
-						fontX = -1;
-						fontY = 2;
-						break;
-					}
+			case Position.NORTH: {
+				int x1Points[] = { sqX + 10, sqX + 18, sqX + 18, sqX + 2, sqX + 2 };
+				int y1Points[] = { sqY + 2, sqY + 10, sqY + 18, sqY + 18, sqY + 10 };
+				g.drawPolygon(x1Points, y1Points, x1Points.length);
+				fontX = 1;
+				fontY = 1;
+				break;
+			}
+			case Position.WEST: {
+				int x1Points[] = { sqX + 2, sqX + 10, sqX + 18, sqX + 18, sqX + 10 };
+				int y1Points[] = { sqY + 10, sqY + 18, sqY + 18, sqY + 2, sqY + 2 };
+				g.drawPolygon(x1Points, y1Points, x1Points.length);
+				fontX = 4;
+				fontY = 2;
+				break;
+			}
+			case Position.SOUTH: {
+				int x1Points[] = { sqX + 10, sqX + 18, sqX + 18, sqX + 2, sqX + 2 };
+				int y1Points[] = { sqY + 18, sqY + 10, sqY + 2, sqY + 2, sqY + 10 };
+				g.drawPolygon(x1Points, y1Points, x1Points.length);
+				fontX = 1;
+				fontY = 4;
+				break;
+			}
+			case Position.EAST: {
+				int x1Points[] = { sqX + 18, sqX + 10, sqX + 2, sqX + 2, sqX + 10 };
+				int y1Points[] = { sqY + 10, sqY + 18, sqY + 18, sqY + 2, sqY + 2 };
+				g.drawPolygon(x1Points, y1Points, x1Points.length);
+				fontX = -1;
+				fontY = 2;
+				break;
+			}
 			}
 
 			g.setFont(font);
@@ -286,10 +251,7 @@ public class WorldMap {
 			int height = fm.getHeight() - fontY;
 			int width = fm.charWidth(cell.c) - fontX;
 
-			g.drawString(
-				"" + cell.c,
-				sqX + 10 - width / 2,
-				sqY + 10 + height / 2);
+			g.drawString("" + cell.c, sqX + 10 - width / 2, sqY + 10 + height / 2);
 
 		}
 
@@ -305,20 +267,10 @@ public class WorldMap {
 			// compute the grid squares that must be redrawn
 			Shape rect = g.getClip();
 			Rectangle bounds = rect.getBounds();
-			int minX =
-				Math.max(0, (int) ((bounds.getX() - INSET) / SQUARE_SIZE));
-			int minY =
-				Math.max(0, (int) ((bounds.getY() - INSET) / SQUARE_SIZE));
-			int maxX =
-				Math.min(
-					width - 1,
-					(int) ((bounds.getX() + bounds.getWidth() - INSET)
-						/ SQUARE_SIZE));
-			int maxY =
-				Math.min(
-					height - 1,
-					(int) ((bounds.getY() + bounds.getHeight() - INSET)
-						/ SQUARE_SIZE));
+			int minX = Math.max(0, (int) ((bounds.getX() - INSET) / SQUARE_SIZE));
+			int minY = Math.max(0, (int) ((bounds.getY() - INSET) / SQUARE_SIZE));
+			int maxX = Math.min(width - 1, (int) ((bounds.getX() + bounds.getWidth() - INSET) / SQUARE_SIZE));
+			int maxY = Math.min(height - 1, (int) ((bounds.getY() + bounds.getHeight() - INSET) / SQUARE_SIZE));
 
 			// only redraw grid if clip overlaps one or more grid lines.
 			if (minX != maxX || minY != maxY)
