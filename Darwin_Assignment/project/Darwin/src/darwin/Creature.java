@@ -70,7 +70,6 @@ public class Creature {
 	 */
 	public void takeOneTurn() {
 		Instruction i = species.programStep(programStep);
-		System.out.println("here");
 
 		while (i.getOpcode() != Instruction.HOP && i.getOpcode() != Instruction.LEFT
 				&& i.getOpcode() != Instruction.RIGHT && i.getOpcode() != Instruction.INFECT) {
@@ -115,10 +114,6 @@ public class Creature {
 			}
 
 			i = species.programStep(programStep);
-
-			System.out.println("here1");
-			System.out.println(i.getOpcode());
-			System.out.println(programStep);
 		}
 
 		if (i.getOpcode() == Instruction.HOP) {
@@ -150,7 +145,6 @@ public class Creature {
 		if (programStep >= species.programSize()) {
 			programStep = 1;
 		}
-		System.out.println("here2");
 	}
 
 	/**
