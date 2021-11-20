@@ -60,8 +60,6 @@ public class WordStream {
         }
         if (nextItem < lexItems.size()) {
             nextItem++;
-            System.out.println(nextItem);
-            System.out.println(lexItems.get(nextItem - 1));
             return lexItems.get(nextItem - 1);
         } else {
             throw new IndexOutOfBoundsException("out of tokens");

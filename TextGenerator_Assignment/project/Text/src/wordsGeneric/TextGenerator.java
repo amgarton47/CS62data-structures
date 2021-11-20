@@ -12,11 +12,8 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
-import org.w3c.dom.Text;
 
 public class TextGenerator {
 
@@ -115,6 +112,8 @@ public class TextGenerator {
 
             // pick two starting words from a randomly selected StringPair in input
             ArrayList<WordPair> keysAsArray = new ArrayList<WordPair>(textGenerator.hm.keySet());
+
+            // for random first pair
             WordPair sp = keysAsArray.get(new Random().nextInt(keysAsArray.size()));
             String s1 = sp.getFirst(), s2 = sp.getSecond();
 
@@ -128,12 +127,14 @@ public class TextGenerator {
 
             // generate 400 words of text, choosing likely random words to follow each
             // preceding pair.
+            String str = "";
+
             for (int i = 0; i < NUM_GENERATED_WORDS; i++) {
                 String nextWord = textGenerator.getNextWord(s1, s2);
-                System.out.print(nextWord + " ");
+                str += nextWord + " ";
 
                 if (i != 0 && i % NUM_WORDS_PER_LINE == 0)
-                    System.out.println();
+                    str += "\n";
 
                 s1 = s2;
                 s2 = nextWord;
@@ -141,6 +142,8 @@ public class TextGenerator {
                 if (s1 == "" && s2 == "")
                     break;
             }
+
+            System.out.println(str);
         } else {
             System.out.println("User cancelled file chooser");
         }
