@@ -49,7 +49,7 @@ public class AutograderCompTest {
 	 */
 	public void testSpecies() {
 		try {
-			BufferedReader in = new BufferedReader(new FileReader("./Creatures/" + CREATURE_NAME + ".txt"));
+			BufferedReader in = new BufferedReader(new FileReader("../Creatures/" + CREATURE_NAME + ".txt"));
 
 			Species s = new Species(in);
 			char c = s.getSpeciesChar();
@@ -91,7 +91,7 @@ public class AutograderCompTest {
 			WorldMap.createWorldMap(10, 10);
 
 			// read in a Species description
-			BufferedReader in = new BufferedReader(new FileReader("./Creatures/" + CREATURE_NAME + ".txt"));
+			BufferedReader in = new BufferedReader(new FileReader("../Creatures/" + CREATURE_NAME + ".txt"));
 			Species s = new Species(in);
 
 			// create a creature of that species
