@@ -1,8 +1,8 @@
 package darwin;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.io.*;
+// import java.util.ArrayList;
+// import java.util.Random;
+// import java.io.*;
 
 /**
  * This class controls the simulation. The design is entirely up to you. You
@@ -14,12 +14,8 @@ import java.io.*;
  * simulation loop or else the simulation will be too fast. For example:
  * 
  * 
- * public void simulate() { 
- * 	for (int rounds = 0; rounds < numRounds; rounds++) {
- * 		giveEachCreatureOneTurn(); 
- * 		WorldMap.pause(500); 
- * 	} 
- * }
+ * public void simulate() { for (int rounds = 0; rounds < numRounds; rounds++) {
+ * giveEachCreatureOneTurn(); WorldMap.pause(500); } }
  * 
  */
 class Darwin {
