@@ -33,7 +33,7 @@ public class AutoCompleteMain {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter a new prefix: ");
+        System.out.print("Enter a new prefix: ");
         String query = sc.nextLine();
 
         while (!query.equals("exit")) {
@@ -54,7 +54,8 @@ public class AutoCompleteMain {
                 }
             }
 
-            System.out.println("Enter a new prefix, or type 'exit': ");
+            System.out.println();
+            System.out.print("Enter a new prefix, or type 'exit': ");
             query = sc.nextLine();
         }
 
