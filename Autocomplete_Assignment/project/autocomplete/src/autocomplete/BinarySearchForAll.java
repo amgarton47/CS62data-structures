@@ -90,7 +90,6 @@ public class BinarySearchForAll {
 
 		System.out.println(fst);
 		System.out.println(snd);
-
 	}
 
 }
