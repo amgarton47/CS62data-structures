@@ -1,4 +1,5 @@
 package onTheRoad;
+
 /**
  * Class to read in and parse the input data that can then be used to
  * build the graph used in finding shortest paths
@@ -14,14 +15,15 @@ public class FileParser {
 	// list of all vertices & edges in graph being build
 	private List<String> vertices = new ArrayList<String>();
 	private List<Segment> segments = new ArrayList<Segment>();
-	
+
 	// List of all trips that should be calculated
 	private List<TripRequest> trips = new ArrayList<TripRequest>();
 
 	/**
 	 * Parse input to obtain lists of vertices, edges, and trip requests.
+	 * 
 	 * @param fileName
-	 * 		file containing information on road network
+	 *                 file containing information on road network
 	 */
 	public FileParser(String fileName) {
 		try {
@@ -48,6 +50,16 @@ public class FileParser {
 			// TO DO: Make sure all segments are legal, i.e., startIndex
 			// and endIndex are legal for vertices.
 
+			for (Segment seg : segments) {
+				int s = seg.getStart(), e = seg.getEnd();
+				if (s < 0 || s > vertices.size()) {
+					throw new IllegalArgumentException("Start vertex is out of bounds.");
+				}
+				if (e < 0 || e > vertices.size()) {
+					throw new IllegalArgumentException("End vertex is out of bounds.");
+				}
+			}
+
 			// get trip requests
 			line = getDataLine(input);
 			int numTrips = Integer.parseInt(line);
@@ -66,7 +78,7 @@ public class FileParser {
 	/**
 	 * 
 	 * @param input
-	 *            file from which data is read
+	 *              file from which data is read
 	 * @return next valid line of input, skips blank lines and lines starting
 	 *         with #
 	 * @throws IOException
@@ -106,23 +118,36 @@ public class FileParser {
 
 	/**
 	 * Builds graph from input file
+	 * 
 	 * @param isDistance Whether to make graph with edges for distance or for time.
-	 * @return  Graph representing file read in
+	 * @return Graph representing file read in
 	 */
 	public EdgeWeightedDigraph makeGraph(boolean isDistance) {
 
-		//FIX THIS!
+		// FIX THIS!
 
-		return null;
+		EdgeWeightedDigraph g = new EdgeWeightedDigraph(vertices.size());
 
-		//Create a new weighted digraph and populate it with edges based on the segments
+		if (isDistance) {
+			for (Segment s : segments) {
+				g.addEdge(new DirectedEdge(s.getStart(), s.getStart(), s.getDistance()));
+			}
+		} else {
+			for (Segment s : segments) {
+				g.addEdge(new DirectedEdge(s.getStart(), s.getStart(), s.getDistance() / s.getSpeed()));
+			}
+		}
+
+		return g;
+
+		// Create a new weighted digraph and populate it with edges based on the
+		// segments
 	}
-
 
 	// testing code for file parser
 	public static void main(String[] args) {
-		FileParser fp = new FileParser("data/sample.txt");
-		
+		FileParser fp = new FileParser("../data/sample.txt");
+
 		EdgeWeightedDigraph roadNetworkDistance = fp.makeGraph(true);
 		EdgeWeightedDigraph roadNetworkTime = fp.makeGraph(false);
 

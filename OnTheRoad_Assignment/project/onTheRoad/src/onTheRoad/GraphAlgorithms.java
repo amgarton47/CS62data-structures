@@ -17,43 +17,46 @@ public class GraphAlgorithms {
 	 * Reverses the edges of a graph
 	 * 
 	 * @param g
-	 *            edge weighted directed graph
+	 *          edge weighted directed graph
 	 * @return graph like g except all edges are reversed
 	 */
 	public static EdgeWeightedDigraph graphEdgeReversal(EdgeWeightedDigraph g) {
-		// FIX THIS!
-		return null;
+		EdgeWeightedDigraph reversedG = new EdgeWeightedDigraph(g.V());
+		for (DirectedEdge edge : g.edges()) {
+			reversedG.addEdge(new DirectedEdge(edge.to(), edge.from(), edge.weight()));
+		}
+
+		return reversedG;
 	}
 
 	/**
 	 * Performs breadth-first search of g from vertex start.
 	 * 
 	 * @param g
-	 *            directed edge weighted graph
+	 *              directed edge weighted graph
 	 * @param start
-	 *            index of starting vertex for search
+	 *              index of starting vertex for search
 	 */
 	public static void breadthFirstSearch(EdgeWeightedDigraph g, int start) {
-		//reset graph so that no vertex starts marked as visited
-		// FIX THIS! 		
+		// reset graph so that no vertex starts marked as visited
+		// FIX THIS!
 	}
 
 	/**
 	 * Calculates whether the graph is strongly connected
 	 * 
 	 * @param g
-	 *            directed edge weighted graph
+	 *          directed edge weighted graph
 	 * @return whether graph g is strongly connected.
 	 */
 	public static boolean isStronglyConnected(EdgeWeightedDigraph g) {
 		// do breadth-first search from start and make sure all vertices
 		// have been visited. If not, return false.
-		
-		
+
 		// now reverse the graph, do another breadth-first search,
 		// and make sure all visited again. If not, return false
 
-		//FIX THIS!
+		// FIX THIS!
 		return false;
 	}
 
@@ -62,17 +65,16 @@ public class GraphAlgorithms {
 	 * starting vertex to every other vertex of the graph.
 	 * 
 	 * @param g
-	 *            directed edge weighted graph
+	 *          directed edge weighted graph
 	 * @param s
-	 *            starting vertex
+	 *          starting vertex
 	 * @return a hashmap where a key-value pair <i, path_i> corresponds to the i-th
 	 *         vertex and path_i is an arraylist that contains the edges along the
 	 *         shortest path from s to i.
 	 */
 	public static HashMap<Integer, ArrayList<DirectedEdge>> dijkstra(EdgeWeightedDigraph g, int s) {
-		//reset graph
-		
-		
+		// reset graph
+
 		// FIX THIS!
 		return null;
 	}
@@ -81,11 +83,11 @@ public class GraphAlgorithms {
 	 * Computes shortest path from start to end using Dijkstra's algorithm.
 	 *
 	 * @param g
-	 *            directed graph
+	 *              directed graph
 	 * @param start
-	 *            starting node in search for shortest path
+	 *              starting node in search for shortest path
 	 * @param end
-	 *            ending node in search for shortest path
+	 *              ending node in search for shortest path
 	 * @return a list of edges in that shortest path in correct order
 	 */
 	public static ArrayList<DirectedEdge> getShortestPath(EdgeWeightedDigraph g, int start, int end) {
@@ -99,7 +101,7 @@ public class GraphAlgorithms {
 	 * Using the output from getShortestPath, print the shortest path
 	 * between two nodes
 	 * 
-	 * @param path shortest path from start to end
+	 * @param path       shortest path from start to end
 	 * @param isDistance prints it based on distance (true) or time (false)
 	 */
 	public static void printShortestPath(ArrayList<DirectedEdge> path, boolean isDistance, List<String> vertices) {
@@ -111,7 +113,7 @@ public class GraphAlgorithms {
 	 * Converts hours (in decimal) to hours, minutes, and seconds
 	 * 
 	 * @param rawhours
-	 *            time elapsed
+	 *                 time elapsed
 	 * @return Equivalent of rawhours in hours, minutes, and seconds (to nearest
 	 *         10th of a second)
 	 */

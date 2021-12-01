@@ -4,8 +4,8 @@
 
 For this assignment, you will:
 
-* Gain experience with graph algorithms.
-* Work on a real-world problem.
+- Gain experience with graph algorithms.
+- Work on a real-world problem.
 
 ## Description
 
@@ -37,14 +37,14 @@ no reason we couldn't think of locations as being any particular point on a stre
 valid street address, or even any valid GPS coordinate). For simplicity, though, we'll think of them as points
 on the map in which decisions would need to be made, such as:
 
-* The intersection of two or more streets.
-* A point of a freeway at which there is an entrance and/or an exit.
+- The intersection of two or more streets.
+- A point of a freeway at which there is an entrance and/or an exit.
 
 Connecting pairs of locations on the map are stretches of road. In order to solve our problem, we'll need
 to know two things about each stretch of road:
 
-* Its length, in miles.
-* The current speed of traffic traveling on it, in miles per hour.
+- Its length, in miles.
+- The current speed of traffic traveling on it, in miles per hour.
 
 Our map will consist of any kind of road that a car can pass over (e.g., streets or freeways), though it will
 not make a clear distinction between them. In general, all of these are simply stretches of road that travel
@@ -64,15 +64,15 @@ The output of our program will be a trip. A trip is a sequence of visits to loca
 example, a typical trip around Irvine, CA would look something like this (see the more complete specification
 of output later):
 
-* Begin at Peltason & Los Trancos
-* Continue to Bison & Peltason
-* Continue to Bison & California
-* Continue to Bison & 73N on-ramp
-* Continue to 73N @ Birch
-* Continue to 73N @ 73N-to-55N transition
-* Continue to 55N @ Baker
-* Continue to 55N Baker/Paularino off-ramp & Baker
-* Continue to Baker & Bristol
+- Begin at Peltason & Los Trancos
+- Continue to Bison & Peltason
+- Continue to Bison & California
+- Continue to Bison & 73N on-ramp
+- Continue to 73N @ Birch
+- Continue to 73N @ 73N-to-55N transition
+- Continue to 55N @ Baker
+- Continue to 55N Baker/Paularino off-ramp & Baker
+- Continue to Baker & Bristol
 
 In addition to the information above, your program will also output information about the distance in
 miles and (sometimes) driving time of each of the segments of the trip, as well as the overall distance and
@@ -102,11 +102,11 @@ The goal of your program is to read a file containing a description of all of th
 the stretches of road that connect them. It then performs two tasks:
 
 1. Ensures that it is possible for every location to be reached from every other location. If we think of the
-locations and roads as a directed graph, that boils down to the problem of determining whether the
-graph is strongly connected. If not, the message `Disconnected Map` should be output and the program
-should end.
+   locations and roads as a directed graph, that boils down to the problem of determining whether the
+   graph is strongly connected. If not, the message `Disconnected Map` should be output and the program
+   should end.
 2. Determines, for a sequence of trip requests listed in the input, shortest distances or shortest times
-between pairs of locations.
+   between pairs of locations.
 
 Check out the sample input, which you'll find in the `data` directory in your project directory. A description
 of its format follows.
@@ -121,7 +121,7 @@ number of locations. If there are n locations, the next n lines of the input (no
 comments) will contain the names of each location. The locations will be stored in the order read in an
 `ArrayList` of `Strings`.
 
-~~~text
+```text
 # LOCATIONS
 
 # number of locations
@@ -147,7 +147,7 @@ Freeway North @ 103rd Ave
 Freeway South @ 101st Ave
 Freeway South @ 102nd Ave
 Freeway South @ 103rd Ave
-~~~
+```
 
 The next section of the input defines the road segments. Each road segment will be an edge in the directed
 graph. The first line of this section specifies the number of segments. Following that are the appropriate
@@ -161,7 +161,7 @@ number of road segment definitions, with each segment defined on a line with fou
 Each road segment will be stored in an object from class `Segment`, and the collection of all road segment
 will initially be stored in an ArrayList of such objects.
 
-~~~text
+```text
 # ROAD SEGMENTS
 
 # number of road segments
@@ -226,7 +226,7 @@ will initially be stored in an ArrayList of such objects.
 13 4 0.09 39.0
 8 14 0.08 41.5
 14 8 0.08 37.5
-~~~
+```
 
 Finally, the desired trips are defined. Again, the section begins with a line specifying the number of trips.
 Following that are an appropriate number of trip requests, with each trip request appearing on a line with
@@ -235,12 +235,12 @@ three values on it:
 1. The starting location for the trip.
 2. The ending location for the trip.
 3. `D` if the program should determine the shortest distance, or `T` if the program should determine the
-shortest driving time.
+   shortest driving time.
 
 Trips will be stored as objects from class `TripRequest`, containing their three defining values, and the
 collection of all trips will be stored in an `ArrayList`.
 
-~~~text
+```text
 # TRIPS
 
 # number of trips to analyze
@@ -251,7 +251,7 @@ collection of all trips will be stored in an `ArrayList`.
 1 8 T
 2 7 T
 12 14 D
-~~~
+```
 
 Your program should read the vertices and edges from the input, build a graph (or multiple graphs),
 then process the trip requests in the order that they appear. The output for each trip request is described
@@ -263,9 +263,9 @@ vertices, different configurations of edges, different names, different distance
 The code to read in these values is provided in the class `FileParser`. As well as the constructor, this
 class provides methods `getVertices`, `getSegments`, and `getTrips`. There is also the method `makeGraph`:
 
-~~~java
+```java
     public EdgeWeightedDigraph makeGraph(boolean isDistance) {
-~~~
+```
 
 that returns a weighted directed graph. If `isDistance` is true, the it should return a graph in which the edges represent
 distances between location, while if it is false, the edges represent times.
@@ -289,7 +289,7 @@ For that, we will build two separate graphs – one for distance and one for tim
 gives speed data not time! Because you will be optimizing for time, you will need to calculate the time (as
 distance divided by speed) in order to use that as the edge cost.
 
-You have been provided with classes `FileParser`, `Segment`, and `TripRequest` and helper data structure classes `Bag`, `DirectedEdge`, `EdgeWeightedDigraph`,  and `IndexMinPQ`.  The constructor for class
+You have been provided with classes `FileParser`, `Segment`, and `TripRequest` and helper data structure classes `Bag`, `DirectedEdge`, `EdgeWeightedDigraph`, and `IndexMinPQ`. The constructor for class
 `FileParser` converts all the data from parameter `fileName` into a list of vertices (represented as `String`s),
 a list of edges (represented as `Segment`s), and a list of trip requests (represented as `TripRequest`s). All
 methods of `FileParser` are written for you except for `makeGraph`, whose job is to create a directed graph
@@ -360,13 +360,13 @@ might prefer to find your own way. Suppose timeHours is the double value you are
 1. Find the hours (`numHours`) by casting `timeHours` to an `int`. This will truncate to the number of hours.
 2. Find the fractional hours (`fractionalHours`)) left by calculating `timeHours - numHours`.
 3. (Here is the tricky part:) You could convert this to seconds by multiplying by `60*60 (= 3600)`, but
-instead calculate the number of tenths of a seconds left by multiplying by 36000 and then rounding to
-the nearest `int`. `int tenthSeconds = (int)Math.round(fractionalHours * 36000)`.
+   instead calculate the number of tenths of a seconds left by multiplying by 36000 and then rounding to
+   the nearest `int`. `int tenthSeconds = (int)Math.round(fractionalHours * 36000)`.
 4. Now it is easy to calculate the number of minutes (`minutes`) by dividing by 600 (the number of tenths
-of a second in a minute).
+   of a second in a minute).
 5. Calculate `tenthSecondsLeft = tenthSeconds - 600 * minutes`.
 6. We bet you'll be able to figure out how to convert this last value to the appropriate number of seconds
-(to the nearest 1/10th).
+   (to the nearest 1/10th).
 
 We'll leave it to you to figure out the logic to get the correct units to appear as specified. Notice the last
 example in particular, where minutes are shown even if there are 0 of them.
@@ -382,18 +382,15 @@ own, but if you get stuck, the Java code is in your textbook.
 
 You will be graded based on the following criteria:
 
-
-| Criterion                                | Points |
-| :--------------------------------------- | :----- |
-| Properly builds graph from input data    | 2      |
-| BFS                                      | 2      |
-| Strong connectivity test                 | 4      |
-| Dijkstra's algorithm                     | 4      |
-| Handles trip requests correctly          | 3      |
-| Creates correct output                   | 4      |
-| Appropriate comments + JavaDoc           | 2      |
-| Total                                    | 21     |
-
-
+| Criterion                             | Points |
+| :------------------------------------ | :----- |
+| Properly builds graph from input data | 2      |
+| BFS                                   | 2      |
+| Strong connectivity test              | 4      |
+| Dijkstra's algorithm                  | 4      |
+| Handles trip requests correctly       | 3      |
+| Creates correct output                | 4      |
+| Appropriate comments + JavaDoc        | 2      |
+| Total                                 | 21     |
 
 NOTE: Code that does not compile will not be accepted! Make sure that your code compiles before submitting it.
